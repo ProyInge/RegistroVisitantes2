@@ -1,0 +1,442 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ALIMENTO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CANTIDAD" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="ANFITRIONA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SIGLAS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MONEDA" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TIPOCAMBIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TIPOUSUARIO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TIPOCAMBIO_CONTA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MONEDA_CONTA" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CONTACTO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FISICO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="SALUDOID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="APELLIDOS" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="PAISID" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+    <Property Name="SEXO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="132" FixedLength="false" Unicode="false" />
+    <Property Name="IDENTIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="COMENTARIO" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="CREADOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CREADO" Type="DateTime" />
+    <Property Name="MODIFICADOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFICADO" Type="DateTime" />
+    <Property Name="CODSUENA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="REFERENCIA_CONTACTOS" Type="Int32" />
+  </EntityType>
+  <EntityType Name="CONTACTO_ROL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ROLID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONTACTO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="RH" Relationship="Self.SYS_C0011235" FromRole="CONTACTO_ROL" ToRole="RH" />
+  </EntityType>
+  <EntityType Name="ESTACION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SIGLAS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="RESERVABLE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="RESERVABLE1" Relationship="Self.SYS_C0011233" FromRole="ESTACION" ToRole="RESERVABLE" />
+  </EntityType>
+  <EntityType Name="GRUPO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RAIZ" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="OBJETOBASE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GRUPOANON">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="INFANTES" Type="Int16" />
+    <Property Name="NINOS" Type="Int16" />
+    <Property Name="MUJERES" Type="Int16" />
+    <Property Name="HOMBRES" Type="Int16" />
+  </EntityType>
+  <EntityType Name="GRUPORSRV">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TIPO" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="DEL" Type="DateTime" />
+    <Property Name="AL" Type="DateTime" />
+    <Property Name="VEGGIES" Type="Int16" />
+    <Property Name="NOTASALIMENTACION" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="PARTEDE" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+    <Property Name="COORDINADOR" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GRUPORSRV_MIEMBROS">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="VALUE" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VALUE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MIEMBRO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONTACTOROL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DEL" Type="DateTime" />
+    <Property Name="AL" Type="DateTime" />
+    <Property Name="EDAD" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="SEXO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ANONIMO" Type="Boolean" />
+    <Property Name="AUTORIZADO" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="PARTICIPANTE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PERSONA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CLASE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ESTADO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NOTA" Type="Decimal" Precision="20" Scale="5" />
+    <Property Name="BECA" Type="Decimal" Precision="20" Scale="5" />
+  </EntityType>
+  <EntityType Name="RESERVABLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CATEGORIA" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ESTACION" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+    <Property Name="CAPACIDAD" Type="Int16" />
+    <NavigationProperty Name="ESTACION1" Relationship="Self.SYS_C0011233" FromRole="RESERVABLE" ToRole="ESTACION" />
+  </EntityType>
+  <EntityType Name="RH">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="INTERNO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="CR" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+    <Property Name="ALIAS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CONTACTO_ROL" Relationship="Self.SYS_C0011235" FromRole="RH" ToRole="CONTACTO_ROL" />
+  </EntityType>
+  <EntityType Name="ROL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PERSONA" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="ORGANIZACION" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="EDITABLE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="DELSISTEMA" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ASISTENCIA">
+    <Key>
+      <PropertyRef Name="IDASISTENCIA" />
+      <PropertyRef Name="IDESQUEMA" />
+      <PropertyRef Name="IDCATEGORIATARIFA" />
+      <PropertyRef Name="PORCENTAJE" />
+      <PropertyRef Name="TIPOSALDO" />
+      <PropertyRef Name="ESTADO" />
+    </Key>
+    <Property Name="IDASISTENCIA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDESQUEMA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDCATEGORIATARIFA" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PORCENTAJE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TIPOSALDO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ESTADO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="COLABORADORES">
+    <Key>
+      <PropertyRef Name="IDCLASE" />
+      <PropertyRef Name="PERSONA" />
+      <PropertyRef Name="TIPO" />
+    </Key>
+    <Property Name="IDCLASE" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PERSONA" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TIPO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DISTRIBUCION_CONTACTOS">
+    <Key>
+      <PropertyRef Name="IDLISTA" />
+      <PropertyRef Name="IDCONTACTO" />
+    </Key>
+    <Property Name="IDLISTA" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDCONTACTO" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RESERVA_MIP">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ANFITRIONA" />
+      <PropertyRef Name="IDREFERENCIA" />
+      <PropertyRef Name="DEBE" />
+      <PropertyRef Name="HABER" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ANFITRIONA" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDREFERENCIA" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FONDO" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+    <Property Name="GENERAL_LEDGER" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+    <Property Name="FUNCION" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+    <Property Name="CENTRO_COSTO" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+    <Property Name="BECA" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+    <Property Name="FAS" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+    <Property Name="DEBE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="HABER" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RESERVACION">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="NUMERO" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ANFITRIONA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NUMERO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ESTADO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PRIORIDAD" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="GRUPO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ENTRA" Type="DateTime" />
+    <Property Name="ENTRAMTN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SALE" Type="DateTime" />
+    <Property Name="SALEMTN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RESPONSABLE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SOLICITANTE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NOTAS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="SOLICITADAEL" Type="DateTime" />
+    <Property Name="FORMAPAGO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SALDO" Type="Decimal" Precision="20" Scale="5" />
+    <Property Name="CUENTACLIENTEKEY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CUENTACLIENTEOCLASS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ESTACION" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFICADOR" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFICADO" Type="DateTime" />
+    <Property Name="MONTO_PREPAGO" Type="Decimal" Precision="15" Scale="2" />
+    <Property Name="REFERENCIA_PREPAGO" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="PRIMERA_COMIDA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREACION" Type="Int64" />
+    <Property Name="ULTIMA_MODIFICACION" Type="Int64" />
+    <Property Name="MODIFICA_RACK" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFICADO_RACK" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FLAG" Type="Byte" />
+    <Property Name="URL" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="RESERVACION_OTROS_INGRESOS">
+    <Key>
+      <PropertyRef Name="IDRESERVA" />
+      <PropertyRef Name="IDCATTARIFA" />
+      <PropertyRef Name="PAX" />
+      <PropertyRef Name="MONTO" />
+      <PropertyRef Name="IMPVT" />
+      <PropertyRef Name="TOTAL" />
+      <PropertyRef Name="MONEDA" />
+      <PropertyRef Name="IDSERVICIOS" />
+      <PropertyRef Name="PAGADO" />
+      <PropertyRef Name="FECHAINICIO" />
+      <PropertyRef Name="FECHAFIN" />
+      <PropertyRef Name="NOMBRE" />
+    </Key>
+    <Property Name="IDRESERVA" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDCATTARIFA" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PAX" Type="Int16" Nullable="false" />
+    <Property Name="MONTO" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="IMPVT" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="TOTAL" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="MONEDA" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDSERVICIOS" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PAGADO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="FECHAINICIO" Type="DateTime" Nullable="false" />
+    <Property Name="FECHAFIN" Type="DateTime" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RESERVACION_TARIFA">
+    <Key>
+      <PropertyRef Name="IDRESERVA" />
+      <PropertyRef Name="IDCATTARIFA" />
+      <PropertyRef Name="PAX" />
+      <PropertyRef Name="MONTO" />
+      <PropertyRef Name="IMPICT" />
+      <PropertyRef Name="IMPVT" />
+      <PropertyRef Name="TOTAL" />
+      <PropertyRef Name="CLASIFICACIONTARIFA" />
+      <PropertyRef Name="TIPOTARIFA" />
+      <PropertyRef Name="PORCENTAJE" />
+    </Key>
+    <Property Name="IDRESERVA" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDCATTARIFA" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PAX" Type="Int16" Nullable="false" />
+    <Property Name="MONTO" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="IMPICT" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="IMPVT" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="TOTAL" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="DESDE" Type="DateTime" />
+    <Property Name="HASTA" Type="DateTime" />
+    <Property Name="DIAS" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CLASIFICACIONTARIFA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TIPOTARIFA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="VISITANTE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PORCENTAJE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RESERVACIONITEM">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="CLASIFICACIONTARIFA" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RESERVACION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RESERVABLE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CATEGORIATARIFA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BLOQUEA" Type="Boolean" />
+    <Property Name="ESTADO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DEL" Type="DateTime" />
+    <Property Name="AL" Type="DateTime" />
+    <Property Name="PAX" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="CLASIFICACIONTARIFA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="HORA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="RECURSO_ASIGNADO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TELEFONO">
+    <Key>
+      <PropertyRef Name="CONTACTOID" />
+      <PropertyRef Name="PREFERIDO" />
+      <PropertyRef Name="TIPO" />
+    </Key>
+    <Property Name="CONTACTOID" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PREFERIDO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TIPO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NUMERO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="EXTENSION" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="USUARIO_PERFIL">
+    <Key>
+      <PropertyRef Name="IDUSUARIO" />
+      <PropertyRef Name="IDPERFIL" />
+      <PropertyRef Name="IDESTACION" />
+    </Key>
+    <Property Name="IDUSUARIO" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDPERFIL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDESTACION" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="USUARIO" />
+      <PropertyRef Name="ANFITRION" />
+      <PropertyRef Name="IDCONTACTO" />
+      <PropertyRef Name="IDUSUARIO" />
+      <PropertyRef Name="NOMBRE" />
+      <PropertyRef Name="IDESTACION" />
+      <PropertyRef Name="ESTADO" />
+    </Key>
+    <Property Name="USUARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CLAVE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ANFITRION" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDCONTACTO" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDUSUARIO" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDESTACION" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ESTADO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="CORREO" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="USUARIOS_CONECTADOS">
+    <Key>
+      <PropertyRef Name="USUARIOSYS" />
+      <PropertyRef Name="USUARIOCOMP" />
+      <PropertyRef Name="HOSTNAME" />
+      <PropertyRef Name="IPADDRESS" />
+      <PropertyRef Name="FECHA" />
+    </Key>
+    <Property Name="USUARIOSYS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="USUARIOCOMP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HOSTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IPADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FECHA" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <Association Name="SYS_C0011235">
+    <End Role="CONTACTO_ROL" Type="Self.CONTACTO_ROL" Multiplicity="0..1" />
+    <End Role="RH" Type="Self.RH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTACTO_ROL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RH">
+        <PropertyRef Name="CR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C0011233">
+    <End Role="ESTACION" Type="Self.ESTACION" Multiplicity="0..1" />
+    <End Role="RESERVABLE" Type="Self.RESERVABLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTACION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RESERVABLE">
+        <PropertyRef Name="ESTACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EntitiesReservas" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ALIMENTO" EntityType="Self.ALIMENTO" />
+    <EntitySet Name="ANFITRIONA" EntityType="Self.ANFITRIONA" />
+    <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" />
+    <EntitySet Name="CONTACTO_ROL" EntityType="Self.CONTACTO_ROL" />
+    <EntitySet Name="ESTACION" EntityType="Self.ESTACION" />
+    <EntitySet Name="GRUPO" EntityType="Self.GRUPO" />
+    <EntitySet Name="GRUPOANON" EntityType="Self.GRUPOANON" />
+    <EntitySet Name="GRUPORSRV" EntityType="Self.GRUPORSRV" />
+    <EntitySet Name="GRUPORSRV_MIEMBROS" EntityType="Self.GRUPORSRV_MIEMBROS" />
+    <EntitySet Name="MIEMBRO" EntityType="Self.MIEMBRO" />
+    <EntitySet Name="PARTICIPANTE" EntityType="Self.PARTICIPANTE" />
+    <EntitySet Name="RESERVABLE" EntityType="Self.RESERVABLE" />
+    <EntitySet Name="RH" EntityType="Self.RH" />
+    <EntitySet Name="ROL" EntityType="Self.ROL" />
+    <EntitySet Name="ASISTENCIA" EntityType="Self.ASISTENCIA" />
+    <EntitySet Name="COLABORADORES" EntityType="Self.COLABORADORES" />
+    <EntitySet Name="DISTRIBUCION_CONTACTOS" EntityType="Self.DISTRIBUCION_CONTACTOS" />
+    <EntitySet Name="RESERVA_MIP" EntityType="Self.RESERVA_MIP" />
+    <EntitySet Name="RESERVACION" EntityType="Self.RESERVACION" />
+    <EntitySet Name="RESERVACION_OTROS_INGRESOS" EntityType="Self.RESERVACION_OTROS_INGRESOS" />
+    <EntitySet Name="RESERVACION_TARIFA" EntityType="Self.RESERVACION_TARIFA" />
+    <EntitySet Name="RESERVACIONITEM" EntityType="Self.RESERVACIONITEM" />
+    <EntitySet Name="TELEFONO" EntityType="Self.TELEFONO" />
+    <EntitySet Name="USUARIO_PERFIL" EntityType="Self.USUARIO_PERFIL" />
+    <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+    <EntitySet Name="USUARIOS_CONECTADOS" EntityType="Self.USUARIOS_CONECTADOS" />
+    <AssociationSet Name="SYS_C0011235" Association="Self.SYS_C0011235">
+      <End Role="CONTACTO_ROL" EntitySet="CONTACTO_ROL" />
+      <End Role="RH" EntitySet="RH" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C0011233" Association="Self.SYS_C0011233">
+      <End Role="ESTACION" EntitySet="ESTACION" />
+      <End Role="RESERVABLE" EntitySet="RESERVABLE" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

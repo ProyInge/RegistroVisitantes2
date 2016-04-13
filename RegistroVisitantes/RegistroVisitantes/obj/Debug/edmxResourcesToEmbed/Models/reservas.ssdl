@@ -1,0 +1,611 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ALIMENTO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="CANTIDAD" Type="number" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="ANFITRIONA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="2" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar2" MaxLength="100" Nullable="false" />
+    <Property Name="SIGLAS" Type="varchar2" MaxLength="20" Nullable="false" />
+    <Property Name="MONEDA" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="TIPOCAMBIO" Type="varchar2" MaxLength="10" Nullable="false" />
+    <Property Name="TIPOUSUARIO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TIPOCAMBIO_CONTA" Type="varchar2" MaxLength="10" Nullable="false" />
+    <Property Name="MONEDA_CONTA" Type="varchar2" MaxLength="26" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'RESERVAS.ASISTENCIA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="ASISTENCIA">
+    <Key>
+      <PropertyRef Name="IDASISTENCIA" />
+      <PropertyRef Name="IDESQUEMA" />
+      <PropertyRef Name="IDCATEGORIATARIFA" />
+      <PropertyRef Name="PORCENTAJE" />
+      <PropertyRef Name="TIPOSALDO" />
+      <PropertyRef Name="ESTADO" />
+    </Key>
+    <Property Name="IDASISTENCIA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDESQUEMA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDCATEGORIATARIFA" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="PORCENTAJE" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TIPOSALDO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ESTADO" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'RESERVAS.COLABORADORES' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="COLABORADORES">
+    <Key>
+      <PropertyRef Name="IDCLASE" />
+      <PropertyRef Name="PERSONA" />
+      <PropertyRef Name="TIPO" />
+    </Key>
+    <Property Name="IDCLASE" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="PERSONA" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="TIPO" Type="varchar2" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CONTACTO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="30" Nullable="false" />
+    <Property Name="FISICO" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="SALUDOID" Type="varchar2" MaxLength="4" />
+    <Property Name="NOMBRE" Type="varchar2" MaxLength="80" Nullable="false" />
+    <Property Name="APELLIDOS" Type="varchar2" MaxLength="80" />
+    <Property Name="PAISID" Type="varchar2" MaxLength="26" />
+    <Property Name="SEXO" Type="varchar2" MaxLength="1" />
+    <Property Name="EMAIL" Type="varchar2" MaxLength="132" />
+    <Property Name="IDENTIFICACION" Type="varchar2" MaxLength="50" />
+    <Property Name="COMENTARIO" Type="varchar2" MaxLength="1000" />
+    <Property Name="CREADOR" Type="varchar2" MaxLength="100" />
+    <Property Name="CREADO" Type="date" />
+    <Property Name="MODIFICADOR" Type="varchar2" MaxLength="100" />
+    <Property Name="MODIFICADO" Type="date" />
+    <Property Name="CODSUENA" Type="varchar2" MaxLength="100" />
+    <Property Name="REFERENCIA_CONTACTOS" Type="number" Precision="10" Scale="0" />
+  </EntityType>
+  <EntityType Name="CONTACTO_ROL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ROLID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ID" Type="varchar2" MaxLength="30" Nullable="false" />
+    <Property Name="CONTACTO" Type="varchar2" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'RESERVAS.DISTRIBUCION_CONTACTOS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="DISTRIBUCION_CONTACTOS">
+    <Key>
+      <PropertyRef Name="IDLISTA" />
+      <PropertyRef Name="IDCONTACTO" />
+    </Key>
+    <Property Name="IDLISTA" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="IDCONTACTO" Type="varchar2" MaxLength="26" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ESTACION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar2" MaxLength="100" Nullable="false" />
+    <Property Name="SIGLAS" Type="varchar2" MaxLength="20" />
+    <Property Name="RESERVABLE" Type="varchar2" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="GRUPO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="RAIZ" Type="varchar2" MaxLength="255" />
+    <Property Name="OBJETOBASE" Type="varchar2" MaxLength="255" />
+    <Property Name="NOMBRE" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="GRUPOANON">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="30" Nullable="false" />
+    <Property Name="INFANTES" Type="number" Precision="5" Scale="0" />
+    <Property Name="NINOS" Type="number" Precision="5" Scale="0" />
+    <Property Name="MUJERES" Type="number" Precision="5" Scale="0" />
+    <Property Name="HOMBRES" Type="number" Precision="5" Scale="0" />
+  </EntityType>
+  <EntityType Name="GRUPORSRV">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="30" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar2" MaxLength="255" />
+    <Property Name="TIPO" Type="varchar2" MaxLength="3" />
+    <Property Name="DEL" Type="date" />
+    <Property Name="AL" Type="date" />
+    <Property Name="VEGGIES" Type="number" Precision="5" Scale="0" />
+    <Property Name="NOTASALIMENTACION" Type="varchar2" MaxLength="2000" />
+    <Property Name="PARTEDE" Type="varchar2" MaxLength="26" />
+    <Property Name="COORDINADOR" Type="varchar2" MaxLength="400" />
+  </EntityType>
+  <EntityType Name="GRUPORSRV_MIEMBROS">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="VALUE" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="VALUE" Type="varchar2" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MIEMBRO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="CONTACTOROL" Type="varchar2" MaxLength="255" />
+    <Property Name="NOMBRE" Type="varchar2" MaxLength="255" />
+    <Property Name="DEL" Type="date" />
+    <Property Name="AL" Type="date" />
+    <Property Name="EDAD" Type="number" Precision="20" Scale="0" />
+    <Property Name="SEXO" Type="varchar2" MaxLength="255" />
+    <Property Name="ANONIMO" Type="number" Precision="1" Scale="0" />
+    <Property Name="AUTORIZADO" Type="number" Precision="1" Scale="0" />
+  </EntityType>
+  <EntityType Name="PARTICIPANTE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="PERSONA" Type="varchar2" MaxLength="255" />
+    <Property Name="CLASE" Type="varchar2" MaxLength="255" />
+    <Property Name="ESTADO" Type="varchar2" MaxLength="255" />
+    <Property Name="NOTA" Type="number" Precision="20" Scale="5" />
+    <Property Name="BECA" Type="number" Precision="20" Scale="5" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'RESERVAS.RESERVA_MIP' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="RESERVA_MIP">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ANFITRIONA" />
+      <PropertyRef Name="IDREFERENCIA" />
+      <PropertyRef Name="DEBE" />
+      <PropertyRef Name="HABER" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="ANFITRIONA" Type="varchar2" MaxLength="2" Nullable="false" />
+    <Property Name="IDREFERENCIA" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="FONDO" Type="varchar2" MaxLength="26" />
+    <Property Name="GENERAL_LEDGER" Type="varchar2" MaxLength="26" />
+    <Property Name="FUNCION" Type="varchar2" MaxLength="26" />
+    <Property Name="CENTRO_COSTO" Type="varchar2" MaxLength="26" />
+    <Property Name="BECA" Type="varchar2" MaxLength="26" />
+    <Property Name="FAS" Type="varchar2" MaxLength="26" />
+    <Property Name="DEBE" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="HABER" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RESERVABLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="CATEGORIA" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="ESTACION" Type="varchar2" MaxLength="26" />
+    <Property Name="CAPACIDAD" Type="number" Precision="5" Scale="0" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'RESERVAS.RESERVACION' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="RESERVACION">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="NUMERO" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="ANFITRIONA" Type="varchar2" MaxLength="255" />
+    <Property Name="NUMERO" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="ESTADO" Type="varchar2" MaxLength="255" />
+    <Property Name="PRIORIDAD" Type="number" Precision="20" Scale="0" />
+    <Property Name="GRUPO" Type="varchar2" MaxLength="255" />
+    <Property Name="ENTRA" Type="date" />
+    <Property Name="ENTRAMTN" Type="varchar2" MaxLength="255" />
+    <Property Name="SALE" Type="date" />
+    <Property Name="SALEMTN" Type="varchar2" MaxLength="255" />
+    <Property Name="RESPONSABLE" Type="varchar2" MaxLength="255" />
+    <Property Name="SOLICITANTE" Type="varchar2" MaxLength="255" />
+    <Property Name="NOTAS" Type="varchar2" MaxLength="4000" />
+    <Property Name="SOLICITADAEL" Type="date" />
+    <Property Name="FORMAPAGO" Type="varchar2" MaxLength="255" />
+    <Property Name="SALDO" Type="number" Precision="20" Scale="5" />
+    <Property Name="CUENTACLIENTEKEY" Type="varchar2" MaxLength="255" />
+    <Property Name="CUENTACLIENTEOCLASS" Type="varchar2" MaxLength="255" />
+    <Property Name="ESTACION" Type="varchar2" MaxLength="26" />
+    <Property Name="MODIFICADOR" Type="varchar2" MaxLength="255" />
+    <Property Name="MODIFICADO" Type="date" />
+    <Property Name="MONTO_PREPAGO" Type="number" Precision="15" Scale="2" />
+    <Property Name="REFERENCIA_PREPAGO" Type="varchar2" MaxLength="1000" />
+    <Property Name="PRIMERA_COMIDA" Type="varchar2" MaxLength="50" />
+    <Property Name="CREACION" Type="number" Precision="16" Scale="0" />
+    <Property Name="ULTIMA_MODIFICACION" Type="number" Precision="16" Scale="0" />
+    <Property Name="MODIFICA_RACK" Type="varchar2" MaxLength="255" />
+    <Property Name="MODIFICADO_RACK" Type="varchar2" MaxLength="255" />
+    <Property Name="FLAG" Type="number" Precision="2" Scale="0" />
+    <Property Name="URL" Type="varchar2" MaxLength="2000" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'RESERVAS.RESERVACION_OTROS_INGRESOS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="RESERVACION_OTROS_INGRESOS">
+    <Key>
+      <PropertyRef Name="IDRESERVA" />
+      <PropertyRef Name="IDCATTARIFA" />
+      <PropertyRef Name="PAX" />
+      <PropertyRef Name="MONTO" />
+      <PropertyRef Name="IMPVT" />
+      <PropertyRef Name="TOTAL" />
+      <PropertyRef Name="MONEDA" />
+      <PropertyRef Name="IDSERVICIOS" />
+      <PropertyRef Name="PAGADO" />
+      <PropertyRef Name="FECHAINICIO" />
+      <PropertyRef Name="FECHAFIN" />
+      <PropertyRef Name="NOMBRE" />
+    </Key>
+    <Property Name="IDRESERVA" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="IDCATTARIFA" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="PAX" Type="number" Precision="4" Scale="0" Nullable="false" />
+    <Property Name="MONTO" Type="number" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="IMPVT" Type="number" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="TOTAL" Type="number" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="MONEDA" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="IDSERVICIOS" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="PAGADO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="FECHAINICIO" Type="date" Nullable="false" />
+    <Property Name="FECHAFIN" Type="date" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar2" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'RESERVAS.RESERVACION_TARIFA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="RESERVACION_TARIFA">
+    <Key>
+      <PropertyRef Name="IDRESERVA" />
+      <PropertyRef Name="IDCATTARIFA" />
+      <PropertyRef Name="PAX" />
+      <PropertyRef Name="MONTO" />
+      <PropertyRef Name="IMPICT" />
+      <PropertyRef Name="IMPVT" />
+      <PropertyRef Name="TOTAL" />
+      <PropertyRef Name="CLASIFICACIONTARIFA" />
+      <PropertyRef Name="TIPOTARIFA" />
+      <PropertyRef Name="PORCENTAJE" />
+    </Key>
+    <Property Name="IDRESERVA" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="IDCATTARIFA" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="PAX" Type="number" Precision="4" Scale="0" Nullable="false" />
+    <Property Name="MONTO" Type="number" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="IMPICT" Type="number" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="IMPVT" Type="number" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="TOTAL" Type="number" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="DESDE" Type="date" />
+    <Property Name="HASTA" Type="date" />
+    <Property Name="DIAS" Type="number" Precision="38" Scale="0" />
+    <Property Name="CLASIFICACIONTARIFA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TIPOTARIFA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="VISITANTE" Type="varchar2" MaxLength="100" />
+    <Property Name="PORCENTAJE" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'RESERVAS.RESERVACIONITEM' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="RESERVACIONITEM">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="CLASIFICACIONTARIFA" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="255" Nullable="false" />
+    <Property Name="RESERVACION" Type="varchar2" MaxLength="255" />
+    <Property Name="RESERVABLE" Type="varchar2" MaxLength="255" />
+    <Property Name="CATEGORIATARIFA" Type="varchar2" MaxLength="255" />
+    <Property Name="BLOQUEA" Type="number" Precision="1" Scale="0" />
+    <Property Name="ESTADO" Type="varchar2" MaxLength="255" />
+    <Property Name="DEL" Type="date" />
+    <Property Name="AL" Type="date" />
+    <Property Name="PAX" Type="number" Precision="20" Scale="0" />
+    <Property Name="CLASIFICACIONTARIFA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="HORA" Type="varchar2" MaxLength="30" />
+    <Property Name="RECURSO_ASIGNADO" Type="varchar2" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="RH">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="INTERNO" Type="varchar2" MaxLength="1" />
+    <Property Name="CR" Type="varchar2" MaxLength="26" />
+    <Property Name="ALIAS" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="ROL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar2" MaxLength="20" Nullable="false" />
+    <Property Name="PERSONA" Type="varchar2" MaxLength="1" />
+    <Property Name="ORGANIZACION" Type="varchar2" MaxLength="1" />
+    <Property Name="EDITABLE" Type="varchar2" MaxLength="1" />
+    <Property Name="DELSISTEMA" Type="varchar2" MaxLength="1" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'RESERVAS.TELEFONO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="TELEFONO">
+    <Key>
+      <PropertyRef Name="CONTACTOID" />
+      <PropertyRef Name="PREFERIDO" />
+      <PropertyRef Name="TIPO" />
+    </Key>
+    <Property Name="CONTACTOID" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="PREFERIDO" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="TIPO" Type="varchar2" MaxLength="1" Nullable="false" />
+    <Property Name="NUMERO" Type="varchar2" MaxLength="30" />
+    <Property Name="EXTENSION" Type="varchar2" MaxLength="8" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'RESERVAS.USUARIO_PERFIL' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="USUARIO_PERFIL">
+    <Key>
+      <PropertyRef Name="IDUSUARIO" />
+      <PropertyRef Name="IDPERFIL" />
+      <PropertyRef Name="IDESTACION" />
+    </Key>
+    <Property Name="IDUSUARIO" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="IDPERFIL" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IDESTACION" Type="varchar2" MaxLength="26" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'RESERVAS.USUARIOS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="USUARIO" />
+      <PropertyRef Name="ANFITRION" />
+      <PropertyRef Name="IDCONTACTO" />
+      <PropertyRef Name="IDUSUARIO" />
+      <PropertyRef Name="NOMBRE" />
+      <PropertyRef Name="IDESTACION" />
+      <PropertyRef Name="ESTADO" />
+    </Key>
+    <Property Name="USUARIO" Type="varchar2" MaxLength="50" Nullable="false" />
+    <Property Name="CLAVE" Type="varchar2" MaxLength="50" />
+    <Property Name="ANFITRION" Type="varchar2" MaxLength="2" Nullable="false" />
+    <Property Name="IDCONTACTO" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="IDUSUARIO" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar2" MaxLength="255" />
+    <Property Name="NOMBRE" Type="varchar2" MaxLength="100" Nullable="false" />
+    <Property Name="IDESTACION" Type="varchar2" MaxLength="26" Nullable="false" />
+    <Property Name="ESTADO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="CORREO" Type="varchar2" MaxLength="400" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'RESERVAS.USUARIOS_CONECTADOS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="USUARIOS_CONECTADOS">
+    <Key>
+      <PropertyRef Name="USUARIOSYS" />
+      <PropertyRef Name="USUARIOCOMP" />
+      <PropertyRef Name="HOSTNAME" />
+      <PropertyRef Name="IPADDRESS" />
+      <PropertyRef Name="FECHA" />
+    </Key>
+    <Property Name="USUARIOSYS" Type="varchar2" MaxLength="50" Nullable="false" />
+    <Property Name="USUARIOCOMP" Type="varchar2" MaxLength="50" Nullable="false" />
+    <Property Name="HOSTNAME" Type="varchar2" MaxLength="50" Nullable="false" />
+    <Property Name="IPADDRESS" Type="varchar2" MaxLength="50" Nullable="false" />
+    <Property Name="FECHA" Type="date" Nullable="false" />
+  </EntityType>
+  <Association Name="SYS_C0011233">
+    <End Role="ESTACION" Type="Self.ESTACION" Multiplicity="0..1" />
+    <End Role="RESERVABLE" Type="Self.RESERVABLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTACION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RESERVABLE">
+        <PropertyRef Name="ESTACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C0011235">
+    <End Role="CONTACTO_ROL" Type="Self.CONTACTO_ROL" Multiplicity="0..1" />
+    <End Role="RH" Type="Self.RH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTACTO_ROL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RH">
+        <PropertyRef Name="CR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="ALIMENTO" EntityType="Self.ALIMENTO" Schema="RESERVAS" store:Type="Tables" />
+    <EntitySet Name="ANFITRIONA" EntityType="Self.ANFITRIONA" Schema="RESERVAS" store:Type="Tables" />
+    <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" Schema="RESERVAS" store:Type="Tables" />
+    <EntitySet Name="CONTACTO_ROL" EntityType="Self.CONTACTO_ROL" Schema="RESERVAS" store:Type="Tables" />
+    <EntitySet Name="ESTACION" EntityType="Self.ESTACION" Schema="RESERVAS" store:Type="Tables" />
+    <EntitySet Name="GRUPO" EntityType="Self.GRUPO" Schema="RESERVAS" store:Type="Tables" />
+    <EntitySet Name="GRUPOANON" EntityType="Self.GRUPOANON" Schema="RESERVAS" store:Type="Tables" />
+    <EntitySet Name="GRUPORSRV" EntityType="Self.GRUPORSRV" Schema="RESERVAS" store:Type="Tables" />
+    <EntitySet Name="GRUPORSRV_MIEMBROS" EntityType="Self.GRUPORSRV_MIEMBROS" Schema="RESERVAS" store:Type="Tables" />
+    <EntitySet Name="MIEMBRO" EntityType="Self.MIEMBRO" Schema="RESERVAS" store:Type="Tables" />
+    <EntitySet Name="PARTICIPANTE" EntityType="Self.PARTICIPANTE" Schema="RESERVAS" store:Type="Tables" />
+    <EntitySet Name="RESERVABLE" EntityType="Self.RESERVABLE" Schema="RESERVAS" store:Type="Tables" />
+    <EntitySet Name="RH" EntityType="Self.RH" Schema="RESERVAS" store:Type="Tables" />
+    <EntitySet Name="ROL" EntityType="Self.ROL" Schema="RESERVAS" store:Type="Tables" />
+    <EntitySet Name="ASISTENCIA" EntityType="Self.ASISTENCIA" store:Type="Tables" store:Schema="RESERVAS">
+      <DefiningQuery>SELECT 
+"ASISTENCIA"."IDASISTENCIA" AS "IDASISTENCIA", 
+"ASISTENCIA"."IDESQUEMA" AS "IDESQUEMA", 
+"ASISTENCIA"."IDCATEGORIATARIFA" AS "IDCATEGORIATARIFA", 
+"ASISTENCIA"."PORCENTAJE" AS "PORCENTAJE", 
+"ASISTENCIA"."TIPOSALDO" AS "TIPOSALDO", 
+"ASISTENCIA"."ESTADO" AS "ESTADO"
+FROM "RESERVAS"."ASISTENCIA" "ASISTENCIA"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="COLABORADORES" EntityType="Self.COLABORADORES" store:Type="Tables" store:Schema="RESERVAS">
+      <DefiningQuery>SELECT 
+"COLABORADORES"."IDCLASE" AS "IDCLASE", 
+"COLABORADORES"."PERSONA" AS "PERSONA", 
+"COLABORADORES"."TIPO" AS "TIPO"
+FROM "RESERVAS"."COLABORADORES" "COLABORADORES"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DISTRIBUCION_CONTACTOS" EntityType="Self.DISTRIBUCION_CONTACTOS" store:Type="Tables" store:Schema="RESERVAS">
+      <DefiningQuery>SELECT 
+"DISTRIBUCION_CONTACTOS"."IDLISTA" AS "IDLISTA", 
+"DISTRIBUCION_CONTACTOS"."IDCONTACTO" AS "IDCONTACTO"
+FROM "RESERVAS"."DISTRIBUCION_CONTACTOS" "DISTRIBUCION_CONTACTOS"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="RESERVA_MIP" EntityType="Self.RESERVA_MIP" store:Type="Tables" store:Schema="RESERVAS">
+      <DefiningQuery>SELECT 
+"RESERVA_MIP"."ID" AS "ID", 
+"RESERVA_MIP"."ANFITRIONA" AS "ANFITRIONA", 
+"RESERVA_MIP"."IDREFERENCIA" AS "IDREFERENCIA", 
+"RESERVA_MIP"."FONDO" AS "FONDO", 
+"RESERVA_MIP"."GENERAL_LEDGER" AS "GENERAL_LEDGER", 
+"RESERVA_MIP"."FUNCION" AS "FUNCION", 
+"RESERVA_MIP"."CENTRO_COSTO" AS "CENTRO_COSTO", 
+"RESERVA_MIP"."BECA" AS "BECA", 
+"RESERVA_MIP"."FAS" AS "FAS", 
+"RESERVA_MIP"."DEBE" AS "DEBE", 
+"RESERVA_MIP"."HABER" AS "HABER"
+FROM "RESERVAS"."RESERVA_MIP" "RESERVA_MIP"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="RESERVACION" EntityType="Self.RESERVACION" store:Type="Tables" store:Schema="RESERVAS">
+      <DefiningQuery>SELECT 
+"RESERVACION"."ID" AS "ID", 
+"RESERVACION"."ANFITRIONA" AS "ANFITRIONA", 
+"RESERVACION"."NUMERO" AS "NUMERO", 
+"RESERVACION"."ESTADO" AS "ESTADO", 
+"RESERVACION"."PRIORIDAD" AS "PRIORIDAD", 
+"RESERVACION"."GRUPO" AS "GRUPO", 
+"RESERVACION"."ENTRA" AS "ENTRA", 
+"RESERVACION"."ENTRAMTN" AS "ENTRAMTN", 
+"RESERVACION"."SALE" AS "SALE", 
+"RESERVACION"."SALEMTN" AS "SALEMTN", 
+"RESERVACION"."RESPONSABLE" AS "RESPONSABLE", 
+"RESERVACION"."SOLICITANTE" AS "SOLICITANTE", 
+"RESERVACION"."NOTAS" AS "NOTAS", 
+"RESERVACION"."SOLICITADAEL" AS "SOLICITADAEL", 
+"RESERVACION"."FORMAPAGO" AS "FORMAPAGO", 
+"RESERVACION"."SALDO" AS "SALDO", 
+"RESERVACION"."CUENTACLIENTEKEY" AS "CUENTACLIENTEKEY", 
+"RESERVACION"."CUENTACLIENTEOCLASS" AS "CUENTACLIENTEOCLASS", 
+"RESERVACION"."ESTACION" AS "ESTACION", 
+"RESERVACION"."MODIFICADOR" AS "MODIFICADOR", 
+"RESERVACION"."MODIFICADO" AS "MODIFICADO", 
+"RESERVACION"."MONTO_PREPAGO" AS "MONTO_PREPAGO", 
+"RESERVACION"."REFERENCIA_PREPAGO" AS "REFERENCIA_PREPAGO", 
+"RESERVACION"."PRIMERA_COMIDA" AS "PRIMERA_COMIDA", 
+"RESERVACION"."CREACION" AS "CREACION", 
+"RESERVACION"."ULTIMA_MODIFICACION" AS "ULTIMA_MODIFICACION", 
+"RESERVACION"."MODIFICA_RACK" AS "MODIFICA_RACK", 
+"RESERVACION"."MODIFICADO_RACK" AS "MODIFICADO_RACK", 
+"RESERVACION"."FLAG" AS "FLAG", 
+"RESERVACION"."URL" AS "URL"
+FROM "RESERVAS"."RESERVACION" "RESERVACION"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="RESERVACION_OTROS_INGRESOS" EntityType="Self.RESERVACION_OTROS_INGRESOS" store:Type="Tables" store:Schema="RESERVAS">
+      <DefiningQuery>SELECT 
+"RESERVACION_OTROS_INGRESOS"."IDRESERVA" AS "IDRESERVA", 
+"RESERVACION_OTROS_INGRESOS"."IDCATTARIFA" AS "IDCATTARIFA", 
+"RESERVACION_OTROS_INGRESOS"."PAX" AS "PAX", 
+"RESERVACION_OTROS_INGRESOS"."MONTO" AS "MONTO", 
+"RESERVACION_OTROS_INGRESOS"."IMPVT" AS "IMPVT", 
+"RESERVACION_OTROS_INGRESOS"."TOTAL" AS "TOTAL", 
+"RESERVACION_OTROS_INGRESOS"."MONEDA" AS "MONEDA", 
+"RESERVACION_OTROS_INGRESOS"."IDSERVICIOS" AS "IDSERVICIOS", 
+"RESERVACION_OTROS_INGRESOS"."PAGADO" AS "PAGADO", 
+"RESERVACION_OTROS_INGRESOS"."FECHAINICIO" AS "FECHAINICIO", 
+"RESERVACION_OTROS_INGRESOS"."FECHAFIN" AS "FECHAFIN", 
+"RESERVACION_OTROS_INGRESOS"."NOMBRE" AS "NOMBRE"
+FROM "RESERVAS"."RESERVACION_OTROS_INGRESOS" "RESERVACION_OTROS_INGRESOS"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="RESERVACION_TARIFA" EntityType="Self.RESERVACION_TARIFA" store:Type="Tables" store:Schema="RESERVAS">
+      <DefiningQuery>SELECT 
+"RESERVACION_TARIFA"."IDRESERVA" AS "IDRESERVA", 
+"RESERVACION_TARIFA"."IDCATTARIFA" AS "IDCATTARIFA", 
+"RESERVACION_TARIFA"."PAX" AS "PAX", 
+"RESERVACION_TARIFA"."MONTO" AS "MONTO", 
+"RESERVACION_TARIFA"."IMPICT" AS "IMPICT", 
+"RESERVACION_TARIFA"."IMPVT" AS "IMPVT", 
+"RESERVACION_TARIFA"."TOTAL" AS "TOTAL", 
+"RESERVACION_TARIFA"."DESDE" AS "DESDE", 
+"RESERVACION_TARIFA"."HASTA" AS "HASTA", 
+"RESERVACION_TARIFA"."DIAS" AS "DIAS", 
+"RESERVACION_TARIFA"."CLASIFICACIONTARIFA" AS "CLASIFICACIONTARIFA", 
+"RESERVACION_TARIFA"."TIPOTARIFA" AS "TIPOTARIFA", 
+"RESERVACION_TARIFA"."VISITANTE" AS "VISITANTE", 
+"RESERVACION_TARIFA"."PORCENTAJE" AS "PORCENTAJE"
+FROM "RESERVAS"."RESERVACION_TARIFA" "RESERVACION_TARIFA"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="RESERVACIONITEM" EntityType="Self.RESERVACIONITEM" store:Type="Tables" store:Schema="RESERVAS">
+      <DefiningQuery>SELECT 
+"RESERVACIONITEM"."ID" AS "ID", 
+"RESERVACIONITEM"."RESERVACION" AS "RESERVACION", 
+"RESERVACIONITEM"."RESERVABLE" AS "RESERVABLE", 
+"RESERVACIONITEM"."CATEGORIATARIFA" AS "CATEGORIATARIFA", 
+"RESERVACIONITEM"."BLOQUEA" AS "BLOQUEA", 
+"RESERVACIONITEM"."ESTADO" AS "ESTADO", 
+"RESERVACIONITEM"."DEL" AS "DEL", 
+"RESERVACIONITEM"."AL" AS "AL", 
+"RESERVACIONITEM"."PAX" AS "PAX", 
+"RESERVACIONITEM"."CLASIFICACIONTARIFA" AS "CLASIFICACIONTARIFA", 
+"RESERVACIONITEM"."HORA" AS "HORA", 
+"RESERVACIONITEM"."RECURSO_ASIGNADO" AS "RECURSO_ASIGNADO"
+FROM "RESERVAS"."RESERVACIONITEM" "RESERVACIONITEM"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TELEFONO" EntityType="Self.TELEFONO" store:Type="Tables" store:Schema="RESERVAS">
+      <DefiningQuery>SELECT 
+"TELEFONO"."CONTACTOID" AS "CONTACTOID", 
+"TELEFONO"."PREFERIDO" AS "PREFERIDO", 
+"TELEFONO"."TIPO" AS "TIPO", 
+"TELEFONO"."NUMERO" AS "NUMERO", 
+"TELEFONO"."EXTENSION" AS "EXTENSION"
+FROM "RESERVAS"."TELEFONO" "TELEFONO"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="USUARIO_PERFIL" EntityType="Self.USUARIO_PERFIL" store:Type="Tables" store:Schema="RESERVAS">
+      <DefiningQuery>SELECT 
+"USUARIO_PERFIL"."IDUSUARIO" AS "IDUSUARIO", 
+"USUARIO_PERFIL"."IDPERFIL" AS "IDPERFIL", 
+"USUARIO_PERFIL"."IDESTACION" AS "IDESTACION"
+FROM "RESERVAS"."USUARIO_PERFIL" "USUARIO_PERFIL"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" store:Type="Tables" store:Schema="RESERVAS">
+      <DefiningQuery>SELECT 
+"USUARIOS"."USUARIO" AS "USUARIO", 
+"USUARIOS"."CLAVE" AS "CLAVE", 
+"USUARIOS"."ANFITRION" AS "ANFITRION", 
+"USUARIOS"."IDCONTACTO" AS "IDCONTACTO", 
+"USUARIOS"."IDUSUARIO" AS "IDUSUARIO", 
+"USUARIOS"."DESCRIPCION" AS "DESCRIPCION", 
+"USUARIOS"."NOMBRE" AS "NOMBRE", 
+"USUARIOS"."IDESTACION" AS "IDESTACION", 
+"USUARIOS"."ESTADO" AS "ESTADO", 
+"USUARIOS"."CORREO" AS "CORREO"
+FROM "RESERVAS"."USUARIOS" "USUARIOS"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="USUARIOS_CONECTADOS" EntityType="Self.USUARIOS_CONECTADOS" store:Type="Tables" store:Schema="RESERVAS">
+      <DefiningQuery>SELECT 
+"USUARIOS_CONECTADOS"."USUARIOSYS" AS "USUARIOSYS", 
+"USUARIOS_CONECTADOS"."USUARIOCOMP" AS "USUARIOCOMP", 
+"USUARIOS_CONECTADOS"."HOSTNAME" AS "HOSTNAME", 
+"USUARIOS_CONECTADOS"."IPADDRESS" AS "IPADDRESS", 
+"USUARIOS_CONECTADOS"."FECHA" AS "FECHA"
+FROM "RESERVAS"."USUARIOS_CONECTADOS" "USUARIOS_CONECTADOS"</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="SYS_C0011233" Association="Self.SYS_C0011233">
+      <End Role="ESTACION" EntitySet="ESTACION" />
+      <End Role="RESERVABLE" EntitySet="RESERVABLE" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C0011235" Association="Self.SYS_C0011235">
+      <End Role="CONTACTO_ROL" EntitySet="CONTACTO_ROL" />
+      <End Role="RH" EntitySet="RH" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

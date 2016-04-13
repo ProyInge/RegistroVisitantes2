@@ -17,7 +17,7 @@
         <EntityTypeShape EntityType="Model.MIEMBRO" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PARTICIPANTE" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.RESERVABLE" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.RH" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RH" Width="1.5" PointX="3.625" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.ROL" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.ASISTENCIA" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.COLABORADORES" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
