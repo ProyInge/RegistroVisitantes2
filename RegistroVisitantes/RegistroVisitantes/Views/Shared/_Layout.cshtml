@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
+    <!--@Styles.Render("~/Content/Anterior.css")-->
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -26,7 +27,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>  
                 </button>
                 @Html.ActionLink("Registro de Visitantes", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
@@ -35,6 +36,7 @@
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Registro", "Registro", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

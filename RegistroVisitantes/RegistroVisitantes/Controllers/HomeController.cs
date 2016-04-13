@@ -26,5 +26,12 @@ namespace RegistroVisitantes.Controllers
 
             return View();
         }
+
+        public ActionResult Registro()
+        {
+            ViewBag.Message = "Registro";
+
+            return View();
+        }
     }
 }
