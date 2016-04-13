@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="RH">
+      <EntityTypeMapping TypeName="Model.RH">
+        <MappingFragment StoreEntitySet="RH">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="INTERNO" ColumnName="INTERNO" />
+          <ScalarProperty Name="CR" ColumnName="CR" />
+          <ScalarProperty Name="ALIAS" ColumnName="ALIAS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
