@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<div class="container" style="align-content:center; margin-top: 100px">
+    
+    <label>Seleccione su idioma:</label>
+    <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+        <option value="">Select....</option>
+        <option value="~/Registro/Formulario">Español</option>
+        <option value="ingles">English</option>
+        <option value="frances">Francais</option>
+    </select>
+
+</div>
