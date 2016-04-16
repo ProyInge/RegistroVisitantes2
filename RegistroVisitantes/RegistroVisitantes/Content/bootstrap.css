@@ -23,13 +23,55 @@
 
 
 
-
-
-
 /*  
     Codigo Nuestro----------------------------------------------------- INICIO
 
 */
+ /*BOTON OET Verde #7BC143*/
+.btn-successOET {
+  color: #ffffff;
+  background-color: #7BC143;
+  border-color: #77b644;
+}
+
+.btn-successOET:hover,
+.btn-successOET:focus,
+.btn-successOET:active,
+.btn-successOET.active,
+.open .dropdown-toggle.btn-successOET {
+  color: #ffffff;
+  background-color: #6ea742;
+  border-color: #398439;
+}
+
+.btn-successOET:active,
+.btn-successOET.active,
+.open .dropdown-toggle.btn-successOET {
+  background-image: none;
+}
+
+
+.btn-successOET.disabled,
+.btn-successOET[disabled],
+fieldset[disabled] .btn-successOET,
+.btn-successOET.disabled:hover,
+.btn-successOET[disabled]:hover,
+fieldset[disabled] .btn-successOET:hover,
+.btn-successOET.disabled:focus,
+.btn-successOET[disabled]:focus,
+fieldset[disabled] .btn-successOET:focus,
+.btn-successOET.disabled:active,
+.btn-successOET[disabled]:active,
+fieldset[disabled] .btn-successOET:active,
+.btn-successOET.disabled.active,
+.btn-successOET[disabled].active,
+fieldset[disabled] .btn-successOET.active {
+  background-color: #7BC143;
+  border-color: #4cae4c;
+}
+
+/*----END---- #7BC143*/
+
 
 
 

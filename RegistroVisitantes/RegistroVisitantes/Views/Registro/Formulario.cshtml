@@ -13,7 +13,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <br />
-                    <label for="ced">Cédula:</label>
+                    <label for="ced">Cédula o pasaporte:</label>
                     <input type="text" class="form-control" id="ced">
                 </div>
                 <div class="form-group">
@@ -48,7 +48,7 @@
         </div>
         <div class="container">
             <h2 style="border-bottom:8px solid #FDBB30">Contacto de Emergencia</h2>
-            <div class="col-sm-12">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <br />
                     <label for="cont">Contacto:</label>
@@ -58,6 +58,9 @@
                     <label for="telE">Teléfono:</label>
                     <input type="text" class="form-control" id="telE">
                 </div>
+            </div>
+            <div class="col-sm-6">
+                <br />
                 <div class="form-group">
                     <label for="mailE">Email:</label>
                     <input type="text" class="form-control" id="mailE">
@@ -71,35 +74,58 @@
 
         <div class="container">
             <h2 style="border-bottom:8px solid #FDBB30">Alimentación</h2>
-            <div class="col-sm-12">
+            <div class="col-sm-6">
                 <br />
-                <label for="dieta">Dieta:</label>
+                <label for="dieta" style="width:80px; text-align:right">Dieta: </label>
                 <select name="cars">
+                    <option value="sr">Sin Restricción</option>
                     <option value="veg">Vegetariano</option>
                     <option value="vg">Vegano</option>
-                    <option value="sr">Sin Restricción</option>
                     <option value="otro">Otro</option>
                 </select>
                 <br />
                 <br />
-                <label for="pref">Preferencia:</label>
+                <label for="pref" style="width:80px; text-align:right">Preferencia: </label>
                 <select name="cars">
                     <option value="carne">Carne</option>
                     <option value="pes">Pescado</option>
                     <option value="pollo">Pollo</option>
                     <option value="cerdo">Cerdo</option>
                 </select>
-                <br />
-                <br />
+            </div>
+            <div class="col-sm-6">
                 <label for="aler">Alergias:</label>
                 <textarea class="form-control" rows="4" id="alergias"></textarea>
             </div>
         </div>
 
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">¿Cómo se enteró de la Estación?</h2>
+            <div class="col-sm-6">
+                <br />
+                <label for="motivo" style="width:50%">
+                    Por favor seleccione una opción, si no aparece
+                    indique cuál en el campo de otro
+                </label>
+                <select name="cars">
+                    <option value="hotel">Hotel Local</option>
+                    <option value="medios">Periódicos, revistas, TV</option>
+                    <option value="agencia">Agencia de Viajes</option>
+                    <option value="guia">Guía turística</option>
+                    <option value="amigos">Amigos</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="form-group">
+                    <label for="otro">Otro:</label>
+                    <textarea class="form-control" rows="4" id="otroText"></textarea>
+                </div>
+            </div>
+        </div>
+
         <div class="container col-sm-4" style="padding: 30px 10px">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-successOET">Guardar</button>
         </div>
     </form>
 </div>
-
-
