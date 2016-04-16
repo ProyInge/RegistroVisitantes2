@@ -24,28 +24,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CONTACTO">
-      <EntityTypeMapping TypeName="Model.CONTACTO">
-        <MappingFragment StoreEntitySet="CONTACTO">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="FISICO" ColumnName="FISICO" />
-          <ScalarProperty Name="SALUDOID" ColumnName="SALUDOID" />
-          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-          <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
-          <ScalarProperty Name="PAISID" ColumnName="PAISID" />
-          <ScalarProperty Name="SEXO" ColumnName="SEXO" />
-          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-          <ScalarProperty Name="IDENTIFICACION" ColumnName="IDENTIFICACION" />
-          <ScalarProperty Name="COMENTARIO" ColumnName="COMENTARIO" />
-          <ScalarProperty Name="CREADOR" ColumnName="CREADOR" />
-          <ScalarProperty Name="CREADO" ColumnName="CREADO" />
-          <ScalarProperty Name="MODIFICADOR" ColumnName="MODIFICADOR" />
-          <ScalarProperty Name="MODIFICADO" ColumnName="MODIFICADO" />
-          <ScalarProperty Name="CODSUENA" ColumnName="CODSUENA" />
-          <ScalarProperty Name="REFERENCIA_CONTACTOS" ColumnName="REFERENCIA_CONTACTOS" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CONTACTO_ROL">
       <EntityTypeMapping TypeName="Model.CONTACTO_ROL">
         <MappingFragment StoreEntitySet="CONTACTO_ROL">

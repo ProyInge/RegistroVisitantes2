@@ -51,27 +51,6 @@ advertencia 6002: La tabla o vista 'RESERVAS.COLABORADORES' no tiene definida ni
     <Property Name="PERSONA" Type="varchar2" MaxLength="26" Nullable="false" />
     <Property Name="TIPO" Type="varchar2" MaxLength="255" Nullable="false" />
   </EntityType>
-  <EntityType Name="CONTACTO">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="varchar2" MaxLength="30" Nullable="false" />
-    <Property Name="FISICO" Type="char" MaxLength="1" Nullable="false" />
-    <Property Name="SALUDOID" Type="varchar2" MaxLength="4" />
-    <Property Name="NOMBRE" Type="varchar2" MaxLength="80" Nullable="false" />
-    <Property Name="APELLIDOS" Type="varchar2" MaxLength="80" />
-    <Property Name="PAISID" Type="varchar2" MaxLength="26" />
-    <Property Name="SEXO" Type="varchar2" MaxLength="1" />
-    <Property Name="EMAIL" Type="varchar2" MaxLength="132" />
-    <Property Name="IDENTIFICACION" Type="varchar2" MaxLength="50" />
-    <Property Name="COMENTARIO" Type="varchar2" MaxLength="1000" />
-    <Property Name="CREADOR" Type="varchar2" MaxLength="100" />
-    <Property Name="CREADO" Type="date" />
-    <Property Name="MODIFICADOR" Type="varchar2" MaxLength="100" />
-    <Property Name="MODIFICADO" Type="date" />
-    <Property Name="CODSUENA" Type="varchar2" MaxLength="100" />
-    <Property Name="REFERENCIA_CONTACTOS" Type="number" Precision="10" Scale="0" />
-  </EntityType>
   <EntityType Name="CONTACTO_ROL">
     <Key>
       <PropertyRef Name="ID" />
@@ -165,6 +144,24 @@ advertencia 6002: La tabla o vista 'RESERVAS.DISTRIBUCION_CONTACTOS' no tiene de
     <Property Name="NOTA" Type="number" Precision="20" Scale="5" />
     <Property Name="BECA" Type="number" Precision="20" Scale="5" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'RESERVAS.PREREGISTRO' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="PREREGISTRO">
+          <Property Name="IDCONTACTO" Type="number" Precision="10" Scale="0" />
+          <Property Name="PROPOSITO" Type="char" MaxLength="1" />
+          <Property Name="GRUPO" Type="varchar2" MaxLength="30" />
+          <Property Name="COMOENTERO" Type="varchar2" MaxLength="50" />
+          <Property Name="FECHA" Type="date" />
+          <Property Name="NOMCURSO" Type="varchar2" MaxLength="50" />
+          <Property Name="NUMCURSO" Type="varchar2" MaxLength="30" />
+          <Property Name="ROLCURSO" Type="char" MaxLength="1" />
+          <Property Name="NOMPROYECTO" Type="varchar2" MaxLength="50" />
+          <Property Name="INVERSIONES" Type="varchar2" MaxLength="50" />
+          <Property Name="FUENTE" Type="varchar2" MaxLength="50" />
+          <Property Name="RESOLUCION" Type="varchar2" MaxLength="30" />
+          <Property Name="PERMISO" Type="varchar2" MaxLength="30" />
+          <Property Name="EXPIRACION" Type="date" />
+        </EntityType>-->
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'RESERVAS.RESERVA_MIP' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="RESERVA_MIP">
@@ -426,7 +423,6 @@ advertencia 6002: La tabla o vista 'RESERVAS.USUARIOS_CONECTADOS' no tiene defin
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="ALIMENTO" EntityType="Self.ALIMENTO" Schema="RESERVAS" store:Type="Tables" />
     <EntitySet Name="ANFITRIONA" EntityType="Self.ANFITRIONA" Schema="RESERVAS" store:Type="Tables" />
-    <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" Schema="RESERVAS" store:Type="Tables" />
     <EntitySet Name="CONTACTO_ROL" EntityType="Self.CONTACTO_ROL" Schema="RESERVAS" store:Type="Tables" />
     <EntitySet Name="ESTACION" EntityType="Self.ESTACION" Schema="RESERVAS" store:Type="Tables" />
     <EntitySet Name="GRUPO" EntityType="Self.GRUPO" Schema="RESERVAS" store:Type="Tables" />

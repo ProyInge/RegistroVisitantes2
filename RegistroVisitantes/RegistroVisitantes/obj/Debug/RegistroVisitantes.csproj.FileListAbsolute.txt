@@ -267,3 +267,4 @@ C:\Users\Jeffry\Documents\Visual Studio 2015\Projects\RegistroVisitantes2\Regist
 C:\Users\Jeffry\Documents\Visual Studio 2015\Projects\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.csprojResolveAssemblyReference.cache
 C:\Users\Jeffry\Documents\Visual Studio 2015\Projects\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.dll
 C:\Users\Jeffry\Documents\Visual Studio 2015\Projects\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.pdb
+C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.csprojResolveAssemblyReference.cache

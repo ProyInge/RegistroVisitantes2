@@ -27,7 +27,6 @@ namespace RegistroVisitantes.Models
     
         public virtual DbSet<ALIMENTO> ALIMENTO { get; set; }
         public virtual DbSet<ANFITRIONA> ANFITRIONA { get; set; }
-        public virtual DbSet<CONTACTO> CONTACTO { get; set; }
         public virtual DbSet<CONTACTO_ROL> CONTACTO_ROL { get; set; }
         public virtual DbSet<ESTACION> ESTACION { get; set; }
         public virtual DbSet<GRUPO> GRUPO { get; set; }

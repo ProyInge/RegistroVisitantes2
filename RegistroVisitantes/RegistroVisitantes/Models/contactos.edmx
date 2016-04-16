@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="contactos.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CAT_ACADEMIC_DEGREE">
+          <Key>
+            <PropertyRef Name="CAT_ACADEMIC_DEGREE" />
+          </Key>
+          <Property Name="CAT_ACADEMIC_DEGREE" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar2" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="CAT_CURSO_ESTADO">
+          <Key>
+            <PropertyRef Name="CAT_CURSO_ESTADO" />
+          </Key>
+          <Property Name="CAT_CURSO_ESTADO" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar2" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="CAT_TIPO_IDENTIFIACION">
+          <Key>
+            <PropertyRef Name="CAT_TIPO_IDENTIFIACION" />
+          </Key>
+          <Property Name="CAT_TIPO_IDENTIFIACION" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar2" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="CONTACTO">
+          <Key>
+            <PropertyRef Name="CONTACTO" />
+          </Key>
+          <Property Name="CONTACTO" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="TYPE" Type="number" Precision="10" Scale="0" />
+          <Property Name="FIRST_NAME" Type="varchar2" MaxLength="150" />
+          <Property Name="LAST_NAME" Type="varchar2" MaxLength="150" />
+          <Property Name="BIRTH_DAY" Type="date" />
+          <Property Name="BIRTH_PLACE" Type="varchar2" MaxLength="400" />
+          <Property Name="INSTITUTION" Type="varchar2" MaxLength="400" />
+          <Property Name="CATEGORY" Type="varchar2" MaxLength="150" />
+          <Property Name="GENDER" Type="varchar2" MaxLength="20" />
+          <Property Name="PHONE" Type="varchar2" MaxLength="150" />
+          <Property Name="PHONE_AREA_CODE" Type="varchar2" MaxLength="50" />
+          <Property Name="FAX" Type="varchar2" MaxLength="150" />
+          <Property Name="FAX_AREA_CODE" Type="varchar2" MaxLength="50" />
+          <Property Name="EMERGENCY_CONTACT1" Type="varchar2" MaxLength="400" />
+          <Property Name="EMERGENCY_NUMBER1" Type="varchar2" MaxLength="150" />
+          <Property Name="EMERGENCY_E_MAIL1" Type="varchar2" MaxLength="150" />
+          <Property Name="EMERGENCY_CONTACT2" Type="varchar2" MaxLength="400" />
+          <Property Name="EMERGENCY_NUMBER2" Type="varchar2" MaxLength="150" />
+          <Property Name="EMERGENCY_E_MAIL2" Type="varchar2" MaxLength="150" />
+          <Property Name="E_MAIL" Type="varchar2" MaxLength="150" />
+          <Property Name="IDENTIFICATION_TYPE" Type="number" Precision="10" Scale="0" />
+          <Property Name="IDENTIFICATION" Type="varchar2" MaxLength="200" />
+          <Property Name="EXPIRATION_DATE" Type="date" />
+          <Property Name="COUNTRY_BIRTH" Type="varchar2" MaxLength="20" />
+          <Property Name="NACIONALITY" Type="varchar2" MaxLength="400" />
+          <Property Name="ETHNIC_GROUP" Type="varchar2" MaxLength="150" />
+          <Property Name="ADDRESS_L1" Type="varchar2" MaxLength="500" />
+          <Property Name="AREA_OF_INTEREST" Type="varchar2" MaxLength="600" />
+          <Property Name="ACADEMIC_DEGREE" Type="varchar2" MaxLength="800" />
+          <Property Name="SECRET_QUESTION" Type="varchar2" MaxLength="150" />
+          <Property Name="ANSWER" Type="varchar2" MaxLength="150" />
+          <Property Name="PASSWORD" Type="varchar2" MaxLength="150" />
+          <Property Name="GRUPO" Type="varchar2" MaxLength="20" />
+          <Property Name="EMERGENCY_NUMBER1_CODE" Type="varchar2" MaxLength="50" />
+          <Property Name="EMERGENCY_NUMBER2_CODE" Type="varchar2" MaxLength="50" />
+          <Property Name="HOME_PHONE" Type="varchar2" MaxLength="150" />
+          <Property Name="HOME_PHONE_AREA" Type="varchar2" MaxLength="50" />
+          <Property Name="ADDRESS_COUNTRY" Type="varchar2" MaxLength="20" />
+          <Property Name="ADDRESS_L2" Type="varchar2" MaxLength="500" />
+          <Property Name="CITY" Type="varchar2" MaxLength="300" />
+          <Property Name="STATE" Type="varchar2" MaxLength="300" />
+          <Property Name="ZIP_CODE" Type="varchar2" MaxLength="20" />
+          <Property Name="CAT_TIPO_ESTUDIANTE" Type="number" Precision="10" Scale="0" />
+          <Property Name="STATION" Type="varchar2" MaxLength="30" />
+          <Property Name="NO_DIETARY_RESTRICTIONS" Type="number" Precision="1" Scale="0" />
+          <Property Name="VEGETARIAN" Type="number" Precision="1" Scale="0" />
+          <Property Name="VEGAN" Type="number" Precision="1" Scale="0" />
+          <Property Name="BEEF" Type="number" Precision="1" Scale="0" />
+          <Property Name="CHICKEN" Type="number" Precision="1" Scale="0" />
+          <Property Name="PORK" Type="number" Precision="1" Scale="0" />
+          <Property Name="FISH" Type="number" Precision="1" Scale="0" />
+          <Property Name="OTHER_DIETARY" Type="varchar2" MaxLength="400" />
+          <Property Name="COUNTRY_EMITS" Type="varchar2" MaxLength="20" />
+          <Property Name="CREADO" Type="date" />
+          <Property Name="MODIFICADO" Type="date" />
+          <Property Name="NICKNAME" Type="varchar2" MaxLength="150" />
+          <Property Name="DEPARTAMENT" Type="varchar2" MaxLength="400" />
+          <Property Name="POSITION" Type="varchar2" MaxLength="400" />
+          <Property Name="SKYPE" Type="varchar2" MaxLength="400" />
+          <Property Name="WEBSITE" Type="varchar2" MaxLength="1000" />
+          <Property Name="CKOTHER_DIETARY_RESTRIC" Type="number" Precision="1" Scale="0" />
+          <Property Name="TXOTHER_DIETARY_RESTRIC" Type="varchar2" MaxLength="1000" />
+          <Property Name="PRIN" Type="number" Precision="1" Scale="0" />
+          <Property Name="RELATIONSHIP_CONTACT1" Type="varchar2" MaxLength="1000" />
+          <Property Name="RELATIONSHIP_CONTACT2" Type="varchar2" MaxLength="1000" />
+          <Property Name="INSURANCE_COMPANY" Type="varchar2" MaxLength="1000" />
+          <Property Name="INSURANCE_NUMBER" Type="varchar2" MaxLength="100" />
+          <Property Name="INSURANCE_EXPIRATION" Type="date" />
+          <Property Name="ESPECIALIDAD" Type="varchar2" MaxLength="1000" />
+          <Property Name="DATO_ESTACION" Type="number" Precision="1" Scale="0" />
+          <Property Name="CONTACTO_RESERVAS" Type="varchar2" MaxLength="30" />
+          <Property Name="SHARE_INFORMATION" Type="varchar2" MaxLength="1" />
+          <Property Name="PHONE_COUNTRY_CODE" Type="varchar2" MaxLength="20" />
+          <Property Name="FAX_COUNTRY_CODE" Type="varchar2" MaxLength="20" />
+          <Property Name="EMERGENCY_COUNTRY_NUM_CODE1" Type="varchar2" MaxLength="20" />
+          <Property Name="EMERGENCY_COUNTRY_NUM_CODE2" Type="varchar2" MaxLength="20" />
+          <Property Name="HORA_CREACION" Type="varchar2" MaxLength="100" />
+          <Property Name="E_MAIL2" Type="varchar2" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="COURSES">
+          <Key>
+            <PropertyRef Name="COURSES" />
+          </Key>
+          <Property Name="COURSES" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="COURSES_CODE" Type="varchar2" MaxLength="100" />
+          <Property Name="COURSE_NAME" Type="varchar2" MaxLength="1000" />
+          <Property Name="START_DATE" Type="date" />
+          <Property Name="END_DATE" Type="date" />
+          <Property Name="COST_CENTER" Type="varchar2" MaxLength="100" />
+          <Property Name="CAT_TIPO_PROGRAMA" Type="number" Precision="10" Scale="0" />
+          <Property Name="OTHERS" Type="varchar2" MaxLength="1000" />
+          <Property Name="CAT_CURSO_ESTADO" Type="number" Precision="10" Scale="0" />
+          <Property Name="COMMENTS" Type="varchar2" MaxLength="4000" />
+          <Property Name="APPROVED" Type="number" Precision="10" Scale="0" />
+          <Property Name="APPLYING" Type="number" Precision="10" Scale="0" />
+          <Property Name="TOTAL_COST" Type="number" Precision="10" Scale="2" />
+          <Property Name="TOTAL_SCOLARSHIP" Type="number" Precision="10" Scale="2" />
+          <Property Name="MAXIMUM_PARTICIPANTS" Type="number" Precision="10" Scale="0" />
+          <Property Name="LANGUAGE" Type="varchar2" MaxLength="10" />
+          <Property Name="COURSE_URL" Type="varchar2" MaxLength="200" />
+          <Property Name="CREATED_BY" Type="number" Precision="10" Scale="0" />
+          <Property Name="CREATED_DATE" Type="date" />
+          <Property Name="MODIFIED_BY" Type="number" Precision="10" Scale="0" />
+          <Property Name="MODIFIED_DATE" Type="date" />
+          <Property Name="REFERENCE_MAIL" Type="varchar2" MaxLength="2000" />
+          <Property Name="DEAD_LINE" Type="date" />
+          <Property Name="ACCOUNTING_CLOSE" Type="date" />
+          <Property Name="WITHDREW" Type="number" Precision="10" Scale="0" />
+          <Property Name="ESTIMATED_COST" Type="number" Precision="15" Scale="2" />
+          <Property Name="TUITION_WAIVER" Type="number" Precision="15" Scale="2" />
+          <Property Name="TUITION_AID" Type="number" Precision="15" Scale="2" />
+        </EntityType>
+        <EntityType Name="TIPO_CONTACTO">
+          <Key>
+            <PropertyRef Name="TIPO_CONTACTO" />
+          </Key>
+          <Property Name="TIPO_CONTACTO" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar2" MaxLength="400" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="contactosStoreContainer">
+          <EntitySet Name="CAT_ACADEMIC_DEGREE" EntityType="Self.CAT_ACADEMIC_DEGREE" Schema="CONTACTOS" store:Type="Tables" />
+          <EntitySet Name="CAT_CURSO_ESTADO" EntityType="Self.CAT_CURSO_ESTADO" Schema="CONTACTOS" store:Type="Tables" />
+          <EntitySet Name="CAT_TIPO_IDENTIFIACION" EntityType="Self.CAT_TIPO_IDENTIFIACION" Schema="CONTACTOS" store:Type="Tables" />
+          <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" Schema="CONTACTOS" store:Type="Tables" />
+          <EntitySet Name="COURSES" EntityType="Self.COURSES" Schema="CONTACTOS" store:Type="Tables" />
+          <EntitySet Name="TIPO_CONTACTO" EntityType="Self.TIPO_CONTACTO" Schema="CONTACTOS" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="contactos" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CAT_ACADEMIC_DEGREE">
+          <Key>
+            <PropertyRef Name="CAT_ACADEMIC_DEGREE1" />
+          </Key>
+          <Property Name="CAT_ACADEMIC_DEGREE1" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CAT_CURSO_ESTADO">
+          <Key>
+            <PropertyRef Name="CAT_CURSO_ESTADO1" />
+          </Key>
+          <Property Name="CAT_CURSO_ESTADO1" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CAT_TIPO_IDENTIFIACION">
+          <Key>
+            <PropertyRef Name="CAT_TIPO_IDENTIFIACION1" />
+          </Key>
+          <Property Name="CAT_TIPO_IDENTIFIACION1" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CONTACTO">
+          <Key>
+            <PropertyRef Name="CONTACTO1" />
+          </Key>
+          <Property Name="CONTACTO1" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="Int32" />
+          <Property Name="FIRST_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BIRTH_DAY" Type="DateTime" />
+          <Property Name="BIRTH_PLACE" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="INSTITUTION" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="CATEGORY" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="GENDER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PHONE" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PHONE_AREA_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FAX" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FAX_AREA_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMERGENCY_CONTACT1" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="EMERGENCY_NUMBER1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EMERGENCY_E_MAIL1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EMERGENCY_CONTACT2" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="EMERGENCY_NUMBER2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EMERGENCY_E_MAIL2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="E_MAIL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IDENTIFICATION_TYPE" Type="Int32" />
+          <Property Name="IDENTIFICATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EXPIRATION_DATE" Type="DateTime" />
+          <Property Name="COUNTRY_BIRTH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NACIONALITY" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="ETHNIC_GROUP" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS_L1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AREA_OF_INTEREST" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="ACADEMIC_DEGREE" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="SECRET_QUESTION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ANSWER" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="GRUPO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMERGENCY_NUMBER1_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMERGENCY_NUMBER2_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HOME_PHONE" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="HOME_PHONE_AREA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS_COUNTRY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS_L2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CITY" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="STATE" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="ZIP_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CAT_TIPO_ESTUDIANTE" Type="Int32" />
+          <Property Name="STATION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NO_DIETARY_RESTRICTIONS" Type="Boolean" />
+          <Property Name="VEGETARIAN" Type="Boolean" />
+          <Property Name="VEGAN" Type="Boolean" />
+          <Property Name="BEEF" Type="Boolean" />
+          <Property Name="CHICKEN" Type="Boolean" />
+          <Property Name="PORK" Type="Boolean" />
+          <Property Name="FISH" Type="Boolean" />
+          <Property Name="OTHER_DIETARY" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="COUNTRY_EMITS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CREADO" Type="DateTime" />
+          <Property Name="MODIFICADO" Type="DateTime" />
+          <Property Name="NICKNAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DEPARTAMENT" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="POSITION" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="SKYPE" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="WEBSITE" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="CKOTHER_DIETARY_RESTRIC" Type="Boolean" />
+          <Property Name="TXOTHER_DIETARY_RESTRIC" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="PRIN" Type="Boolean" />
+          <Property Name="RELATIONSHIP_CONTACT1" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="RELATIONSHIP_CONTACT2" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="INSURANCE_COMPANY" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="INSURANCE_NUMBER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="INSURANCE_EXPIRATION" Type="DateTime" />
+          <Property Name="ESPECIALIDAD" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="DATO_ESTACION" Type="Boolean" />
+          <Property Name="CONTACTO_RESERVAS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SHARE_INFORMATION" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PHONE_COUNTRY_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FAX_COUNTRY_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMERGENCY_COUNTRY_NUM_CODE1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMERGENCY_COUNTRY_NUM_CODE2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HORA_CREACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="E_MAIL2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="COURSES">
+          <Key>
+            <PropertyRef Name="COURSES1" />
+          </Key>
+          <Property Name="COURSES1" Type="Int32" Nullable="false" />
+          <Property Name="COURSES_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="COURSE_NAME" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="START_DATE" Type="DateTime" />
+          <Property Name="END_DATE" Type="DateTime" />
+          <Property Name="COST_CENTER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CAT_TIPO_PROGRAMA" Type="Int32" />
+          <Property Name="OTHERS" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="CAT_CURSO_ESTADO" Type="Int32" />
+          <Property Name="COMMENTS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="APPROVED" Type="Int32" />
+          <Property Name="APPLYING" Type="Int32" />
+          <Property Name="TOTAL_COST" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="TOTAL_SCOLARSHIP" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MAXIMUM_PARTICIPANTS" Type="Int32" />
+          <Property Name="LANGUAGE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="COURSE_URL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="CREATED_DATE" Type="DateTime" />
+          <Property Name="MODIFIED_BY" Type="Int32" />
+          <Property Name="MODIFIED_DATE" Type="DateTime" />
+          <Property Name="REFERENCE_MAIL" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="DEAD_LINE" Type="DateTime" />
+          <Property Name="ACCOUNTING_CLOSE" Type="DateTime" />
+          <Property Name="WITHDREW" Type="Int32" />
+          <Property Name="ESTIMATED_COST" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="TUITION_WAIVER" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="TUITION_AID" Type="Decimal" Precision="15" Scale="2" />
+        </EntityType>
+        <EntityType Name="TIPO_CONTACTO">
+          <Key>
+            <PropertyRef Name="TIPO_CONTACTO1" />
+          </Key>
+          <Property Name="TIPO_CONTACTO1" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="EntitiesContactos" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CAT_ACADEMIC_DEGREE" EntityType="Self.CAT_ACADEMIC_DEGREE" />
+          <EntitySet Name="CAT_CURSO_ESTADO" EntityType="Self.CAT_CURSO_ESTADO" />
+          <EntitySet Name="CAT_TIPO_IDENTIFIACION" EntityType="Self.CAT_TIPO_IDENTIFIACION" />
+          <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" />
+          <EntitySet Name="COURSES" EntityType="Self.COURSES" />
+          <EntitySet Name="TIPO_CONTACTO" EntityType="Self.TIPO_CONTACTO" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="contactosStoreContainer" CdmEntityContainer="EntitiesContactos">
+          <EntitySetMapping Name="CAT_ACADEMIC_DEGREE">
+            <EntityTypeMapping TypeName="contactos.CAT_ACADEMIC_DEGREE">
+              <MappingFragment StoreEntitySet="CAT_ACADEMIC_DEGREE">
+                <ScalarProperty Name="CAT_ACADEMIC_DEGREE1" ColumnName="CAT_ACADEMIC_DEGREE" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_CURSO_ESTADO">
+            <EntityTypeMapping TypeName="contactos.CAT_CURSO_ESTADO">
+              <MappingFragment StoreEntitySet="CAT_CURSO_ESTADO">
+                <ScalarProperty Name="CAT_CURSO_ESTADO1" ColumnName="CAT_CURSO_ESTADO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_TIPO_IDENTIFIACION">
+            <EntityTypeMapping TypeName="contactos.CAT_TIPO_IDENTIFIACION">
+              <MappingFragment StoreEntitySet="CAT_TIPO_IDENTIFIACION">
+                <ScalarProperty Name="CAT_TIPO_IDENTIFIACION1" ColumnName="CAT_TIPO_IDENTIFIACION" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTACTO">
+            <EntityTypeMapping TypeName="contactos.CONTACTO">
+              <MappingFragment StoreEntitySet="CONTACTO">
+                <ScalarProperty Name="CONTACTO1" ColumnName="CONTACTO" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="BIRTH_DAY" ColumnName="BIRTH_DAY" />
+                <ScalarProperty Name="BIRTH_PLACE" ColumnName="BIRTH_PLACE" />
+                <ScalarProperty Name="INSTITUTION" ColumnName="INSTITUTION" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="PHONE_AREA_CODE" ColumnName="PHONE_AREA_CODE" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="FAX_AREA_CODE" ColumnName="FAX_AREA_CODE" />
+                <ScalarProperty Name="EMERGENCY_CONTACT1" ColumnName="EMERGENCY_CONTACT1" />
+                <ScalarProperty Name="EMERGENCY_NUMBER1" ColumnName="EMERGENCY_NUMBER1" />
+                <ScalarProperty Name="EMERGENCY_E_MAIL1" ColumnName="EMERGENCY_E_MAIL1" />
+                <ScalarProperty Name="EMERGENCY_CONTACT2" ColumnName="EMERGENCY_CONTACT2" />
+                <ScalarProperty Name="EMERGENCY_NUMBER2" ColumnName="EMERGENCY_NUMBER2" />
+                <ScalarProperty Name="EMERGENCY_E_MAIL2" ColumnName="EMERGENCY_E_MAIL2" />
+                <ScalarProperty Name="E_MAIL" ColumnName="E_MAIL" />
+                <ScalarProperty Name="IDENTIFICATION_TYPE" ColumnName="IDENTIFICATION_TYPE" />
+                <ScalarProperty Name="IDENTIFICATION" ColumnName="IDENTIFICATION" />
+                <ScalarProperty Name="EXPIRATION_DATE" ColumnName="EXPIRATION_DATE" />
+                <ScalarProperty Name="COUNTRY_BIRTH" ColumnName="COUNTRY_BIRTH" />
+                <ScalarProperty Name="NACIONALITY" ColumnName="NACIONALITY" />
+                <ScalarProperty Name="ETHNIC_GROUP" ColumnName="ETHNIC_GROUP" />
+                <ScalarProperty Name="ADDRESS_L1" ColumnName="ADDRESS_L1" />
+                <ScalarProperty Name="AREA_OF_INTEREST" ColumnName="AREA_OF_INTEREST" />
+                <ScalarProperty Name="ACADEMIC_DEGREE" ColumnName="ACADEMIC_DEGREE" />
+                <ScalarProperty Name="SECRET_QUESTION" ColumnName="SECRET_QUESTION" />
+                <ScalarProperty Name="ANSWER" ColumnName="ANSWER" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="GRUPO" ColumnName="GRUPO" />
+                <ScalarProperty Name="EMERGENCY_NUMBER1_CODE" ColumnName="EMERGENCY_NUMBER1_CODE" />
+                <ScalarProperty Name="EMERGENCY_NUMBER2_CODE" ColumnName="EMERGENCY_NUMBER2_CODE" />
+                <ScalarProperty Name="HOME_PHONE" ColumnName="HOME_PHONE" />
+                <ScalarProperty Name="HOME_PHONE_AREA" ColumnName="HOME_PHONE_AREA" />
+                <ScalarProperty Name="ADDRESS_COUNTRY" ColumnName="ADDRESS_COUNTRY" />
+                <ScalarProperty Name="ADDRESS_L2" ColumnName="ADDRESS_L2" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="ZIP_CODE" ColumnName="ZIP_CODE" />
+                <ScalarProperty Name="CAT_TIPO_ESTUDIANTE" ColumnName="CAT_TIPO_ESTUDIANTE" />
+                <ScalarProperty Name="STATION" ColumnName="STATION" />
+                <ScalarProperty Name="NO_DIETARY_RESTRICTIONS" ColumnName="NO_DIETARY_RESTRICTIONS" />
+                <ScalarProperty Name="VEGETARIAN" ColumnName="VEGETARIAN" />
+                <ScalarProperty Name="VEGAN" ColumnName="VEGAN" />
+                <ScalarProperty Name="BEEF" ColumnName="BEEF" />
+                <ScalarProperty Name="CHICKEN" ColumnName="CHICKEN" />
+                <ScalarProperty Name="PORK" ColumnName="PORK" />
+                <ScalarProperty Name="FISH" ColumnName="FISH" />
+                <ScalarProperty Name="OTHER_DIETARY" ColumnName="OTHER_DIETARY" />
+                <ScalarProperty Name="COUNTRY_EMITS" ColumnName="COUNTRY_EMITS" />
+                <ScalarProperty Name="CREADO" ColumnName="CREADO" />
+                <ScalarProperty Name="MODIFICADO" ColumnName="MODIFICADO" />
+                <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+                <ScalarProperty Name="DEPARTAMENT" ColumnName="DEPARTAMENT" />
+                <ScalarProperty Name="POSITION" ColumnName="POSITION" />
+                <ScalarProperty Name="SKYPE" ColumnName="SKYPE" />
+                <ScalarProperty Name="WEBSITE" ColumnName="WEBSITE" />
+                <ScalarProperty Name="CKOTHER_DIETARY_RESTRIC" ColumnName="CKOTHER_DIETARY_RESTRIC" />
+                <ScalarProperty Name="TXOTHER_DIETARY_RESTRIC" ColumnName="TXOTHER_DIETARY_RESTRIC" />
+                <ScalarProperty Name="PRIN" ColumnName="PRIN" />
+                <ScalarProperty Name="RELATIONSHIP_CONTACT1" ColumnName="RELATIONSHIP_CONTACT1" />
+                <ScalarProperty Name="RELATIONSHIP_CONTACT2" ColumnName="RELATIONSHIP_CONTACT2" />
+                <ScalarProperty Name="INSURANCE_COMPANY" ColumnName="INSURANCE_COMPANY" />
+                <ScalarProperty Name="INSURANCE_NUMBER" ColumnName="INSURANCE_NUMBER" />
+                <ScalarProperty Name="INSURANCE_EXPIRATION" ColumnName="INSURANCE_EXPIRATION" />
+                <ScalarProperty Name="ESPECIALIDAD" ColumnName="ESPECIALIDAD" />
+                <ScalarProperty Name="DATO_ESTACION" ColumnName="DATO_ESTACION" />
+                <ScalarProperty Name="CONTACTO_RESERVAS" ColumnName="CONTACTO_RESERVAS" />
+                <ScalarProperty Name="SHARE_INFORMATION" ColumnName="SHARE_INFORMATION" />
+                <ScalarProperty Name="PHONE_COUNTRY_CODE" ColumnName="PHONE_COUNTRY_CODE" />
+                <ScalarProperty Name="FAX_COUNTRY_CODE" ColumnName="FAX_COUNTRY_CODE" />
+                <ScalarProperty Name="EMERGENCY_COUNTRY_NUM_CODE1" ColumnName="EMERGENCY_COUNTRY_NUM_CODE1" />
+                <ScalarProperty Name="EMERGENCY_COUNTRY_NUM_CODE2" ColumnName="EMERGENCY_COUNTRY_NUM_CODE2" />
+                <ScalarProperty Name="HORA_CREACION" ColumnName="HORA_CREACION" />
+                <ScalarProperty Name="E_MAIL2" ColumnName="E_MAIL2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COURSES">
+            <EntityTypeMapping TypeName="contactos.COURSES">
+              <MappingFragment StoreEntitySet="COURSES">
+                <ScalarProperty Name="COURSES1" ColumnName="COURSES" />
+                <ScalarProperty Name="COURSES_CODE" ColumnName="COURSES_CODE" />
+                <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+                <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+                <ScalarProperty Name="COST_CENTER" ColumnName="COST_CENTER" />
+                <ScalarProperty Name="CAT_TIPO_PROGRAMA" ColumnName="CAT_TIPO_PROGRAMA" />
+                <ScalarProperty Name="OTHERS" ColumnName="OTHERS" />
+                <ScalarProperty Name="CAT_CURSO_ESTADO" ColumnName="CAT_CURSO_ESTADO" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="APPROVED" ColumnName="APPROVED" />
+                <ScalarProperty Name="APPLYING" ColumnName="APPLYING" />
+                <ScalarProperty Name="TOTAL_COST" ColumnName="TOTAL_COST" />
+                <ScalarProperty Name="TOTAL_SCOLARSHIP" ColumnName="TOTAL_SCOLARSHIP" />
+                <ScalarProperty Name="MAXIMUM_PARTICIPANTS" ColumnName="MAXIMUM_PARTICIPANTS" />
+                <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+                <ScalarProperty Name="COURSE_URL" ColumnName="COURSE_URL" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                <ScalarProperty Name="REFERENCE_MAIL" ColumnName="REFERENCE_MAIL" />
+                <ScalarProperty Name="DEAD_LINE" ColumnName="DEAD_LINE" />
+                <ScalarProperty Name="ACCOUNTING_CLOSE" ColumnName="ACCOUNTING_CLOSE" />
+                <ScalarProperty Name="WITHDREW" ColumnName="WITHDREW" />
+                <ScalarProperty Name="ESTIMATED_COST" ColumnName="ESTIMATED_COST" />
+                <ScalarProperty Name="TUITION_WAIVER" ColumnName="TUITION_WAIVER" />
+                <ScalarProperty Name="TUITION_AID" ColumnName="TUITION_AID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_CONTACTO">
+            <EntityTypeMapping TypeName="contactos.TIPO_CONTACTO">
+              <MappingFragment StoreEntitySet="TIPO_CONTACTO">
+                <ScalarProperty Name="TIPO_CONTACTO1" ColumnName="TIPO_CONTACTO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

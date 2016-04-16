@@ -21,27 +21,6 @@
     <Property Name="TIPOCAMBIO_CONTA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="MONEDA_CONTA" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
-  <EntityType Name="CONTACTO">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="FISICO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="SALUDOID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-    <Property Name="NOMBRE" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="APELLIDOS" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
-    <Property Name="PAISID" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
-    <Property Name="SEXO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-    <Property Name="EMAIL" Type="String" MaxLength="132" FixedLength="false" Unicode="false" />
-    <Property Name="IDENTIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="COMENTARIO" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-    <Property Name="CREADOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="CREADO" Type="DateTime" />
-    <Property Name="MODIFICADOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="MODIFICADO" Type="DateTime" />
-    <Property Name="CODSUENA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="REFERENCIA_CONTACTOS" Type="Int32" />
-  </EntityType>
   <EntityType Name="CONTACTO_ROL">
     <Key>
       <PropertyRef Name="ID" />
@@ -406,7 +385,6 @@
   <EntityContainer Name="EntitiesReservas" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ALIMENTO" EntityType="Self.ALIMENTO" />
     <EntitySet Name="ANFITRIONA" EntityType="Self.ANFITRIONA" />
-    <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" />
     <EntitySet Name="CONTACTO_ROL" EntityType="Self.CONTACTO_ROL" />
     <EntitySet Name="ESTACION" EntityType="Self.ESTACION" />
     <EntitySet Name="GRUPO" EntityType="Self.GRUPO" />

@@ -7,7 +7,6 @@
       <Diagram DiagramId="d12c99b863dc4b1589468b9af8a3c3fc" Name="Diagram1">
         <EntityTypeShape EntityType="Model.ALIMENTO" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.ANFITRIONA" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CONTACTO" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.CONTACTO_ROL" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.ESTACION" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.GRUPO" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />

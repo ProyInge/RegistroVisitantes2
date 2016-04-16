@@ -194,14 +194,41 @@
     <Compile Include="Models\ASISTENCIA.cs">
       <DependentUpon>reservas.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CAT_ACADEMIC_DEGREE.cs">
+      <DependentUpon>contactos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CAT_CURSO_ESTADO.cs">
+      <DependentUpon>contactos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CAT_TIPO_IDENTIFIACION.cs">
+      <DependentUpon>contactos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\COLABORADORES.cs">
       <DependentUpon>reservas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CONTACTO.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
+      <DependentUpon>contactos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\contactos.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>contactos.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\contactos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>contactos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\contactos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>contactos.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\CONTACTO_ROL.cs">
       <DependentUpon>reservas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\COURSES.cs">
+      <DependentUpon>contactos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DISTRIBUCION_CONTACTOS.cs">
       <DependentUpon>reservas.tt</DependentUpon>
@@ -271,6 +298,9 @@
     <Compile Include="Models\TELEFONO.cs">
       <DependentUpon>reservas.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TIPO_CONTACTO.cs">
+      <DependentUpon>contactos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\USUARIOS.cs">
       <DependentUpon>reservas.tt</DependentUpon>
     </Compile>
@@ -290,6 +320,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\contactos.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>contactos.edmx</DependentUpon>
+      <LastGenOutput>contactos.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\contactos.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>contactos.edmx</DependentUpon>
+      <LastGenOutput>contactos.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\reservas.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>reservas.edmx</DependentUpon>
@@ -308,6 +348,13 @@
     </EntityDeploy>
     <Content Include="Models\reservas.edmx.diagram">
       <DependentUpon>reservas.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\contactos.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>contactos.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\contactos.edmx.diagram">
+      <DependentUpon>contactos.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
