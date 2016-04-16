@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title - Registro de Visitantes</title>
     @Styles.Render("~/Content/css")
     <!--@Styles.Render("~/Content/Anterior.css")-->
     @Scripts.Render("~/bundles/modernizr")
@@ -34,9 +34,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Registro", "Registro", "Home")</li>
+                    <li>@Html.ActionLink("Reservas", "Reservas", "Registro")</li>
+                    <li>@Html.ActionLink("Visitantes", "Visitantes", "Registro")</li>
+                    <li>@Html.ActionLink("Formulario", "Registro", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

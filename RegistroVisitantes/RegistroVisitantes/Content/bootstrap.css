@@ -32,6 +32,8 @@
 */
 
 
+
+
 /* Codigo Nuestro------------------------------------------------------------ FINAL
 
 */
@@ -4097,6 +4099,15 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
 }
 
+@media only screen
+    and (max-width: 768px)
+{
+      .navbar-collapse
+    {
+        background-color: rgba(0,0,0, .7);
+    }
+}
+
 .navbar-collapse {
   max-height: 340px;
   padding-right: 15px;
@@ -4404,7 +4415,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default .navbar-brand {
-  color: #777777;
+  color: white;
 }
 
 .navbar-default .navbar-brand:hover,
