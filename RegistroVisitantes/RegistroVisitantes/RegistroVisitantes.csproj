@@ -203,6 +203,7 @@
     <Compile Include="Models\CAT_TIPO_IDENTIFIACION.cs">
       <DependentUpon>contactos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FormularioModel.cs" />
     <Compile Include="Models\COLABORADORES.cs">
       <DependentUpon>reservas.tt</DependentUpon>
     </Compile>
