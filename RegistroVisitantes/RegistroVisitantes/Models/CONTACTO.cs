@@ -14,6 +14,12 @@ namespace RegistroVisitantes.Models
     
     public partial class CONTACTO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CONTACTO()
+        {
+            this.PREREGISTRO = new HashSet<PREREGISTRO>();
+        }
+    
         public int CONTACTO1 { get; set; }
         public Nullable<int> TYPE { get; set; }
         public string FIRST_NAME { get; set; }
@@ -92,5 +98,8 @@ namespace RegistroVisitantes.Models
         public string EMERGENCY_COUNTRY_NUM_CODE2 { get; set; }
         public string HORA_CREACION { get; set; }
         public string E_MAIL2 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PREREGISTRO> PREREGISTRO { get; set; }
     }
 }

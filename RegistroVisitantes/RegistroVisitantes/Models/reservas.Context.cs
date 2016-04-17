@@ -50,6 +50,5 @@ namespace RegistroVisitantes.Models
         public virtual DbSet<USUARIO_PERFIL> USUARIO_PERFIL { get; set; }
         public virtual DbSet<USUARIOS> USUARIOS { get; set; }
         public virtual DbSet<USUARIOS_CONECTADOS> USUARIOS_CONECTADOS { get; set; }
-        public virtual DbSet<PREREGISTRO> PREREGISTRO { get; set; }
     }
 }

@@ -29,5 +29,7 @@ namespace RegistroVisitantes.Models
         public string RESOLUCION { get; set; }
         public string PERMISO { get; set; }
         public Nullable<System.DateTime> EXPIRACION { get; set; }
+    
+        public virtual CONTACTO CONTACTO { get; set; }
     }
 }

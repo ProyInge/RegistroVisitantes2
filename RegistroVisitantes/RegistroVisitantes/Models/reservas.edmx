@@ -149,26 +149,6 @@ advertencia 6002: La tabla o vista 'RESERVAS.DISTRIBUCION_CONTACTOS' no tiene de
           <Property Name="NOTA" Type="number" Precision="20" Scale="5" />
           <Property Name="BECA" Type="number" Precision="20" Scale="5" />
         </EntityType>
-        <EntityType Name="PREREGISTRO">
-          <Key>
-            <PropertyRef Name="NUMPREREGISTRO" />
-          </Key>
-          <Property Name="NUMPREREGISTRO" Type="number" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="IDCONTACTO" Type="number" Precision="10" Scale="0" />
-          <Property Name="PROPOSITO" Type="char" MaxLength="1" />
-          <Property Name="GRUPO" Type="varchar2" MaxLength="30" />
-          <Property Name="COMOENTERO" Type="varchar2" MaxLength="50" />
-          <Property Name="FECHA" Type="date" />
-          <Property Name="NOMCURSO" Type="varchar2" MaxLength="50" />
-          <Property Name="NUMCURSO" Type="varchar2" MaxLength="30" />
-          <Property Name="ROLCURSO" Type="char" MaxLength="1" />
-          <Property Name="NOMPROYECTO" Type="varchar2" MaxLength="50" />
-          <Property Name="INVERSIONES" Type="varchar2" MaxLength="50" />
-          <Property Name="FUENTE" Type="varchar2" MaxLength="50" />
-          <Property Name="RESOLUCION" Type="varchar2" MaxLength="30" />
-          <Property Name="PERMISO" Type="varchar2" MaxLength="30" />
-          <Property Name="EXPIRACION" Type="date" />
-        </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'RESERVAS.RESERVA_MIP' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="RESERVA_MIP">
@@ -438,7 +418,6 @@ advertencia 6002: La tabla o vista 'RESERVAS.USUARIOS_CONECTADOS' no tiene defin
           <EntitySet Name="GRUPORSRV_MIEMBROS" EntityType="Self.GRUPORSRV_MIEMBROS" Schema="RESERVAS" store:Type="Tables" />
           <EntitySet Name="MIEMBRO" EntityType="Self.MIEMBRO" Schema="RESERVAS" store:Type="Tables" />
           <EntitySet Name="PARTICIPANTE" EntityType="Self.PARTICIPANTE" Schema="RESERVAS" store:Type="Tables" />
-          <EntitySet Name="PREREGISTRO" EntityType="Self.PREREGISTRO" Schema="RESERVAS" store:Type="Tables" />
           <EntitySet Name="RESERVABLE" EntityType="Self.RESERVABLE" Schema="RESERVAS" store:Type="Tables" />
           <EntitySet Name="RH" EntityType="Self.RH" Schema="RESERVAS" store:Type="Tables" />
           <EntitySet Name="ROL" EntityType="Self.ROL" Schema="RESERVAS" store:Type="Tables" />
@@ -1032,28 +1011,7 @@ FROM "RESERVAS"."USUARIOS_CONECTADOS" "USUARIOS_CONECTADOS"</DefiningQuery>
             <End Role="ESTACION" EntitySet="ESTACION" />
             <End Role="RESERVABLE" EntitySet="RESERVABLE" />
           </AssociationSet>
-          <EntitySet Name="PREREGISTRO" EntityType="Model.PREREGISTRO" />
         </EntityContainer>
-        <EntityType Name="PREREGISTRO">
-          <Key>
-            <PropertyRef Name="NUMPREREGISTRO" />
-          </Key>
-          <Property Name="NUMPREREGISTRO" Type="Int32" Nullable="false" />
-          <Property Name="IDCONTACTO" Type="Int32" />
-          <Property Name="PROPOSITO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="GRUPO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="COMOENTERO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA" Type="DateTime" />
-          <Property Name="NOMCURSO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NUMCURSO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ROLCURSO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="NOMPROYECTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="INVERSIONES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FUENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RESOLUCION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="PERMISO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="EXPIRACION" Type="DateTime" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1387,27 +1345,6 @@ FROM "RESERVAS"."USUARIOS_CONECTADOS" "USUARIOS_CONECTADOS"</DefiningQuery>
                 <ScalarProperty Name="HOSTNAME" ColumnName="HOSTNAME" />
                 <ScalarProperty Name="IPADDRESS" ColumnName="IPADDRESS" />
                 <ScalarProperty Name="FECHA" ColumnName="FECHA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PREREGISTRO">
-            <EntityTypeMapping TypeName="Model.PREREGISTRO">
-              <MappingFragment StoreEntitySet="PREREGISTRO">
-                <ScalarProperty Name="EXPIRACION" ColumnName="EXPIRACION" />
-                <ScalarProperty Name="PERMISO" ColumnName="PERMISO" />
-                <ScalarProperty Name="RESOLUCION" ColumnName="RESOLUCION" />
-                <ScalarProperty Name="FUENTE" ColumnName="FUENTE" />
-                <ScalarProperty Name="INVERSIONES" ColumnName="INVERSIONES" />
-                <ScalarProperty Name="NOMPROYECTO" ColumnName="NOMPROYECTO" />
-                <ScalarProperty Name="ROLCURSO" ColumnName="ROLCURSO" />
-                <ScalarProperty Name="NUMCURSO" ColumnName="NUMCURSO" />
-                <ScalarProperty Name="NOMCURSO" ColumnName="NOMCURSO" />
-                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
-                <ScalarProperty Name="COMOENTERO" ColumnName="COMOENTERO" />
-                <ScalarProperty Name="GRUPO" ColumnName="GRUPO" />
-                <ScalarProperty Name="PROPOSITO" ColumnName="PROPOSITO" />
-                <ScalarProperty Name="IDCONTACTO" ColumnName="IDCONTACTO" />
-                <ScalarProperty Name="NUMPREREGISTRO" ColumnName="NUMPREREGISTRO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="contactos.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="contactos.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CAT_ACADEMIC_DEGREE">
           <Key>
             <PropertyRef Name="CAT_ACADEMIC_DEGREE" />
@@ -142,6 +142,26 @@
           <Property Name="TUITION_WAIVER" Type="number" Precision="15" Scale="2" />
           <Property Name="TUITION_AID" Type="number" Precision="15" Scale="2" />
         </EntityType>
+        <EntityType Name="PREREGISTRO">
+          <Key>
+            <PropertyRef Name="NUMPREREGISTRO" />
+          </Key>
+          <Property Name="NUMPREREGISTRO" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="IDCONTACTO" Type="number" Precision="10" Scale="0" />
+          <Property Name="PROPOSITO" Type="char" MaxLength="1" />
+          <Property Name="GRUPO" Type="varchar2" MaxLength="30" />
+          <Property Name="COMOENTERO" Type="varchar2" MaxLength="50" />
+          <Property Name="FECHA" Type="date" />
+          <Property Name="NOMCURSO" Type="varchar2" MaxLength="50" />
+          <Property Name="NUMCURSO" Type="varchar2" MaxLength="30" />
+          <Property Name="ROLCURSO" Type="char" MaxLength="1" />
+          <Property Name="NOMPROYECTO" Type="varchar2" MaxLength="50" />
+          <Property Name="INVERSIONES" Type="varchar2" MaxLength="50" />
+          <Property Name="FUENTE" Type="varchar2" MaxLength="50" />
+          <Property Name="RESOLUCION" Type="varchar2" MaxLength="30" />
+          <Property Name="PERMISO" Type="varchar2" MaxLength="30" />
+          <Property Name="EXPIRACION" Type="date" />
+        </EntityType>
         <EntityType Name="TIPO_CONTACTO">
           <Key>
             <PropertyRef Name="TIPO_CONTACTO" />
@@ -149,16 +169,32 @@
           <Property Name="TIPO_CONTACTO" Type="number" Precision="10" Scale="0" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar2" MaxLength="400" Nullable="false" />
         </EntityType>
+        <Association Name="PREREGISTRO_CONTACTO_FK">
+          <End Role="CONTACTO" Type="Self.CONTACTO" Multiplicity="0..1" />
+          <End Role="PREREGISTRO" Type="Self.PREREGISTRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTACTO">
+              <PropertyRef Name="CONTACTO" />
+            </Principal>
+            <Dependent Role="PREREGISTRO">
+              <PropertyRef Name="IDCONTACTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="contactosStoreContainer">
           <EntitySet Name="CAT_ACADEMIC_DEGREE" EntityType="Self.CAT_ACADEMIC_DEGREE" Schema="CONTACTOS" store:Type="Tables" />
           <EntitySet Name="CAT_CURSO_ESTADO" EntityType="Self.CAT_CURSO_ESTADO" Schema="CONTACTOS" store:Type="Tables" />
           <EntitySet Name="CAT_TIPO_IDENTIFIACION" EntityType="Self.CAT_TIPO_IDENTIFIACION" Schema="CONTACTOS" store:Type="Tables" />
           <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" Schema="CONTACTOS" store:Type="Tables" />
           <EntitySet Name="COURSES" EntityType="Self.COURSES" Schema="CONTACTOS" store:Type="Tables" />
+          <EntitySet Name="PREREGISTRO" EntityType="Self.PREREGISTRO" Schema="CONTACTOS" store:Type="Tables" />
           <EntitySet Name="TIPO_CONTACTO" EntityType="Self.TIPO_CONTACTO" Schema="CONTACTOS" store:Type="Tables" />
+          <AssociationSet Name="PREREGISTRO_CONTACTO_FK" Association="Self.PREREGISTRO_CONTACTO_FK">
+            <End Role="CONTACTO" EntitySet="CONTACTO" />
+            <End Role="PREREGISTRO" EntitySet="PREREGISTRO" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="contactos" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -265,6 +301,7 @@
           <Property Name="EMERGENCY_COUNTRY_NUM_CODE2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="HORA_CREACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="E_MAIL2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PREREGISTRO" Relationship="contactos.PREREGISTRO_CONTACTO_FK" FromRole="CONTACTO" ToRole="PREREGISTRO" />
         </EntityType>
         <EntityType Name="COURSES">
           <Key>
@@ -313,7 +350,45 @@
           <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" />
           <EntitySet Name="COURSES" EntityType="Self.COURSES" />
           <EntitySet Name="TIPO_CONTACTO" EntityType="Self.TIPO_CONTACTO" />
+          <EntitySet Name="PREREGISTRO" EntityType="contactos.PREREGISTRO" />
+          <AssociationSet Name="PREREGISTRO_CONTACTO_FK" Association="contactos.PREREGISTRO_CONTACTO_FK">
+            <End Role="CONTACTO" EntitySet="CONTACTO" />
+            <End Role="PREREGISTRO" EntitySet="PREREGISTRO" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="PREREGISTRO">
+          <Key>
+            <PropertyRef Name="NUMPREREGISTRO" />
+          </Key>
+          <Property Name="NUMPREREGISTRO" Type="Int32" Nullable="false" />
+          <Property Name="IDCONTACTO" Type="Int32" />
+          <Property Name="PROPOSITO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="GRUPO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="COMOENTERO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA" Type="DateTime" />
+          <Property Name="NOMCURSO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NUMCURSO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ROLCURSO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="NOMPROYECTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="INVERSIONES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FUENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RESOLUCION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PERMISO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EXPIRACION" Type="DateTime" />
+          <NavigationProperty Name="CONTACTO" Relationship="contactos.PREREGISTRO_CONTACTO_FK" FromRole="PREREGISTRO" ToRole="CONTACTO" />
+        </EntityType>
+        <Association Name="PREREGISTRO_CONTACTO_FK">
+          <End Type="contactos.CONTACTO" Role="CONTACTO" Multiplicity="0..1" />
+          <End Type="contactos.PREREGISTRO" Role="PREREGISTRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTACTO">
+              <PropertyRef Name="CONTACTO1" />
+            </Principal>
+            <Dependent Role="PREREGISTRO">
+              <PropertyRef Name="IDCONTACTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -467,6 +542,27 @@
               <MappingFragment StoreEntitySet="TIPO_CONTACTO">
                 <ScalarProperty Name="TIPO_CONTACTO1" ColumnName="TIPO_CONTACTO" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PREREGISTRO">
+            <EntityTypeMapping TypeName="contactos.PREREGISTRO">
+              <MappingFragment StoreEntitySet="PREREGISTRO">
+                <ScalarProperty Name="EXPIRACION" ColumnName="EXPIRACION" />
+                <ScalarProperty Name="PERMISO" ColumnName="PERMISO" />
+                <ScalarProperty Name="RESOLUCION" ColumnName="RESOLUCION" />
+                <ScalarProperty Name="FUENTE" ColumnName="FUENTE" />
+                <ScalarProperty Name="INVERSIONES" ColumnName="INVERSIONES" />
+                <ScalarProperty Name="NOMPROYECTO" ColumnName="NOMPROYECTO" />
+                <ScalarProperty Name="ROLCURSO" ColumnName="ROLCURSO" />
+                <ScalarProperty Name="NUMCURSO" ColumnName="NUMCURSO" />
+                <ScalarProperty Name="NOMCURSO" ColumnName="NOMCURSO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="COMOENTERO" ColumnName="COMOENTERO" />
+                <ScalarProperty Name="GRUPO" ColumnName="GRUPO" />
+                <ScalarProperty Name="PROPOSITO" ColumnName="PROPOSITO" />
+                <ScalarProperty Name="IDCONTACTO" ColumnName="IDCONTACTO" />
+                <ScalarProperty Name="NUMPREREGISTRO" ColumnName="NUMPREREGISTRO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

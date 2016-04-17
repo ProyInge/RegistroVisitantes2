@@ -145,24 +145,6 @@ advertencia 6002: La tabla o vista 'RESERVAS.DISTRIBUCION_CONTACTOS' no tiene de
     <Property Name="BECA" Type="number" Precision="20" Scale="5" />
   </EntityType>
   <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'RESERVAS.PREREGISTRO' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="PREREGISTRO">
-          <Property Name="IDCONTACTO" Type="number" Precision="10" Scale="0" />
-          <Property Name="PROPOSITO" Type="char" MaxLength="1" />
-          <Property Name="GRUPO" Type="varchar2" MaxLength="30" />
-          <Property Name="COMOENTERO" Type="varchar2" MaxLength="50" />
-          <Property Name="FECHA" Type="date" />
-          <Property Name="NOMCURSO" Type="varchar2" MaxLength="50" />
-          <Property Name="NUMCURSO" Type="varchar2" MaxLength="30" />
-          <Property Name="ROLCURSO" Type="char" MaxLength="1" />
-          <Property Name="NOMPROYECTO" Type="varchar2" MaxLength="50" />
-          <Property Name="INVERSIONES" Type="varchar2" MaxLength="50" />
-          <Property Name="FUENTE" Type="varchar2" MaxLength="50" />
-          <Property Name="RESOLUCION" Type="varchar2" MaxLength="30" />
-          <Property Name="PERMISO" Type="varchar2" MaxLength="30" />
-          <Property Name="EXPIRACION" Type="date" />
-        </EntityType>-->
-  <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'RESERVAS.RESERVA_MIP' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="RESERVA_MIP">
     <Key>

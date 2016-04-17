@@ -31,5 +31,6 @@ namespace RegistroVisitantes.Models
         public virtual DbSet<CONTACTO> CONTACTO { get; set; }
         public virtual DbSet<COURSES> COURSES { get; set; }
         public virtual DbSet<TIPO_CONTACTO> TIPO_CONTACTO { get; set; }
+        public virtual DbSet<PREREGISTRO> PREREGISTRO { get; set; }
     }
 }

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using RegistroVisitantes.Models;
 
 namespace RegistroVisitantes.Controllers
 {
     public class RegistroController : Controller
     {
+        private EntitiesContactos ec = new EntitiesContactos();
+
         // GET: Registro
         public ActionResult Index()
         {
@@ -47,6 +50,12 @@ namespace RegistroVisitantes.Controllers
         public ActionResult Idioma()
         {
             return View();
+        }
+
+        public string Prueba()
+        {
+            string resultado = "HOLA MUNDO";
+            return resultado;
         }
     }
 }

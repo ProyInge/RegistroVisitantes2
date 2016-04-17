@@ -257,7 +257,7 @@
       <DependentUpon>reservas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PREREGISTRO.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
+      <DependentUpon>contactos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RESERVABLE.cs">
       <DependentUpon>reservas.tt</DependentUpon>
@@ -413,6 +413,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="SQL\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
