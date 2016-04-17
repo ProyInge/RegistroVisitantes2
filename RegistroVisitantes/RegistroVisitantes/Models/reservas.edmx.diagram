@@ -32,7 +32,6 @@
         <EntityTypeShape EntityType="Model.USUARIOS_CONECTADOS" Width="1.5" PointX="12.75" PointY="13.75" IsExpanded="true" />
         <AssociationConnector Association="Model.SYS_C0011235" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SYS_C0011233" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Model.PREREGISTRO" Width="1.5" PointX="7.375" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

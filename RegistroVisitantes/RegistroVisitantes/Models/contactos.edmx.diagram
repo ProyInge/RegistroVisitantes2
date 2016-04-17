@@ -11,6 +11,8 @@
         <EntityTypeShape EntityType="contactos.CONTACTO" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="contactos.COURSES" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="contactos.TIPO_CONTACTO" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="contactos.PREREGISTRO" Width="1.5" PointX="5" PointY="9.75" />
+        <AssociationConnector Association="contactos.PREREGISTRO_CONTACTO_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
