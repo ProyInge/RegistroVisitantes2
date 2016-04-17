@@ -35,6 +35,13 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
+        // GET: /Registro/FormularioOET
+        [HttpGet]
+        public ActionResult FormularioOET()
+        {
+            return View();
+        }
+
         // GET: /Registro/Idioma
         [HttpGet]
         public ActionResult Idioma()

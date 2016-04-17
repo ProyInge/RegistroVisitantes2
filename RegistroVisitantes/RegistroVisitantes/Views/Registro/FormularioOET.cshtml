@@ -1,0 +1,215 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<br />
+<br />
+<br />
+
+<div class="container" id="formulario">
+    <form role="form">
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">General</h2>
+            <br />
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="nom">Nombre:</label>
+                    <input type="text" class="form-control" id="nom">
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="ced">Cédula o pasaporte:</label>
+                    <input type="text" class="form-control" id="ced">
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="insti">Institución:</label>
+                    <input type="text" class="form-control" id="insti">
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="cargo">Cargo:</label>
+                    <input type="text" class="form-control" id="cargo">
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="titulo">Título: (Sr., Sra., Dr., Otro)</label>
+                    <input type="text" class="form-control" id="titulo">
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="nac">Nacionalidad:</label>
+                    <input type="text" class="form-control" id="nac">
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="dir">Dirección:</label>
+                    <textarea class="form-control" rows="6" id="dir"></textarea>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="prov">Provincia:</label>
+                        <input type="text" class="form-control" id="prov">
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="pais">País:</label>
+                    <input type="text" class="form-control" id="pais">
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="codPos">Código Postal:</label>
+                    <input type="text" class="form-control" id="codPos">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">Contacto de Emergencia</h2>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <br />
+                    <label for="cont">Contacto:</label>
+                    <input type="text" class="form-control" id="cont">
+                </div>
+                <div class="form-group">
+                    <label for="telE">Teléfono:</label>
+                    <input type="text" class="form-control" id="telE">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="form-group">
+                    <label for="mailE">Email:</label>
+                    <input type="text" class="form-control" id="mailE">
+                </div>
+                <div class="form-group">
+                    <label for="rel">Relación:</label>
+                    <input type="text" class="form-control" id="rel">
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">Alimentación</h2>
+            <div class="col-sm-6">
+                <br />
+                <label for="dieta" style="width:80px; text-align:right">Dieta: </label>
+                <select name="dietas">
+                    <option value="sr">Sin Restricción</option>
+                    <option value="veg">Vegetariano</option>
+                    <option value="vg">Vegano</option>
+                    <option value="otro">Otro</option>
+                </select>
+                <br />
+                <br />
+                <br />
+                <label for="pref" style="width:80px; text-align:right">Preferencia: </label>
+                <select name="carnes">
+                    <option value="carne">Carne</option>
+                    <option value="pes">Pescado</option>
+                    <option value="pollo">Pollo</option>
+                    <option value="cerdo">Cerdo</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label for="aler">Alergias:</label>
+                <textarea class="form-control" rows="4" id="alergias"></textarea>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">Propósito de la visita</h2>
+            <div class="col-sm-6">
+                <br />
+                <label for="proposito">
+                    Por favor seleccione una opción, si no aparece
+                    indique cuál en el campo de texto
+                </label>
+                <select name="propositos">
+                    <option value="cient">Científico visitante (sin proyecto)</option>
+                    <option value="invest">Investigación (con proyecto)</option>
+                    <option value="curso">Curso educativo</option>
+                    <option value="exten">Curso de extensión universitaria</option>
+                    <option value="ambient">Programa de Educación Ambiental</option>
+                    <option value="hist">Visitante de historia natural</option>
+                    <option value="evento">Evento especial-Reunión</option>
+                    <option value="perio">Periodista (reportero, escritor, filmación)</option>
+                    <option value="amigos">Personal OET (en trabajo, no cubierto por otras categorías)</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="form-group">
+                    <label for="otro">Otro:</label>
+                    <textarea class="form-control" rows="2" id="otroText"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">Solo para participantes de cursos</h2>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="cursoNom">Nombre del curso:</label>
+                    <input type="text" class="form-control" id="cursoNom">
+
+                    <br />
+                    <label for="participa">Participando como</label>
+                    <select name="labor">
+                        <option value="estud">Estudiante</option>
+                        <option value="invest">Coordinador</option>
+                        <option value="curso">Profesor Visitante</option>
+                        <option value="exten">Asistente</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="cursoNum">Número del curso:</label>
+                    <input type="text" class="form-control" id="cursoNum">
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">Posición (para investigadores)</h2>
+            <div class="col-sm-6">
+                <br />
+                <label for="selecPos">Seleccione la posición que ocupa como investigador</label>
+                <select name="posicion">
+                    <option value="IP">Investigador Principal</option>
+                    <option value="coIp">Co-IP</option>
+                    <option value="alto">Personal de alto nivel</option>
+                    <option value="tutor">Tutor</option>
+                    <option value="sup">Supervisor</option>
+                    <option value="coo">Coordinador</option>
+                    <option value="cola">Colaborador</option>
+                    <option value="estu">Estudiante</option>
+                    <option value="tec">Técnico</option>
+                    <option value="asisCam">Asistente de campo</option>
+                    <option value="int">Interno</option>
+                    <option value="vol">Voluntario</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="container col-sm-4" style="padding: 30px 10px">
+            <button type="submit" class="btn btn-successOET">Guardar</button>
+        </div>
+
+    </form>
+</div>
