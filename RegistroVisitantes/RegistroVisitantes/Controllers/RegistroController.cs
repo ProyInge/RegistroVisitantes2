@@ -9,7 +9,14 @@ namespace RegistroVisitantes.Controllers
 {
     public class RegistroController : Controller
     {
-        private EntitiesContactos ec = new EntitiesContactos();
+        private EntitiesContactos BDContac = new EntitiesContactos();
+        private EntitiesContactos BDReserv = new EntitiesContactos();
+
+        public CONTACTO obtieneInvestigador(string correo)
+        {
+            CONTACTO cont = BDContac.CONTACTO.SingleOrDefault(c => c.E_MAIL == correo);
+            return cont;
+        }
 
         // GET: Registro
         public ActionResult Index()
