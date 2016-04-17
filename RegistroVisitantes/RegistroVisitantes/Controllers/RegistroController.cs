@@ -22,6 +22,7 @@ namespace RegistroVisitantes.Controllers
         {
             Formulario form = new Formulario();
             form.RESERVACION = BDReserv.RESERVACION.Find(idReserv);
+            form.PREREGISTRO = new PREREGISTRO();
             return form;
         }
 
