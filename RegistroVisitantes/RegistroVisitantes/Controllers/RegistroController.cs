@@ -41,5 +41,11 @@ namespace RegistroVisitantes.Controllers
         {
             return View();
         }
+
+        public string Prueba()
+        {
+            string resultado = "HOLA MUNDO";
+            return resultado;
+        }
     }
 }
