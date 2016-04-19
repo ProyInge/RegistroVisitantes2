@@ -15,6 +15,8 @@ namespace RegistroVisitantes.Models
     
     public partial class BDReservas : DbContext
     {
+        public DbSet<RESERVACION> FormReservarcion { get; set; }
+
         public BDReservas()
             : base("name=BDReservas")
         {

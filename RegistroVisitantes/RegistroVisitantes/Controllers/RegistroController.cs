@@ -96,6 +96,22 @@ namespace RegistroVisitantes.Controllers
             }
             return Create();
         }
-        
+
+        public ActionResult ListVisitantes()
+        {
+            var db = BDContac;
+            var lista = db.FormContacto.ToList();
+
+            return View(lista);
+        }
+
+        public ActionResult ListReservas()
+        {
+            var db = BDReserv;
+            var lista = db.FormReservarcion.ToList();
+
+            return View(lista);
+        }
+
     }
 }
