@@ -15,8 +15,7 @@ namespace RegistroVisitantes.Models
     
     public partial class BDContactos : DbContext
     {
-
-        public DbSet<FORMULARIO> Form { get; set;}
+        public DbSet<PREREGISTRO> Form { get; set; }
         public BDContactos()
             : base("name=BDContactos")
         {
@@ -27,6 +26,7 @@ namespace RegistroVisitantes.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<FORMULARIO> FORMULARIO { get; set; }
+        public virtual DbSet<CONTACTO> CONTACTO { get; set; }
+        public virtual DbSet<PREREGISTRO> PREREGISTRO { get; set; }
     }
 }

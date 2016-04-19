@@ -4,29 +4,11 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ModelContactos.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'CONTACTOS.FORMULARIO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="FORMULARIO">
+      <Schema Namespace="ContactoModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CONTACTO">
           <Key>
             <PropertyRef Name="CONTACTO" />
           </Key>
-          <Property Name="NUMPREREGISTRO" Type="number" Precision="10" Scale="0" />
-          <Property Name="IDCONTACTO" Type="number" Precision="10" Scale="0" />
-          <Property Name="IDRESERVACION" Type="varchar2" MaxLength="255" />
-          <Property Name="PROPOSITO" Type="char" MaxLength="1" />
-          <Property Name="IDGRUPO" Type="varchar2" MaxLength="30" />
-          <Property Name="COMOENTERO" Type="varchar2" MaxLength="50" />
-          <Property Name="FECHA" Type="date" />
-          <Property Name="NOMCURSO" Type="varchar2" MaxLength="50" />
-          <Property Name="NUMCURSO" Type="varchar2" MaxLength="30" />
-          <Property Name="ROLCURSO" Type="char" MaxLength="1" />
-          <Property Name="NOMPROYECTO" Type="varchar2" MaxLength="50" />
-          <Property Name="INVERSIONES" Type="varchar2" MaxLength="50" />
-          <Property Name="FUENTE" Type="varchar2" MaxLength="50" />
-          <Property Name="RESOLUCION" Type="varchar2" MaxLength="30" />
-          <Property Name="PERMISO" Type="varchar2" MaxLength="30" />
-          <Property Name="EXPIRACION" Type="date" />
           <Property Name="CONTACTO" Type="number" Precision="10" Scale="0" Nullable="false" />
           <Property Name="TYPE" Type="number" Precision="10" Scale="0" />
           <Property Name="FIRST_NAME" Type="varchar2" MaxLength="150" />
@@ -106,132 +88,57 @@ advertencia 6002: La tabla o vista 'CONTACTOS.FORMULARIO' no tiene definida ning
           <Property Name="HORA_CREACION" Type="varchar2" MaxLength="100" />
           <Property Name="E_MAIL2" Type="varchar2" MaxLength="150" />
         </EntityType>
-        <EntityContainer Name="ModelContactosStoreContainer">
-          <EntitySet Name="FORMULARIO" EntityType="Self.FORMULARIO" store:Type="Views" store:Schema="CONTACTOS">
-            <DefiningQuery>SELECT 
-"FORMULARIO"."NUMPREREGISTRO" AS "NUMPREREGISTRO", 
-"FORMULARIO"."IDCONTACTO" AS "IDCONTACTO", 
-"FORMULARIO"."IDRESERVACION" AS "IDRESERVACION", 
-"FORMULARIO"."PROPOSITO" AS "PROPOSITO", 
-"FORMULARIO"."IDGRUPO" AS "IDGRUPO", 
-"FORMULARIO"."COMOENTERO" AS "COMOENTERO", 
-"FORMULARIO"."FECHA" AS "FECHA", 
-"FORMULARIO"."NOMCURSO" AS "NOMCURSO", 
-"FORMULARIO"."NUMCURSO" AS "NUMCURSO", 
-"FORMULARIO"."ROLCURSO" AS "ROLCURSO", 
-"FORMULARIO"."NOMPROYECTO" AS "NOMPROYECTO", 
-"FORMULARIO"."INVERSIONES" AS "INVERSIONES", 
-"FORMULARIO"."FUENTE" AS "FUENTE", 
-"FORMULARIO"."RESOLUCION" AS "RESOLUCION", 
-"FORMULARIO"."PERMISO" AS "PERMISO", 
-"FORMULARIO"."EXPIRACION" AS "EXPIRACION", 
-"FORMULARIO"."CONTACTO" AS "CONTACTO", 
-"FORMULARIO"."TYPE" AS "TYPE", 
-"FORMULARIO"."FIRST_NAME" AS "FIRST_NAME", 
-"FORMULARIO"."LAST_NAME" AS "LAST_NAME", 
-"FORMULARIO"."BIRTH_DAY" AS "BIRTH_DAY", 
-"FORMULARIO"."BIRTH_PLACE" AS "BIRTH_PLACE", 
-"FORMULARIO"."INSTITUTION" AS "INSTITUTION", 
-"FORMULARIO"."CATEGORY" AS "CATEGORY", 
-"FORMULARIO"."GENDER" AS "GENDER", 
-"FORMULARIO"."PHONE" AS "PHONE", 
-"FORMULARIO"."PHONE_AREA_CODE" AS "PHONE_AREA_CODE", 
-"FORMULARIO"."FAX" AS "FAX", 
-"FORMULARIO"."FAX_AREA_CODE" AS "FAX_AREA_CODE", 
-"FORMULARIO"."EMERGENCY_CONTACT1" AS "EMERGENCY_CONTACT1", 
-"FORMULARIO"."EMERGENCY_NUMBER1" AS "EMERGENCY_NUMBER1", 
-"FORMULARIO"."EMERGENCY_E_MAIL1" AS "EMERGENCY_E_MAIL1", 
-"FORMULARIO"."EMERGENCY_CONTACT2" AS "EMERGENCY_CONTACT2", 
-"FORMULARIO"."EMERGENCY_NUMBER2" AS "EMERGENCY_NUMBER2", 
-"FORMULARIO"."EMERGENCY_E_MAIL2" AS "EMERGENCY_E_MAIL2", 
-"FORMULARIO"."E_MAIL" AS "E_MAIL", 
-"FORMULARIO"."IDENTIFICATION_TYPE" AS "IDENTIFICATION_TYPE", 
-"FORMULARIO"."IDENTIFICATION" AS "IDENTIFICATION", 
-"FORMULARIO"."EXPIRATION_DATE" AS "EXPIRATION_DATE", 
-"FORMULARIO"."COUNTRY_BIRTH" AS "COUNTRY_BIRTH", 
-"FORMULARIO"."NACIONALITY" AS "NACIONALITY", 
-"FORMULARIO"."ETHNIC_GROUP" AS "ETHNIC_GROUP", 
-"FORMULARIO"."ADDRESS_L1" AS "ADDRESS_L1", 
-"FORMULARIO"."AREA_OF_INTEREST" AS "AREA_OF_INTEREST", 
-"FORMULARIO"."ACADEMIC_DEGREE" AS "ACADEMIC_DEGREE", 
-"FORMULARIO"."SECRET_QUESTION" AS "SECRET_QUESTION", 
-"FORMULARIO"."ANSWER" AS "ANSWER", 
-"FORMULARIO"."PASSWORD" AS "PASSWORD", 
-"FORMULARIO"."GRUPO" AS "GRUPO", 
-"FORMULARIO"."EMERGENCY_NUMBER1_CODE" AS "EMERGENCY_NUMBER1_CODE", 
-"FORMULARIO"."EMERGENCY_NUMBER2_CODE" AS "EMERGENCY_NUMBER2_CODE", 
-"FORMULARIO"."HOME_PHONE" AS "HOME_PHONE", 
-"FORMULARIO"."HOME_PHONE_AREA" AS "HOME_PHONE_AREA", 
-"FORMULARIO"."ADDRESS_COUNTRY" AS "ADDRESS_COUNTRY", 
-"FORMULARIO"."ADDRESS_L2" AS "ADDRESS_L2", 
-"FORMULARIO"."CITY" AS "CITY", 
-"FORMULARIO"."STATE" AS "STATE", 
-"FORMULARIO"."ZIP_CODE" AS "ZIP_CODE", 
-"FORMULARIO"."CAT_TIPO_ESTUDIANTE" AS "CAT_TIPO_ESTUDIANTE", 
-"FORMULARIO"."STATION" AS "STATION", 
-"FORMULARIO"."NO_DIETARY_RESTRICTIONS" AS "NO_DIETARY_RESTRICTIONS", 
-"FORMULARIO"."VEGETARIAN" AS "VEGETARIAN", 
-"FORMULARIO"."VEGAN" AS "VEGAN", 
-"FORMULARIO"."BEEF" AS "BEEF", 
-"FORMULARIO"."CHICKEN" AS "CHICKEN", 
-"FORMULARIO"."PORK" AS "PORK", 
-"FORMULARIO"."FISH" AS "FISH", 
-"FORMULARIO"."OTHER_DIETARY" AS "OTHER_DIETARY", 
-"FORMULARIO"."COUNTRY_EMITS" AS "COUNTRY_EMITS", 
-"FORMULARIO"."CREADO" AS "CREADO", 
-"FORMULARIO"."MODIFICADO" AS "MODIFICADO", 
-"FORMULARIO"."NICKNAME" AS "NICKNAME", 
-"FORMULARIO"."DEPARTAMENT" AS "DEPARTAMENT", 
-"FORMULARIO"."POSITION" AS "POSITION", 
-"FORMULARIO"."SKYPE" AS "SKYPE", 
-"FORMULARIO"."WEBSITE" AS "WEBSITE", 
-"FORMULARIO"."CKOTHER_DIETARY_RESTRIC" AS "CKOTHER_DIETARY_RESTRIC", 
-"FORMULARIO"."TXOTHER_DIETARY_RESTRIC" AS "TXOTHER_DIETARY_RESTRIC", 
-"FORMULARIO"."PRIN" AS "PRIN", 
-"FORMULARIO"."RELATIONSHIP_CONTACT1" AS "RELATIONSHIP_CONTACT1", 
-"FORMULARIO"."RELATIONSHIP_CONTACT2" AS "RELATIONSHIP_CONTACT2", 
-"FORMULARIO"."INSURANCE_COMPANY" AS "INSURANCE_COMPANY", 
-"FORMULARIO"."INSURANCE_NUMBER" AS "INSURANCE_NUMBER", 
-"FORMULARIO"."INSURANCE_EXPIRATION" AS "INSURANCE_EXPIRATION", 
-"FORMULARIO"."ESPECIALIDAD" AS "ESPECIALIDAD", 
-"FORMULARIO"."DATO_ESTACION" AS "DATO_ESTACION", 
-"FORMULARIO"."CONTACTO_RESERVAS" AS "CONTACTO_RESERVAS", 
-"FORMULARIO"."SHARE_INFORMATION" AS "SHARE_INFORMATION", 
-"FORMULARIO"."PHONE_COUNTRY_CODE" AS "PHONE_COUNTRY_CODE", 
-"FORMULARIO"."FAX_COUNTRY_CODE" AS "FAX_COUNTRY_CODE", 
-"FORMULARIO"."EMERGENCY_COUNTRY_NUM_CODE1" AS "EMERGENCY_COUNTRY_NUM_CODE1", 
-"FORMULARIO"."EMERGENCY_COUNTRY_NUM_CODE2" AS "EMERGENCY_COUNTRY_NUM_CODE2", 
-"FORMULARIO"."HORA_CREACION" AS "HORA_CREACION", 
-"FORMULARIO"."E_MAIL2" AS "E_MAIL2"
-FROM "CONTACTOS"."FORMULARIO" "FORMULARIO"</DefiningQuery>
-          </EntitySet>
+        <EntityType Name="PREREGISTRO">
+          <Key>
+            <PropertyRef Name="NUMPREREGISTRO" />
+          </Key>
+          <Property Name="NUMPREREGISTRO" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="IDCONTACTO" Type="number" Precision="10" Scale="0" />
+          <Property Name="IDRESERVACION" Type="varchar2" MaxLength="255" />
+          <Property Name="PROPOSITO" Type="char" MaxLength="1" />
+          <Property Name="IDGRUPO" Type="varchar2" MaxLength="30" />
+          <Property Name="COMOENTERO" Type="varchar2" MaxLength="50" />
+          <Property Name="FECHA" Type="date" />
+          <Property Name="NOMCURSO" Type="varchar2" MaxLength="50" />
+          <Property Name="NUMCURSO" Type="varchar2" MaxLength="30" />
+          <Property Name="ROLCURSO" Type="char" MaxLength="1" />
+          <Property Name="NOMPROYECTO" Type="varchar2" MaxLength="50" />
+          <Property Name="INVERSIONES" Type="varchar2" MaxLength="50" />
+          <Property Name="FUENTE" Type="varchar2" MaxLength="50" />
+          <Property Name="RESOLUCION" Type="varchar2" MaxLength="30" />
+          <Property Name="PERMISO" Type="varchar2" MaxLength="30" />
+          <Property Name="EXPIRACION" Type="date" />
+        </EntityType>
+        <Association Name="PREREGISTRO_CONTACTO_FK">
+          <End Role="CONTACTO" Type="Self.CONTACTO" Multiplicity="0..1" />
+          <End Role="PREREGISTRO" Type="Self.PREREGISTRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTACTO">
+              <PropertyRef Name="CONTACTO" />
+            </Principal>
+            <Dependent Role="PREREGISTRO">
+              <PropertyRef Name="IDCONTACTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ContactoModelStoreContainer">
+          <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" Schema="CONTACTOS" store:Type="Tables" />
+          <EntitySet Name="PREREGISTRO" EntityType="Self.PREREGISTRO" Schema="CONTACTOS" store:Type="Tables" />
+          <AssociationSet Name="PREREGISTRO_CONTACTO_FK" Association="Self.PREREGISTRO_CONTACTO_FK">
+            <End Role="CONTACTO" EntitySet="CONTACTO" />
+            <End Role="PREREGISTRO" EntitySet="PREREGISTRO" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ModelContactos" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="FORMULARIO">
+      <Schema Namespace="ContactoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CONTACTO">
           <Key>
-            <PropertyRef Name="CONTACTO" />
+            <PropertyRef Name="CONTACTO1" />
           </Key>
-          <Property Name="NUMPREREGISTRO" Type="Int32" />
-          <Property Name="IDCONTACTO" Type="Int32" />
-          <Property Name="IDRESERVACION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="PROPOSITO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="IDGRUPO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="COMOENTERO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA" Type="DateTime" />
-          <Property Name="NOMCURSO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NUMCURSO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ROLCURSO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="NOMPROYECTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="INVERSIONES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FUENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RESOLUCION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="PERMISO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="EXPIRACION" Type="DateTime" />
-          <Property Name="CONTACTO" Type="Int32" Nullable="false" />
+          <Property Name="CONTACTO1" Type="Int32" Nullable="false" />
           <Property Name="TYPE" Type="Int32" />
           <Property Name="FIRST_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="LAST_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -309,36 +216,60 @@ FROM "CONTACTOS"."FORMULARIO" "FORMULARIO"</DefiningQuery>
           <Property Name="EMERGENCY_COUNTRY_NUM_CODE2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="HORA_CREACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="E_MAIL2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PREREGISTRO" Relationship="Self.PREREGISTRO_CONTACTO_FK" FromRole="CONTACTO" ToRole="PREREGISTRO" />
         </EntityType>
+        <EntityType Name="PREREGISTRO">
+          <Key>
+            <PropertyRef Name="NUMPREREGISTRO" />
+          </Key>
+          <Property Name="NUMPREREGISTRO" Type="Int32" Nullable="false" />
+          <Property Name="IDCONTACTO" Type="Int32" />
+          <Property Name="IDRESERVACION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PROPOSITO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IDGRUPO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="COMOENTERO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA" Type="DateTime" />
+          <Property Name="NOMCURSO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NUMCURSO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ROLCURSO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="NOMPROYECTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="INVERSIONES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FUENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RESOLUCION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PERMISO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EXPIRACION" Type="DateTime" />
+          <NavigationProperty Name="CONTACTO" Relationship="Self.PREREGISTRO_CONTACTO_FK" FromRole="PREREGISTRO" ToRole="CONTACTO" />
+        </EntityType>
+        <Association Name="PREREGISTRO_CONTACTO_FK">
+          <End Role="CONTACTO" Type="Self.CONTACTO" Multiplicity="0..1" />
+          <End Role="PREREGISTRO" Type="Self.PREREGISTRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTACTO">
+              <PropertyRef Name="CONTACTO1" />
+            </Principal>
+            <Dependent Role="PREREGISTRO">
+              <PropertyRef Name="IDCONTACTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BDContactos" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="FORMULARIO" EntityType="Self.FORMULARIO" />
+          <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" />
+          <EntitySet Name="PREREGISTRO" EntityType="Self.PREREGISTRO" />
+          <AssociationSet Name="PREREGISTRO_CONTACTO_FK" Association="Self.PREREGISTRO_CONTACTO_FK">
+            <End Role="CONTACTO" EntitySet="CONTACTO" />
+            <End Role="PREREGISTRO" EntitySet="PREREGISTRO" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelContactosStoreContainer" CdmEntityContainer="BDContactos">
-          <EntitySetMapping Name="FORMULARIO">
-            <EntityTypeMapping TypeName="ModelContactos.FORMULARIO">
-              <MappingFragment StoreEntitySet="FORMULARIO">
-                <ScalarProperty Name="NUMPREREGISTRO" ColumnName="NUMPREREGISTRO" />
-                <ScalarProperty Name="IDCONTACTO" ColumnName="IDCONTACTO" />
-                <ScalarProperty Name="IDRESERVACION" ColumnName="IDRESERVACION" />
-                <ScalarProperty Name="PROPOSITO" ColumnName="PROPOSITO" />
-                <ScalarProperty Name="IDGRUPO" ColumnName="IDGRUPO" />
-                <ScalarProperty Name="COMOENTERO" ColumnName="COMOENTERO" />
-                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
-                <ScalarProperty Name="NOMCURSO" ColumnName="NOMCURSO" />
-                <ScalarProperty Name="NUMCURSO" ColumnName="NUMCURSO" />
-                <ScalarProperty Name="ROLCURSO" ColumnName="ROLCURSO" />
-                <ScalarProperty Name="NOMPROYECTO" ColumnName="NOMPROYECTO" />
-                <ScalarProperty Name="INVERSIONES" ColumnName="INVERSIONES" />
-                <ScalarProperty Name="FUENTE" ColumnName="FUENTE" />
-                <ScalarProperty Name="RESOLUCION" ColumnName="RESOLUCION" />
-                <ScalarProperty Name="PERMISO" ColumnName="PERMISO" />
-                <ScalarProperty Name="EXPIRACION" ColumnName="EXPIRACION" />
-                <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
+        <EntityContainerMapping StorageEntityContainer="ContactoModelStoreContainer" CdmEntityContainer="BDContactos">
+          <EntitySetMapping Name="CONTACTO">
+            <EntityTypeMapping TypeName="ContactoModel.CONTACTO">
+              <MappingFragment StoreEntitySet="CONTACTO">
+                <ScalarProperty Name="CONTACTO1" ColumnName="CONTACTO" />
                 <ScalarProperty Name="TYPE" ColumnName="TYPE" />
                 <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
                 <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
@@ -416,6 +347,28 @@ FROM "CONTACTOS"."FORMULARIO" "FORMULARIO"</DefiningQuery>
                 <ScalarProperty Name="EMERGENCY_COUNTRY_NUM_CODE2" ColumnName="EMERGENCY_COUNTRY_NUM_CODE2" />
                 <ScalarProperty Name="HORA_CREACION" ColumnName="HORA_CREACION" />
                 <ScalarProperty Name="E_MAIL2" ColumnName="E_MAIL2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PREREGISTRO">
+            <EntityTypeMapping TypeName="ContactoModel.PREREGISTRO">
+              <MappingFragment StoreEntitySet="PREREGISTRO">
+                <ScalarProperty Name="NUMPREREGISTRO" ColumnName="NUMPREREGISTRO" />
+                <ScalarProperty Name="IDCONTACTO" ColumnName="IDCONTACTO" />
+                <ScalarProperty Name="IDRESERVACION" ColumnName="IDRESERVACION" />
+                <ScalarProperty Name="PROPOSITO" ColumnName="PROPOSITO" />
+                <ScalarProperty Name="IDGRUPO" ColumnName="IDGRUPO" />
+                <ScalarProperty Name="COMOENTERO" ColumnName="COMOENTERO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="NOMCURSO" ColumnName="NOMCURSO" />
+                <ScalarProperty Name="NUMCURSO" ColumnName="NUMCURSO" />
+                <ScalarProperty Name="ROLCURSO" ColumnName="ROLCURSO" />
+                <ScalarProperty Name="NOMPROYECTO" ColumnName="NOMPROYECTO" />
+                <ScalarProperty Name="INVERSIONES" ColumnName="INVERSIONES" />
+                <ScalarProperty Name="FUENTE" ColumnName="FUENTE" />
+                <ScalarProperty Name="RESOLUCION" ColumnName="RESOLUCION" />
+                <ScalarProperty Name="PERMISO" ColumnName="PERMISO" />
+                <ScalarProperty Name="EXPIRACION" ColumnName="EXPIRACION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

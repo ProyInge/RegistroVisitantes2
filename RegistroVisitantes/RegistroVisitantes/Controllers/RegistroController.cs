@@ -12,7 +12,7 @@ namespace RegistroVisitantes.Controllers
         private BDContactos BDContac = new BDContactos();
         private BDReservas BDReserv = new BDReservas();
 
-        public FORMULARIO obtieneInvestigador(string correo)
+  /*      public FORMULARIO obtieneInvestigador(string correo)
         {
             FORMULARIO form = BDContac.FORMULARIO.SingleOrDefault(f => f.E_MAIL == correo);
             return form;
@@ -35,7 +35,7 @@ namespace RegistroVisitantes.Controllers
             BDContac.FORMULARIO.Add(f);
             BDContac.SaveChanges();
         }
-        
+        */
 
         // GET: Registro
         public ActionResult Index()
@@ -85,7 +85,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([Bind()]Models.FORMULARIO form)
+        public ActionResult Create([Bind()]Models.PREREGISTRO form)
         {
             if (ModelState.IsValid)
             {
@@ -96,6 +96,6 @@ namespace RegistroVisitantes.Controllers
             }
             return Create();
         }
-
+        
     }
 }

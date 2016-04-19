@@ -186,6 +186,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CONTACTO.cs">
+      <DependentUpon>contactos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\contactos.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -203,11 +206,11 @@
     </Compile>
     <Compile Include="Models\FormDataContext.cs" />
     <Compile Include="Models\FormModel.cs" />
-    <Compile Include="Models\FORMULARIO.cs">
-      <DependentUpon>contactos.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PREREGISTRO.cs">
+      <DependentUpon>contactos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\RESERVACION.cs">
       <DependentUpon>reservas.tt</DependentUpon>
     </Compile>
@@ -260,19 +263,19 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\contactos.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>contactos.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\contactos.edmx.diagram">
-      <DependentUpon>contactos.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\reservas.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>reservas.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\reservas.edmx.diagram">
       <DependentUpon>reservas.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\contactos.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>contactos.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\contactos.edmx.diagram">
+      <DependentUpon>contactos.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -327,9 +330,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Registro\Reservas.cshtml" />
     <Content Include="Views\Registro\Visitantes.cshtml" />
-    <Content Include="Views\Home\P.cshtml" />
     <Content Include="Views\Form\Create.cshtml" />
     <Content Include="Views\Form\Index.cshtml" />
+    <Content Include="Views\Registro\Formulario.cshtml" />
+    <Content Include="Views\Registro\FormularioOET.cshtml" />
+    <Content Include="Views\Registro\Idioma.cshtml" />
+    <Content Include="Views\Home\Registro.cshtml" />
+    <Content Include="Views\Registro\Index.cshtml" />
     <Content Include="Views\Registro\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
