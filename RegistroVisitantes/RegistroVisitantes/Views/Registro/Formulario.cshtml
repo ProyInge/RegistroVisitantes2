@@ -1,11 +1,14 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewBag.Title = "Formulario";
 }
 
 <br />
 <br />
 <br />
 
+@using (Html.BeginForm("Submit", "Registro", FormMethod.Post, new { enctype ="multipart/form-data"}))
+{
 <div class="container" id="formulario">
     <form role="form">
         <div class="container">
@@ -124,8 +127,9 @@
             </div>
         </div>
 
+
     </form>
-      
+
     <div class="container">
         <h2 style="border-bottom:8px solid #FDBB30">Waiver of Liability</h2>
         <div class="well" style="font-size:medium">
@@ -146,3 +150,4 @@
     </div>
 
 </div>
+}

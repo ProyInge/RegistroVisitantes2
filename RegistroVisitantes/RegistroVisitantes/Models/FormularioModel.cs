@@ -10,4 +10,5 @@ namespace RegistroVisitantes.Models
         public virtual PREREGISTRO PREREGISTRO { get; set; }
         public virtual RESERVACION RESERVACION { get; set; }
     }
+
 }
