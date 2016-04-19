@@ -3,7 +3,7 @@ create table preregistro(
   idcontacto number(10,0),
   idreservacion varchar2(255 byte),
   proposito char,
-  grupo varchar2(30 byte),
+  idgrupo varchar2(30 byte),
   comoentero varchar2(50 byte),
   fecha date,
   

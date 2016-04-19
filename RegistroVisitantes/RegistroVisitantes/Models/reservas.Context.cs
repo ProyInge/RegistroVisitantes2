@@ -13,10 +13,10 @@ namespace RegistroVisitantes.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EntitiesReservas : DbContext
+    public partial class BDReservas : DbContext
     {
-        public EntitiesReservas()
-            : base("name=EntitiesReservas")
+        public BDReservas()
+            : base("name=BDReservas")
         {
         }
     
@@ -25,30 +25,6 @@ namespace RegistroVisitantes.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ALIMENTO> ALIMENTO { get; set; }
-        public virtual DbSet<ANFITRIONA> ANFITRIONA { get; set; }
-        public virtual DbSet<CONTACTO_ROL> CONTACTO_ROL { get; set; }
-        public virtual DbSet<ESTACION> ESTACION { get; set; }
-        public virtual DbSet<GRUPO> GRUPO { get; set; }
-        public virtual DbSet<GRUPOANON> GRUPOANON { get; set; }
-        public virtual DbSet<GRUPORSRV> GRUPORSRV { get; set; }
-        public virtual DbSet<GRUPORSRV_MIEMBROS> GRUPORSRV_MIEMBROS { get; set; }
-        public virtual DbSet<MIEMBRO> MIEMBRO { get; set; }
-        public virtual DbSet<PARTICIPANTE> PARTICIPANTE { get; set; }
-        public virtual DbSet<RESERVABLE> RESERVABLE { get; set; }
-        public virtual DbSet<RH> RH { get; set; }
-        public virtual DbSet<ROL> ROL { get; set; }
-        public virtual DbSet<ASISTENCIA> ASISTENCIA { get; set; }
-        public virtual DbSet<COLABORADORES> COLABORADORES { get; set; }
-        public virtual DbSet<DISTRIBUCION_CONTACTOS> DISTRIBUCION_CONTACTOS { get; set; }
-        public virtual DbSet<RESERVA_MIP> RESERVA_MIP { get; set; }
         public virtual DbSet<RESERVACION> RESERVACION { get; set; }
-        public virtual DbSet<RESERVACION_OTROS_INGRESOS> RESERVACION_OTROS_INGRESOS { get; set; }
-        public virtual DbSet<RESERVACION_TARIFA> RESERVACION_TARIFA { get; set; }
-        public virtual DbSet<RESERVACIONITEM> RESERVACIONITEM { get; set; }
-        public virtual DbSet<TELEFONO> TELEFONO { get; set; }
-        public virtual DbSet<USUARIO_PERFIL> USUARIO_PERFIL { get; set; }
-        public virtual DbSet<USUARIOS> USUARIOS { get; set; }
-        public virtual DbSet<USUARIOS_CONECTADOS> USUARIOS_CONECTADOS { get; set; }
     }
 }

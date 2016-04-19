@@ -4,15 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="21f31ff352954998930ac8cc2f494f35" Name="Diagram1">
-        <EntityTypeShape EntityType="contactos.CAT_ACADEMIC_DEGREE" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="contactos.CAT_CURSO_ESTADO" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="contactos.CAT_TIPO_IDENTIFIACION" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="contactos.CONTACTO" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="contactos.COURSES" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="contactos.TIPO_CONTACTO" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="contactos.PREREGISTRO" Width="1.5" PointX="5" PointY="9.75" />
-        <AssociationConnector Association="contactos.PREREGISTRO_CONTACTO_FK" />
+      <Diagram DiagramId="29ba8a5846c54e7ca512cbefa7ae478a" Name="Diagram1" ZoomLevel="30">
+        <EntityTypeShape EntityType="ModelContactos.FORMULARIO" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

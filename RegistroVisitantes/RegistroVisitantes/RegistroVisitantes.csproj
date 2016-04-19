@@ -185,31 +185,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ALIMENTO.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ANFITRIONA.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ASISTENCIA.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CAT_ACADEMIC_DEGREE.cs">
-      <DependentUpon>contactos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CAT_CURSO_ESTADO.cs">
-      <DependentUpon>contactos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CAT_TIPO_IDENTIFIACION.cs">
-      <DependentUpon>contactos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FormularioModel.cs" />
-    <Compile Include="Models\COLABORADORES.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CONTACTO.cs">
-      <DependentUpon>contactos.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\contactos.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -225,54 +200,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>contactos.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\CONTACTO_ROL.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\COURSES.cs">
+    <Compile Include="Models\FORMULARIO.cs">
       <DependentUpon>contactos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DISTRIBUCION_CONTACTOS.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ESTACION.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GRUPO.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GRUPOANON.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GRUPORSRV.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GRUPORSRV_MIEMBROS.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MIEMBRO.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PARTICIPANTE.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PREREGISTRO.cs">
-      <DependentUpon>contactos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RESERVABLE.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\RESERVACION.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RESERVACIONITEM.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RESERVACION_OTROS_INGRESOS.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RESERVACION_TARIFA.cs">
       <DependentUpon>reservas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\reservas.Context.cs">
@@ -289,30 +222,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>reservas.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RESERVA_MIP.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RH.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ROL.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TELEFONO.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TIPO_CONTACTO.cs">
-      <DependentUpon>contactos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\USUARIOS.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\USUARIOS_CONECTADOS.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\USUARIO_PERFIL.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -346,19 +255,19 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\reservas.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>reservas.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\reservas.edmx.diagram">
-      <DependentUpon>reservas.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\contactos.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>contactos.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\contactos.edmx.diagram">
       <DependentUpon>contactos.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\reservas.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>reservas.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\reservas.edmx.diagram">
+      <DependentUpon>reservas.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

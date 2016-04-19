@@ -1,0 +1,7 @@
+CREATE VIEW FORMULARIO
+AS SELECT 
+  *
+FROM 
+  PREREGISTRO pr, CONTACTO co
+WHERE
+  pr.idcontacto = co.contacto;

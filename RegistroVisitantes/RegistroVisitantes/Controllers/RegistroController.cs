@@ -9,40 +9,30 @@ namespace RegistroVisitantes.Controllers
 {
     public class RegistroController : Controller
     {
-        private EntitiesContactos BDContac = new EntitiesContactos();
-        private EntitiesReservas BDReserv = new EntitiesReservas();
+        private BDContactos BDContac = new BDContactos();
+        private BDReservas BDReserv = new BDReservas();
 
-        public CONTACTO obtieneInvestigador(string correo)
+        public FORMULARIO obtieneInvestigador(string correo)
         {
-            CONTACTO cont = BDContac.CONTACTO.SingleOrDefault(c => c.E_MAIL == correo);
-            return cont;
-        }
-
-        public Formulario obtieneFormulario(string idReserv)
-        {
-            Formulario form = new Formulario();
-            form.RESERVACION = BDReserv.RESERVACION.Find(idReserv);
-            form.PREREGISTRO = new PREREGISTRO();
+            FORMULARIO form = BDContac.FORMULARIO.SingleOrDefault(f => f.E_MAIL == correo);
             return form;
         }
 
-        public Formulario obtieneFormulario(int idPrereg)
+        public FORMULARIO obtieneFormulario(string idReserv)
         {
-            Formulario form = new Formulario();
-            form.PREREGISTRO = BDContac.PREREGISTRO.Find(idPrereg);
-            form.RESERVACION = BDReserv.RESERVACION.Find(form.PREREGISTRO.IDRESERVACION);
+            FORMULARIO form = BDContac.FORMULARIO.SingleOrDefault(f => f.IDRESERVACION == idReserv);
             return form;
         }
 
-        public void guardaContacto(CONTACTO c)
+        public FORMULARIO obtieneFormulario(int idPrereg)
         {
-            BDContac.CONTACTO.Add(c);
-            BDContac.SaveChanges();
+            FORMULARIO form = BDContac.FORMULARIO.SingleOrDefault(f => f.NUMPREREGISTRO == idPrereg);
+            return form;
         }
 
-        public void guardaPreregistro(PREREGISTRO p)
+        public void guardaFormulario(FORMULARIO f)
         {
-            BDContac.PREREGISTRO.Add(p);
+            BDContac.FORMULARIO.Add(f);
             BDContac.SaveChanges();
         }
         

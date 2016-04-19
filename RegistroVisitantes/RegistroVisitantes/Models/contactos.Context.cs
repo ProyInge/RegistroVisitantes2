@@ -13,10 +13,10 @@ namespace RegistroVisitantes.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EntitiesContactos : DbContext
+    public partial class BDContactos : DbContext
     {
-        public EntitiesContactos()
-            : base("name=EntitiesContactos")
+        public BDContactos()
+            : base("name=BDContactos")
         {
         }
     
@@ -25,12 +25,6 @@ namespace RegistroVisitantes.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CAT_ACADEMIC_DEGREE> CAT_ACADEMIC_DEGREE { get; set; }
-        public virtual DbSet<CAT_CURSO_ESTADO> CAT_CURSO_ESTADO { get; set; }
-        public virtual DbSet<CAT_TIPO_IDENTIFIACION> CAT_TIPO_IDENTIFIACION { get; set; }
-        public virtual DbSet<CONTACTO> CONTACTO { get; set; }
-        public virtual DbSet<COURSES> COURSES { get; set; }
-        public virtual DbSet<TIPO_CONTACTO> TIPO_CONTACTO { get; set; }
-        public virtual DbSet<PREREGISTRO> PREREGISTRO { get; set; }
+        public virtual DbSet<FORMULARIO> FORMULARIO { get; set; }
     }
 }

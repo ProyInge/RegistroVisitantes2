@@ -4,34 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d12c99b863dc4b1589468b9af8a3c3fc" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.ALIMENTO" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.ANFITRIONA" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CONTACTO_ROL" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.ESTACION" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.GRUPO" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.GRUPOANON" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.GRUPORSRV" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.GRUPORSRV_MIEMBROS" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.MIEMBRO" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.PARTICIPANTE" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.RESERVABLE" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.RH" Width="1.5" PointX="3.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.ROL" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.ASISTENCIA" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.COLABORADORES" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.DISTRIBUCION_CONTACTOS" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.RESERVA_MIP" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.RESERVACION" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.RESERVACION_OTROS_INGRESOS" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.RESERVACION_TARIFA" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.RESERVACIONITEM" Width="1.5" PointX="12.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.TELEFONO" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.USUARIO_PERFIL" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.USUARIOS" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.USUARIOS_CONECTADOS" Width="1.5" PointX="12.75" PointY="13.75" IsExpanded="true" />
-        <AssociationConnector Association="Model.SYS_C0011235" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.SYS_C0011233" ManuallyRouted="false" />
+      <Diagram DiagramId="bfd73b0c65d34568a616861a18513fc6" Name="Diagram1" ZoomLevel="84">
+        <EntityTypeShape EntityType="ModelReservas.RESERVACION" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

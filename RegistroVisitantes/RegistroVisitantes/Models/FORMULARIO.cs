@@ -12,15 +12,25 @@ namespace RegistroVisitantes.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CONTACTO
+    public partial class FORMULARIO
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CONTACTO()
-        {
-            this.PREREGISTRO = new HashSet<PREREGISTRO>();
-        }
-    
-        public int CONTACTO1 { get; set; }
+        public Nullable<int> NUMPREREGISTRO { get; set; }
+        public Nullable<int> IDCONTACTO { get; set; }
+        public string IDRESERVACION { get; set; }
+        public string PROPOSITO { get; set; }
+        public string IDGRUPO { get; set; }
+        public string COMOENTERO { get; set; }
+        public Nullable<System.DateTime> FECHA { get; set; }
+        public string NOMCURSO { get; set; }
+        public string NUMCURSO { get; set; }
+        public string ROLCURSO { get; set; }
+        public string NOMPROYECTO { get; set; }
+        public string INVERSIONES { get; set; }
+        public string FUENTE { get; set; }
+        public string RESOLUCION { get; set; }
+        public string PERMISO { get; set; }
+        public Nullable<System.DateTime> EXPIRACION { get; set; }
+        public int CONTACTO { get; set; }
         public Nullable<int> TYPE { get; set; }
         public string FIRST_NAME { get; set; }
         public string LAST_NAME { get; set; }
@@ -98,8 +108,5 @@ namespace RegistroVisitantes.Models
         public string EMERGENCY_COUNTRY_NUM_CODE2 { get; set; }
         public string HORA_CREACION { get; set; }
         public string E_MAIL2 { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PREREGISTRO> PREREGISTRO { get; set; }
     }
 }
