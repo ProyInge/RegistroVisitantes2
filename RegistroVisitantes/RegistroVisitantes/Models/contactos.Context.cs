@@ -15,6 +15,8 @@ namespace RegistroVisitantes.Models
     
     public partial class BDContactos : DbContext
     {
+
+        public DbSet<FORMULARIO> Form { get; set;}
         public BDContactos()
             : base("name=BDContactos")
         {

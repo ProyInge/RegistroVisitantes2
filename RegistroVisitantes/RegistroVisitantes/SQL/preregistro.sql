@@ -1,3 +1,5 @@
+drop  table preregistro
+/
 create table preregistro(
   numpreregistro number(10,0),
   idcontacto number(10,0),
@@ -26,6 +28,9 @@ create table preregistro(
 ALTER TABLE PREREGISTRO ADD CONSTRAINT preregistro_pk PRIMARY KEY (numpreregistro);
 /
 ALTER TABLE PREREGISTRO ADD CONSTRAINT preregistro_contacto_fk FOREIGN KEY (idcontacto) REFERENCES contacto(contacto);
+/
+
+drop SEQUENCE PREREGISTRO_SEQ
 /
 CREATE SEQUENCE PREREGISTRO_SEQ
  START WITH     1

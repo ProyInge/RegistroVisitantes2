@@ -77,5 +77,25 @@ namespace RegistroVisitantes.Controllers
         {
             return View();
         }
+        // GET: /Registro/Create
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create([Bind()]Models.FORMULARIO form)
+        {
+            if (ModelState.IsValid)
+            {
+                var db = BDContac;
+                db.Form.Add(form);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return Create();
+        }
+
     }
 }

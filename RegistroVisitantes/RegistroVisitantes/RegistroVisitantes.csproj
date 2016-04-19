@@ -178,6 +178,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
@@ -200,6 +201,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>contactos.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\FormDataContext.cs" />
+    <Compile Include="Models\FormModel.cs" />
     <Compile Include="Models\FORMULARIO.cs">
       <DependentUpon>contactos.tt</DependentUpon>
     </Compile>
@@ -227,8 +230,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Anterior.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\logo.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -281,6 +286,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="SQL\contactos.sql" />
+    <Content Include="SQL\formulario.sql" />
+    <Content Include="SQL\preregistro.sql" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -320,10 +328,12 @@
     <Content Include="Views\Registro\Reservas.cshtml" />
     <Content Include="Views\Registro\Visitantes.cshtml" />
     <Content Include="Views\Home\P.cshtml" />
+    <Content Include="Views\Form\Create.cshtml" />
+    <Content Include="Views\Form\Index.cshtml" />
+    <Content Include="Views\Registro\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="SQL\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
