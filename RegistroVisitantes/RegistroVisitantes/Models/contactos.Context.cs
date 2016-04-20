@@ -15,8 +15,6 @@ namespace RegistroVisitantes.Models
     
     public partial class BDContactos : DbContext
     {
-        public DbSet<PREREGISTRO> Form { get; set; }
-        public DbSet<CONTACTO> FormContacto { get; set; }
         public BDContactos()
             : base("name=BDContactos")
         {
@@ -29,5 +27,6 @@ namespace RegistroVisitantes.Models
     
         public virtual DbSet<CONTACTO> CONTACTO { get; set; }
         public virtual DbSet<PREREGISTRO> PREREGISTRO { get; set; }
+        public virtual DbSet<V_EMPLEADOS> V_EMPLEADOS { get; set; }
     }
 }

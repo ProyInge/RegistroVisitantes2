@@ -15,30 +15,6 @@ namespace RegistroVisitantes.Controllers
         private BDContactos BDContac = new BDContactos();
         private BDReservas BDReserv = new BDReservas();
 
-  /*      public FORMULARIO obtieneInvestigador(string correo)
-        {
-            FORMULARIO form = BDContac.FORMULARIO.SingleOrDefault(f => f.E_MAIL == correo);
-            return form;
-        }
-
-        public FORMULARIO obtieneFormulario(string idReserv)
-        {
-            FORMULARIO form = BDContac.FORMULARIO.SingleOrDefault(f => f.IDRESERVACION == idReserv);
-            return form;
-        }
-
-        public FORMULARIO obtieneFormulario(int idPrereg)
-        {
-            FORMULARIO form = BDContac.FORMULARIO.SingleOrDefault(f => f.NUMPREREGISTRO == idPrereg);
-            return form;
-        }
-
-        public void guardaFormulario(FORMULARIO f)
-        {
-            BDContac.FORMULARIO.Add(f);
-            BDContac.SaveChanges();
-        }
-        */
 
         // GET: Registro
         public ActionResult Index()
@@ -93,7 +69,7 @@ namespace RegistroVisitantes.Controllers
             if (ModelState.IsValid)
             {
                 var db = BDContac;
-                db.Form.Add(form);
+                db.PREREGISTRO.Add(form);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -112,7 +88,7 @@ namespace RegistroVisitantes.Controllers
             if (ModelState.IsValid)
             {
                 var db = BDContac;
-                db.Form.Add(form);
+                db.PREREGISTRO.Add(form);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -122,7 +98,7 @@ namespace RegistroVisitantes.Controllers
         public ActionResult ListVisitantes()
         {
             var db = BDContac;
-            var lista = db.FormContacto.Take(5).ToList();
+            var lista = db.CONTACTO.Take(5).ToList();
 
             return View(lista);
         }
