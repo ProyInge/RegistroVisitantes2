@@ -301,6 +301,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="SQL\contactos.sql" />
     <Content Include="SQL\formulario.sql" />
+    <Content Include="SQL\v_empleados.sql" />
     <Content Include="SQL\preregistro.sql" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

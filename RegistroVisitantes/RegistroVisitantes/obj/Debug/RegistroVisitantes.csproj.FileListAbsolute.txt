@@ -275,3 +275,4 @@ C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisit
 C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.dll
 C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.pdb
+C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.csprojResolveAssemblyReference.cache
