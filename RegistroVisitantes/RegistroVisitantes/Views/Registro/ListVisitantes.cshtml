@@ -4,6 +4,9 @@
     ViewBag.Title = "ListVisitantes";
 }
 
+<br />
+<br />
+
 <h2>ListVisitantes</h2>
 
 <p>
@@ -12,235 +15,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TYPE)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.FIRST_NAME)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LAST_NAME)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BIRTH_DAY)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BIRTH_PLACE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.INSTITUTION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CATEGORY)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GENDER)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.PHONE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PHONE_AREA_CODE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FAX)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FAX_AREA_CODE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMERGENCY_CONTACT1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMERGENCY_NUMBER1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMERGENCY_E_MAIL1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMERGENCY_CONTACT2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMERGENCY_NUMBER2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMERGENCY_E_MAIL2)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.E_MAIL)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IDENTIFICATION_TYPE)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.IDENTIFICATION)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EXPIRATION_DATE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.COUNTRY_BIRTH)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NACIONALITY)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ETHNIC_GROUP)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.ADDRESS_L1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AREA_OF_INTEREST)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ACADEMIC_DEGREE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SECRET_QUESTION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ANSWER)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PASSWORD)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GRUPO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMERGENCY_NUMBER1_CODE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMERGENCY_NUMBER2_CODE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HOME_PHONE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HOME_PHONE_AREA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ADDRESS_COUNTRY)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ADDRESS_L2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CITY)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.STATE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ZIP_CODE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CAT_TIPO_ESTUDIANTE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.STATION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NO_DIETARY_RESTRICTIONS)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VEGETARIAN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VEGAN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BEEF)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CHICKEN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PORK)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FISH)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OTHER_DIETARY)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.COUNTRY_EMITS)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CREADO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MODIFICADO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NICKNAME)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DEPARTAMENT)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.POSITION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SKYPE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WEBSITE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CKOTHER_DIETARY_RESTRIC)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TXOTHER_DIETARY_RESTRIC)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PRIN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RELATIONSHIP_CONTACT1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RELATIONSHIP_CONTACT2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.INSURANCE_COMPANY)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.INSURANCE_NUMBER)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.INSURANCE_EXPIRATION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ESPECIALIDAD)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DATO_ESTACION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CONTACTO_RESERVAS)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SHARE_INFORMATION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PHONE_COUNTRY_CODE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FAX_COUNTRY_CODE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMERGENCY_COUNTRY_NUM_CODE1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMERGENCY_COUNTRY_NUM_CODE2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HORA_CREACION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.E_MAIL2)
         </th>
         <th></th>
     </tr>
@@ -248,235 +38,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TYPE)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.FIRST_NAME)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.LAST_NAME)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BIRTH_DAY)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BIRTH_PLACE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.INSTITUTION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CATEGORY)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GENDER)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.PHONE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PHONE_AREA_CODE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FAX)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FAX_AREA_CODE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMERGENCY_CONTACT1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMERGENCY_NUMBER1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMERGENCY_E_MAIL1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMERGENCY_CONTACT2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMERGENCY_NUMBER2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMERGENCY_E_MAIL2)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.E_MAIL)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IDENTIFICATION_TYPE)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.IDENTIFICATION)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EXPIRATION_DATE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.COUNTRY_BIRTH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NACIONALITY)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ETHNIC_GROUP)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.ADDRESS_L1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AREA_OF_INTEREST)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ACADEMIC_DEGREE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SECRET_QUESTION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ANSWER)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PASSWORD)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GRUPO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMERGENCY_NUMBER1_CODE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMERGENCY_NUMBER2_CODE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HOME_PHONE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HOME_PHONE_AREA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ADDRESS_COUNTRY)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ADDRESS_L2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CITY)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.STATE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ZIP_CODE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CAT_TIPO_ESTUDIANTE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.STATION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NO_DIETARY_RESTRICTIONS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VEGETARIAN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VEGAN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BEEF)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CHICKEN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PORK)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FISH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OTHER_DIETARY)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.COUNTRY_EMITS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CREADO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MODIFICADO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NICKNAME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DEPARTAMENT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.POSITION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SKYPE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WEBSITE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CKOTHER_DIETARY_RESTRIC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TXOTHER_DIETARY_RESTRIC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PRIN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RELATIONSHIP_CONTACT1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RELATIONSHIP_CONTACT2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.INSURANCE_COMPANY)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.INSURANCE_NUMBER)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.INSURANCE_EXPIRATION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ESPECIALIDAD)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DATO_ESTACION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CONTACTO_RESERVAS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SHARE_INFORMATION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PHONE_COUNTRY_CODE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FAX_COUNTRY_CODE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMERGENCY_COUNTRY_NUM_CODE1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMERGENCY_COUNTRY_NUM_CODE2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HORA_CREACION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.E_MAIL2)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CONTACTO1 }) |

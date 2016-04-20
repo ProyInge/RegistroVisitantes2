@@ -6,8 +6,6 @@
 //     Los cambios manuales en este archivo se sobrescribirán si se regenera el código.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
 
 namespace RegistroVisitantes.Models
 {
@@ -19,17 +17,12 @@ namespace RegistroVisitantes.Models
         public int NUMPREREGISTRO { get; set; }
         public Nullable<int> IDCONTACTO { get; set; }
         public string IDRESERVACION { get; set; }
-        [DisplayName("Purpose:")]
         public string PROPOSITO { get; set; }
         public string IDGRUPO { get; set; }
-        [DisplayName("How you know?")]
         public string COMOENTERO { get; set; }
         public Nullable<System.DateTime> FECHA { get; set; }
-        [DisplayName("Course Name:")]
         public string NOMCURSO { get; set; }
-        [DisplayName("Course Number:")]
         public string NUMCURSO { get; set; }
-        [DisplayName("Participating as:")]
         public string ROLCURSO { get; set; }
         public string NOMPROYECTO { get; set; }
         public string INVERSIONES { get; set; }

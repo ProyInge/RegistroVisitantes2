@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RegistroVisitantes.Models;
+using PagedList;
+using PagedList.Mvc;
+
 
 namespace RegistroVisitantes.Controllers
 {
@@ -12,30 +15,6 @@ namespace RegistroVisitantes.Controllers
         private BDContactos BDContac = new BDContactos();
         private BDReservas BDReserv = new BDReservas();
 
-  /*      public FORMULARIO obtieneInvestigador(string correo)
-        {
-            FORMULARIO form = BDContac.FORMULARIO.SingleOrDefault(f => f.E_MAIL == correo);
-            return form;
-        }
-
-        public FORMULARIO obtieneFormulario(string idReserv)
-        {
-            FORMULARIO form = BDContac.FORMULARIO.SingleOrDefault(f => f.IDRESERVACION == idReserv);
-            return form;
-        }
-
-        public FORMULARIO obtieneFormulario(int idPrereg)
-        {
-            FORMULARIO form = BDContac.FORMULARIO.SingleOrDefault(f => f.NUMPREREGISTRO == idPrereg);
-            return form;
-        }
-
-        public void guardaFormulario(FORMULARIO f)
-        {
-            BDContac.FORMULARIO.Add(f);
-            BDContac.SaveChanges();
-        }
-        */
 
         // GET: Registro
         public ActionResult Index()
@@ -90,7 +69,7 @@ namespace RegistroVisitantes.Controllers
             if (ModelState.IsValid)
             {
                 var db = BDContac;
-                db.Form.Add(form);
+                db.PREREGISTRO.Add(form);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -109,7 +88,7 @@ namespace RegistroVisitantes.Controllers
             if (ModelState.IsValid)
             {
                 var db = BDContac;
-                db.Form.Add(form);
+                db.PREREGISTRO.Add(form);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -119,27 +98,28 @@ namespace RegistroVisitantes.Controllers
         public ActionResult ListVisitantes()
         {
             var db = BDContac;
-            var lista = db.FormContacto.Take(5).ToList();
+            var lista = db.CONTACTO.Take(5).ToList();
 
             return View(lista);
         }
 
-        public ActionResult ListReservas(DateTime? filterDate)
+        public ActionResult ListReservas(DateTime? fromDate, DateTime? toDate, int? Pagina)
         {
             var db = BDReserv;
-            DateTime filter;
-            if (filterDate == null) {
-                filter = DateTime.Today;
-            }
-            else
-            {
-                filter = filterDate.Value;
-            }
-            ViewBag.fromDate = filter;
+            DateTime from = (fromDate ?? DateTime.Today);
+            DateTime to = (toDate ?? DateTime.Today.AddDays(7));
 
-            var lista = db.FormReservacion.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, filter) < 0).OrderByDescending(x => x.ENTRA).Take(5).ToList();
+            /*DateTime from = (fromDate ?? new DateTime(2012, 01, 01));
+            DateTime to = (toDate ?? new DateTime(2013, 01, 01));*/
 
-            return View(lista);
+            ViewBag.fromDate = from;
+            ViewBag.toDate = to;
+
+            var lista = db.RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0).OrderByDescending(x => x.ENTRA).OrderBy(s => s.ENTRA);
+
+            int Size_Of_Page = 5;
+            int No_Of_Page = (Pagina ?? 1);
+            return View(lista.ToPagedList(No_Of_Page, Size_Of_Page));
         }
 
     }

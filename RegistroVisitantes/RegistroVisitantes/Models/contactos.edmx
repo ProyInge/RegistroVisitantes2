@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ContactoModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ContactoModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CONTACTO">
           <Key>
             <PropertyRef Name="CONTACTO" />
@@ -109,6 +109,26 @@
           <Property Name="PERMISO" Type="varchar2" MaxLength="30" />
           <Property Name="EXPIRACION" Type="date" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CONTACTOS.V_EMPLEADOS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="V_EMPLEADOS">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="NOMBRE" />
+            <PropertyRef Name="APELLIDOS" />
+            <PropertyRef Name="SEXO" />
+            <PropertyRef Name="IDENTIFICACION" />
+            <PropertyRef Name="NACIONALIDAD" />
+          </Key>
+          <Property Name="ID" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="APELLIDOS" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar2" MaxLength="50" />
+          <Property Name="SEXO" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IDENTIFICACION" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="NACIONALIDAD" Type="varchar2" MaxLength="26" Nullable="false" />
+          <Property Name="ESTADOCIVIL" Type="number" Precision="8" Scale="2" />
+        </EntityType>
         <Association Name="PREREGISTRO_CONTACTO_FK">
           <End Role="CONTACTO" Type="Self.CONTACTO" Multiplicity="0..1" />
           <End Role="PREREGISTRO" Type="Self.PREREGISTRO" Multiplicity="*" />
@@ -124,13 +144,24 @@
         <EntityContainer Name="ContactoModelStoreContainer">
           <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" Schema="CONTACTOS" store:Type="Tables" />
           <EntitySet Name="PREREGISTRO" EntityType="Self.PREREGISTRO" Schema="CONTACTOS" store:Type="Tables" />
+          <EntitySet Name="V_EMPLEADOS" EntityType="Self.V_EMPLEADOS" store:Type="Views" store:Schema="CONTACTOS">
+            <DefiningQuery>SELECT 
+"V_EMPLEADOS"."ID" AS "ID", 
+"V_EMPLEADOS"."NOMBRE" AS "NOMBRE", 
+"V_EMPLEADOS"."APELLIDOS" AS "APELLIDOS", 
+"V_EMPLEADOS"."EMAIL" AS "EMAIL", 
+"V_EMPLEADOS"."SEXO" AS "SEXO", 
+"V_EMPLEADOS"."IDENTIFICACION" AS "IDENTIFICACION", 
+"V_EMPLEADOS"."NACIONALIDAD" AS "NACIONALIDAD", 
+"V_EMPLEADOS"."ESTADOCIVIL" AS "ESTADOCIVIL"
+FROM "CONTACTOS"."V_EMPLEADOS" "V_EMPLEADOS"</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="PREREGISTRO_CONTACTO_FK" Association="Self.PREREGISTRO_CONTACTO_FK">
             <End Role="CONTACTO" EntitySet="CONTACTO" />
             <End Role="PREREGISTRO" EntitySet="PREREGISTRO" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ContactoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -259,7 +290,26 @@
             <End Role="CONTACTO" EntitySet="CONTACTO" />
             <End Role="PREREGISTRO" EntitySet="PREREGISTRO" />
           </AssociationSet>
+          <EntitySet Name="V_EMPLEADOS" EntityType="ContactoModel.V_EMPLEADOS" />
         </EntityContainer>
+        <EntityType Name="V_EMPLEADOS">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="NOMBRE" />
+            <PropertyRef Name="APELLIDOS" />
+            <PropertyRef Name="SEXO" />
+            <PropertyRef Name="IDENTIFICACION" />
+            <PropertyRef Name="NACIONALIDAD" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SEXO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IDENTIFICACION" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NACIONALIDAD" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADOCIVIL" Type="Decimal" Precision="8" Scale="2" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -369,6 +419,20 @@
                 <ScalarProperty Name="RESOLUCION" ColumnName="RESOLUCION" />
                 <ScalarProperty Name="PERMISO" ColumnName="PERMISO" />
                 <ScalarProperty Name="EXPIRACION" ColumnName="EXPIRACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_EMPLEADOS">
+            <EntityTypeMapping TypeName="ContactoModel.V_EMPLEADOS">
+              <MappingFragment StoreEntitySet="V_EMPLEADOS">
+                <ScalarProperty Name="ESTADOCIVIL" ColumnName="ESTADOCIVIL" />
+                <ScalarProperty Name="NACIONALIDAD" ColumnName="NACIONALIDAD" />
+                <ScalarProperty Name="IDENTIFICACION" ColumnName="IDENTIFICACION" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
