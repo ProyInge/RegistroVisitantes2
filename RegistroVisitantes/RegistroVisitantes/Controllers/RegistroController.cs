@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RegistroVisitantes.Models;
+using PagedList;
+using PagedList.Mvc;
+
 
 namespace RegistroVisitantes.Controllers
 {
@@ -124,22 +127,17 @@ namespace RegistroVisitantes.Controllers
             return View(lista);
         }
 
-        public ActionResult ListReservas(DateTime? filterDate)
+        public ActionResult ListReservas(DateTime? filterDate, int? Pagina)
         {
             var db = BDReserv;
-            DateTime filter;
-            if (filterDate == null) {
-                filter = DateTime.Today;
-            }
-            else
-            {
-                filter = filterDate.Value;
-            }
+            DateTime filter = (filterDate ?? DateTime.Today);
             ViewBag.fromDate = filter;
 
-            var lista = db.FormReservacion.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, filter) < 0).OrderByDescending(x => x.ENTRA).Take(5).ToList();
+            var lista = db.FormReservacion.OrderBy(s => s.ENTRA);//.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, filter) < 0).OrderByDescending(x => x.ENTRA);
 
-            return View(lista);
+            int Size_Of_Page = 5;
+            int No_Of_Page = (Pagina ?? 1);
+            return View(lista.ToPagedList(No_Of_Page, Size_Of_Page));
         }
 
     }

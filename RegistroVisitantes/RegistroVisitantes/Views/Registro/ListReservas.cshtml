@@ -1,5 +1,6 @@
-﻿@model IEnumerable<RegistroVisitantes.Models.RESERVACION>
-
+﻿@model PagedList.IPagedList<RegistroVisitantes.Models.RESERVACION>
+@using PagedList;
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "ListReservas";
     //ViewBag.Abc = new DateTime(2015, 1, 18);
@@ -201,3 +202,9 @@
 }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, Pagina => Url.Action("ListReservas",
+        new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+ 
