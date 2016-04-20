@@ -14,29 +14,31 @@
 {
     <p>
         Buscar por fecha:
-        <input type="date" name="filterDate" value="@string.Format("{0:yyyy-MM-dd}", ViewBag.fromDate)" />
+        <input type="date" name="fromDate" value="@string.Format("{0:yyyy-MM-dd}", ViewBag.fromDate)" />
+        <input type="date" name="toDate" value="@string.Format("{0:yyyy-MM-dd}", ViewBag.toDate)" />
         <input type="submit" value="Buscar" />
     </p>
 }
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+
+<table class="table table-bordered table-striped table-condensed table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.GRUPO)
+            @Html.DisplayNameFor(model => model.First().GRUPO)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ENTRA)
+            @Html.DisplayNameFor(model => model.First().ENTRA)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SALE)
+            @Html.DisplayNameFor(model => model.First().SALE)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RESPONSABLE)
+            @Html.DisplayNameFor(model => model.First().RESPONSABLE)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SOLICITANTE)
+            @Html.DisplayNameFor(model => model.First().SOLICITANTE)
         </th>
         <th></th>
     </tr>

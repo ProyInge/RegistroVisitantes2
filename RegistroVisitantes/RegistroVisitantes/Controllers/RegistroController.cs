@@ -127,13 +127,19 @@ namespace RegistroVisitantes.Controllers
             return View(lista);
         }
 
-        public ActionResult ListReservas(DateTime? filterDate, int? Pagina)
+        public ActionResult ListReservas(DateTime? fromDate, DateTime? toDate, int? Pagina)
         {
             var db = BDReserv;
-            DateTime filter = (filterDate ?? DateTime.Today);
-            ViewBag.fromDate = filter;
+            DateTime from = (fromDate ?? DateTime.Today);
+            DateTime to = (toDate ?? DateTime.Today.AddDays(7));
 
-            var lista = db.FormReservacion.OrderBy(s => s.ENTRA);//.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, filter) < 0).OrderByDescending(x => x.ENTRA);
+            /*DateTime from = (fromDate ?? new DateTime(2012, 01, 01));
+            DateTime to = (toDate ?? new DateTime(2013, 01, 01));*/
+
+            ViewBag.fromDate = from;
+            ViewBag.toDate = to;
+
+            var lista = db.RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0).OrderByDescending(x => x.ENTRA).OrderBy(s => s.ENTRA);
 
             int Size_Of_Page = 5;
             int No_Of_Page = (Pagina ?? 1);
