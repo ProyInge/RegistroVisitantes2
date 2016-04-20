@@ -127,7 +127,6 @@ namespace RegistroVisitantes.Controllers
         public ActionResult ListReservas(DateTime? filterDate)
         {
             var db = BDReserv;
-            var lista = db.FormReservarcion.ToList();
             DateTime filter;
             if (filterDate == null) {
                 filter = DateTime.Today;
@@ -137,7 +136,8 @@ namespace RegistroVisitantes.Controllers
                 filter = filterDate.Value;
             }
             ViewBag.fromDate = filter;
-            lista = lista.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, filter) < 0).OrderByDescending(x => x.ENTRA).Take(5).ToList();
+
+            var lista = db.FormReservacion.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, filter) < 0).OrderByDescending(x => x.ENTRA).Take(5).ToList();
 
             return View(lista);
         }
