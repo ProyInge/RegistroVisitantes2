@@ -340,6 +340,9 @@
     <Content Include="Views\Registro\Create.cshtml" />
     <Content Include="Views\Registro\ListVisitantes.cshtml" />
     <Content Include="Views\Registro\ListReservas.cshtml" />
+    <Content Include="Views\Registro\CreateOET.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Form\CreateContacto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

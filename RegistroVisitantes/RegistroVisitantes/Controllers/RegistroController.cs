@@ -97,6 +97,25 @@ namespace RegistroVisitantes.Controllers
             return Create();
         }
 
+        [HttpGet]
+        public ActionResult CreateOET()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateOET([Bind()]Models.PREREGISTRO form)
+        {
+            if (ModelState.IsValid)
+            {
+                var db = BDContac;
+                db.Form.Add(form);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return Create();
+        }
+
         public ActionResult ListVisitantes()
         {
             var db = BDContac;

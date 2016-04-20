@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+
 namespace RegistroVisitantes.Models
 {
     using System;
@@ -22,32 +25,47 @@ namespace RegistroVisitantes.Models
     
         public int CONTACTO1 { get; set; }
         public Nullable<int> TYPE { get; set; }
+        [DisplayName("First Name:")]
         public string FIRST_NAME { get; set; }
+        [DisplayName("Last Name:")]
         public string LAST_NAME { get; set; }
         public Nullable<System.DateTime> BIRTH_DAY { get; set; }
         public string BIRTH_PLACE { get; set; }
+        [DisplayName("Institution:")]
         public string INSTITUTION { get; set; }
+        [DisplayName("Charge:")]
         public string CATEGORY { get; set; }
+        [DisplayName("Gender:")]
         public string GENDER { get; set; }
+        [DisplayName("Phone")]
         public string PHONE { get; set; }
         public string PHONE_AREA_CODE { get; set; }
         public string FAX { get; set; }
         public string FAX_AREA_CODE { get; set; }
+        [DisplayName("Emergency Contact:")]
         public string EMERGENCY_CONTACT1 { get; set; }
+        [DisplayName("Phone:")]
         public string EMERGENCY_NUMBER1 { get; set; }
+        [DisplayName("Email:")]
         public string EMERGENCY_E_MAIL1 { get; set; }
         public string EMERGENCY_CONTACT2 { get; set; }
         public string EMERGENCY_NUMBER2 { get; set; }
         public string EMERGENCY_E_MAIL2 { get; set; }
+        [DisplayName("Email:")]
         public string E_MAIL { get; set; }
         public Nullable<int> IDENTIFICATION_TYPE { get; set; }
+        [DisplayName("Identification:")]
         public string IDENTIFICATION { get; set; }
         public Nullable<System.DateTime> EXPIRATION_DATE { get; set; }
+        [DisplayName("Country:")]
         public string COUNTRY_BIRTH { get; set; }
+        [DisplayName("Nationality:")]
         public string NACIONALITY { get; set; }
         public string ETHNIC_GROUP { get; set; }
+        [DisplayName("Address:")]
         public string ADDRESS_L1 { get; set; }
         public string AREA_OF_INTEREST { get; set; }
+        [DisplayName("Academic Degree:")]
         public string ACADEMIC_DEGREE { get; set; }
         public string SECRET_QUESTION { get; set; }
         public string ANSWER { get; set; }
@@ -59,30 +77,42 @@ namespace RegistroVisitantes.Models
         public string HOME_PHONE_AREA { get; set; }
         public string ADDRESS_COUNTRY { get; set; }
         public string ADDRESS_L2 { get; set; }
+        [DisplayName("City:")]
         public string CITY { get; set; }
         public string STATE { get; set; }
+        [DisplayName("Zip Code:")]
         public string ZIP_CODE { get; set; }
         public Nullable<int> CAT_TIPO_ESTUDIANTE { get; set; }
         public string STATION { get; set; }
+        [DisplayName("Diet Restrictions:")]
         public Nullable<bool> NO_DIETARY_RESTRICTIONS { get; set; }
+        [DisplayName("Vegetarian:")]
         public Nullable<bool> VEGETARIAN { get; set; }
+        [DisplayName("Vegan:")]
         public Nullable<bool> VEGAN { get; set; }
+        [DisplayName("Beef:")]
         public Nullable<bool> BEEF { get; set; }
+        [DisplayName("Chicken:")]
         public Nullable<bool> CHICKEN { get; set; }
+        [DisplayName("Pork:")]
         public Nullable<bool> PORK { get; set; }
+        [DisplayName("Fish:")]
         public Nullable<bool> FISH { get; set; }
+        [DisplayName("Other Diet:")]
         public string OTHER_DIETARY { get; set; }
         public string COUNTRY_EMITS { get; set; }
         public Nullable<System.DateTime> CREADO { get; set; }
         public Nullable<System.DateTime> MODIFICADO { get; set; }
         public string NICKNAME { get; set; }
         public string DEPARTAMENT { get; set; }
+        [DisplayName("Position:")]
         public string POSITION { get; set; }
         public string SKYPE { get; set; }
         public string WEBSITE { get; set; }
         public Nullable<bool> CKOTHER_DIETARY_RESTRIC { get; set; }
         public string TXOTHER_DIETARY_RESTRIC { get; set; }
         public Nullable<bool> PRIN { get; set; }
+        [DisplayName("Relationship:")]
         public string RELATIONSHIP_CONTACT1 { get; set; }
         public string RELATIONSHIP_CONTACT2 { get; set; }
         public string INSURANCE_COMPANY { get; set; }
