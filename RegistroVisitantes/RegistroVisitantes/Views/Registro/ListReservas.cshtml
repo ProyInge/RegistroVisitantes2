@@ -6,6 +6,9 @@
     //ViewBag.Abc = new DateTime(2015, 1, 18);
 }
 
+<br />
+<br />
+
 <h2>Consulta de Reservas</h2>
 @using (Html.BeginForm())
 {
@@ -21,28 +24,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ANFITRIONA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ESTADO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PRIORIDAD)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.GRUPO)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ENTRA)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ENTRAMTN)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.SALE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SALEMTN)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RESPONSABLE)
@@ -50,74 +38,11 @@
         <th>
             @Html.DisplayNameFor(model => model.SOLICITANTE)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOTAS)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SOLICITADAEL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FORMAPAGO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SALDO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CUENTACLIENTEKEY)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CUENTACLIENTEOCLASS)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ESTACION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MODIFICADOR)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MODIFICADO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MONTO_PREPAGO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.REFERENCIA_PREPAGO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PRIMERA_COMIDA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CREACION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ULTIMA_MODIFICACION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MODIFICA_RACK)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MODIFICADO_RACK)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FLAG)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.URL)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ANFITRIONA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ESTADO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PRIORIDAD)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.GRUPO)
         </td>
@@ -125,73 +50,13 @@
             @Html.DisplayFor(modelItem => item.ENTRA)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ENTRAMTN)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.SALE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SALEMTN)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RESPONSABLE)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SOLICITANTE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOTAS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SOLICITADAEL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FORMAPAGO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SALDO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CUENTACLIENTEKEY)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CUENTACLIENTEOCLASS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ESTACION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MODIFICADOR)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MODIFICADO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MONTO_PREPAGO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.REFERENCIA_PREPAGO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PRIMERA_COMIDA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CREACION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ULTIMA_MODIFICACION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MODIFICA_RACK)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MODIFICADO_RACK)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FLAG)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.URL)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
