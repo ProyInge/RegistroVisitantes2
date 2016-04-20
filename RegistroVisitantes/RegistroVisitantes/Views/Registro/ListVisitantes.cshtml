@@ -1,4 +1,6 @@
-﻿@model IEnumerable<RegistroVisitantes.Models.CONTACTO>
+﻿@model PagedList.IPagedList<RegistroVisitantes.Models.CONTACTO>
+@using PagedList;
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "ListVisitantes";
@@ -12,25 +14,25 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-bordered table-striped table-condensed table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FIRST_NAME)
+            @Html.DisplayNameFor(model => model.First().FIRST_NAME)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LAST_NAME)
+            @Html.DisplayNameFor(model => model.First().LAST_NAME)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PHONE)
+            @Html.DisplayNameFor(model => model.First().PHONE)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.E_MAIL)
+            @Html.DisplayNameFor(model => model.First().E_MAIL)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IDENTIFICATION)
+            @Html.DisplayNameFor(model => model.First().IDENTIFICATION)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ADDRESS_L1)
+            @Html.DisplayNameFor(model => model.First().ADDRESS_L1)
         </th>
         <th></th>
     </tr>
@@ -64,3 +66,11 @@
 }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, Pagina => Url.Action("ListReservas",
+        new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+
+
+

@@ -95,12 +95,14 @@ namespace RegistroVisitantes.Controllers
             return Create();
         }
 
-        public ActionResult ListVisitantes()
+        public ActionResult ListVisitantes(int? Pagina)
         {
             var db = BDContac;
-            var lista = db.CONTACTO.Take(5).ToList();
+            var lista = db.CONTACTO.OrderBy(x => x.FIRST_NAME);
 
-            return View(lista);
+            int Size_Of_Page = 5;
+            int No_Of_Page = (Pagina ?? 1);
+            return View(lista.ToPagedList(No_Of_Page, Size_Of_Page));
         }
 
         public ActionResult ListReservas(DateTime? fromDate, DateTime? toDate, int? Pagina)
@@ -115,7 +117,7 @@ namespace RegistroVisitantes.Controllers
             ViewBag.fromDate = from;
             ViewBag.toDate = to;
 
-            var lista = db.RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0).OrderByDescending(x => x.ENTRA).OrderBy(s => s.ENTRA);
+            var lista = db.RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0).OrderBy(s => s.ENTRA);
 
             int Size_Of_Page = 5;
             int No_Of_Page = (Pagina ?? 1);
