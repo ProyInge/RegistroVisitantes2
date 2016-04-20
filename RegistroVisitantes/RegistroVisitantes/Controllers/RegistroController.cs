@@ -100,15 +100,25 @@ namespace RegistroVisitantes.Controllers
         public ActionResult ListVisitantes()
         {
             var db = BDContac;
-            var lista = db.FormContacto.ToList();
+            var lista = db.FormContacto.Take(5).ToList();
 
             return View(lista);
         }
 
-        public ActionResult ListReservas()
+        public ActionResult ListReservas(DateTime? filterDate)
         {
             var db = BDReserv;
             var lista = db.FormReservarcion.ToList();
+            DateTime filter;
+            if (filterDate == null) {
+                filter = DateTime.Today;
+            }
+            else
+            {
+                filter = filterDate.Value;
+            }
+            ViewBag.fromDate = filter;
+            lista = lista.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, filter) < 0).OrderByDescending(x => x.ENTRA).Take(5).ToList();
 
             return View(lista);
         }
