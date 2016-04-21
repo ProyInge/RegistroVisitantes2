@@ -1,13 +1,14 @@
 ﻿@model RegistroVisitantes.Models.PREREGISTRO
 
 @{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
     ViewBag.Title = "CreateOET";
 }
 
 <br />
 <br />
 
-<h2>CreateOET</h2>
+<h2>Formulario OET</h2>
 
 
 @using (Html.BeginForm())
@@ -15,7 +16,6 @@
     @Html.AntiForgeryToken()
 
     <div class="container">
-        <h4>PREREGISTRO</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -199,14 +199,14 @@
                 <div class="row">
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.CONTACTO.CHICKEN, htmlAttributes: new { @class = "control-label" })
-                            @Html.EditorFor(model => model.CONTACTO.CHICKEN)
+                            @Html.EditorFor(model => model.CONTACTO.CHICKEN, "comidaB")
                             @Html.ValidationMessageFor(model => model.CONTACTO.CHICKEN, "", new { @class = "text-danger" })
 
                 </div>
 
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.CONTACTO.PORK, htmlAttributes: new { @class = "control-label" })
-                            @Html.EditorFor(model => model.CONTACTO.PORK)
+                            @Html.EditorFor(model => model.CONTACTO.PORK, "comidaA")
                             @Html.ValidationMessageFor(model => model.CONTACTO.PORK, "", new { @class = "text-danger" })
 
                     </div>
