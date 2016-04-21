@@ -14,8 +14,8 @@
 {
     <p>
         Buscar por fecha:
-        <input type="date" name="fromDate" value="@string.Format("{0:yyyy-MM-dd}", ViewBag.fromDate)" />
-        <input type="date" name="toDate" value="@string.Format("{0:yyyy-MM-dd}", ViewBag.toDate)" />
+        <input type="text" name="fromDate" id="fromDate" class="datefield" value="@string.Format("{0:d}", ViewBag.fromDate)"/>
+        <input type="text" name="toDate" id="toDate" class="datefield" value="@string.Format("{0:d}", ViewBag.toDate)" />
         <input type="submit" value="Buscar" />
     </p>
 }
@@ -75,3 +75,22 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
 @Html.PagedListPager(Model, Pagina => Url.Action("ListReservas",
         new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
  
+@section Scripts{
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+         
+            $("#fromDate").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOn: "button"
+            });
+            $('#toDate').datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOn: "button"
+            });
+            //var date2 = $('#dt1').datepicker('getDate');
+            //$('#dt2').datepicker('option', 'minDate', date2);
+        
+        });
+    </script>
+}
