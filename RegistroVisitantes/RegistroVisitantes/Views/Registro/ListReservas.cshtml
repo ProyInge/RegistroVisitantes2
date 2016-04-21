@@ -82,14 +82,25 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
          
             $("#fromDate").datepicker({
                 dateFormat: 'dd/mm/yy',
-                showOn: "button"
+                showOn: "button",
+                onSelect: function (date) {
+                    var dt1 = $('#fromDate').datepicker('getDate');
+                    var dt2 = $('#toDate').datepicker('getDate');
+                    if (dt2 <= dt1) {
+                        dt1.setDate(dt1.getDate() + 1);
+                        $('#toDate').datepicker('setDate', dt1);
+                    } else {
+                        dt1.setDate(dt1.getDate() + 1);
+                    }
+                    $('#toDate').datepicker('option', 'minDate', dt1);
+                }
             });
             $('#toDate').datepicker({
                 dateFormat: 'dd/mm/yy',
                 showOn: "button"
             });
-            //var date2 = $('#dt1').datepicker('getDate');
-            //$('#dt2').datepicker('option', 'minDate', date2);
+            var date2 = $('#toDate').datepicker('getDate');
+            $('#toDate').datepicker('option', 'minDate', date2);
         
         });
     </script>
