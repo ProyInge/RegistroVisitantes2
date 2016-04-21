@@ -3,7 +3,6 @@
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "ListReservas";
-    //ViewBag.Abc = new DateTime(2015, 1, 18);
 }
 
 <br />
@@ -14,8 +13,8 @@
 {
     <p>
         Buscar por fecha:
-        <input type="date" name="fromDate" value="@string.Format("{0:yyyy-MM-dd}", ViewBag.fromDate)" />
-        <input type="date" name="toDate" value="@string.Format("{0:yyyy-MM-dd}", ViewBag.toDate)" />
+        <input type="date" name="fromDate" id="dt1" value="@string.Format("{0:dd-MM-yyyy}", ViewBag.fromDate)" />
+        <input type="date" name="toDate" id="dt2" value="@string.Format("{0:dd-MM-yyyy}", ViewBag.toDate)" />
         <input type="submit" value="Buscar" />
     </p>
 }
