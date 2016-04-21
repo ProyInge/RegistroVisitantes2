@@ -10,7 +10,14 @@
 <br />
 
 <h2>ListVisitantes</h2>
-
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar por nombre:
+        <input type="text" name="nombre" id="fromDate" />
+        <input type="submit" value="Buscar" />
+    </p>
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>

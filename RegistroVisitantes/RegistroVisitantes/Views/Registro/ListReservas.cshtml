@@ -14,8 +14,8 @@
 {
     <p>
         Buscar por fecha:
-        <input type="text" name="fromDate" id="fromDate" class="datefield" value="@string.Format("{0:d}", ViewBag.fromDate)"/>
-        <input type="text" name="toDate" id="toDate" class="datefield" value="@string.Format("{0:d}", ViewBag.toDate)" />
+        <input type="text" name="fromDate" id="fromDate" value="@string.Format("{0:d}", ViewBag.fromDate)"/>
+        <input type="text" name="toDate" id="toDate" value="@string.Format("{0:d}", ViewBag.toDate)" />
         <input type="submit" value="Buscar" />
     </p>
 }
@@ -76,7 +76,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
         new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
  
 @section Scripts{
-    @*@Scripts.Render("~/bundles/jqueryval")*@
+   
     <script type="text/javascript">
         $(document).ready(function () {
          

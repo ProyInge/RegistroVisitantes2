@@ -95,10 +95,19 @@ namespace RegistroVisitantes.Controllers
             return Create();
         }
 
-        public ActionResult ListVisitantes(int? Pagina)
+        public ActionResult ListVisitantes(String nombre, int? Pagina)
         {
             var db = BDContac;
-            var lista = db.CONTACTO.OrderBy(x => x.FIRST_NAME);
+            IQueryable<CONTACTO> lista;
+            if(nombre != null)
+            {
+                lista = db.CONTACTO.Where(x => x.FIRST_NAME.Equals(nombre)).OrderBy(x => x.FIRST_NAME);
+            }
+            else
+            {
+                lista = db.CONTACTO.OrderBy(x => x.FIRST_NAME);
+            }
+            
 
             int Size_Of_Page = 5;
             int No_Of_Page = (Pagina ?? 1);
