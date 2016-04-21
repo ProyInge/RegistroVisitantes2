@@ -14,6 +14,9 @@ namespace RegistroVisitantes
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+            "~/Scripts/jquery-ui-{version}.js"));
+
             // Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información. De este modo, estará
             // preparado para la producción y podrá utilizar la herramienta de compilación disponible en http://modernizr.com para seleccionar solo las pruebas que necesite.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -26,6 +29,11 @@ namespace RegistroVisitantes
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
+              "~/Content/themes/base/core.css",
+              "~/Content/themes/base/datepicker.css",
+              "~/Content/themes/base/theme.css"));
         }
     }
 }
