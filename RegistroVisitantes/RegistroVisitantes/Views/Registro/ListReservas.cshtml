@@ -14,8 +14,8 @@
 {
     <p>
         Buscar por fecha:
-        <input type="text" name="fromDate" id="fromDate" class="datefield" value="@string.Format("{0:d}", ViewBag.fromDate)"/>
-        <input type="text" name="toDate" id="toDate" class="datefield" value="@string.Format("{0:d}", ViewBag.toDate)" />
+        <input type="text" name="fromDate" id="fromDate" value="@string.Format("{0:d}", ViewBag.fromDate)"/>
+        <input type="text" name="toDate" id="toDate" value="@string.Format("{0:d}", ViewBag.toDate)" />
         <input type="submit" value="Buscar" />
     </p>
 }
@@ -61,9 +61,7 @@
             @Html.DisplayFor(modelItem => item.SOLICITANTE)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Ver Pre-registros", "ListVisitantes", new { ID=item.ID })
         </td>
     </tr>
 }
@@ -76,20 +74,31 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
         new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
  
 @section Scripts{
-    @*@Scripts.Render("~/bundles/jqueryval")*@
+   
     <script type="text/javascript">
         $(document).ready(function () {
          
             $("#fromDate").datepicker({
                 dateFormat: 'dd/mm/yy',
-                showOn: "button"
+                showOn: "button",
+                onSelect: function (date) {
+                    var dt1 = $('#fromDate').datepicker('getDate');
+                    var dt2 = $('#toDate').datepicker('getDate');
+                    if (dt2 <= dt1) {
+                        dt1.setDate(dt1.getDate() + 1);
+                        $('#toDate').datepicker('setDate', dt1);
+                    } else {
+                        dt1.setDate(dt1.getDate() + 1);
+                    }
+                    $('#toDate').datepicker('option', 'minDate', dt1);
+                }
             });
             $('#toDate').datepicker({
                 dateFormat: 'dd/mm/yy',
                 showOn: "button"
             });
-            //var date2 = $('#dt1').datepicker('getDate');
-            //$('#dt2').datepicker('option', 'minDate', date2);
+            var date2 = $('#toDate').datepicker('getDate');
+            $('#toDate').datepicker('option', 'minDate', date2);
         
         });
     </script>
