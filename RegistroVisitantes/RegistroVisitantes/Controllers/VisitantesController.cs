@@ -18,10 +18,16 @@ namespace RegistroVisitantes.Controllers
         // GET: Visitantes
         public ActionResult Index(int? id, String nombre, int? Pagina)
         {
-            var lista = from p in db.PREREGISTRO
+
+            var lista = //from p in db.PREREGISTRO
                         from c in db.CONTACTO
-                        where p.IDCONTACTO == c.CONTACTO1
-                        select new { Contacto = c, idReserva = p.IDRESERVACION };
+                        //where p.IDCONTACTO == c.CONTACTO1
+                        select new { Contacto = c, idReserva ="null" };
+
+            if (nombre != null && !nombre.Equals(""))
+            {
+                lista = lista.Where(x => x.Contacto.FIRST_NAME.Equals(nombre)).OrderBy(x => x.Contacto.FIRST_NAME);
+            }
 
             List<Tuple<RegistroVisitantes.Models.CONTACTO, string>> l = new List<Tuple<RegistroVisitantes.Models.CONTACTO, string>>();
             foreach (var m in lista)
@@ -29,27 +35,6 @@ namespace RegistroVisitantes.Controllers
                 var t = new Tuple<RegistroVisitantes.Models.CONTACTO, string>(m.Contacto, m.idReserva);
                 l.Add(t);
             }
-            //IQueryable<CONTACTO> lista;
-
-            /*if (id != null)
-            {
-                lista = db.CONTACTO.AsQueryable();
-               
-            }
-            else
-            {
-                lista = db.CONTACTO.OrderBy(x => x.FIRST_NAME);
-            }*/
-
-            /*if(nombre != null)
-            {
-                lista = db.CONTACTO.Where(x => x.FIRST_NAME.Equals(nombre)).OrderBy(x => x.FIRST_NAME);
-            }
-            else
-            {
-                lista = db.CONTACTO.OrderBy(x => x.FIRST_NAME);
-            }*/
-
 
             int Size_Of_Page = 5;
             int No_Of_Page = (Pagina ?? 1);

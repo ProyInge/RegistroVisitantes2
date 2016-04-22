@@ -3,7 +3,6 @@
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Consulta de Reservas";
-    //ViewBag.Abc = new DateTime(2015, 1, 18);
 }
 
 <br />
@@ -59,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.SOLICITANTE)
             </td>
             <td>
-                @Html.ActionLink("Ver visitantes", "ListVisitantes", new { ID = item.ID })
+                @Html.ActionLink("Ver visitantes", "Details", "Visitantes", new { ID = item.ID }, null)
             </td>
         </tr>
     }
