@@ -58,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.SOLICITANTE)
             </td>
             <td>
-                @Html.ActionLink("Ver visitantes", "Details", "Visitantes", new { ID = item.ID }, null)
+                @Html.ActionLink("Ver visitantes", "Details", "Visitantes", new { ID = item.ID }, new { @class = "btn btn-success" })
             </td>
         </tr>
     }

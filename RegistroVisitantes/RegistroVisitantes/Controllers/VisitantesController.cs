@@ -36,7 +36,7 @@ namespace RegistroVisitantes.Controllers
                 l.Add(t);
             }
 
-            int Size_Of_Page = 5;
+            int Size_Of_Page = 10;
             int No_Of_Page = (Pagina ?? 1);
             return View(l.ToPagedList(No_Of_Page, Size_Of_Page));
         }
