@@ -67,7 +67,7 @@
 
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-@Html.PagedListPager(Model, Pagina => Url.Action("ListReservas",
+@Html.PagedListPager(Model, Pagina => Url.Action("Index",
         new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
 
 @section Scripts{
