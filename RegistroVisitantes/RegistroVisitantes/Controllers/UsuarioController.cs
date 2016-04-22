@@ -40,14 +40,14 @@ namespace RegistroVisitantes.Controllers
         public ActionResult Login(Usuario user)
         {
             using (UsuarioDbContext db = new UsuarioDbContext())
-            { 
+            {
                 var usr = db.usuario.Where(u => u.Username == user.Username && u.Password == user.Password).FirstOrDefault();
                 if (Session["Id"] != null)
                 {
                     Session["Id"] = usr.Id.ToString();
                     Session["Username"] = usr.Username.ToString();
                     return RedirectToAction("Logueado");
-                } 
+                }
                 else
                 {
                     ModelState.AddModelError("", "El nombre de usuario y la contraseña no coinciden");
@@ -59,7 +59,7 @@ namespace RegistroVisitantes.Controllers
 
         public ActionResult Logueado()
         {
-            if(Session["Id"] != null)
+            if (Session["Id"] != null)
             {
                 return RedirectToAction("Home", "Registro");
             }

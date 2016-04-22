@@ -11,7 +11,7 @@ namespace RegistroVisitantes.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class PREREGISTRO
     {
         public int NUMPREREGISTRO { get; set; }
@@ -32,31 +32,5 @@ namespace RegistroVisitantes.Models
         public Nullable<System.DateTime> EXPIRACION { get; set; }
     
         public virtual CONTACTO CONTACTO { get; set; }
-
-        public Cars MyCars { get; set; }
-        public enum Cars
-        {
-            [Display(Name = @"Visiting Scientist (without project at the Station)")]
-            VisitingScientist = 1,
-            [Display(Name = @"Researcher (with project at the Station")]
-            Researcher = 2,
-            [Display(Name = @"Educational Course")]
-            Education = 3,
-            [Display(Name = @"University extension course")]
-            UnivExtension = 4,
-            [Display(Name = @"Environmental education program")]
-            Environment = 5,
-            [Display(Name = @"Natural history visitor")]
-            NaturalHistory = 6,
-            [Display(Name = @"Special event or meeting")]
-            Event = 7,
-            [Display(Name = @"Journalist (reporter, writer, filmer)")]
-            Journalist = 8,
-            [Display(Name = @"OTS staff (on business not covered by other categories)")]
-            OTSStaff = 9,
-            [Display(Name = @"Other")]
-            Other = 10
-        }
     }
-
 }

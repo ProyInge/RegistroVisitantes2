@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f4523c2952d74945a66c02ba2d4fa830" Name="Diagram1" ZoomLevel="101">
+      <Diagram DiagramId="f4523c2952d74945a66c02ba2d4fa830" Name="Diagram1" ZoomLevel="39">
         <EntityTypeShape EntityType="ContactoModel.CONTACTO" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ContactoModel.PREREGISTRO" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
         <AssociationConnector Association="ContactoModel.PREREGISTRO_CONTACTO_FK" ManuallyRouted="false" />

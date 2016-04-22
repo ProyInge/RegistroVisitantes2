@@ -189,6 +189,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
     <Compile Include="Controllers\ReservasController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VisitantesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -237,6 +238,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>reservas.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\UsuarioDbContext.cs" />
     <Compile Include="Models\V_EMPLEADOS.cs">
       <DependentUpon>contactos.tt</DependentUpon>
     </Compile>
@@ -362,6 +365,8 @@
     <Content Include="Views\Visitantes\Details.cshtml" />
     <Content Include="Views\Visitantes\Edit.cshtml" />
     <Content Include="Views\Visitantes\Index.cshtml" />
+    <Content Include="Views\Usuario\Ingresar.cshtml" />
+    <Content Include="Views\Usuario\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
