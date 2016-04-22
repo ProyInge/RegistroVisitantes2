@@ -14,9 +14,9 @@
 {
     <p>
         Buscar por fecha:
-        <input type="text" name="fromDate" id="fromDate" value="@string.Format("{0:d}", ViewBag.fromDate)" />
-        <input type="text" name="toDate" id="toDate" value="@string.Format("{0:d}", ViewBag.toDate)" />
-        <input type="submit" value="Buscar" />
+        <input style="position: relative; z-index: 100000;" type="text" name="fromDate" id="fromDate" value="@string.Format("{0:d}", ViewBag.fromDate)" />
+        <input style="position: relative; z-index: 100000;" type="text" name="toDate" id="toDate" value="@string.Format("{0:d}", ViewBag.toDate)" />
+        <input class="btn btn-success" type="submit" value="Buscar" />
     </p>
 }
 
@@ -59,7 +59,7 @@
                 @Html.DisplayFor(modelItem => item.SOLICITANTE)
             </td>
             <td>
-                @Html.ActionLink("Ver Pre-registros", "ListVisitantes", new { ID = item.ID })
+                @Html.ActionLink("Ver visitantes", "ListVisitantes", new { ID = item.ID })
             </td>
         </tr>
     }

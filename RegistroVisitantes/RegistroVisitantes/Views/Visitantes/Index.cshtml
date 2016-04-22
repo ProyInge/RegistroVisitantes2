@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<RegistroVisitantes.Models.CONTACTO>
+﻿@model PagedList.IPagedList< Tuple <RegistroVisitantes.Models.CONTACTO, string> >
 @using PagedList;
 @using PagedList.Mvc;
 
@@ -15,29 +15,32 @@
     <p>
         Buscar por nombre:
         <input type="text" name="nombre" id="fromDate" />
-        <input type="submit" value="Buscar" />
+        <input class="btn btn-success" type="submit" value="Buscar" />
     </p>
 }
 
 <table class="table table-bordered table-striped table-condensed table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().FIRST_NAME)
+            ID Reservación
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().LAST_NAME)
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().PHONE)
+            Apellido
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().E_MAIL)
+            Teléfono
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().IDENTIFICATION)
+            Correo electrónico
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().ADDRESS_L1)
+            Identificación
+        </th>
+        <th>
+            Dirección
         </th>
         <th></th>
     </tr>
@@ -46,27 +49,30 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FIRST_NAME)
+                @Html.DisplayFor(modelItem => item.Item2)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LAST_NAME)
+                @Html.DisplayFor(modelItem => item.Item1.FIRST_NAME)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PHONE)
+                @Html.DisplayFor(modelItem => item.Item1.LAST_NAME)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.E_MAIL)
+                @Html.DisplayFor(modelItem => item.Item1.PHONE)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IDENTIFICATION)
+                @Html.DisplayFor(modelItem => item.Item1.E_MAIL)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ADDRESS_L1)
+                @Html.DisplayFor(modelItem => item.Item1.IDENTIFICATION)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.CONTACTO1 }) |
-                @Html.ActionLink("Details", "Details", new { id = item.CONTACTO1 }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CONTACTO1 })
+                @Html.DisplayFor(modelItem => item.Item1.ADDRESS_L1)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Item1.CONTACTO1 }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Item1.CONTACTO1 }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Item1.CONTACTO1 })
             </td>
         </tr>
     }

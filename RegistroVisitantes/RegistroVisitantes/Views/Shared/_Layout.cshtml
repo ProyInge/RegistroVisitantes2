@@ -17,45 +17,51 @@
 <body>
     <header style="position: absolute; background-color: #7BC143; width: 100%; height:100px; top: 0px">
         <div class="content-wrapper">
-            <div class="float-left">
+            <div class="container">
                 <p class="site-title">
                     <img src="~/Content/logo.png" style="float: left;height: 80px;" />
                 </p>
             </div>
         </div>
     </header>
+    <div class="navbar-wrapper">
 
-    <div class="navbar navbar-default" id="menu" role="navigation" style="position:relative; width:100%; height: 50px; top:50px; background: linear-gradient(#60a52a, #9dce76, #60a52a); border-color: #60a52a; border-radius: 0px">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>  
-                </button>
-                @Html.ActionLink("Registro de Visitantes", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Reservas", "Index", "Reservas")</li>
-                    <li>@Html.ActionLink("Visitantes", "Index", "Visitantes")</li>
-                    <li>@Html.ActionLink("Formulario", "Registro", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+            
+            <div class="navbar navbar-default" id="menu" role="navigation" style="position:relative; width:100%; height: 50px; top:50px; background: linear-gradient(#60a52a, #9dce76, #60a52a); border-color: #60a52a; border-radius: 0px">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("Registro de Visitantes", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Reservas", "Index", "Reservas")</li>
+                            <li>@Html.ActionLink("Visitantes", "Index", "Visitantes")</li>
+                            <li>@Html.ActionLink("Formulario", "Registro", "Home")</li>
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+            
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2016 - RegistroVisitantes</p>
-        </footer>
-    </div>
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; 2016 - RegistroVisitantes</p>
+                </footer>
+            </div>
 
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
 </body>
 </html>
