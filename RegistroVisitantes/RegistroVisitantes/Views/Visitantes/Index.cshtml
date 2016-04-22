@@ -1,0 +1,88 @@
+﻿@model PagedList.IPagedList< Tuple <RegistroVisitantes.Models.CONTACTO, string> >
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Consulta de Visitantes";
+}
+
+<br />
+<br />
+
+<h2>Lista de Visitantes</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar por ID Reservación:
+        <input type="text" name="nombre" id="fromDate" />
+        <input class="btn btn-success" type="submit" value="Buscar" />
+    </p>
+}
+
+<table class="table table-bordered table-striped table-condensed table-hover">
+    <tr>
+        <th>
+            ID Reservación
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Apellido
+        </th>
+        <th>
+            Teléfono
+        </th>
+        <th>
+            Correo electrónico
+        </th>
+        <th>
+            Identificación
+        </th>
+        <th>
+            Dirección
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item1.FIRST_NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item1.LAST_NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item1.PHONE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item1.E_MAIL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item1.IDENTIFICATION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item1.ADDRESS_L1)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Item1.CONTACTO1 }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Item1.CONTACTO1 }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Item1.CONTACTO1 })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, Pagina => Url.Action("ListReservas",
+        new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+
+
+

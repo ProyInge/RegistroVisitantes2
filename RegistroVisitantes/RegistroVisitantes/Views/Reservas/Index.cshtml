@@ -1,0 +1,102 @@
+﻿@model PagedList.IPagedList<RegistroVisitantes.Models.RESERVACION>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Consulta de Reservas";
+}
+
+<br />
+<br />
+
+<h2>Consulta de Reservas</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar por fecha:
+        <input style="position: relative; z-index: 100000;" type="text" name="fromDate" id="fromDate" value="@string.Format("{0:d}", ViewBag.fromDate)" />
+        <input style="position: relative; z-index: 100000;" type="text" name="toDate" id="toDate" value="@string.Format("{0:d}", ViewBag.toDate)" />
+        <input class="btn btn-success" type="submit" value="Buscar" />
+    </p>
+}
+
+<table class="table table-bordered table-striped table-condensed table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().GRUPO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().ENTRA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().SALE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().RESPONSABLE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().SOLICITANTE)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GRUPO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ENTRA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SALE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RESPONSABLE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SOLICITANTE)
+            </td>
+            <td>
+                @Html.ActionLink("Ver visitantes", "Details", "Visitantes", new { ID = item.ID }, new { @class = "btn btn-success" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, Pagina => Url.Action("ListReservas",
+        new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+
+@section Scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#fromDate").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOn: "button",
+                onSelect: function (date) {
+                    var dt1 = $('#fromDate').datepicker('getDate');
+                    var dt2 = $('#toDate').datepicker('getDate');
+                    if (dt2 <= dt1) {
+                        dt1.setDate(dt1.getDate() + 1);
+                        $('#toDate').datepicker('setDate', dt1);
+                    } else {
+                        dt1.setDate(dt1.getDate() + 1);
+                    }
+                    $('#toDate').datepicker('option', 'minDate', dt1);
+                }
+            });
+            $('#toDate').datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOn: "button"
+            });
+            var date2 = $('#toDate').datepicker('getDate');
+            $('#toDate').datepicker('option', 'minDate', date2);
+
+        });
+    </script>
+}
