@@ -60,12 +60,50 @@ namespace RegistroVisitantes.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            var sexo = new SelectList(new[] { "Hombre", "Mujer" });
+            var proposito = new SelectList(new[] { " Visiting Scientist(without project at the Station)", "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
+            var position = new SelectList(new[] { "Principal Investigator", "CO-IP", "Senior Staff", "Tutor", "Supervisor", "Coordinator", "Collaborator", "Student", "Technical", "Field Assistant", "Interns", "Volunteer" });
+            var role = new SelectList(new[] { "Student", "Professor", "Coordinator", "Assistant" });
+            ViewBag.sexoList = sexo;
+            ViewBag.propositoList = proposito;
+            ViewBag.positionList = position;
+            ViewBag.roleList = role;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create([Bind()]Models.PREREGISTRO form)
+        public ActionResult Create([Bind()]Models.PREREGISTRO form,string dietas, string carnes)
         {
+
+            if (dietas.Equals("sr"))
+            {
+                form.CONTACTO.NO_DIETARY_RESTRICTIONS = true;
+            }
+            if (dietas.Equals("veg"))
+            {
+                form.CONTACTO.VEGETARIAN = true;
+            }
+            if (dietas.Equals("vg"))
+            {
+                form.CONTACTO.VEGAN = true;
+            }
+
+            if (carnes.Equals("carne"))
+            {
+                form.CONTACTO.BEEF = true;
+            }
+            if (carnes.Equals("pollo"))
+            {
+                form.CONTACTO.CHICKEN = true;
+            }
+            if (carnes.Equals("cerdo"))
+            {
+                form.CONTACTO.PORK = true;
+            }
+            if (carnes.Equals("pescado"))
+            {
+                form.CONTACTO.FISH = true;
+            }
             if (ModelState.IsValid)
             {
                 var db = BDContac;
@@ -79,12 +117,50 @@ namespace RegistroVisitantes.Controllers
         [HttpGet]
         public ActionResult CreateOET()
         {
+            var sexo = new SelectList(new[] { "Hombre", "Mujer" });
+            var proposito = new SelectList(new[] { " Visiting Scientist(without project at the Station)" , "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
+            var position = new SelectList(new[] { "Principal Investigator", "CO-IP", "Senior Staff", "Tutor", "Supervisor", "Coordinator", "Collaborator", "Student", "Technical", "Field Assistant", "Interns", "Volunteer" });
+            var role = new SelectList(new[] { "Student", "Professor", "Coordinator", "Assistant" });
+            ViewBag.sexoList = sexo;
+            ViewBag.propositoList = proposito;
+            ViewBag.positionList = position;
+            ViewBag.roleList = role;
             return View();
         }
 
         [HttpPost]
-        public ActionResult CreateOET([Bind()]Models.PREREGISTRO form)
+        public ActionResult CreateOET([Bind()]Models.PREREGISTRO form, string dietas, string carnes)
         {
+            if(dietas.Equals("sr"))
+            {
+                form.CONTACTO.NO_DIETARY_RESTRICTIONS = true;
+            }
+            if (dietas.Equals("veg"))
+            {
+                form.CONTACTO.VEGETARIAN = true;
+            }
+            if (dietas.Equals("vg"))
+            {
+                form.CONTACTO.VEGAN = true;
+            }
+
+            if (carnes.Equals("carne"))
+            {
+                form.CONTACTO.BEEF = true;
+            }
+            if (carnes.Equals("pollo"))
+            {
+                form.CONTACTO.CHICKEN = true;
+            }
+            if (carnes.Equals("cerdo"))
+            {
+                form.CONTACTO.PORK = true;
+            }
+            if (carnes.Equals("pescado"))
+            {
+                form.CONTACTO.FISH = true;
+            }
+
             if (ModelState.IsValid)
             {
                 var db = BDContac;
