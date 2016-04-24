@@ -22,19 +22,28 @@
 <table class="table table-bordered table-striped table-condensed table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().GRUPO)
+            Número
+            @*@Html.DisplayNameFor(model => model.First().NUMERO)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().ENTRA)
+            Grupo
+            @*@Html.DisplayNameFor(model => model.First().GRUPO)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().SALE)
+            Fecha entrada
+            @*@Html.DisplayNameFor(model => model.First().ENTRA)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().RESPONSABLE)
+            Fecha salida
+            @*@Html.DisplayNameFor(model => model.First().SALE)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().SOLICITANTE)
+            Responsable
+            @*@Html.DisplayNameFor(model => model.First().RESPONSABLE)*@
+        </th>
+        <th>
+            Solicitante
+            @*@Html.DisplayNameFor(model => model.First().SOLICITANTE)*@
         </th>
         <th></th>
     </tr>
@@ -42,6 +51,9 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NUMERO)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.GRUPO)
             </td>
@@ -58,7 +70,7 @@
                 @Html.DisplayFor(modelItem => item.SOLICITANTE)
             </td>
             <td>
-                @Html.ActionLink("Ver visitantes", "Details", "Visitantes", new { ID = item.ID }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Ver visitantes", "Reserva", "Visitantes", new { ID = item.NUMERO }, new { @class = "btn btn-success" })
             </td>
         </tr>
     }

@@ -1,46 +1,48 @@
-﻿@model PagedList.IPagedList< Tuple <RegistroVisitantes.Models.CONTACTO, string> >
+﻿@model PagedList.IPagedList<RegistroVisitantes.Models.PREREGISTRO>
 @using PagedList;
 @using PagedList.Mvc;
-
 @{
-    ViewBag.Title = "Consulta de Visitantes";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<br/>
 <br />
-<br />
-
 <h2>Lista de Visitantes</h2>
 @using (Html.BeginForm())
 {
     <p>
         Buscar por ID Reservación:
-        <input type="text" name="nombre" id="fromDate" />
-        <input class="btn btn-success" type="submit" value="Buscar" />
+        <input type="text" name="id" id="fromDate" />
+        <button type="submit" class="btn btn-success">
+            <i class="fa fa-search"></i>
+        </button>
     </p>
 }
-
 <table class="table table-bordered table-striped table-condensed table-hover">
     <tr>
         <th>
-            ID Reservación
+            Número de reservación
+            @*@Html.DisplayNameFor(model => model.First().IDRESERVACION)*@
         </th>
         <th>
             Nombre
+            @*@Html.DisplayNameFor(model => model.First().CONTACTO.FIRST_NAME)*@
         </th>
         <th>
             Apellido
-        </th>
-        <th>
-            Teléfono
-        </th>
-        <th>
-            Correo electrónico
+            @*@Html.DisplayNameFor(model => model.First().CONTACTO.LAST_NAME)*@
         </th>
         <th>
             Identificación
+            @*@Html.DisplayNameFor(model => model.First().CONTACTO.IDENTIFICATION)*@
         </th>
         <th>
-            Dirección
+            Correo electrónico
+            @*@Html.DisplayNameFor(model => model.First().CONTACTO.E_MAIL)*@
+        </th>
+        <th>
+            Teléfono
+            @*@Html.DisplayNameFor(model => model.First().CONTACTO.PHONE)*@
         </th>
         <th></th>
     </tr>
@@ -49,30 +51,28 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Item2)
+                @Html.DisplayFor(modelItem => item.IDRESERVACION)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Item1.FIRST_NAME)
+                @Html.DisplayFor(modelItem => item.CONTACTO.FIRST_NAME)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Item1.LAST_NAME)
+                @Html.DisplayFor(modelItem => item.CONTACTO.LAST_NAME)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Item1.PHONE)
+                @Html.DisplayFor(modelItem => item.CONTACTO.IDENTIFICATION)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Item1.E_MAIL)
+                @Html.DisplayFor(modelItem => item.CONTACTO.E_MAIL)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Item1.IDENTIFICATION)
+                @Html.DisplayFor(modelItem => item.CONTACTO.PHONE)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Item1.ADDRESS_L1)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Item1.CONTACTO1 }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Item1.CONTACTO1 }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Item1.CONTACTO1 })
+                @Html.ActionLink("Ver visitante", "Details", "Visitantes", new { ID = item.NUMPREREGISTRO }, new { @class = "btn btn-success" })
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.NUMPREREGISTRO }) |
+                @Html.ActionLink("Details", "Details", new { id = item.NUMPREREGISTRO }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.NUMPREREGISTRO })*@
             </td>
         </tr>
     }
@@ -83,6 +83,4 @@
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 @Html.PagedListPager(Model, Pagina => Url.Action("Index",
         new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
-
-
 

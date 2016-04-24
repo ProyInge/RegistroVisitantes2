@@ -16,29 +16,34 @@ namespace RegistroVisitantes.Controllers
         private BDContactos db = new BDContactos();
 
         // GET: Visitantes
-        public ActionResult Index(int? id, String nombre, int? Pagina)
+        // .Include(p => p.CONTACTO) esto incluye por fk la entidad CONTACTO asociada
+        public ActionResult Index(String id, int? Pagina)
         {
-
-            var lista = //from p in db.PREREGISTRO
-                        from c in db.CONTACTO
-                        //where p.IDCONTACTO == c.CONTACTO1
-                        select new { Contacto = c, idReserva ="null" };
-
-            if (nombre != null && !nombre.Equals(""))
+            IQueryable<PREREGISTRO> pREREGISTRO;
+            if (id != null && !id.Equals(""))
             {
-                lista = lista.Where(x => x.Contacto.FIRST_NAME.Equals(nombre)).OrderBy(x => x.Contacto.FIRST_NAME);
+                pREREGISTRO = db.PREREGISTRO.Where(x => String.Equals(x.IDRESERVACION, id)).Include(p => p.CONTACTO).OrderBy(x => x.IDRESERVACION);
+
+            }
+            else {
+                pREREGISTRO = db.PREREGISTRO.Include(p => p.CONTACTO).OrderBy(x => x.IDRESERVACION);
             }
 
-            List<Tuple<RegistroVisitantes.Models.CONTACTO, string>> l = new List<Tuple<RegistroVisitantes.Models.CONTACTO, string>>();
-            foreach (var m in lista)
-            {
-                var t = new Tuple<RegistroVisitantes.Models.CONTACTO, string>(m.Contacto, m.idReserva);
-                l.Add(t);
-            }
 
             int Size_Of_Page = 10;
             int No_Of_Page = (Pagina ?? 1);
-            return View(l.ToPagedList(No_Of_Page, Size_Of_Page));
+            return View(pREREGISTRO.ToPagedList(No_Of_Page, Size_Of_Page));
+        }
+        public ActionResult Reserva(string id, int? Pagina)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var pREREGISTRO = db.PREREGISTRO.Include(p => p.CONTACTO).Where(x => String.Equals(x.IDRESERVACION, id)).OrderBy(x => x.IDRESERVACION);
+            int Size_Of_Page = 10;
+            int No_Of_Page = (Pagina ?? 1);
+            return View(pREREGISTRO.ToPagedList(No_Of_Page, Size_Of_Page));
         }
 
         // GET: Visitantes/Details/5
@@ -48,17 +53,18 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CONTACTO cONTACTO = db.CONTACTO.Find(id);
-            if (cONTACTO == null)
+            PREREGISTRO pREREGISTRO = db.PREREGISTRO.Find(id);
+            if (pREREGISTRO == null)
             {
                 return HttpNotFound();
             }
-            return View(cONTACTO);
+            return View(pREREGISTRO);
         }
 
         // GET: Visitantes/Create
         public ActionResult Create()
         {
+            ViewBag.IDCONTACTO = new SelectList(db.CONTACTO, "CONTACTO1", "FIRST_NAME");
             return View();
         }
 
@@ -67,16 +73,17 @@ namespace RegistroVisitantes.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CONTACTO1,TYPE,FIRST_NAME,LAST_NAME,BIRTH_DAY,BIRTH_PLACE,INSTITUTION,CATEGORY,GENDER,PHONE,PHONE_AREA_CODE,FAX,FAX_AREA_CODE,EMERGENCY_CONTACT1,EMERGENCY_NUMBER1,EMERGENCY_E_MAIL1,EMERGENCY_CONTACT2,EMERGENCY_NUMBER2,EMERGENCY_E_MAIL2,E_MAIL,IDENTIFICATION_TYPE,IDENTIFICATION,EXPIRATION_DATE,COUNTRY_BIRTH,NACIONALITY,ETHNIC_GROUP,ADDRESS_L1,AREA_OF_INTEREST,ACADEMIC_DEGREE,SECRET_QUESTION,ANSWER,PASSWORD,GRUPO,EMERGENCY_NUMBER1_CODE,EMERGENCY_NUMBER2_CODE,HOME_PHONE,HOME_PHONE_AREA,ADDRESS_COUNTRY,ADDRESS_L2,CITY,STATE,ZIP_CODE,CAT_TIPO_ESTUDIANTE,STATION,NO_DIETARY_RESTRICTIONS,VEGETARIAN,VEGAN,BEEF,CHICKEN,PORK,FISH,OTHER_DIETARY,COUNTRY_EMITS,CREADO,MODIFICADO,NICKNAME,DEPARTAMENT,POSITION,SKYPE,WEBSITE,CKOTHER_DIETARY_RESTRIC,TXOTHER_DIETARY_RESTRIC,PRIN,RELATIONSHIP_CONTACT1,RELATIONSHIP_CONTACT2,INSURANCE_COMPANY,INSURANCE_NUMBER,INSURANCE_EXPIRATION,ESPECIALIDAD,DATO_ESTACION,CONTACTO_RESERVAS,SHARE_INFORMATION,PHONE_COUNTRY_CODE,FAX_COUNTRY_CODE,EMERGENCY_COUNTRY_NUM_CODE1,EMERGENCY_COUNTRY_NUM_CODE2,HORA_CREACION,E_MAIL2")] CONTACTO cONTACTO)
+        public ActionResult Create([Bind(Include = "NUMPREREGISTRO,IDCONTACTO,IDRESERVACION,PROPOSITO,IDGRUPO,COMOENTERO,FECHA,NOMCURSO,NUMCURSO,ROLCURSO,NOMPROYECTO,INVERSIONES,FUENTE,RESOLUCION,PERMISO,EXPIRACION")] PREREGISTRO pREREGISTRO)
         {
             if (ModelState.IsValid)
             {
-                db.CONTACTO.Add(cONTACTO);
+                db.PREREGISTRO.Add(pREREGISTRO);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(cONTACTO);
+            ViewBag.IDCONTACTO = new SelectList(db.CONTACTO, "CONTACTO1", "FIRST_NAME", pREREGISTRO.IDCONTACTO);
+            return View(pREREGISTRO);
         }
 
         // GET: Visitantes/Edit/5
@@ -86,12 +93,13 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CONTACTO cONTACTO = db.CONTACTO.Find(id);
-            if (cONTACTO == null)
+            PREREGISTRO pREREGISTRO = db.PREREGISTRO.Find(id);
+            if (pREREGISTRO == null)
             {
                 return HttpNotFound();
             }
-            return View(cONTACTO);
+            ViewBag.IDCONTACTO = new SelectList(db.CONTACTO, "CONTACTO1", "FIRST_NAME", pREREGISTRO.IDCONTACTO);
+            return View(pREREGISTRO);
         }
 
         // POST: Visitantes/Edit/5
@@ -99,15 +107,16 @@ namespace RegistroVisitantes.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CONTACTO1,TYPE,FIRST_NAME,LAST_NAME,BIRTH_DAY,BIRTH_PLACE,INSTITUTION,CATEGORY,GENDER,PHONE,PHONE_AREA_CODE,FAX,FAX_AREA_CODE,EMERGENCY_CONTACT1,EMERGENCY_NUMBER1,EMERGENCY_E_MAIL1,EMERGENCY_CONTACT2,EMERGENCY_NUMBER2,EMERGENCY_E_MAIL2,E_MAIL,IDENTIFICATION_TYPE,IDENTIFICATION,EXPIRATION_DATE,COUNTRY_BIRTH,NACIONALITY,ETHNIC_GROUP,ADDRESS_L1,AREA_OF_INTEREST,ACADEMIC_DEGREE,SECRET_QUESTION,ANSWER,PASSWORD,GRUPO,EMERGENCY_NUMBER1_CODE,EMERGENCY_NUMBER2_CODE,HOME_PHONE,HOME_PHONE_AREA,ADDRESS_COUNTRY,ADDRESS_L2,CITY,STATE,ZIP_CODE,CAT_TIPO_ESTUDIANTE,STATION,NO_DIETARY_RESTRICTIONS,VEGETARIAN,VEGAN,BEEF,CHICKEN,PORK,FISH,OTHER_DIETARY,COUNTRY_EMITS,CREADO,MODIFICADO,NICKNAME,DEPARTAMENT,POSITION,SKYPE,WEBSITE,CKOTHER_DIETARY_RESTRIC,TXOTHER_DIETARY_RESTRIC,PRIN,RELATIONSHIP_CONTACT1,RELATIONSHIP_CONTACT2,INSURANCE_COMPANY,INSURANCE_NUMBER,INSURANCE_EXPIRATION,ESPECIALIDAD,DATO_ESTACION,CONTACTO_RESERVAS,SHARE_INFORMATION,PHONE_COUNTRY_CODE,FAX_COUNTRY_CODE,EMERGENCY_COUNTRY_NUM_CODE1,EMERGENCY_COUNTRY_NUM_CODE2,HORA_CREACION,E_MAIL2")] CONTACTO cONTACTO)
+        public ActionResult Edit([Bind(Include = "NUMPREREGISTRO,IDCONTACTO,IDRESERVACION,PROPOSITO,IDGRUPO,COMOENTERO,FECHA,NOMCURSO,NUMCURSO,ROLCURSO,NOMPROYECTO,INVERSIONES,FUENTE,RESOLUCION,PERMISO,EXPIRACION")] PREREGISTRO pREREGISTRO)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cONTACTO).State = EntityState.Modified;
+                db.Entry(pREREGISTRO).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(cONTACTO);
+            ViewBag.IDCONTACTO = new SelectList(db.CONTACTO, "CONTACTO1", "FIRST_NAME", pREREGISTRO.IDCONTACTO);
+            return View(pREREGISTRO);
         }
 
         // GET: Visitantes/Delete/5
@@ -117,12 +126,12 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CONTACTO cONTACTO = db.CONTACTO.Find(id);
-            if (cONTACTO == null)
+            PREREGISTRO pREREGISTRO = db.PREREGISTRO.Find(id);
+            if (pREREGISTRO == null)
             {
                 return HttpNotFound();
             }
-            return View(cONTACTO);
+            return View(pREREGISTRO);
         }
 
         // POST: Visitantes/Delete/5
@@ -130,8 +139,8 @@ namespace RegistroVisitantes.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CONTACTO cONTACTO = db.CONTACTO.Find(id);
-            db.CONTACTO.Remove(cONTACTO);
+            PREREGISTRO pREREGISTRO = db.PREREGISTRO.Find(id);
+            db.PREREGISTRO.Remove(pREREGISTRO);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

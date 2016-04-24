@@ -1,0 +1,69 @@
+﻿@model PagedList.IPagedList<RegistroVisitantes.Models.PREREGISTRO>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<h2>Lista de Visitantes - @Html.DisplayFor(model => model.First().IDRESERVACION)</h2>
+<table class="table table-bordered table-striped table-condensed table-hover">
+    <tr>
+        <th>
+            Nombre
+            @*@Html.DisplayNameFor(model => model.First().CONTACTO.FIRST_NAME)*@
+        </th>
+        <th>
+            Apellido
+            @*@Html.DisplayNameFor(model => model.First().CONTACTO.LAST_NAME)*@
+        </th>
+        <th>
+            Identificación
+            @*@Html.DisplayNameFor(model => model.First().CONTACTO.IDENTIFICATION)*@
+        </th>
+        <th>
+            Correo electrónico
+            @*@Html.DisplayNameFor(model => model.First().CONTACTO.E_MAIL)*@
+        </th>
+        <th>
+            Teléfono
+            @*@Html.DisplayNameFor(model => model.First().CONTACTO.PHONE)*@
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CONTACTO.FIRST_NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CONTACTO.LAST_NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CONTACTO.IDENTIFICATION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CONTACTO.E_MAIL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CONTACTO.PHONE)
+            </td>
+            <td>
+                @Html.ActionLink("Ver visitante", "Details", "Visitantes", new { ID = item.NUMPREREGISTRO }, new { @class = "btn btn-success" })
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.NUMPREREGISTRO }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.NUMPREREGISTRO }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NUMPREREGISTRO })*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, Pagina => Url.Action("Index",
+        new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+
