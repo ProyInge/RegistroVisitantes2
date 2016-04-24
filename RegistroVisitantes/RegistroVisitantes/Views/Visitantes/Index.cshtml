@@ -5,13 +5,13 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<br/>
-<br />
+
 <h2>Lista de Visitantes</h2>
+<hr />
 @using (Html.BeginForm())
 {
     <p>
-        Buscar por ID Reservación:
+        Buscar por Número de reservación:
         <input type="text" name="id" id="fromDate" />
         <button type="submit" class="btn btn-success">
             <i class="fa fa-search"></i>

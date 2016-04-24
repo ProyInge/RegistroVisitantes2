@@ -258,6 +258,9 @@
     <Content Include="Content\fontawesome\font-awesome.css" />
     <Content Include="Content\fontawesome\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Images\logo_oet.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\logo.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
