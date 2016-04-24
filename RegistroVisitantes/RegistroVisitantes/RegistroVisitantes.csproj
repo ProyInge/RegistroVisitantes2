@@ -190,6 +190,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FormController.cs" />
+    <Compile Include="Controllers\FormularioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
@@ -224,6 +225,24 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PREREGISTRO.cs">
       <DependentUpon>contactos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\preregistrocontacto.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>preregistrocontacto.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PREREGISTROCONTACTO.cs">
+      <DependentUpon>preregistrocontacto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\preregistrocontacto.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>preregistrocontacto.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\preregistrocontacto1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>preregistrocontacto.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RESERVACION.cs">
       <DependentUpon>reservas.tt</DependentUpon>
@@ -274,6 +293,16 @@
       <DependentUpon>contactos.edmx</DependentUpon>
       <LastGenOutput>contactos.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\preregistrocontacto.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>preregistrocontacto.edmx</DependentUpon>
+      <LastGenOutput>preregistrocontacto.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\preregistrocontacto.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>preregistrocontacto.edmx</DependentUpon>
+      <LastGenOutput>preregistrocontacto1.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\reservas.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>reservas.edmx</DependentUpon>
@@ -304,6 +333,13 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <EntityDeploy Include="Models\preregistrocontacto.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>preregistrocontacto.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\preregistrocontacto.edmx.diagram">
+      <DependentUpon>preregistrocontacto.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -383,6 +419,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Formulario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
