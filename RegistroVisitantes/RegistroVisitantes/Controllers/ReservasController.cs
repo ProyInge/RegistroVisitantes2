@@ -29,7 +29,7 @@ namespace RegistroVisitantes.Controllers
 
             var lista = db.RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0).OrderBy(s => s.ENTRA);
 
-            int Size_Of_Page = 5;
+            int Size_Of_Page = 10;
             int No_Of_Page = (Pagina ?? 1);
             return View(lista.ToPagedList(No_Of_Page, Size_Of_Page));
         }
