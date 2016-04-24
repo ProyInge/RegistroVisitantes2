@@ -24,7 +24,6 @@
             <br />
 
             <div class="form-group col-sm-6">
-                @*@Html.LabelFor(model => model.SomekingStatus, "foo bar");*@
                 @Html.LabelFor(model => model.CONTACTO.FIRST_NAME, "First Name", htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.CONTACTO.FIRST_NAME, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CONTACTO.FIRST_NAME, "", new { @class = "text-danger" })
@@ -134,7 +133,7 @@
         </div>  
 
         <div class="container">
-            <h2 style="border-bottom:8px solid #FDBB30">How you Find This Place?</h2>
+            <h2 style="border-bottom:8px solid #FDBB30">How did you find this place?</h2>
             <br />
 
             <div class="form-group col-sm-6">

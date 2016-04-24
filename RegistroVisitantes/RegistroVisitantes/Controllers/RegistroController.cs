@@ -103,7 +103,7 @@ namespace RegistroVisitantes.Controllers
         [HttpGet]
         public ActionResult CreateOET()
         {
-            var sexo = new SelectList(new[] { "Hombre", "Mujer" });
+            var sexo = new SelectList(new[] { "Female", "Male" });
             var proposito = new SelectList(new[] { " Visiting Scientist(without project at the Station)" , "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
             var position = new SelectList(new[] { "Principal Investigator", "CO-IP", "Senior Staff", "Tutor", "Supervisor", "Coordinator", "Collaborator", "Student", "Technical", "Field Assistant", "Interns", "Volunteer" });
             var role = new SelectList(new[] { "Student", "Professor", "Coordinator", "Assistant" });
