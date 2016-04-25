@@ -46,14 +46,14 @@ namespace RegistroVisitantes.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var sexo = new SelectList(new[] { "Male", "Female" });
+            /*var sexo = new SelectList(new[] { "Male", "Female" });
             var proposito = new SelectList(new[] { " Visiting Scientist(without project at the Station)", "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
             var position = new SelectList(new[] { "Principal Investigator", "CO-IP", "Senior Staff", "Tutor", "Supervisor", "Coordinator", "Collaborator", "Student", "Technical", "Field Assistant", "Interns", "Volunteer" });
             var role = new SelectList(new[] { "Student", "Professor", "Coordinator", "Assistant" });
             ViewBag.sexoList = sexo;
             ViewBag.propositoList = proposito;
             ViewBag.positionList = position;
-            ViewBag.roleList = role;
+            ViewBag.roleList = role;*/
             return View();
         }
 
@@ -61,7 +61,7 @@ namespace RegistroVisitantes.Controllers
         public ActionResult Create([Bind()]Models.PREREGISTRO form,string dietas, string carnes)
         {
 
-            if (dietas.Equals("sr"))
+            /*if (dietas.Equals("sr"))
             {
                 form.CONTACTO.NO_DIETARY_RESTRICTIONS = true;
             }
@@ -96,28 +96,28 @@ namespace RegistroVisitantes.Controllers
                 db.PREREGISTRO.Add(form);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+            }*/
             return Create();
         }
 
         [HttpGet]
         public ActionResult CreateOET()
         {
-            var sexo = new SelectList(new[] { "Female", "Male" });
+           /* var sexo = new SelectList(new[] { "Female", "Male" });
             var proposito = new SelectList(new[] { " Visiting Scientist(without project at the Station)" , "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
             var position = new SelectList(new[] { "Principal Investigator", "CO-IP", "Senior Staff", "Tutor", "Supervisor", "Coordinator", "Collaborator", "Student", "Technical", "Field Assistant", "Interns", "Volunteer" });
             var role = new SelectList(new[] { "Student", "Professor", "Coordinator", "Assistant" });
             ViewBag.sexoList = sexo;
             ViewBag.propositoList = proposito;
             ViewBag.positionList = position;
-            ViewBag.roleList = role;
+            ViewBag.roleList = role;*/
             return View();
         }
 
         [HttpPost]
         public ActionResult CreateOET([Bind()]Models.PREREGISTRO form, string dietas, string carnes)
         {
-            if(dietas.Equals("sr"))
+            /*if(dietas.Equals("sr"))
             {
                 form.CONTACTO.NO_DIETARY_RESTRICTIONS = true;
             }
@@ -153,7 +153,7 @@ namespace RegistroVisitantes.Controllers
                 db.PREREGISTRO.Add(form);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+            }*/
             return Create();
         }
 

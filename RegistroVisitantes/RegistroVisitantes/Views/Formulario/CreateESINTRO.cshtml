@@ -1,0 +1,180 @@
+﻿@model RegistroVisitantes.Models.PREREGISTROCONTACTO
+
+@{
+    ViewBag.Title = "CreateESINTRO";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Formulario</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            
+
+
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">Personal Information</h2>
+            <br />
+            
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.FIRST_NAME, "First Name",  htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.FIRST_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FIRST_NAME, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.LAST_NAME, "Last Name" , htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.LAST_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.NACIONALITY, "Citizenship ", htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.NACIONALITY, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NACIONALITY, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.IDENTIFICATION, "Identification ",  htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.IDENTIFICATION, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IDENTIFICATION, "", new { @class = "text-danger" })
+            </div>
+            
+            <div class="form-group col-sm-6"  style="margin-top: 20px">
+                @Html.LabelFor(model => model.ADDRESS_L1, "Address ", htmlAttributes: new { @class = "control-label " })
+                @Html.TextAreaFor(model => model.ADDRESS_L1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ADDRESS_L1, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.PHONE, "Telephone ", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.PHONE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PHONE, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.E_MAIL, "E-mail ", htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.E_MAIL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.E_MAIL, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-sm-6" style="margin-top: -45px">
+                @Html.LabelFor(model => model.GENDER, "Gender ", htmlAttributes: new { @class = "control-label " })
+                @Html.DropDownListFor(model => model.GENDER, (SelectList)ViewBag.sexoList, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GENDER, "", new { @class = "text-danger" })   
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">Emergency Contact</h2>
+            <br />
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.EMERGENCY_CONTACT1, "Contact", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.EMERGENCY_CONTACT1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EMERGENCY_CONTACT1, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.EMERGENCY_NUMBER1, "Contact Number", htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.EMERGENCY_NUMBER1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EMERGENCY_NUMBER1, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.EMERGENCY_E_MAIL1, "Contact E-mail", htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.EMERGENCY_E_MAIL1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EMERGENCY_E_MAIL1, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.RELATIONSHIP_CONTACT1, "Relationship", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.RELATIONSHIP_CONTACT1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RELATIONSHIP_CONTACT1, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">Dietary Restrictions and Allergies</h2>
+            <br />
+            <div class="form-group col-sm-6">
+                <label for="dieta">Diet</label>
+                <select name="dietas" class="form-control">
+                    <option value="sr">No Restriction</option>
+                    <option value="veg">Vegetarian</option>
+                    <option value="vg">Vegan</option>
+                </select>
+            </div>
+
+            <div class="form-group col-sm-6">
+                <label for="dieta">Diet</label>
+                <select name="carnes" class="form-control">
+                    <option value="carne">Beef</option>
+                    <option value="pollo">Chicken</option>
+                    <option value="cerdo">Pork</option>
+                    <option value="pescado">Fish</option>
+                </select>
+            </div>
+
+
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.ALERGIAS,"Alergy", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.ALERGIAS, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ALERGIAS, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.OTHER_DIETARY, "Other Dietary ",htmlAttributes: new { @class = "control-label" })
+                @Html.TextAreaFor(model => model.OTHER_DIETARY, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OTHER_DIETARY, "", new { @class = "text-danger" })
+
+            </div>
+
+        </div>
+
+
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">How did you find this place?</h2>
+            <br />
+
+            <div class="form-group col-sm-6">
+                @*@Html.LabelFor(model => model.COMOENTERO,  htmlAttributes: new { @class = "control-label col-md-2" })*@
+                @Html.EditorFor(model => model.COMOENTERO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.COMOENTERO, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">Waiver of Liability</h2>
+            <div class="well" style="font-size:medium">
+                I hereby confirm that I have been properly informed that any and all visits to the Organization for Tropical
+                Studies(OTS) involve inherent risks related to carrying out activities in biological conservation stations,
+                such as walking through slippery, moist trails and/or areas, covered with foliage and trees. In addition, I
+                have been informed that in the area to be visited there are snakes, insects and other animals with the well-known
+                risk such as bites and stings. I have no health problems that forbid me from participating in the visit that I am
+                about to make and I agree to follow all instructions given to me for my own safety. I hereby release OTS and
+                ESINTRO S.A., their legal representatives, directors and employees, of all civil, penal and any other kind of
+                responsability for any physical or moral injury, sickness or death resulting from my stay in OTS facilities, which
+                I am assuming under my own risk.
+            </div>
+        </div>
+
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-successOET" />
+                </div>
+            </div>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
