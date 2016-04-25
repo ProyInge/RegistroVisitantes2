@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    <div class="navbar navbar-default navbar-fixed-top" style="margin-top:80px;">
+    <div class="navbar navbar-default" >
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
@@ -35,19 +35,23 @@
                 <ul class="nav navbar-nav">
                     @{ url = Url.Action("Index", "Home"); }
                     <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
-                    @Html.ActionLink("Inicio", "Index", "Home")</li>
+                        @Html.ActionLink("Inicio", "Index", "Home")
+                    </li>
 
                     @{ url = Url.Action("Index", "Reservas"); }
                     <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
-                    @Html.ActionLink("Reservas", "Index", "Reservas")</li>
+                        @Html.ActionLink("Reservas", "Index", "Reservas")
+                    </li>
 
                     @{ url = Url.Action("Index", "Visitantes"); }
                     <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
-                    @Html.ActionLink("Visitantes", "Index", "Visitantes")</li>
+                        @Html.ActionLink("Visitantes", "Index", "Visitantes")
+                    </li>
 
                     @{ url = Url.Action("Index", "Formulario"); }
                     <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
-                    @Html.ActionLink("Formulario", "Index", "Formulario")</li>
+                        @Html.ActionLink("Formulario", "Index", "Formulario")
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="">@Html.Partial("_LoginPartial")</li>
@@ -58,9 +62,11 @@
 
 
 
+ 
     <div class="container body-content">
         @RenderBody()
     </div>
+    
 
     <footer class="footer">
         <div class="container">
