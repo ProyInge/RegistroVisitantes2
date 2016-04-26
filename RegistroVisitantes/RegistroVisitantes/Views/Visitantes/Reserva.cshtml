@@ -1,34 +1,42 @@
-﻿@model PagedList.IPagedList<RegistroVisitantes.Models.PREREGISTRO>
+﻿@model PagedList.IPagedList<RegistroVisitantes.Models.PREREGISTROCONTACTO>
 @using PagedList;
 @using PagedList.Mvc;
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<br />
-<br />
-<h2>Lista de Visitantes - @Html.DisplayFor(model => model.First().IDRESERVACION)</h2>
+
+<h2>Lista de Visitantes</h2>
+@* - @Html.DisplayFor(model => model.First().IDRESERVACION)*@
+<hr />
+
+
 <table class="table table-bordered table-striped table-condensed table-hover">
     <tr>
         <th>
+            Número reserva
+            @*@Html.DisplayNameFor(model => model.First().IDRESERVACION)*@
+        </th>
+        <th>
             Nombre
-            @*@Html.DisplayNameFor(model => model.First().CONTACTO.FIRST_NAME)*@
+            @*@Html.DisplayNameFor(model => model.First().FIRST_NAME)*@
         </th>
         <th>
             Apellido
-            @*@Html.DisplayNameFor(model => model.First().CONTACTO.LAST_NAME)*@
-        </th>
-        <th>
-            Identificación
-            @*@Html.DisplayNameFor(model => model.First().CONTACTO.IDENTIFICATION)*@
+            @*@Html.DisplayNameFor(model => model.First().LAST_NAME)*@
         </th>
         <th>
             Correo electrónico
-            @*@Html.DisplayNameFor(model => model.First().CONTACTO.E_MAIL)*@
+            @*@Html.DisplayNameFor(model => model.First().E_MAIL)*@
         </th>
         <th>
-            Teléfono
-            @*@Html.DisplayNameFor(model => model.First().CONTACTO.PHONE)*@
+            Tipo identificación
+            @*@Html.DisplayNameFor(model => model.First().IDENTIFICATION_TYPE)*@
+        </th>
+        <th>
+            Identificación
+            @*@Html.DisplayNameFor(model => model.First().IDENTIFICATION)*@
         </th>
         <th></th>
     </tr>
@@ -37,25 +45,28 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CONTACTO.FIRST_NAME)
+                @Html.DisplayFor(modelItem => item.IDRESERVACION)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CONTACTO.LAST_NAME)
+                @Html.DisplayFor(modelItem => item.FIRST_NAME)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CONTACTO.IDENTIFICATION)
+                @Html.DisplayFor(modelItem => item.LAST_NAME)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CONTACTO.E_MAIL)
+                @Html.DisplayFor(modelItem => item.E_MAIL)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CONTACTO.PHONE)
+                @Html.DisplayFor(modelItem => item.IDENTIFICATION_TYPE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDENTIFICATION)
             </td>
             <td>
                 @Html.ActionLink("Ver visitante", "Details", "Visitantes", new { ID = item.NUMPREREGISTRO }, new { @class = "btn btn-success" })
-                @*@Html.ActionLink("Edit", "Edit", new { id = item.NUMPREREGISTRO }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.NUMPREREGISTRO }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.NUMPREREGISTRO })*@
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>
     }
@@ -66,4 +77,5 @@
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 @Html.PagedListPager(Model, Pagina => Url.Action("Index",
         new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+
 

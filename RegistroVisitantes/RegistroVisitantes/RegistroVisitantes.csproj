@@ -413,15 +413,15 @@
     <Content Include="Views\Reservas\Index.cshtml" />
     <Content Include="Views\Usuario\Ingresar.cshtml" />
     <Content Include="Views\Usuario\Login.cshtml" />
+    <Content Include="Views\Formulario\CreateESINTRO.cshtml" />
+    <Content Include="Views\Formulario\CreateOET.cshtml" />
+    <Content Include="Views\Formulario\Index.cshtml" />
     <Content Include="Views\Visitantes\Create.cshtml" />
     <Content Include="Views\Visitantes\Delete.cshtml" />
     <Content Include="Views\Visitantes\Details.cshtml" />
     <Content Include="Views\Visitantes\Edit.cshtml" />
     <Content Include="Views\Visitantes\Index.cshtml" />
     <Content Include="Views\Visitantes\Reserva.cshtml" />
-    <Content Include="Views\Formulario\CreateESINTRO.cshtml" />
-    <Content Include="Views\Formulario\CreateOET.cshtml" />
-    <Content Include="Views\Formulario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
