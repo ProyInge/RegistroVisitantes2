@@ -50,6 +50,8 @@ public partial class PREREGISTRO
 
     public Nullable<System.DateTime> EXPIRACION { get; set; }
 
+    public string ALERGIAS { get; set; }
+
 
 
     public virtual CONTACTO CONTACTO { get; set; }

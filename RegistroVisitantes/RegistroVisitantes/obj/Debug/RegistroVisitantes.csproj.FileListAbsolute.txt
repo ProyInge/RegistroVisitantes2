@@ -275,7 +275,6 @@ C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisit
 C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.dll
 C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.pdb
-C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.csprojResolveAssemblyReference.cache
 C:\Users\Emmanuel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\csc.exe
 C:\Users\Emmanuel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\Emmanuel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -655,4 +654,6 @@ C:\Users\angel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisit
 C:\Users\angel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.csprojResolveAssemblyReference.cache
 C:\Users\angel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.dll
 C:\Users\angel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.pdb
-C:\Users\Emmanuel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\Content\Images\logo_oet.png
+C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\Content\Images\logo_oet.png
+C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\WebActivatorEx.dll
+C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.csprojResolveAssemblyReference.cache

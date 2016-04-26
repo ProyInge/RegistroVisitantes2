@@ -8,6 +8,6 @@ namespace RegistroVisitantes.Models
 {
     public class UsuarioDbContext : DbContext
     {
-        public DbSet<Usuario> usuario { get; set; }
+        public DbSet<USUARIO> usuario { get; set; }
     }
 }
