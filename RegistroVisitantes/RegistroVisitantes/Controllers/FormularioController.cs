@@ -49,22 +49,22 @@ namespace RegistroVisitantes.Controllers
                 form.VEGAN = true;
             }
 
-            //if (carnes.Equals("carne"))
-            //{
+            if (carnes.Equals("carne"))
+            {
                 form.BEEF = true;
-            //}
-            //if (carnes.Equals("pollo"))
-            //{
+            }
+            if (carnes.Equals("pollo"))
+            {
                 form.CHICKEN = true;
-            //}
-            //if (carnes.Equals("cerdo"))
-           // {
+            }
+            if (carnes.Equals("cerdo"))
+            {
                 form.PORK = true;
-            //}
-            //if (carnes.Equals("pescado"))
-            //{
+            }
+            if (carnes.Equals("pescado"))
+           {
                 form.FISH = true;
-            //}
+           }
             if (ModelState.IsValid)
             {
                 var db = BDPreContac;
@@ -121,12 +121,35 @@ namespace RegistroVisitantes.Controllers
             //{
                 form.FISH = true;
             //}
+            form.PROPOSITO = "c";
+            form.ROLCURSO = "a";
+
+
 
             if (ModelState.IsValid)
             {
                 var db = BDPreContac;
                 db.PREREGISTROCONTACTO.Add(form);
-                db.SaveChanges();
+                
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                {
+                    Exception raise = dbEx;
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            string message = string.Format("{0}:{1}", validationErrors.Entry.Entity.ToString(), validationError.ErrorMessage);
+                            // raise a new exception nesting
+                            // the current instance as InnerException
+                            raise = new InvalidOperationException(message, raise);
+                        }
+                    }
+                    throw raise;
+                }
                 return RedirectToAction("Index");
             }
             return CreateOET();

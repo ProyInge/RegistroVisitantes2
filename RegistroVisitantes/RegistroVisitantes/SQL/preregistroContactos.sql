@@ -1,6 +1,6 @@
 select contacto,numpreregistro  from preregistroContacto
 
-select *  from preregistro
+select *  from preregistroContacto
 
 delete from preregistroContacto
 
@@ -92,7 +92,7 @@ create table preregistroContacto(
   --DATOS DEL PREREGISTRO
   numpreregistro number(10,0),
   idreservacion varchar2(255 byte),
-  proposito char,
+  proposito varchar2(100 byte),
   idgrupo varchar2(30 byte),
   comoentero varchar2(50 byte),
   fecha date,
@@ -100,7 +100,7 @@ create table preregistroContacto(
   --estudiantes y profes
   nomcurso varchar2(50 byte),
   numcurso varchar2(30 byte),
-  rolcurso char,
+  rolcurso varchar2(20 byte) ,
   
   --investigadores
   nomproyecto varchar2(50 byte),

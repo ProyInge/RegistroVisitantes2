@@ -421,6 +421,7 @@
     <Content Include="Views\Visitantes\Reserva.cshtml" />
     <Content Include="Views\Formulario\CreateESINTRO.cshtml" />
     <Content Include="Views\Formulario\CreateOET.cshtml" />
+    <Content Include="Views\Formulario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
