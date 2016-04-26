@@ -262,9 +262,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>reservas.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\USUARIO.cs">
-      <DependentUpon>contactos.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\UsuarioDbContext.cs" />
     <Compile Include="Models\V_EMPLEADOS.cs">
       <DependentUpon>contactos.tt</DependentUpon>
     </Compile>

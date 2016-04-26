@@ -104,18 +104,23 @@ namespace RegistroVisitantes.Controllers
             {
                 form.VEGAN = true;
             }
-            
-            //temporal mientras se encuentra como pasar el estado del combobox a la controladora
-            //if (carne)
-            form.BEEF = true;
-            //if (pollo)
-                form.CHICKEN = true;
-            //if (cerdo)
-                form.PORK = true;
-            //if(pescado)
-                form.FISH = true;
 
-            //temporal mientras se arregla el modelo de que estos campos sean varchar
+            //if (carnes.Equals("carne"))
+            //{
+                form.BEEF = true;
+            //}
+            //if (carnes.Equals("pollo"))
+            //{
+                form.CHICKEN = true;
+           // }
+            //if (carnes.Equals("cerdo"))
+            //{
+                form.PORK = true;
+            //}
+            //if (carnes.Equals("pescado"))
+            //{
+                form.FISH = true;
+            //}
             form.PROPOSITO = "c";
             form.ROLCURSO = "a";
 

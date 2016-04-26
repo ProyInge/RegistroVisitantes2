@@ -54,9 +54,8 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
-                        @Html.ActionLink("Iniciar sesión", "Login", "Usuario")
-                    </li>                </ul>
+                    <li class="">@Html.Partial("_LoginPartial")</li>
+                </ul>
             </div>
         </div>
     </div>
