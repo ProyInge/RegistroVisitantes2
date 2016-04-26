@@ -9,23 +9,23 @@ namespace RegistroVisitantes.Controllers
 {
     public class UsuarioController : Controller
     {
+        private BDContactos db = new BDContactos();
         public ActionResult Ingresar()
         {
             return View();
         }
-
+         
         [HttpPost]
-        public ActionResult Ingresar(Usuario usuarioNuevo)
+        public ActionResult Ingresar(USUARIO usuarioNuevo)
         {
             if (ModelState.IsValid)
             {
-                using (UsuarioDbContext db = new UsuarioDbContext())
-                {
-                    db.usuario.Add(usuarioNuevo);
-                    db.SaveChanges();
-                }
+                
+                db.USUARIO.Add(usuarioNuevo);
+                db.SaveChanges();
+                
                 ModelState.Clear();
-                ViewBag.Message = usuarioNuevo.Nombre + " " + usuarioNuevo.Apellido + " se ingresó exitosamente.";
+                ViewBag.Message = usuarioNuevo.NOMBRE + " " + usuarioNuevo.APELLIDO + " se ingresó exitosamente.";
             }
             return View();
         }
@@ -37,23 +37,22 @@ namespace RegistroVisitantes.Controllers
 
 
         [HttpPost]
-        public ActionResult Login(Usuario user)
+        public ActionResult Login(USUARIO user)
         {
-            using (UsuarioDbContext db = new UsuarioDbContext())
+            
+            USUARIO usr = db.USUARIO.Where(u => u.USERNAME == user.USERNAME && u.PASSWORD == user.PASSWORD).FirstOrDefault();
+            if (usr != null)
             {
-                var usr = db.usuario.Where(u => u.Username == user.Username && u.Password == user.Password).FirstOrDefault();
-                if (Session["Id"] != null)
-                {
-                    Session["Id"] = usr.Id.ToString();
-                    Session["Username"] = usr.Username.ToString();
-                    return RedirectToAction("Logueado");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "El nombre de usuario y la contraseña no coinciden");
-                }
-
+                Session["Id"] = usr.ID.ToString();
+                Session["Username"] = usr.USERNAME.ToString();
+                return RedirectToAction("Logueado");
             }
+            else
+            {
+                ModelState.AddModelError("", "El nombre de usuario y la contraseña no coinciden");
+            }
+
+            
             return View();
         }
 
@@ -61,7 +60,7 @@ namespace RegistroVisitantes.Controllers
         {
             if (Session["Id"] != null)
             {
-                return RedirectToAction("Home", "Registro");
+                return RedirectToAction("Index", "Registro");
             }
             else
             {

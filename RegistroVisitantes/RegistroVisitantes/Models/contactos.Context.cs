@@ -38,6 +38,8 @@ public partial class BDContactos : DbContext
 
     public virtual DbSet<V_EMPLEADOS> V_EMPLEADOS { get; set; }
 
+    public virtual DbSet<USUARIO> USUARIO { get; set; }
+
 }
 
 }

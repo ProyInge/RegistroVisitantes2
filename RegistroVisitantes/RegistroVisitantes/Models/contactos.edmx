@@ -108,6 +108,18 @@
           <Property Name="RESOLUCION" Type="varchar2" MaxLength="30" />
           <Property Name="PERMISO" Type="varchar2" MaxLength="30" />
           <Property Name="EXPIRACION" Type="date" />
+          <Property Name="ALERGIAS" Type="nclob" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="32" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="40" />
+          <Property Name="APELLIDO" Type="varchar2" MaxLength="40" />
+          <Property Name="EMAIL" Type="varchar2" MaxLength="40" />
+          <Property Name="USERNAME" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar2" MaxLength="40" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'CONTACTOS.V_EMPLEADOS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -129,7 +141,7 @@ advertencia 6002: La tabla o vista 'CONTACTOS.V_EMPLEADOS' no tiene definida nin
           <Property Name="NACIONALIDAD" Type="varchar2" MaxLength="26" Nullable="false" />
           <Property Name="ESTADOCIVIL" Type="number" Precision="8" Scale="2" />
         </EntityType>
-        <Association Name="PREREGISTRO_CONTACTO_FK">
+        <Association Name="FK_PREREGISTRO_CONTACTO_FK">
           <End Role="CONTACTO" Type="Self.CONTACTO" Multiplicity="0..1" />
           <End Role="PREREGISTRO" Type="Self.PREREGISTRO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -144,6 +156,7 @@ advertencia 6002: La tabla o vista 'CONTACTOS.V_EMPLEADOS' no tiene definida nin
         <EntityContainer Name="ContactoModelStoreContainer">
           <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" Schema="CONTACTOS" store:Type="Tables" />
           <EntitySet Name="PREREGISTRO" EntityType="Self.PREREGISTRO" Schema="CONTACTOS" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="CONTACTOS" store:Type="Tables" />
           <EntitySet Name="V_EMPLEADOS" EntityType="Self.V_EMPLEADOS" store:Type="Views" store:Schema="CONTACTOS">
             <DefiningQuery>SELECT 
 "V_EMPLEADOS"."ID" AS "ID", 
@@ -156,7 +169,7 @@ advertencia 6002: La tabla o vista 'CONTACTOS.V_EMPLEADOS' no tiene definida nin
 "V_EMPLEADOS"."ESTADOCIVIL" AS "ESTADOCIVIL"
 FROM "CONTACTOS"."V_EMPLEADOS" "V_EMPLEADOS"</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="PREREGISTRO_CONTACTO_FK" Association="Self.PREREGISTRO_CONTACTO_FK">
+          <AssociationSet Name="FK_PREREGISTRO_CONTACTO_FK" Association="Self.FK_PREREGISTRO_CONTACTO_FK">
             <End Role="CONTACTO" EntitySet="CONTACTO" />
             <End Role="PREREGISTRO" EntitySet="PREREGISTRO" />
           </AssociationSet>
@@ -270,6 +283,7 @@ FROM "CONTACTOS"."V_EMPLEADOS" "V_EMPLEADOS"</DefiningQuery>
           <Property Name="PERMISO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="EXPIRACION" Type="DateTime" />
           <NavigationProperty Name="CONTACTO" Relationship="Self.PREREGISTRO_CONTACTO_FK" FromRole="PREREGISTRO" ToRole="CONTACTO" />
+          <Property Name="ALERGIAS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="PREREGISTRO_CONTACTO_FK">
           <End Role="CONTACTO" Type="Self.CONTACTO" Multiplicity="0..1" />
@@ -291,6 +305,7 @@ FROM "CONTACTOS"."V_EMPLEADOS" "V_EMPLEADOS"</DefiningQuery>
             <End Role="PREREGISTRO" EntitySet="PREREGISTRO" />
           </AssociationSet>
           <EntitySet Name="V_EMPLEADOS" EntityType="ContactoModel.V_EMPLEADOS" />
+          <EntitySet Name="USUARIO" EntityType="ContactoModel.USUARIO" />
         </EntityContainer>
         <EntityType Name="V_EMPLEADOS">
           <Key>
@@ -309,6 +324,17 @@ FROM "CONTACTOS"."V_EMPLEADOS" "V_EMPLEADOS"</DefiningQuery>
           <Property Name="IDENTIFICACION" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NACIONALIDAD" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="false" />
           <Property Name="ESTADOCIVIL" Type="Decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="32" Scale="0" />
+          <Property Name="NOMBRE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -403,6 +429,7 @@ FROM "CONTACTOS"."V_EMPLEADOS" "V_EMPLEADOS"</DefiningQuery>
           <EntitySetMapping Name="PREREGISTRO">
             <EntityTypeMapping TypeName="ContactoModel.PREREGISTRO">
               <MappingFragment StoreEntitySet="PREREGISTRO">
+                <ScalarProperty Name="ALERGIAS" ColumnName="ALERGIAS" />
                 <ScalarProperty Name="NUMPREREGISTRO" ColumnName="NUMPREREGISTRO" />
                 <ScalarProperty Name="IDCONTACTO" ColumnName="IDCONTACTO" />
                 <ScalarProperty Name="IDRESERVACION" ColumnName="IDRESERVACION" />
@@ -431,6 +458,18 @@ FROM "CONTACTOS"."V_EMPLEADOS" "V_EMPLEADOS"</DefiningQuery>
                 <ScalarProperty Name="SEXO" ColumnName="SEXO" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="ContactoModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
