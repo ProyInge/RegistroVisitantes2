@@ -15,17 +15,17 @@ namespace RegistroVisitantes.Controllers
         }
 
         [HttpPost]
-        public ActionResult Ingresar(Usuario usuarioNuevo)
+        public ActionResult Ingresar(USUARIO usuarioNuevo)
         {
             if (ModelState.IsValid)
             {
-                using (UsuarioDbContext db = new UsuarioDbContext())
+                using (BDContactos db = new BDContactos())
                 {
-                    db.usuario.Add(usuarioNuevo);
+                    db.USUARIO.Add(usuarioNuevo);
                     db.SaveChanges();
                 }
                 ModelState.Clear();
-                ViewBag.Message = usuarioNuevo.Nombre + " " + usuarioNuevo.Apellido + " se ingresó exitosamente.";
+                ViewBag.Message = usuarioNuevo.NOMBRE + " " + usuarioNuevo.APELLIDO + " se ingresó exitosamente.";
             }
             return View();
         }
@@ -37,15 +37,15 @@ namespace RegistroVisitantes.Controllers
 
 
         [HttpPost]
-        public ActionResult Login(Usuario user)
+        public ActionResult Login(USUARIO user)
         {
-            using (UsuarioDbContext db = new UsuarioDbContext())
+            using (BDContactos db = new BDContactos())
             {
-                var usr = db.usuario.Where(u => u.Username == user.Username && u.Password == user.Password).FirstOrDefault();
+                var usr = db.USUARIO.Where(u => u.USERNAME == user.USERNAME && u.PASSWORD == user.PASSWORD).FirstOrDefault();
                 if (Session["Id"] != null)
                 {
-                    Session["Id"] = usr.Id.ToString();
-                    Session["Username"] = usr.Username.ToString();
+                    Session["Id"] = usr.ID.ToString();
+                    Session["Username"] = usr.USERNAME.ToString();
                     return RedirectToAction("Logueado");
                 }
                 else
