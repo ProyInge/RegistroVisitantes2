@@ -1,10 +1,3 @@
-select contacto,numpreregistro  from preregistroContacto
-
-select *  from preregistroContacto
-
-delete from preregistroContacto
-
-
 
 drop  table preregistroContacto
 /
