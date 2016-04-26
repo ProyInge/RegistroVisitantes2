@@ -1,16 +1,632 @@
-﻿@model RegistroVisitantes.Models.PREREGISTRO
+﻿@model RegistroVisitantes.Models.PREREGISTROCONTACTO
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>PREREGISTRO</h4>
+    <h4>PREREGISTROCONTACTO</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FIRST_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FIRST_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LAST_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LAST_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BIRTH_DAY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BIRTH_DAY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BIRTH_PLACE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BIRTH_PLACE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INSTITUTION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INSTITUTION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CATEGORY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CATEGORY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GENDER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GENDER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PHONE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHONE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PHONE_AREA_CODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHONE_AREA_CODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FAX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FAX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FAX_AREA_CODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FAX_AREA_CODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMERGENCY_CONTACT1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMERGENCY_CONTACT1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMERGENCY_NUMBER1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMERGENCY_NUMBER1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMERGENCY_E_MAIL1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMERGENCY_E_MAIL1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMERGENCY_CONTACT2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMERGENCY_CONTACT2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMERGENCY_NUMBER2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMERGENCY_NUMBER2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMERGENCY_E_MAIL2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMERGENCY_E_MAIL2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.E_MAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.E_MAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDENTIFICATION_TYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDENTIFICATION_TYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDENTIFICATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDENTIFICATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXPIRATION_DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXPIRATION_DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COUNTRY_BIRTH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COUNTRY_BIRTH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NACIONALITY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NACIONALITY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ETHNIC_GROUP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ETHNIC_GROUP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADDRESS_L1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADDRESS_L1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AREA_OF_INTEREST)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AREA_OF_INTEREST)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ACADEMIC_DEGREE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ACADEMIC_DEGREE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SECRET_QUESTION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SECRET_QUESTION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ANSWER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ANSWER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PASSWORD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PASSWORD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GRUPO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GRUPO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMERGENCY_NUMBER1_CODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMERGENCY_NUMBER1_CODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMERGENCY_NUMBER2_CODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMERGENCY_NUMBER2_CODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HOME_PHONE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HOME_PHONE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HOME_PHONE_AREA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HOME_PHONE_AREA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADDRESS_COUNTRY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADDRESS_COUNTRY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADDRESS_L2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADDRESS_L2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CITY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CITY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZIP_CODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZIP_CODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CAT_TIPO_ESTUDIANTE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CAT_TIPO_ESTUDIANTE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NO_DIETARY_RESTRICTIONS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NO_DIETARY_RESTRICTIONS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VEGETARIAN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VEGETARIAN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VEGAN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VEGAN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BEEF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BEEF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CHICKEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CHICKEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PORK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PORK)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FISH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FISH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OTHER_DIETARY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OTHER_DIETARY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COUNTRY_EMITS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COUNTRY_EMITS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CREADO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CREADO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MODIFICADO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MODIFICADO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NICKNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NICKNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DEPARTAMENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEPARTAMENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.POSITION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POSITION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SKYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SKYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WEBSITE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WEBSITE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CKOTHER_DIETARY_RESTRIC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CKOTHER_DIETARY_RESTRIC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TXOTHER_DIETARY_RESTRIC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TXOTHER_DIETARY_RESTRIC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RELATIONSHIP_CONTACT1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RELATIONSHIP_CONTACT1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RELATIONSHIP_CONTACT2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RELATIONSHIP_CONTACT2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INSURANCE_COMPANY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INSURANCE_COMPANY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INSURANCE_NUMBER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INSURANCE_NUMBER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INSURANCE_EXPIRATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INSURANCE_EXPIRATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ESPECIALIDAD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESPECIALIDAD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATO_ESTACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATO_ESTACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONTACTO_RESERVAS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONTACTO_RESERVAS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SHARE_INFORMATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SHARE_INFORMATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PHONE_COUNTRY_CODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHONE_COUNTRY_CODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FAX_COUNTRY_CODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FAX_COUNTRY_CODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMERGENCY_COUNTRY_NUM_CODE1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMERGENCY_COUNTRY_NUM_CODE1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMERGENCY_COUNTRY_NUM_CODE2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMERGENCY_COUNTRY_NUM_CODE2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HORA_CREACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HORA_CREACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.E_MAIL2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.E_MAIL2)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.IDRESERVACION)
         </dt>
@@ -124,16 +740,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CONTACTO.FIRST_NAME)
+            @Html.DisplayNameFor(model => model.ALERGIAS)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CONTACTO.FIRST_NAME)
+            @Html.DisplayFor(model => model.ALERGIAS)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.NUMPREREGISTRO }) |
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
