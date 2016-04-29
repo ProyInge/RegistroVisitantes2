@@ -34,9 +34,17 @@ namespace RegistroVisitantes.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            FormsAuthentication.SignOut();
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+            if(Session["Id"] != null) { 
+                FormsAuthentication.SignOut();
+                Session["Id"] = null;
+                Session["Username"] = null;
+                ViewBag.ReturnUrl = returnUrl;
+                return Redirect(Request.RawUrl);
+            }
+            else
+            {
+                return View();
+            }
         }
 
 
@@ -44,7 +52,6 @@ namespace RegistroVisitantes.Controllers
         [HttpPost]
         public ActionResult Login(USUARIO user)
         {
-            
             USUARIO usr = db.USUARIO.Where(u => u.USUARIO1 == user.USUARIO1 && u.CONTRASENA == user.CONTRASENA).FirstOrDefault();
             if (usr != null)
             {
@@ -64,14 +71,6 @@ namespace RegistroVisitantes.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult Logout()
-        {
-            Session["Id"] = null;
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Logueado");
-        }
-
         private void resetRequest()
         {
             var authCookie = System.Web.HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -90,7 +89,14 @@ namespace RegistroVisitantes.Controllers
         {
             if (Session["Id"] != null)
             {
-                return RedirectToAction("Index", "Formulario");
+                if(ViewBag.ReturnUrl == null)
+                { 
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return Redirect(ViewBag.ReturnUrl);
+                }
             }
             else
             {
