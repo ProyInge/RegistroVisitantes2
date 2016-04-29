@@ -73,7 +73,8 @@
                 <input type="checkbox" name="firma" value="firma">
             </td>
             <td>
-                <button type="button" class="btn btn-default">
+                <iframe src="~/Views/Reservas/Index.cshtml" name="frame"></iframe>
+                <button type="button" class="btn btn-default" onclick="frames['frame'].print()">
                     <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
                 </button>
 
