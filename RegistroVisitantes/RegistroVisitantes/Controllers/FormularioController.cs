@@ -11,7 +11,7 @@ namespace RegistroVisitantes.Controllers
 {
     public class FormularioController : Controller
     {
-        private PreCntacto BDPreContac = new PreCntacto();
+        private BDContactos BDPreContac = new BDContactos();
         // GET: Formulario
         public ActionResult Index()
         {
@@ -33,7 +33,7 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
-       [HttpPost]
+       /*[HttpPost]
         public ActionResult CreateESINTRO([Bind()]Models.PREREGISTROCONTACTO form, string dietas, string carnes)
         {
             if (dietas.Equals("sr"))
@@ -73,7 +73,7 @@ namespace RegistroVisitantes.Controllers
                 return RedirectToAction("Index");
             }
             return CreateESINTRO();
-        }
+        }*/
         
         [HttpGet]
         public ActionResult CreateOET()
@@ -89,7 +89,7 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult CreateOET([Bind()]Models.PREREGISTROCONTACTO form, string dietas)
         {
             if (dietas.Equals("sr"))
@@ -153,6 +153,6 @@ namespace RegistroVisitantes.Controllers
                 return RedirectToAction("Index");
             }
             return CreateOET();
-        }
+        }*/
     }
 }

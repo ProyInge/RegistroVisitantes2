@@ -10,7 +10,7 @@ namespace RegistroVisitantes.Controllers
 {
     public class UsuarioController : Controller
     {
-        private BDContactos db = new BDContactos();
+        private BDReservas db = new BDReservas();
         public ActionResult Ingresar()
         {
             return View();
@@ -45,12 +45,12 @@ namespace RegistroVisitantes.Controllers
         public ActionResult Login(USUARIO user)
         {
             
-            USUARIO usr = db.USUARIO.Where(u => u.USERNAME == user.USERNAME && u.PASSWORD == user.PASSWORD).FirstOrDefault();
+            USUARIO usr = db.USUARIO.Where(u => u.USUARIO1 == user.USUARIO1 && u.CONTRASENA == user.CONTRASENA).FirstOrDefault();
             if (usr != null)
             {
                 Session["Id"] = usr.ID.ToString();
-                Session["Username"] = usr.USERNAME.ToString();
-                FormsAuthentication.SetAuthCookie(usr.USERNAME.ToString(), true);
+                Session["Username"] = usr.USUARIO1.ToString();
+                FormsAuthentication.SetAuthCookie(usr.USUARIO1.ToString(), true);
                 resetRequest();
                 return RedirectToAction("Logueado");
             }

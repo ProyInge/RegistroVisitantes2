@@ -222,27 +222,15 @@
     <Compile Include="Models\FormDataContext.cs" />
     <Compile Include="Models\FormModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\INFOVISITA.cs">
+      <DependentUpon>reservas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PERSONA.cs">
+      <DependentUpon>reservas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PREREGISTRO.cs">
       <DependentUpon>contactos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\preregistrocontacto.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>preregistrocontacto.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PREREGISTROCONTACTO.cs">
-      <DependentUpon>preregistrocontacto.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\preregistrocontacto.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>preregistrocontacto.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\preregistrocontacto1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>preregistrocontacto.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RESERVACION.cs">
       <DependentUpon>reservas.tt</DependentUpon>
@@ -263,9 +251,8 @@
       <DependentUpon>reservas.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\USUARIO.cs">
-      <DependentUpon>contactos.tt</DependentUpon>
+      <DependentUpon>reservas.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UsuarioDbContext.cs" />
     <Compile Include="Models\V_EMPLEADOS.cs">
       <DependentUpon>contactos.tt</DependentUpon>
     </Compile>
@@ -298,16 +285,6 @@
       <DependentUpon>contactos.edmx</DependentUpon>
       <LastGenOutput>contactos.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\preregistrocontacto.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>preregistrocontacto.edmx</DependentUpon>
-      <LastGenOutput>preregistrocontacto.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\preregistrocontacto.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>preregistrocontacto.edmx</DependentUpon>
-      <LastGenOutput>preregistrocontacto1.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\reservas.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>reservas.edmx</DependentUpon>
@@ -320,13 +297,6 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\reservas.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>reservas.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\reservas.edmx.diagram">
-      <DependentUpon>reservas.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\contactos.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>contactos.Designer.cs</LastGenOutput>
@@ -338,12 +308,12 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
-    <EntityDeploy Include="Models\preregistrocontacto.edmx">
+    <EntityDeploy Include="Models\reservas.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>preregistrocontacto.Designer.cs</LastGenOutput>
+      <LastGenOutput>reservas.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\preregistrocontacto.edmx.diagram">
-      <DependentUpon>preregistrocontacto.edmx</DependentUpon>
+    <Content Include="Models\reservas.edmx.diagram">
+      <DependentUpon>reservas.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

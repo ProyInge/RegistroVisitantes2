@@ -4,8 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bfd73b0c65d34568a616861a18513fc6" Name="Diagram1" ZoomLevel="57">
-        <EntityTypeShape EntityType="ModelReservas.RESERVACION" Width="3.375" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="5881ea821910467395590c71672dbf85" Name="Diagram1">
+        <EntityTypeShape EntityType="ModelReservas.INFOVISITA" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelReservas.PERSONA" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelReservas.RESERVACION" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelReservas.USUARIO" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ModelReservas.INFOVISITA_PERSONA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="ModelReservas.INFOVISITA_RESERVA_FK" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
