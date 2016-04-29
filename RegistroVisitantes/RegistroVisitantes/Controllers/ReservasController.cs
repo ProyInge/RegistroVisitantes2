@@ -16,6 +16,7 @@ namespace RegistroVisitantes.Controllers
         private BDReservas db = new BDReservas();
 
         // GET: Reservas
+        [Authorize]
         public ActionResult Index(DateTime? fromDate, DateTime? toDate, int? Pagina)
         {
             DateTime from = (fromDate ?? DateTime.Today);
@@ -35,6 +36,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         // GET: Reservas/Details/5
+        [Authorize]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -50,6 +52,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         // GET: Reservas/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -58,6 +61,7 @@ namespace RegistroVisitantes.Controllers
         // POST: Reservas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,ANFITRIONA,NUMERO,ESTADO,PRIORIDAD,GRUPO,ENTRA,ENTRAMTN,SALE,SALEMTN,RESPONSABLE,SOLICITANTE,NOTAS,SOLICITADAEL,FORMAPAGO,SALDO,CUENTACLIENTEKEY,CUENTACLIENTEOCLASS,ESTACION,MODIFICADOR,MODIFICADO,MONTO_PREPAGO,REFERENCIA_PREPAGO,PRIMERA_COMIDA,CREACION,ULTIMA_MODIFICACION,MODIFICA_RACK,MODIFICADO_RACK,FLAG,URL")] RESERVACION rESERVACION)
@@ -73,6 +77,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         // GET: Reservas/Edit/5
+        [Authorize]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -92,6 +97,7 @@ namespace RegistroVisitantes.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,ANFITRIONA,NUMERO,ESTADO,PRIORIDAD,GRUPO,ENTRA,ENTRAMTN,SALE,SALEMTN,RESPONSABLE,SOLICITANTE,NOTAS,SOLICITADAEL,FORMAPAGO,SALDO,CUENTACLIENTEKEY,CUENTACLIENTEOCLASS,ESTACION,MODIFICADOR,MODIFICADO,MONTO_PREPAGO,REFERENCIA_PREPAGO,PRIMERA_COMIDA,CREACION,ULTIMA_MODIFICACION,MODIFICA_RACK,MODIFICADO_RACK,FLAG,URL")] RESERVACION rESERVACION)
         {
             if (ModelState.IsValid)
@@ -104,6 +110,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         // GET: Reservas/Delete/5
+        [Authorize]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -119,6 +126,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         // POST: Reservas/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
@@ -129,6 +137,7 @@ namespace RegistroVisitantes.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

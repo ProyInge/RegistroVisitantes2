@@ -17,12 +17,14 @@ namespace RegistroVisitantes.Controllers
 
 
         // GET: Registro
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
         // GET: /Registro/Formulario
+        [Authorize]
         [HttpGet]
         public ActionResult Formulario()
         {
@@ -31,6 +33,7 @@ namespace RegistroVisitantes.Controllers
 
         // GET: /Registro/FormularioOET
         [HttpGet]
+        [Authorize]
         public ActionResult FormularioOET()
         {
             return View();
@@ -38,12 +41,15 @@ namespace RegistroVisitantes.Controllers
 
         // GET: /Registro/Idioma
         [HttpGet]
+        [Authorize]
         public ActionResult Idioma()
         {
             return View();
         }
+
         // GET: /Registro/Create
         [HttpGet]
+        [Authorize]
         public ActionResult Create()
         {
             /*var sexo = new SelectList(new[] { "Male", "Female" });
@@ -58,6 +64,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create([Bind()]Models.PREREGISTRO form,string dietas, string carnes)
         {
 
@@ -101,6 +108,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult CreateOET()
         {
            /* var sexo = new SelectList(new[] { "Female", "Male" });
@@ -115,6 +123,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult CreateOET([Bind()]Models.PREREGISTRO form, string dietas, string carnes)
         {
             /*if(dietas.Equals("sr"))

@@ -16,12 +16,14 @@ namespace RegistroVisitantes.Controllers
 
 
         // GET: Formulario
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
         // GET: /Formulario/ESINTRO
+        [Authorize]
         [HttpGet]
         public ActionResult CreateESINTRO()
         {
@@ -37,6 +39,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult CreateESINTRO([Bind()]Models.INFOVISITA form) {
             if (ModelState.IsValid)
             {
@@ -50,6 +53,7 @@ namespace RegistroVisitantes.Controllers
        
         
         [HttpGet]
+        [Authorize]
         public ActionResult CreateOET()
         {
             var sexo = new SelectList(new[] { "Female", "Male" });
@@ -64,6 +68,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult CreateOET([Bind()]Models.INFOVISITA form, string dietas)
         {
            /*if (dietas.Equals("sr"))

@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -482,4 +482,4 @@ namespace RegistroVisitantes.Controllers
         }
         #endregion
     }
-}
+}*/

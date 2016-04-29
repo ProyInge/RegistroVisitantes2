@@ -16,6 +16,7 @@ namespace RegistroVisitantes.Controllers
         private BDReservas db = new BDReservas();
 
         // GET: Visitantes
+        [Authorize]
         public ActionResult Index(String id, int? Pagina)
         {
             IQueryable<INFOVISITA> pREREGISTRO;
@@ -36,6 +37,7 @@ namespace RegistroVisitantes.Controllers
             //return null;
         }
 
+        [Authorize]
         public ActionResult Reserva(string id, int? Pagina)
         {
             if (id == null)
@@ -47,8 +49,9 @@ namespace RegistroVisitantes.Controllers
             int No_Of_Page = (Pagina ?? 1);
             return View(pREREGISTRO.ToPagedList(No_Of_Page, Size_Of_Page));
         }
-
+        
         // GET: Visitantes/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             /*if (id == null)
@@ -65,6 +68,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         // GET: Visitantes/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -88,6 +92,7 @@ namespace RegistroVisitantes.Controllers
         }*/
 
         // GET: Visitantes/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             /*if (id == null)
@@ -118,8 +123,9 @@ namespace RegistroVisitantes.Controllers
             }
             return View(pREREGISTROCONTACTO);
         }*/
-        
+
         // GET: Visitantes/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -135,6 +141,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         // POST: Visitantes/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -145,6 +152,7 @@ namespace RegistroVisitantes.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
