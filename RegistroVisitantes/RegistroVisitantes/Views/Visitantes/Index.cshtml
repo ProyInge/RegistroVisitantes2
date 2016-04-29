@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<RegistroVisitantes.Models.PREREGISTROCONTACTO>
+﻿@model PagedList.IPagedList<RegistroVisitantes.Models.INFOVISITA>
 @using PagedList;
 @using PagedList.Mvc;
 
@@ -24,27 +24,18 @@
     <tr>
         <th>
             Número reserva
-            @*@Html.DisplayNameFor(model => model.First().IDRESERVACION)*@
         </th>
         <th>
             Nombre
-            @*@Html.DisplayNameFor(model => model.First().FIRST_NAME)*@
         </th>
         <th>
             Apellido
-            @*@Html.DisplayNameFor(model => model.First().LAST_NAME)*@
         </th>
         <th>
             Correo electrónico
-            @*@Html.DisplayNameFor(model => model.First().E_MAIL)*@
-        </th>
-        <th>
-            Tipo identificación
-            @*@Html.DisplayNameFor(model => model.First().IDENTIFICATION_TYPE)*@
         </th>
         <th>
             Identificación
-            @*@Html.DisplayNameFor(model => model.First().IDENTIFICATION)*@
         </th>
         <th></th>
     </tr>
@@ -53,28 +44,25 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IDRESERVACION)
+                @Html.DisplayFor(modelItem => item.ID_RESERVACION)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FIRST_NAME)
+                @Html.DisplayFor(modelItem => item.PERSONA.NOMBRE)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LAST_NAME)
+                @Html.DisplayFor(modelItem => item.PERSONA.APELLIDO)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.E_MAIL)
+                @Html.DisplayFor(modelItem => item.PERSONA.EMAIL)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IDENTIFICATION_TYPE)
+                @Html.DisplayFor(modelItem => item.PERSONA.CEDULA)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IDENTIFICATION)
-            </td>
-            <td>
-                @Html.ActionLink("Ver visitante", "Details", "Visitantes", new { ID = item.NUMPREREGISTRO }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Ver visitante", "Details", "Visitantes", new { ID = item.ID_RESERVACION }, new { @class = "btn btn-success" })
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@ 
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
     }

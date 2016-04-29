@@ -13,27 +13,27 @@ namespace RegistroVisitantes.Controllers
 {
     public class VisitantesController : Controller
     {
-        private BDContactos db = new BDContactos();
+        private BDReservas db = new BDReservas();
 
         // GET: Visitantes
         public ActionResult Index(String id, int? Pagina)
         {
-            /*IQueryable<PREREGISTROCONTACTO> pREREGISTRO;
+            IQueryable<INFOVISITA> pREREGISTRO;
             if (id != null && !id.Equals(""))
             {
-                pREREGISTRO = db.PREREGISTROCONTACTO.Where(x => String.Equals(x.IDRESERVACION, id)).OrderBy(x => x.IDRESERVACION);
+                pREREGISTRO = db.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, id)).OrderBy(x => x.ID_RESERVACION);
 
             }
             else
             {
-                pREREGISTRO = db.PREREGISTROCONTACTO.OrderBy(x => x.IDRESERVACION);
+                pREREGISTRO = db.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
             }
 
 
             int Size_Of_Page = 10;
             int No_Of_Page = (Pagina ?? 1);
-            return View(pREREGISTRO.ToPagedList(No_Of_Page, Size_Of_Page));*/
-            return null;
+            return View(pREREGISTRO.ToPagedList(No_Of_Page, Size_Of_Page));
+            //return null;
         }
 
         public ActionResult Reserva(string id, int? Pagina)
