@@ -189,7 +189,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Controllers\FormularioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -219,8 +218,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>contactos.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\FormDataContext.cs" />
-    <Compile Include="Models\FormModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\INFOVISITA.cs">
       <DependentUpon>reservas.tt</DependentUpon>
@@ -366,8 +363,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Form\Create.cshtml" />
-    <Content Include="Views\Form\Index.cshtml" />
     <Content Include="Views\Registro\Formulario.cshtml" />
     <Content Include="Views\Registro\FormularioOET.cshtml" />
     <Content Include="Views\Registro\Idioma.cshtml" />
@@ -375,7 +370,6 @@
     <Content Include="Views\Registro\Index.cshtml" />
     <Content Include="Views\Registro\Create.cshtml" />
     <Content Include="Views\Registro\CreateOET.cshtml" />
-    <Content Include="Views\Form\CreateContacto.cshtml" />
     <Content Include="Views\Reservas\Create.cshtml" />
     <Content Include="Views\Reservas\Delete.cshtml" />
     <Content Include="Views\Reservas\Details.cshtml" />

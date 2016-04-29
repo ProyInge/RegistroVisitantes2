@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ModelReservas.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ModelReservas.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="INFOVISITA">
           <Key>
             <PropertyRef Name="ID_RESERVACION" />
@@ -17,6 +17,10 @@
           <Property Name="EMAIL_EMERGENCIA" Type="varchar2" MaxLength="150" />
           <Property Name="REL_EMERGENCIA" Type="varchar2" MaxLength="150" />
           <Property Name="COMIDA" Type="varchar2" MaxLength="300" />
+          <Property Name="CARNE" Type="number" Precision="1" Scale="0" />
+          <Property Name="POLLO" Type="number" Precision="1" Scale="0" />
+          <Property Name="PESCADO" Type="number" Precision="1" Scale="0" />
+          <Property Name="CERDO" Type="number" Precision="1" Scale="0" />
           <Property Name="DIETA" Type="varchar2" MaxLength="150" />
           <Property Name="OBSERVACIONES_DIETA" Type="varchar2" MaxLength="150" />
           <Property Name="ALERGIAS" Type="varchar2" MaxLength="150" />
@@ -138,8 +142,7 @@
             <End Role="INFOVISITA" EntitySet="INFOVISITA" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ModelReservas" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -173,6 +176,10 @@
           <Property Name="EXPIRACION" Type="DateTime" />
           <NavigationProperty Name="PERSONA" Relationship="Self.INFOVISITA_PERSONA_FK" FromRole="INFOVISITA" ToRole="PERSONA" />
           <NavigationProperty Name="RESERVACION" Relationship="Self.INFOVISITA_RESERVA_FK" FromRole="INFOVISITA" ToRole="RESERVACION" />
+          <Property Name="CARNE" Type="Boolean" />
+          <Property Name="POLLO" Type="Boolean" />
+          <Property Name="PESCADO" Type="Boolean" />
+          <Property Name="CERDO" Type="Boolean" />
         </EntityType>
         <EntityType Name="PERSONA">
           <Key>
@@ -289,6 +296,10 @@
           <EntitySetMapping Name="INFOVISITA">
             <EntityTypeMapping TypeName="ModelReservas.INFOVISITA">
               <MappingFragment StoreEntitySet="INFOVISITA">
+                <ScalarProperty Name="CERDO" ColumnName="CERDO" />
+                <ScalarProperty Name="PESCADO" ColumnName="PESCADO" />
+                <ScalarProperty Name="POLLO" ColumnName="POLLO" />
+                <ScalarProperty Name="CARNE" ColumnName="CARNE" />
                 <ScalarProperty Name="ID_RESERVACION" ColumnName="ID_RESERVACION" />
                 <ScalarProperty Name="CEDULA" ColumnName="CEDULA" />
                 <ScalarProperty Name="NOMBRE_EMERGENCIA" ColumnName="NOMBRE_EMERGENCIA" />

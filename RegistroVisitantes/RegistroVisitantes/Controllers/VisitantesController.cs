@@ -13,40 +13,39 @@ namespace RegistroVisitantes.Controllers
 {
     public class VisitantesController : Controller
     {
-        private BDContactos db = new BDContactos();
+        private BDReservas db = new BDReservas();
 
         // GET: Visitantes
         public ActionResult Index(String id, int? Pagina)
         {
-            /*IQueryable<PREREGISTROCONTACTO> pREREGISTRO;
+            IQueryable<INFOVISITA> pREREGISTRO;
             if (id != null && !id.Equals(""))
             {
-                pREREGISTRO = db.PREREGISTROCONTACTO.Where(x => String.Equals(x.IDRESERVACION, id)).OrderBy(x => x.IDRESERVACION);
+                pREREGISTRO = db.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, id)).OrderBy(x => x.ID_RESERVACION);
 
             }
             else
             {
-                pREREGISTRO = db.PREREGISTROCONTACTO.OrderBy(x => x.IDRESERVACION);
+                pREREGISTRO = db.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
             }
 
 
             int Size_Of_Page = 10;
             int No_Of_Page = (Pagina ?? 1);
-            return View(pREREGISTRO.ToPagedList(No_Of_Page, Size_Of_Page));*/
-            return null;
+            return View(pREREGISTRO.ToPagedList(No_Of_Page, Size_Of_Page));
+            //return null;
         }
 
         public ActionResult Reserva(string id, int? Pagina)
         {
-            /*if (id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var pREREGISTRO = db.PREREGISTROCONTACTO.Where(x => String.Equals(x.IDRESERVACION, id)).OrderBy(x => x.IDRESERVACION);
+            var pREREGISTRO = db.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, id)).OrderBy(x => x.ID_RESERVACION);
             int Size_Of_Page = 10;
             int No_Of_Page = (Pagina ?? 1);
-            return View(pREREGISTRO.ToPagedList(No_Of_Page, Size_Of_Page));*/
-            return null;
+            return View(pREREGISTRO.ToPagedList(No_Of_Page, Size_Of_Page));
         }
 
         // GET: Visitantes/Details/5
@@ -123,17 +122,16 @@ namespace RegistroVisitantes.Controllers
         // GET: Visitantes/Delete/5
         public ActionResult Delete(int? id)
         {
-            /*if (id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PREREGISTROCONTACTO pREREGISTROCONTACTO = db.PREREGISTROCONTACTO.Find(id);
+            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(id);
             if (pREREGISTROCONTACTO == null)
             {
                 return HttpNotFound();
             }
-            return View(pREREGISTROCONTACTO);*/
-            return null;
+            return View(pREREGISTROCONTACTO);
         }
 
         // POST: Visitantes/Delete/5
@@ -141,11 +139,10 @@ namespace RegistroVisitantes.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            /*PREREGISTROCONTACTO pREREGISTROCONTACTO = db.PREREGISTROCONTACTO.Find(id);
-            db.PREREGISTROCONTACTO.Remove(pREREGISTROCONTACTO);
+            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(id);
+            db.INFOVISITA.Remove(pREREGISTROCONTACTO);
             db.SaveChanges();
-            return RedirectToAction("Index");*/
-            return null;
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

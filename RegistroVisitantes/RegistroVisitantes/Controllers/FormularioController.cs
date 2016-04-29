@@ -12,6 +12,9 @@ namespace RegistroVisitantes.Controllers
     public class FormularioController : Controller
     {
         private BDContactos BDPreContac = new BDContactos();
+        private BDReservas BDReservas = new BDReservas();
+
+
         // GET: Formulario
         public ActionResult Index()
         {
@@ -33,47 +36,18 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
-       /*[HttpPost]
-        public ActionResult CreateESINTRO([Bind()]Models.PREREGISTROCONTACTO form, string dietas, string carnes)
-        {
-            if (dietas.Equals("sr"))
-            {
-                form.NO_DIETARY_RESTRICTIONS = true;
-            }
-            if (dietas.Equals("veg"))
-            {
-                form.VEGETARIAN = true;
-            }
-            if (dietas.Equals("vg"))
-            {
-                form.VEGAN = true;
-            }
-
-            if (carnes.Equals("carne"))
-            {
-                form.BEEF = true;
-            }
-            if (carnes.Equals("pollo"))
-            {
-                form.CHICKEN = true;
-            }
-            if (carnes.Equals("cerdo"))
-            {
-                form.PORK = true;
-            }
-            if (carnes.Equals("pescado"))
-           {
-                form.FISH = true;
-           }
+        [HttpPost]
+        public ActionResult CreateESINTRO([Bind()]Models.INFOVISITA form) {
             if (ModelState.IsValid)
             {
-                var db = BDPreContac;
-                db.PREREGISTROCONTACTO.Add(form);
+                var db = BDReservas;
+                db.INFOVISITA.Add(form);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return CreateESINTRO();
-        }*/
+        }
+       
         
         [HttpGet]
         public ActionResult CreateOET()
@@ -89,10 +63,10 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
-        /*[HttpPost]
-        public ActionResult CreateOET([Bind()]Models.PREREGISTROCONTACTO form, string dietas)
+        [HttpPost]
+        public ActionResult CreateOET([Bind()]Models.INFOVISITA form, string dietas)
         {
-            if (dietas.Equals("sr"))
+           /*if (dietas.Equals("sr"))
             {
                 form.NO_DIETARY_RESTRICTIONS = true;
             }
@@ -120,16 +94,14 @@ namespace RegistroVisitantes.Controllers
             //if (carnes.Equals("pescado"))
             //{
                 form.FISH = true;
-            //}
-            form.PROPOSITO = "c";
-            form.ROLCURSO = "a";
+            //}*/
 
 
 
             if (ModelState.IsValid)
             {
-                var db = BDPreContac;
-                db.PREREGISTROCONTACTO.Add(form);
+                var db = BDReservas;
+                db.INFOVISITA.Add(form);
                 
                 try
                 {
@@ -153,6 +125,6 @@ namespace RegistroVisitantes.Controllers
                 return RedirectToAction("Index");
             }
             return CreateOET();
-        }*/
+        }
     }
 }
