@@ -34,7 +34,7 @@ namespace RegistroVisitantes.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            if(Session["Id"] != null) { 
+            if(Request.IsAuthenticated) { 
                 FormsAuthentication.SignOut();
                 Session["Id"] = null;
                 Session["Username"] = null;
@@ -43,6 +43,7 @@ namespace RegistroVisitantes.Controllers
             }
             else
             {
+                ViewBag.ReturnUrl = returnUrl;
                 return View();
             }
         }
