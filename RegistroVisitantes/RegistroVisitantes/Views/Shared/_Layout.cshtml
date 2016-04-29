@@ -54,11 +54,8 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- <li class="">@Html.Partial("_LoginPartial")</li> -->
-                    @{ url = Url.Action("Login", "Usuario"); }
-                    <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
-                        @Html.ActionLink("Log in", "Login", "Usuario")
-                    </li>
+                    <li class="">@Html.Partial("_LoginPartial")</li>
+
                 </ul>
             </div>
         </div>
