@@ -40,12 +40,63 @@ namespace RegistroVisitantes.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult CreateESINTRO([Bind()]Models.INFOVISITA form) {
+        public ActionResult CreateESINTRO([Bind()]Models.INFOVISITA form, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false) {
+
+            if (checkCarne)
+            {
+                form.CARNE = true;
+            }
+            if (checkPollo)
+            {
+                form.POLLO = true;
+            }
+            if (checkCerdo)
+            {
+                form.CERDO = true;
+            }
+            if (checkPescado)
+            {
+                form.PESCADO = true;
+            }
+
+            if (genero == "female")
+            {
+                form.PERSONA.GENERO = '1'.ToString();
+
+            }
+            else
+            {
+                form.PERSONA.GENERO = '0'.ToString();
+            }
+
+
+            form.ID_RESERVACION= "ANURA0127092004.0180619397";
+
+
             if (ModelState.IsValid)
             {
                 var db = BDReservas;
                 db.INFOVISITA.Add(form);
-                db.SaveChanges();
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                {
+                    Exception raise = dbEx;
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            string message = string.Format("{0}:{1}", validationErrors.Entry.Entity.ToString(), validationError.ErrorMessage);
+                            // raise a new exception nesting
+                            // the current instance as InnerException
+                            raise = new InvalidOperationException(message, raise);
+                        }
+                    }
+                    throw raise;
+                }
                 return RedirectToAction("Index");
             }
             return CreateESINTRO();
@@ -69,38 +120,36 @@ namespace RegistroVisitantes.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult CreateOET([Bind()]Models.INFOVISITA form, string dietas)
+        public ActionResult CreateOET([Bind()]Models.INFOVISITA form, string genero, bool checkPollo=false , bool checkCarne=false, bool checkCerdo = false, bool checkPescado = false)
         {
-           /*if (dietas.Equals("sr"))
-            {
-                form.NO_DIETARY_RESTRICTIONS = true;
+
+            if (checkCarne) {
+                form.CARNE=true;
             }
-            if (dietas.Equals("veg"))
+            if (checkPollo)
             {
-                form.VEGETARIAN = true;
+                form.POLLO = true;
             }
-            if (dietas.Equals("vg"))
+            if (checkCerdo)
             {
-                form.VEGAN = true;
+                form.CERDO = true;
+            }
+            if (checkPescado)
+            {
+                form.PESCADO = true;
             }
 
-            //if (carnes.Equals("carne"))
-            //{
-                form.BEEF = true;
-            //}
-            //if (carnes.Equals("pollo"))
-            //{
-                form.CHICKEN = true;
-           // }
-            //if (carnes.Equals("cerdo"))
-            //{
-                form.PORK = true;
-            //}
-            //if (carnes.Equals("pescado"))
-            //{
-                form.FISH = true;
-            //}*/
+            if (genero == "female")
+            {
+                form.PERSONA.GENERO = '1'.ToString();
 
+            }
+            else {
+                form.PERSONA.GENERO = '0'.ToString();
+            }
+
+
+            //form.ID_RESERVACION= "ANURA0127092004.0180618819";
 
 
             if (ModelState.IsValid)
