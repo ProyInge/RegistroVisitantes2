@@ -656,5 +656,15 @@ C:\Users\angel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisit
 C:\Users\angel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 C:\Users\angel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.dll
 C:\Users\angel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.pdb
+<<<<<<< HEAD
 C:\Users\b30640\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\Content\Images\logo_oet.png
 C:\Users\b30640\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\WebActivatorEx.dll
+=======
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\Content\Images\logo_oet.png
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\PagedList.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\PagedList.Mvc.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\WebActivatorEx.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\PagedList.xml
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\PagedList.Mvc.xml
+C:\Users\Emmanuel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\Content\Images\logo_oet.png
+>>>>>>> 51236390f7803b03038fb1832795eda4839f5c23

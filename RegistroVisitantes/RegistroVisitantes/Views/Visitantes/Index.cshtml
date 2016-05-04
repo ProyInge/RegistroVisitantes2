@@ -62,47 +62,57 @@ else
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            <td align="center">
                 @Html.DisplayFor(modelItem => item.ID_RESERVACION)
             </td>
-            <td>
+            <td  align="center">
                 @Html.DisplayFor(modelItem => item.PERSONA.NOMBRE)
             </td>
-            <td>
+            <td  align="center">
                 @Html.DisplayFor(modelItem => item.PERSONA.APELLIDO)
             </td>
-            <td>
+            <td  align="center">
                 @Html.DisplayFor(modelItem => item.PERSONA.EMAIL)
             </td>
-            <td>
+            <td  align="center">
                 @Html.DisplayFor(modelItem => item.PERSONA.CEDULA)
             </td>
-            <td>
+            <td  align="center">
                 <input type="checkbox" name="firma" value="firma">
             </td>
-            <td>
-                <iframe src="~/Views/Reservas/Index.cshtml" name="frame"></iframe>
-                <button type="button" class="btn btn-default" onclick="frames['frame'].print()">
+            <td  align="center">
+                <button type="button" class="btn btn-default" onclick="printPage()">
                     <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
                 </button>
 
             </td>          
-            <td>
+            <td  align="center">
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
-            <td>
-                @Html.ActionLink("Ver visitante", "Details", "Visitantes", new { ID = item.ID_RESERVACION }, new { @class = "btn btn-success" })
+            <td  align="center">
+                @Html.ActionLink("Ver informacion", "Details", "Visitantes", new { ID = item.ID_RESERVACION }, new { @class = "btn btn-success" })
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
             </td>
-        </tr>
+        </tr>       
     }
 
 </table>
+
+<div id="printerDiv" style="display:none"></div>
 
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 @Html.PagedListPager(Model, Pagina => Url.Action("Index",
         new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
 
+<script>
+   function printPage()
+   {
+       //var div = document.getElementById("printerDiv");
+       w = window.open('/Home/Index');
+       w.print();
+      //div.innerHTML = '<iframe src="~/" onload="this.contentWindow.print();"></iframe>';
+   }
+</script>
 

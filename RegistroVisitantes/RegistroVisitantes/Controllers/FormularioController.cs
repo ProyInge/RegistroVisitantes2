@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using RegistroVisitantes.Models;
 using PagedList;
 using PagedList.Mvc;
+using System.Net;
 
 namespace RegistroVisitantes.Controllers
 {
@@ -17,16 +18,41 @@ namespace RegistroVisitantes.Controllers
 
         // GET: Formulario
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(String id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var reservacion = BDReservas.RESERVACION.Find(id);
+            if (reservacion == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
+            }
+            if(reservacion.ANFITRIONA.Equals("01"))
+            {
+                return RedirectToAction("CreateOET", new { idRes = id });
+            }
+            else
+            {
+                return RedirectToAction("CreateESINTRO", new { idRes = id });
+            }
         }
 
         // GET: /Formulario/ESINTRO
         [Authorize]
         [HttpGet]
-        public ActionResult CreateESINTRO()
+        public ActionResult CreateESINTRO(String idRes)
         {
+            if (idRes == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var reservacion = BDReservas.RESERVACION.Find(idRes);
+            if (reservacion == null || !reservacion.ANFITRIONA.Equals("02"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
+            }
             var sexo = new SelectList(new[] { "Male", "Female" });
             var proposito = new SelectList(new[] { " Visiting Scientist(without project at the Station)", "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
             var position = new SelectList(new[] { "N/A", "Principal Investigator", "CO-IP", "Senior Staff", "Tutor", "Supervisor", "Coordinator", "Collaborator", "Student", "Technical", "Field Assistant", "Interns", "Volunteer" });
@@ -40,8 +66,17 @@ namespace RegistroVisitantes.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult CreateESINTRO([Bind()]Models.INFOVISITA form, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false) {
-
+        public ActionResult CreateESINTRO(String idRes, [Bind()]Models.INFOVISITA form, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
+        {
+            if (idRes == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var reservacion = BDReservas.RESERVACION.Find(idRes);
+            if (reservacion == null || !reservacion.ANFITRIONA.Equals("02"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
+            }
             if (checkCarne)
             {
                 form.CARNE = true;
@@ -99,14 +134,23 @@ namespace RegistroVisitantes.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return CreateESINTRO();
+            return CreateESINTRO(idRes);
         }
        
         
         [HttpGet]
         [Authorize]
-        public ActionResult CreateOET()
+        public ActionResult CreateOET(String idRes)
         {
+            if (idRes == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var reservacion = BDReservas.RESERVACION.Find(idRes);
+            if (reservacion == null || !reservacion.ANFITRIONA.Equals("01"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
+            }
             var sexo = new SelectList(new[] { "Female", "Male" });
             var proposito = new SelectList(new[] { " Visiting Scientist(without project at the Station)", "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
             var position = new SelectList(new[] { "N/A","Principal Investigator", "CO-IP", "Senior Staff", "Tutor", "Supervisor", "Coordinator", "Collaborator", "Student", "Technical", "Field Assistant", "Interns", "Volunteer" });
@@ -120,9 +164,17 @@ namespace RegistroVisitantes.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult CreateOET([Bind()]Models.INFOVISITA form, string genero, bool checkPollo=false , bool checkCarne=false, bool checkCerdo = false, bool checkPescado = false)
+        public ActionResult CreateOET(String idRes, [Bind()]Models.INFOVISITA form, string genero, bool checkPollo=false , bool checkCarne=false, bool checkCerdo = false, bool checkPescado = false)
         {
-
+            if (idRes == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var reservacion = BDReservas.RESERVACION.Find(idRes);
+            if (reservacion == null || !reservacion.ANFITRIONA.Equals("01"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
+            }
             if (checkCarne) {
                 form.CARNE=true;
             }
@@ -178,7 +230,7 @@ namespace RegistroVisitantes.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return CreateOET();
+            return CreateOET(idRes);
         }
     }
 }
