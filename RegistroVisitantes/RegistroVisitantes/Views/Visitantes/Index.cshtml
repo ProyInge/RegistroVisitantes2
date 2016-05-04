@@ -65,36 +65,36 @@ else
             <td align="center">
                 @Html.DisplayFor(modelItem => item.ID_RESERVACION)
             </td>
-            <td  align="center">
+            <td align="center">
                 @Html.DisplayFor(modelItem => item.PERSONA.NOMBRE)
             </td>
-            <td  align="center">
+            <td align="center">
                 @Html.DisplayFor(modelItem => item.PERSONA.APELLIDO)
             </td>
-            <td  align="center">
+            <td align="center">
                 @Html.DisplayFor(modelItem => item.PERSONA.EMAIL)
             </td>
-            <td  align="center">
+            <td align="center">
                 @Html.DisplayFor(modelItem => item.PERSONA.CEDULA)
             </td>
-            <td  align="center">
+            <td align="center">
                 <input type="checkbox" name="firma" value="firma">
             </td>
-            <td  align="center">
+            <td align="center">
                 <button type="button" class="btn btn-default" onclick="printPage()">
                     <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
                 </button>
 
-            </td>          
-            <td  align="center">
+            </td>
+            <td align="center">
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
-            <td  align="center">
+            <td align="center">
                 @Html.ActionLink("Ver informacion", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" })
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
             </td>
-        </tr>       
+        </tr>
     }
 
 </table>
@@ -110,7 +110,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
    function printPage()
    {
        //var div = document.getElementById("printerDiv");
-       w = window.open('/Home/Index');
+       w = window.open('/Formulario/CreateOET');
        w.print();
       //div.innerHTML = '<iframe src="~/" onload="this.contentWindow.print();"></iframe>';
    }

@@ -136,25 +136,25 @@ namespace RegistroVisitantes.Controllers
             }
             return CreateESINTRO(idRes);
         }
-       
-        
+
+
         [HttpGet]
         [Authorize]
         public ActionResult CreateOET(String idRes)
         {
-            if (idRes == null)
+            /*if (idRes == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            }*/
             var reservacion = BDReservas.RESERVACION.Find(idRes);
-            if (reservacion == null || !reservacion.ANFITRIONA.Equals("01"))
+            if (idRes != null && (reservacion == null || !reservacion.ANFITRIONA.Equals("01")))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
             var sexo = new SelectList(new[] { "Female", "Male" });
             var proposito = new SelectList(new[] { " Visiting Scientist(without project at the Station)", "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
-            var position = new SelectList(new[] { "N/A","Principal Investigator", "CO-IP", "Senior Staff", "Tutor", "Supervisor", "Coordinator", "Collaborator", "Student", "Technical", "Field Assistant", "Interns", "Volunteer" });
-            var role = new SelectList(new[] { "N/A","Student", "Professor", "Coordinator", "Assistant" });
+            var position = new SelectList(new[] { "N/A", "Principal Investigator", "CO-IP", "Senior Staff", "Tutor", "Supervisor", "Coordinator", "Collaborator", "Student", "Technical", "Field Assistant", "Interns", "Volunteer" });
+            var role = new SelectList(new[] { "N/A", "Student", "Professor", "Coordinator", "Assistant" });
             ViewBag.sexoList = sexo;
             ViewBag.propositoList = proposito;
             ViewBag.positionList = position;
