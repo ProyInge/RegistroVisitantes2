@@ -662,3 +662,4 @@ C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitan
 C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\WebActivatorEx.dll
 C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\PagedList.xml
 C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\PagedList.Mvc.xml
+C:\Users\Emmanuel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\Content\Images\logo_oet.png
