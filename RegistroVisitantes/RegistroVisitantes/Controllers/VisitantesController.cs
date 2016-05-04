@@ -17,13 +17,13 @@ namespace RegistroVisitantes.Controllers
 
         // GET: Visitantes
         [Authorize]
-        public ActionResult Index(String id, int? Pagina)
+        public ActionResult Index(String idRes, int? Pagina)
         {
             IQueryable<INFOVISITA> pREREGISTRO;
-            if (id != null && !id.Equals(""))
+            if (idRes != null && !idRes.Equals(""))
             {
-                pREREGISTRO = db.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, id)).OrderBy(x => x.ID_RESERVACION);
-
+                pREREGISTRO = db.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes)).OrderBy(x => x.ID_RESERVACION);
+                ViewBag.idRes = idRes;
             }
             else
             {
@@ -31,20 +31,6 @@ namespace RegistroVisitantes.Controllers
             }
 
 
-            int Size_Of_Page = 10;
-            int No_Of_Page = (Pagina ?? 1);
-            return View(pREREGISTRO.ToPagedList(No_Of_Page, Size_Of_Page));
-            //return null;
-        }
-
-        [Authorize]
-        public ActionResult Reserva(string id, int? Pagina)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var pREREGISTRO = db.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, id)).OrderBy(x => x.ID_RESERVACION);
             int Size_Of_Page = 10;
             int No_Of_Page = (Pagina ?? 1);
             return View(pREREGISTRO.ToPagedList(No_Of_Page, Size_Of_Page));

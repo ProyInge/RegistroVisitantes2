@@ -70,7 +70,7 @@
                 @Html.DisplayFor(modelItem => item.SOLICITANTE)
             </td>
             <td>
-                @Html.ActionLink("Ver visitantes", "Reserva", "Visitantes", new { ID = item.NUMERO }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Ver visitantes", "Index", "Visitantes", new { idRes = item.ID }, new { @class = "btn btn-success" })
             </td>
         </tr>
     }

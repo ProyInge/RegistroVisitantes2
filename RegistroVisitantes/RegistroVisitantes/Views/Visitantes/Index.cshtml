@@ -8,17 +8,25 @@
 }
 
 <h2>Lista de Visitantes</h2>
-<hr />
-@using (Html.BeginForm())
+
+@if (ViewBag.idRes != null)
 {
-    <p>
-        Buscar por Número de reservación:
-        <input type="text" name="id" id="fromDate" />
-        <button type="submit" class="btn btn-success">
-            <i class="fa fa-search"></i>
-        </button>
-    </p>
+    <h3>Reservación:  @ViewBag.idRes</h3>
 }
+else
+{
+    using (Html.BeginForm())
+    {
+        <p>
+            Buscar por Número de reservación:
+            <input type="text" name="id" id="fromDate" />
+            <button type="submit" class="btn btn-success">
+                <i class="fa fa-search"></i>
+            </button>
+        </p>
+    }
+}
+
 
 <table class="table table-bordered table-striped table-condensed table-hover">
     <tr>

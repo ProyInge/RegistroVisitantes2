@@ -92,6 +92,7 @@
           <Property Name="MODIFICADO_RACK" Type="varchar2" MaxLength="255" />
           <Property Name="FLAG" Type="number" Precision="2" Scale="0" />
           <Property Name="URL" Type="varchar2" MaxLength="2000" />
+          <Property Name="TIPO" Type="varchar2" MaxLength="2" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -237,6 +238,7 @@
           <Property Name="FLAG" Type="Byte" />
           <Property Name="URL" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="INFOVISITA" Relationship="Self.INFOVISITA_RESERVA_FK" FromRole="RESERVACION" ToRole="INFOVISITA" />
+          <Property Name="TIPO" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -350,6 +352,7 @@
           <EntitySetMapping Name="RESERVACION">
             <EntityTypeMapping TypeName="ModelReservas.RESERVACION">
               <MappingFragment StoreEntitySet="RESERVACION">
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ANFITRIONA" ColumnName="ANFITRIONA" />
                 <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
