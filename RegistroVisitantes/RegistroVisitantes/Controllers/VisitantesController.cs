@@ -38,19 +38,18 @@ namespace RegistroVisitantes.Controllers
         
         // GET: Visitantes/Details/5
         [Authorize]
-        public ActionResult Details(int? id)
+        public ActionResult Details(String idRes, int? ced)
         {
-            /*if (id == null)
+            if (idRes == null || ced == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PREREGISTROCONTACTO pREREGISTROCONTACTO = db.PREREGISTROCONTACTO.Find(id);
+            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(idRes, ced);
             if (pREREGISTROCONTACTO == null)
             {
                 return HttpNotFound();
             }
-            return View(pREREGISTROCONTACTO);*/
-            return null;
+            return View(pREREGISTROCONTACTO);
         }
 
         // GET: Visitantes/Create

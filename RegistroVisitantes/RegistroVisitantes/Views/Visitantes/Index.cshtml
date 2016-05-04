@@ -90,7 +90,7 @@ else
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
             <td  align="center">
-                @Html.ActionLink("Ver informacion", "Details", "Visitantes", new { ID = item.ID_RESERVACION }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Ver informacion", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" })
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
             </td>

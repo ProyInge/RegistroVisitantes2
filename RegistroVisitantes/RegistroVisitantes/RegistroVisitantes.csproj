@@ -383,9 +383,9 @@
     <Content Include="Views\Formulario\Index.cshtml" />
     <Content Include="Views\Visitantes\Create.cshtml" />
     <Content Include="Views\Visitantes\Delete.cshtml" />
-    <Content Include="Views\Visitantes\Details.cshtml" />
     <Content Include="Views\Visitantes\Edit.cshtml" />
     <Content Include="Views\Visitantes\Index.cshtml" />
+    <Content Include="Views\Visitantes\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
