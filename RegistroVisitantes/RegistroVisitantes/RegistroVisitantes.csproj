@@ -386,6 +386,10 @@
     <Content Include="Views\Visitantes\Edit.cshtml" />
     <Content Include="Views\Visitantes\Index.cshtml" />
     <Content Include="Views\Visitantes\Details.cshtml" />
+    <Content Include="Views\Visitantes\DetailsOET.cshtml" />
+    <Content Include="Views\Visitantes\DetailsESINTRO.cshtml" />
+    <Content Include="Views\Visitantes\EditESINTRO.cshtml" />
+    <Content Include="Views\Visitantes\EditOET.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

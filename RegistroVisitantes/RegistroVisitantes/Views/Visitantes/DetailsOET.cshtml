@@ -1,0 +1,240 @@
+﻿@model RegistroVisitantes.Models.INFOVISITA
+
+@{
+    ViewBag.Title = "DetailsOET";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DetailsOET</h2>
+
+
+
+
+<div>
+    <h4>INFOVISITA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRE_EMERGENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE_EMERGENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TEL_EMERGENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEL_EMERGENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMAIL_EMERGENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMAIL_EMERGENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REL_EMERGENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REL_EMERGENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COMIDA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COMIDA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIETA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIETA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OBSERVACIONES_DIETA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OBSERVACIONES_DIETA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ALERGIAS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ALERGIAS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROPOSITO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROPOSITO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OTRO_PROPOSITO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OTRO_PROPOSITO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COMO_ENTERO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COMO_ENTERO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRE_CURSO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE_CURSO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NUMERO_CURSO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NUMERO_CURSO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ROL_CURSO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ROL_CURSO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRE_PROYECTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE_PROYECTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INVERSIONES)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INVERSIONES)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FUENTE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FUENTE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RESOLUCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RESOLUCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERMISO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERMISO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXPIRACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXPIRACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CARNE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CARNE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.POLLO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POLLO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PESCADO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PESCADO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CERDO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CERDO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RESERVACION.ANFITRIONA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RESERVACION.ANFITRIONA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditOET", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

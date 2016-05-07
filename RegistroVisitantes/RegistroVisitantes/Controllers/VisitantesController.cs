@@ -35,22 +35,144 @@ namespace RegistroVisitantes.Controllers
             int No_Of_Page = (Pagina ?? 1);
             return View(pREREGISTRO.ToPagedList(No_Of_Page, Size_Of_Page));
         }
-        
+
         // GET: Visitantes/Details/5
         [Authorize]
         public ActionResult Details(String idRes, int? ced)
         {
-            if (idRes == null || ced == null)
+            RESERVACION res = db.RESERVACION.Find(idRes);
+
+            if (res.ANFITRIONA.Equals("01"))
+            {
+                return RedirectToAction("DetailsOET", new { idR = idRes, cedula = ced });
+            }
+            else
+            {
+                return RedirectToAction("DetailsESINTRO", new { idR = idRes, cedula = ced });
+            }
+        }
+
+        [Authorize]
+        public ActionResult DetailsOET(String idR, int? cedula)
+        {
+
+            if (idR == null || cedula == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(idRes, ced);
+            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(idR, cedula);
             if (pREREGISTROCONTACTO == null)
             {
                 return HttpNotFound();
             }
             return View(pREREGISTROCONTACTO);
         }
+
+        [Authorize]
+        public ActionResult DetailsESINTRO(String idR, int? cedula)
+        {
+
+            if (idR == null || cedula == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(idR, cedula);
+            if (pREREGISTROCONTACTO == null)
+            {
+                return HttpNotFound();
+            }
+            return View(pREREGISTROCONTACTO);
+        }
+
+
+        public ActionResult Edit(String idRes, int? ced)
+        {
+
+
+            RESERVACION res = db.RESERVACION.Find(idRes);
+
+            if (res.ANFITRIONA.Equals("01"))
+            {
+                return RedirectToAction("EditOET");
+            }
+            else
+            {
+                return RedirectToAction("EditESINTRO");
+            }
+        }
+
+        public ActionResult EditOET(String idRes, int? ced)
+        {
+            if (idRes == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            INFOVISITA infov = db.INFOVISITA.Find(idRes, ced);
+            if (infov == null)
+            {
+                return HttpNotFound();
+            }
+            return View(infov);
+
+        }
+        public ActionResult EditESINTRO(String idRes, int? ced)
+        {
+            if (idRes == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            INFOVISITA infov = db.INFOVISITA.Find(idRes, ced);
+            if (infov == null)
+            {
+                return HttpNotFound();
+            }
+            return View(infov);
+   
+
+        }
+
+
+
+        // POST: /visitantes/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditOET( INFOVISITA infov)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(infov).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+
+        // POST: /visitantes/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditESINTRO(INFOVISITA infov)
+        {
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(infov).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+
+
+
+
+
+
 
         // GET: Visitantes/Create
         [Authorize]
