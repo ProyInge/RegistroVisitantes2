@@ -105,7 +105,7 @@ namespace RegistroVisitantes.Controllers
             }
 
 
-            form.ID_RESERVACION= "ANURA0127092004.0180619397";
+            form.ID_RESERVACION= idRes;
 
 
             if (ModelState.IsValid)
@@ -201,7 +201,7 @@ namespace RegistroVisitantes.Controllers
             }
 
 
-            //form.ID_RESERVACION= "ANURA0127092004.0180618819";
+            form.ID_RESERVACION= idRes;
 
 
             if (ModelState.IsValid)
