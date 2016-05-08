@@ -53,12 +53,18 @@ namespace RegistroVisitantes.Controllers
         [HttpPost]
         public ActionResult Login(USUARIO user)
         {
-            USUARIO usr = db.USUARIO.Where(u => u.USUARIO1 == user.USUARIO1 && u.CONTRASENA == user.CONTRASENA).FirstOrDefault();
+            USUARIO usr = db.USUARIO.Where(u => u.USUAR == user.USUAR && u.CONTRASENA == user.CONTRASENA).FirstOrDefault();
             if (usr != null)
             {
                 Session["Id"] = usr.ID.ToString();
-                Session["Username"] = usr.USUARIO1.ToString();
-                FormsAuthentication.SetAuthCookie(usr.USUARIO1.ToString(), true);
+                Session["Username"] = usr.USUAR.ToString();
+                Session["Nombre"] = usr.NOMBRE.ToString();
+                Session["Apellido"] = usr.APELLIDO.ToString();
+                Session["Rol"] = usr.ROL.ToString();
+                //LS=La Selva, PV=Palo Verde, LC=Las Cruces, CRO=Costa Rican Offices, NAO=North American Offices
+                Session["Estacion"] = usr.ESTACION.NOMBRE;
+                Session["IdEstacion"] = usr.ESTACION.ID;
+                FormsAuthentication.SetAuthCookie(usr.USUAR.ToString(), true);
                 resetRequest();
                 return RedirectToAction("Logueado");
             }

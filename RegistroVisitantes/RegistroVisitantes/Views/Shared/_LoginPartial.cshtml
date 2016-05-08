@@ -7,7 +7,7 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hola " + FormsAuthentication.Decrypt((HttpContext.Current.Request.Cookies.Get(FormsAuthentication.FormsCookieName)).Value).Name + "!", "Usuario", "Administracion", routeValues: null, htmlAttributes: new { title = "Administracion" })
+            @Html.ActionLink("Hola " + Session["Nombre"]+" "+Session["Apellido"] + "!", "Usuario", "Administracion", routeValues: null, htmlAttributes: new { title = "Administracion" })
         </li>
         <li>
             @Html.ActionLink("Cerrar sesión", "Login", "Usuario")

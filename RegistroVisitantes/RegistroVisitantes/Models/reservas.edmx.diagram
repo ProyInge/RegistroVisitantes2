@@ -5,13 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5881ea821910467395590c71672dbf85" Name="Diagram1">
-        <EntityTypeShape EntityType="ModelReservas.INFOVISITA" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModelReservas.PERSONA" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="ModelReservas.RESERVACION" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModelReservas.USUARIO" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="ModelReservas.INFOVISITA_PERSONA_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="ModelReservas.INFOVISITA_RESERVA_FK" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="ModelReservas.ESTACION" Width="1.5" PointX="5.375" PointY="1.375" />
+        <EntityTypeShape EntityType="ModelReservas.USUARIO" Width="1.5" PointX="7.625" PointY="1" />
+        <AssociationConnector Association="ModelReservas.USUARIO_ESTACION_FK" />
+        <EntityTypeShape EntityType="ModelReservas.INFOVISITA" Width="1.5" PointX="5.625" PointY="9.5" />
+        <EntityTypeShape EntityType="ModelReservas.PERSONA" Width="1.5" PointX="3.375" PointY="5.875" />
+        <AssociationConnector Association="ModelReservas.INFOVISITA_PERSONA_FK" />
+        <AssociationConnector Association="ModelReservas.INFOVISITA_RESERVA_FK" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

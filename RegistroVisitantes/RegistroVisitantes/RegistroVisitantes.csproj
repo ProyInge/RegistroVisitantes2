@@ -218,6 +218,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>contactos.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ESTACION.cs">
+      <DependentUpon>reservas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\INFOVISITA.cs">
       <DependentUpon>reservas.tt</DependentUpon>
