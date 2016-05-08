@@ -114,14 +114,27 @@
                 <label for="dieta">Preference</label>
                 <br />
 
-                @Html.LabelFor(model => model.CARNE, "Beef", htmlAttributes: new { @class = "control-label" })
+
+                <form action="demo_form.asp" method="get">
+                    <div class="row">
+                        <input id="carne" type="checkbox" name="checkCarne" value="true"> CARNE<br>
+                        <input id="pollo" type="checkbox" name="checkPollo" value="true"> POLLO<br>
+                        <input id="pescado" type="checkbox" name="checkPescado" value="true"> PESCADO<br>
+                        <input id="cerdo" type="checkbox" name="checkCerdo" value="true"> CERDO<br>
+
+                    </div>
+                </form>
+                @*@Html.LabelFor(model => model.CARNE, "Beef", htmlAttributes: new { @class = "control-label" })
                 @Html.CheckBoxFor(model => model.CARNE.Value, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.LabelFor(model => model.POLLO, "Chicken", htmlAttributes: new { @class = "control-label" })
                 @Html.CheckBoxFor(model => model.POLLO.Value, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.LabelFor(model => model.PESCADO, "Fish", htmlAttributes: new { @class = "control-label" })
                 @Html.CheckBoxFor(model => model.PESCADO.Value, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.LabelFor(model => model.CERDO, "Pork", htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.CERDO.Value, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.CheckBoxFor(model => model.CERDO.Value, new { htmlAttributes = new { @class = "form-control" } })*@
+            
+            
+            
             </div>
 
 

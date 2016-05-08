@@ -1,11 +1,12 @@
 ﻿@model RegistroVisitantes.Models.INFOVISITA
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "DetailsESINTRO";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>DetailsESINTRO</h2>
+
 
 <div>
     <h4>INFOVISITA</h4>
@@ -227,9 +228,66 @@
             @Html.DisplayFor(model => model.RESERVACION.ANFITRIONA)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.CEDULA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.CEDULA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.APELLIDO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.APELLIDO)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.CIUDAD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.CIUDAD)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.COD_POSTAL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.COD_POSTAL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.DIRECCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.DIRECCION)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.EMAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.EMAIL)
+        </dd>
+
+
+
+
+
+
+
+
+
+
+
+
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "EditESINTRO", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

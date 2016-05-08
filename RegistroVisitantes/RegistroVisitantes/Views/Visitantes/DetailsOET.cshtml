@@ -1,16 +1,21 @@
 ﻿@model RegistroVisitantes.Models.INFOVISITA
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "DetailsOET";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>DetailsOET</h2>
+
+
+
 
 <div>
     <h4>INFOVISITA</h4>
     <hr />
     <dl class="dl-horizontal">
+
+
         <dt>
             @Html.DisplayNameFor(model => model.NOMBRE_EMERGENCIA)
         </dt>
@@ -230,6 +235,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "EditOET", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
