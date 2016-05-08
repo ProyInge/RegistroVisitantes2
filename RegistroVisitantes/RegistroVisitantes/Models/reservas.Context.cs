@@ -28,7 +28,7 @@ namespace RegistroVisitantes.Models
         public virtual DbSet<RESERVACION> RESERVACION { get; set; }
         public virtual DbSet<ESTACION> ESTACION { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
-        public virtual DbSet<INFOVISITA> INFOVISITA { get; set; }
         public virtual DbSet<PERSONA> PERSONA { get; set; }
+        public virtual DbSet<INFOVISITA> INFOVISITA { get; set; }
     }
 }

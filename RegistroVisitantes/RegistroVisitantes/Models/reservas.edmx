@@ -26,6 +26,10 @@
           <Property Name="EMAIL_EMERGENCIA" Type="varchar2" MaxLength="150" />
           <Property Name="REL_EMERGENCIA" Type="varchar2" MaxLength="150" />
           <Property Name="COMIDA" Type="varchar2" MaxLength="300" />
+          <Property Name="CARNE" Type="number" Precision="1" Scale="0" />
+          <Property Name="POLLO" Type="number" Precision="1" Scale="0" />
+          <Property Name="PESCADO" Type="number" Precision="1" Scale="0" />
+          <Property Name="CERDO" Type="number" Precision="1" Scale="0" />
           <Property Name="DIETA" Type="varchar2" MaxLength="150" />
           <Property Name="OBSERVACIONES_DIETA" Type="varchar2" MaxLength="150" />
           <Property Name="ALERGIAS" Type="varchar2" MaxLength="150" />
@@ -217,8 +221,8 @@
             <End Role="ESTACION" EntitySet="ESTACION" />
             <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
-          <EntitySet Name="INFOVISITA" EntityType="ModelReservas.INFOVISITA" />
           <EntitySet Name="PERSONA" EntityType="ModelReservas.PERSONA" />
+          <EntitySet Name="INFOVISITA" EntityType="ModelReservas.INFOVISITA" />
           <AssociationSet Name="INFOVISITA_PERSONA_FK" Association="ModelReservas.INFOVISITA_PERSONA_FK">
             <End Role="PERSONA" EntitySet="PERSONA" />
             <End Role="INFOVISITA" EntitySet="INFOVISITA" />
@@ -264,37 +268,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="INFOVISITA">
-          <Key>
-            <PropertyRef Name="ID_RESERVACION" />
-            <PropertyRef Name="CEDULA" />
-          </Key>
-          <Property Name="ID_RESERVACION" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CEDULA" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="NOMBRE_EMERGENCIA" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
-          <Property Name="TEL_EMERGENCIA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="EMAIL_EMERGENCIA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="REL_EMERGENCIA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="COMIDA" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="DIETA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="OBSERVACIONES_DIETA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ALERGIAS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="PROPOSITO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="OTRO_PROPOSITO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="COMO_ENTERO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA" Type="DateTime" />
-          <Property Name="NOMBRE_CURSO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NUMERO_CURSO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ROL_CURSO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="NOMBRE_PROYECTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="INVERSIONES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FUENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RESOLUCION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="PERMISO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="EXPIRACION" Type="DateTime" />
-          <NavigationProperty Name="PERSONA" Relationship="ModelReservas.INFOVISITA_PERSONA_FK" FromRole="INFOVISITA" ToRole="PERSONA" />
-          <NavigationProperty Name="RESERVACION" Relationship="ModelReservas.INFOVISITA_RESERVA_FK" FromRole="INFOVISITA" ToRole="RESERVACION" />
-        </EntityType>
         <EntityType Name="PERSONA">
           <Key>
             <PropertyRef Name="CEDULA" />
@@ -316,6 +289,41 @@
           <Property Name="GENERO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="COD_POSTAL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="INFOVISITA" Relationship="ModelReservas.INFOVISITA_PERSONA_FK" FromRole="PERSONA" ToRole="INFOVISITA" />
+        </EntityType>
+        <EntityType Name="INFOVISITA">
+          <Key>
+            <PropertyRef Name="ID_RESERVACION" />
+            <PropertyRef Name="CEDULA" />
+          </Key>
+          <Property Name="ID_RESERVACION" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CEDULA" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_EMERGENCIA" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="TEL_EMERGENCIA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL_EMERGENCIA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="REL_EMERGENCIA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="COMIDA" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="CARNE" Type="Boolean" />
+          <Property Name="POLLO" Type="Boolean" />
+          <Property Name="PESCADO" Type="Boolean" />
+          <Property Name="CERDO" Type="Boolean" />
+          <Property Name="DIETA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="OBSERVACIONES_DIETA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ALERGIAS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PROPOSITO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="OTRO_PROPOSITO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="COMO_ENTERO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA" Type="DateTime" />
+          <Property Name="NOMBRE_CURSO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NUMERO_CURSO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ROL_CURSO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_PROYECTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="INVERSIONES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FUENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RESOLUCION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PERMISO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EXPIRACION" Type="DateTime" />
+          <NavigationProperty Name="PERSONA" Relationship="ModelReservas.INFOVISITA_PERSONA_FK" FromRole="INFOVISITA" ToRole="PERSONA" />
+          <NavigationProperty Name="RESERVACION" Relationship="ModelReservas.INFOVISITA_RESERVA_FK" FromRole="INFOVISITA" ToRole="RESERVACION" />
         </EntityType>
         <Association Name="INFOVISITA_PERSONA_FK">
           <End Type="ModelReservas.PERSONA" Role="PERSONA" Multiplicity="1" />
@@ -408,35 +416,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="INFOVISITA">
-            <EntityTypeMapping TypeName="ModelReservas.INFOVISITA">
-              <MappingFragment StoreEntitySet="INFOVISITA">
-                <ScalarProperty Name="EXPIRACION" ColumnName="EXPIRACION" />
-                <ScalarProperty Name="PERMISO" ColumnName="PERMISO" />
-                <ScalarProperty Name="RESOLUCION" ColumnName="RESOLUCION" />
-                <ScalarProperty Name="FUENTE" ColumnName="FUENTE" />
-                <ScalarProperty Name="INVERSIONES" ColumnName="INVERSIONES" />
-                <ScalarProperty Name="NOMBRE_PROYECTO" ColumnName="NOMBRE_PROYECTO" />
-                <ScalarProperty Name="ROL_CURSO" ColumnName="ROL_CURSO" />
-                <ScalarProperty Name="NUMERO_CURSO" ColumnName="NUMERO_CURSO" />
-                <ScalarProperty Name="NOMBRE_CURSO" ColumnName="NOMBRE_CURSO" />
-                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
-                <ScalarProperty Name="COMO_ENTERO" ColumnName="COMO_ENTERO" />
-                <ScalarProperty Name="OTRO_PROPOSITO" ColumnName="OTRO_PROPOSITO" />
-                <ScalarProperty Name="PROPOSITO" ColumnName="PROPOSITO" />
-                <ScalarProperty Name="ALERGIAS" ColumnName="ALERGIAS" />
-                <ScalarProperty Name="OBSERVACIONES_DIETA" ColumnName="OBSERVACIONES_DIETA" />
-                <ScalarProperty Name="DIETA" ColumnName="DIETA" />
-                <ScalarProperty Name="COMIDA" ColumnName="COMIDA" />
-                <ScalarProperty Name="REL_EMERGENCIA" ColumnName="REL_EMERGENCIA" />
-                <ScalarProperty Name="EMAIL_EMERGENCIA" ColumnName="EMAIL_EMERGENCIA" />
-                <ScalarProperty Name="TEL_EMERGENCIA" ColumnName="TEL_EMERGENCIA" />
-                <ScalarProperty Name="NOMBRE_EMERGENCIA" ColumnName="NOMBRE_EMERGENCIA" />
-                <ScalarProperty Name="CEDULA" ColumnName="CEDULA" />
-                <ScalarProperty Name="ID_RESERVACION" ColumnName="ID_RESERVACION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PERSONA">
             <EntityTypeMapping TypeName="ModelReservas.PERSONA">
               <MappingFragment StoreEntitySet="PERSONA">
@@ -456,6 +435,39 @@
                 <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="CEDULA" ColumnName="CEDULA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INFOVISITA">
+            <EntityTypeMapping TypeName="ModelReservas.INFOVISITA">
+              <MappingFragment StoreEntitySet="INFOVISITA">
+                <ScalarProperty Name="EXPIRACION" ColumnName="EXPIRACION" />
+                <ScalarProperty Name="PERMISO" ColumnName="PERMISO" />
+                <ScalarProperty Name="RESOLUCION" ColumnName="RESOLUCION" />
+                <ScalarProperty Name="FUENTE" ColumnName="FUENTE" />
+                <ScalarProperty Name="INVERSIONES" ColumnName="INVERSIONES" />
+                <ScalarProperty Name="NOMBRE_PROYECTO" ColumnName="NOMBRE_PROYECTO" />
+                <ScalarProperty Name="ROL_CURSO" ColumnName="ROL_CURSO" />
+                <ScalarProperty Name="NUMERO_CURSO" ColumnName="NUMERO_CURSO" />
+                <ScalarProperty Name="NOMBRE_CURSO" ColumnName="NOMBRE_CURSO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="COMO_ENTERO" ColumnName="COMO_ENTERO" />
+                <ScalarProperty Name="OTRO_PROPOSITO" ColumnName="OTRO_PROPOSITO" />
+                <ScalarProperty Name="PROPOSITO" ColumnName="PROPOSITO" />
+                <ScalarProperty Name="ALERGIAS" ColumnName="ALERGIAS" />
+                <ScalarProperty Name="OBSERVACIONES_DIETA" ColumnName="OBSERVACIONES_DIETA" />
+                <ScalarProperty Name="DIETA" ColumnName="DIETA" />
+                <ScalarProperty Name="CERDO" ColumnName="CERDO" />
+                <ScalarProperty Name="PESCADO" ColumnName="PESCADO" />
+                <ScalarProperty Name="POLLO" ColumnName="POLLO" />
+                <ScalarProperty Name="CARNE" ColumnName="CARNE" />
+                <ScalarProperty Name="COMIDA" ColumnName="COMIDA" />
+                <ScalarProperty Name="REL_EMERGENCIA" ColumnName="REL_EMERGENCIA" />
+                <ScalarProperty Name="EMAIL_EMERGENCIA" ColumnName="EMAIL_EMERGENCIA" />
+                <ScalarProperty Name="TEL_EMERGENCIA" ColumnName="TEL_EMERGENCIA" />
+                <ScalarProperty Name="NOMBRE_EMERGENCIA" ColumnName="NOMBRE_EMERGENCIA" />
+                <ScalarProperty Name="CEDULA" ColumnName="CEDULA" />
+                <ScalarProperty Name="ID_RESERVACION" ColumnName="ID_RESERVACION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
