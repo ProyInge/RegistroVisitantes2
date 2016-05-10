@@ -18,24 +18,24 @@ namespace RegistroVisitantes.Controllers
 
         // GET: Formulario
         [Authorize]
-        public ActionResult Index(String id)
+        public ActionResult Index(String idRes)
         {
-            if (id == null)
+            if (idRes == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var reservacion = BDReservas.RESERVACION.Find(id);
+            var reservacion = BDReservas.RESERVACION.Find(idRes);
             if (reservacion == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
             if(reservacion.ANFITRIONA.Equals("01"))
             {
-                return RedirectToAction("CreateOET", new { idRes = id });
+                return RedirectToAction("CreateOET", new { idRes = idRes });
             }
             else
             {
-                return RedirectToAction("CreateESINTRO", new { idRes = id });
+                return RedirectToAction("CreateESINTRO", new { idRes = idRes });
             }
         }
 
@@ -164,7 +164,7 @@ namespace RegistroVisitantes.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult CreateOET(String idRes, [Bind()]Models.INFOVISITA form, string genero, bool checkPollo=false , bool checkCarne=false, bool checkCerdo = false, bool checkPescado = false)
+        public ActionResult CreateOET(String idRes, [Bind()]Models.INFOVISITA form, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
         {
             if (idRes == null)
             {
@@ -176,7 +176,7 @@ namespace RegistroVisitantes.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
             if (checkCarne) {
-                form.CARNE=true;
+                form.CARNE = true;
             }
             if (checkPollo)
             {
@@ -201,7 +201,8 @@ namespace RegistroVisitantes.Controllers
             }
 
 
-            form.ID_RESERVACION= idRes;
+            form.ID_RESERVACION = idRes;
+            form.CEDULA = form.PERSONA.CEDULA;
 
 
             if (ModelState.IsValid)
