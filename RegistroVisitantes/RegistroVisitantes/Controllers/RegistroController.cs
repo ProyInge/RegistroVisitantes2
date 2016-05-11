@@ -12,7 +12,6 @@ namespace RegistroVisitantes.Controllers
 {
     public class RegistroController : Controller
     {
-        private BDContactos BDContac = new BDContactos();
         private BDReservas BDReserv = new BDReservas();
 
 
@@ -65,7 +64,7 @@ namespace RegistroVisitantes.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult Create([Bind()]Models.PREREGISTRO form,string dietas, string carnes)
+        public ActionResult Create(string dietas, string carnes)
         {
 
             /*if (dietas.Equals("sr"))
@@ -124,7 +123,7 @@ namespace RegistroVisitantes.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult CreateOET([Bind()]Models.PREREGISTRO form, string dietas, string carnes)
+        public ActionResult CreateOET( string dietas, string carnes)
         {
             /*if(dietas.Equals("sr"))
             {

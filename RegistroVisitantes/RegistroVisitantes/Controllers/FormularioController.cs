@@ -12,7 +12,6 @@ namespace RegistroVisitantes.Controllers
 {
     public class FormularioController : Controller
     {
-        private BDContactos BDPreContac = new BDContactos();
         private BDReservas BDReservas = new BDReservas();
 
 

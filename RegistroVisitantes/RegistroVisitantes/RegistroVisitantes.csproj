@@ -200,24 +200,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CONTACTO.cs">
-      <DependentUpon>contactos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\contactos.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>contactos.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\contactos.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>contactos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\contactos.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>contactos.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\ESTACION.cs">
       <DependentUpon>reservas.tt</DependentUpon>
     </Compile>
@@ -228,9 +210,6 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PERSONA.cs">
       <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PREREGISTRO.cs">
-      <DependentUpon>contactos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RESERVACION.cs">
       <DependentUpon>reservas.tt</DependentUpon>
@@ -253,9 +232,6 @@
     <Compile Include="Models\USUARIO.cs">
       <DependentUpon>reservas.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\V_EMPLEADOS.cs">
-      <DependentUpon>contactos.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -275,16 +251,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\contactos.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>contactos.edmx</DependentUpon>
-      <LastGenOutput>contactos.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\contactos.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>contactos.edmx</DependentUpon>
-      <LastGenOutput>contactos.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\reservas.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>reservas.edmx</DependentUpon>
@@ -297,13 +263,6 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\contactos.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>contactos.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\contactos.edmx.diagram">
-      <DependentUpon>contactos.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />

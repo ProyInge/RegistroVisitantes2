@@ -41,6 +41,7 @@ namespace RegistroVisitantes.Models
         public string RESOLUCION { get; set; }
         public string PERMISO { get; set; }
         public Nullable<System.DateTime> EXPIRACION { get; set; }
+        public Nullable<bool> ESTADO { get; set; }
     
         public virtual PERSONA PERSONA { get; set; }
         public virtual RESERVACION RESERVACION { get; set; }
