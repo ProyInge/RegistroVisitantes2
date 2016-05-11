@@ -38,7 +38,7 @@ namespace RegistroVisitantes.Controllers
 
         // GET: Visitantes/Details/5
         [Authorize]
-        public ActionResult Details(String idRes, int? ced)
+        public ActionResult Details(String idRes, String ced)
         {
             RESERVACION res = db.RESERVACION.Find(idRes);
 
@@ -53,11 +53,11 @@ namespace RegistroVisitantes.Controllers
         }
 
         [Authorize]
-        public ActionResult DetailsOET(String idR, int? cedula)
+        public ActionResult DetailsOET(String idR, String cedula)
         {
 
             if (idR == null || cedula == null)
-            {
+            {   
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(idR, cedula);
@@ -69,7 +69,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         [Authorize]
-        public ActionResult DetailsESINTRO(String idR, int? cedula)
+        public ActionResult DetailsESINTRO(String idR, String cedula)
         {
 
             if (idR == null || cedula == null)
@@ -85,7 +85,7 @@ namespace RegistroVisitantes.Controllers
         }
 
 
-        public ActionResult Edit(String idRes, int? ced)
+        public ActionResult Edit(String idRes, String ced)
         {
 
 
@@ -101,7 +101,7 @@ namespace RegistroVisitantes.Controllers
             }
         }
 
-        public ActionResult EditOET(String idRes, int? ced)
+        public ActionResult EditOET(String idRes, String ced)
         {
             if (idRes == null)
             {
@@ -115,7 +115,7 @@ namespace RegistroVisitantes.Controllers
             return View(infov);
 
         }
-        public ActionResult EditESINTRO(String idRes, int? ced)
+        public ActionResult EditESINTRO(String idRes, String ced)
         {
             if (idRes == null)
             {
