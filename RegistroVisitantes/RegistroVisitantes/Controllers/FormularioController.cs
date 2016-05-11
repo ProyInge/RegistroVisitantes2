@@ -64,6 +64,15 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
+    
+
+        public PartialViewResult AutocompletarOET(String email)
+        {
+            PERSONA persona = BDReservas.PERSONA.Where(p => p.EMAIL == email).FirstOrDefault();
+            //PERSONA persona = BDReservas.PERSONA.Find("444097134");
+            return PartialView(persona);
+        }
+
         [HttpPost]
         [Authorize]
         public ActionResult CreateESINTRO(String idRes, [Bind()]Models.INFOVISITA form, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
