@@ -348,6 +348,7 @@
     <Content Include="Views\Visitantes\Edit.cshtml" />
     <Content Include="Views\Visitantes\Index.cshtml" />
     <Content Include="Views\Visitantes\Reserva.cshtml" />
+    <Content Include="Views\Formulario\AutocompletarOET.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
