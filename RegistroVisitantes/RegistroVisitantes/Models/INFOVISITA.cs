@@ -44,6 +44,6 @@ namespace RegistroVisitantes.Models
         public Nullable<bool> ESTADO { get; set; }
     
         public virtual PERSONA PERSONA { get; set; }
-        public virtual RESERVACION RESERVACION { get; set; }
+        public virtual V_RESERVACION RESERVACION { get; set; }
     }
 }
