@@ -13,7 +13,8 @@ namespace RegistroVisitantes.Controllers
 {
     public class VisitantesController : Controller
     {
-        private BDReservas db = new BDReservas();
+        private BDReservas BDReservas = new BDReservas();
+        private BDRegistro BDRegistro = new BDRegistro();
 
         // GET: Visitantes
         [Authorize]
@@ -22,12 +23,12 @@ namespace RegistroVisitantes.Controllers
             IQueryable<INFOVISITA> pREREGISTRO;
             if (idRes != null && !idRes.Equals(""))
             {
-                pREREGISTRO = db.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes)).OrderBy(x => x.ID_RESERVACION);
+                pREREGISTRO = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes)).OrderBy(x => x.ID_RESERVACION);
                 ViewBag.idRes = idRes;
             }
             else
             {
-                pREREGISTRO = db.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
+                pREREGISTRO = BDRegistro.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
             }
 
 
@@ -40,7 +41,7 @@ namespace RegistroVisitantes.Controllers
         [Authorize]
         public ActionResult Details(String idRes, String ced)
         {
-            RESERVACION res = db.RESERVACION.Find(idRes);
+            RESERVACION res = BDReservas.RESERVACION.Find(idRes);
 
             if (res.ANFITRIONA.Equals("01"))
             {
@@ -60,7 +61,7 @@ namespace RegistroVisitantes.Controllers
             {   
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(idR, cedula);
+            INFOVISITA pREREGISTROCONTACTO = BDRegistro.INFOVISITA.Find(idR, cedula);
             if (pREREGISTROCONTACTO == null)
             {
                 return HttpNotFound();
@@ -76,7 +77,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(idR, cedula);
+            INFOVISITA pREREGISTROCONTACTO = BDRegistro.INFOVISITA.Find(idR, cedula);
             if (pREREGISTROCONTACTO == null)
             {
                 return HttpNotFound();
@@ -89,7 +90,7 @@ namespace RegistroVisitantes.Controllers
         {
 
 
-            RESERVACION res = db.RESERVACION.Find(idRes);
+            RESERVACION res = BDReservas.RESERVACION.Find(idRes);
 
             if (res.ANFITRIONA.Equals("01"))
             {
@@ -107,7 +108,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA infov = db.INFOVISITA.Find(idRes, ced);
+            INFOVISITA infov = BDRegistro.INFOVISITA.Find(idRes, ced);
             if (infov == null)
             {
                 return HttpNotFound();
@@ -121,7 +122,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA infov = db.INFOVISITA.Find(idRes, ced);
+            INFOVISITA infov = BDRegistro.INFOVISITA.Find(idRes, ced);
             if (infov == null)
             {
                 return HttpNotFound();
@@ -142,8 +143,8 @@ namespace RegistroVisitantes.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(infov).State = EntityState.Modified;
-                db.SaveChanges();
+                BDRegistro.Entry(infov).State = EntityState.Modified;
+                BDRegistro.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
@@ -160,8 +161,8 @@ namespace RegistroVisitantes.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Entry(infov).State = EntityState.Modified;
-                db.SaveChanges();
+                BDRegistro.Entry(infov).State = EntityState.Modified;
+                BDRegistro.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
@@ -239,7 +240,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(id);
+            INFOVISITA pREREGISTROCONTACTO = BDRegistro.INFOVISITA.Find(id);
             if (pREREGISTROCONTACTO == null)
             {
                 return HttpNotFound();
@@ -253,9 +254,9 @@ namespace RegistroVisitantes.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(id);
-            db.INFOVISITA.Remove(pREREGISTROCONTACTO);
-            db.SaveChanges();
+            INFOVISITA pREREGISTROCONTACTO = BDRegistro.INFOVISITA.Find(id);
+            BDRegistro.INFOVISITA.Remove(pREREGISTROCONTACTO);
+            BDRegistro.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -264,7 +265,7 @@ namespace RegistroVisitantes.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                BDRegistro.Dispose();
             }
             base.Dispose(disposing);
         }
