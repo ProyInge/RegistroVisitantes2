@@ -61,10 +61,23 @@ namespace RegistroVisitantes.Controllers
             {   
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA pREREGISTROCONTACTO = BDRegistro.INFOVISITA.Find(idR, cedula);
+            INFOVISITA pREREGISTROCONTACTO = BDRegistro.INFOVISITA.Find(idR, cedula);           
             if (pREREGISTROCONTACTO == null)
             {
                 return HttpNotFound();
+            }
+            else {
+                if (pREREGISTROCONTACTO.PERSONA.GENERO.Equals('0'))
+                {
+                    ViewBag.sexo =  "Male";
+
+                }
+                else {
+                    ViewBag.sexo="Female";
+                }
+                    
+                    
+                   
             }
             return View(pREREGISTROCONTACTO);
         }
@@ -81,6 +94,36 @@ namespace RegistroVisitantes.Controllers
             if (pREREGISTROCONTACTO == null)
             {
                 return HttpNotFound();
+            }
+            else
+            {
+                
+                if (pREREGISTROCONTACTO.PERSONA.GENERO.Equals("0"))
+                {
+                    ViewBag.sexoList =  "Male";
+                }
+                else
+                {
+                    ViewBag.sexoList =  "Female" ;
+                }
+               
+                switch (pREREGISTROCONTACTO.DIETA) {
+                    case "No Restriction": 
+                            ViewBag.dieta = "No Restriction";
+                        break;
+                    case "Vegetarian":
+                        ViewBag.dieta = "Vegetarian";
+                        break;
+                    case "Vegan":
+                        ViewBag.dieta = "Vegan";
+                        break;
+                }
+               
+            ViewBag.Carne = pREREGISTROCONTACTO.CARNE;
+            ViewBag.Pollo = pREREGISTROCONTACTO.POLLO;
+            ViewBag.Pescado = pREREGISTROCONTACTO.PESCADO;
+            ViewBag.Cerdo = pREREGISTROCONTACTO.CERDO;
+
             }
             return View(pREREGISTROCONTACTO);
         }
