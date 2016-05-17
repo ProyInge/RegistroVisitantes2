@@ -34,6 +34,9 @@ else
             Número reserva
         </th>
         <th>
+            Organización
+        </th>
+        <th>
             Nombre
         </th>
         <th>
@@ -49,13 +52,13 @@ else
             Firma
         </th>
         <th>
-
+            Imprimir
         </th>
         <th>
-
+            Inhabilitar
         </th>
         <th>
-
+            Ver Información
         </th>
     </tr>
 
@@ -63,7 +66,10 @@ else
     {
         <tr>
             <td align="center">
-                @Html.DisplayFor(modelItem => item.ID_RESERVACION)
+                @Html.DisplayFor(modelItem => item.RESERVACION.NUMERO)
+            </td>
+            <td align="center">
+                @Html.DisplayFor(modelItem => item.RESERVACION.ANFITRIONA)
             </td>
             <td align="center">
                 @Html.DisplayFor(modelItem => item.PERSONA.NOMBRE)
@@ -81,9 +87,17 @@ else
                 <input type="checkbox" name="firma" value="firma">
             </td>
             <td align="center">
-                <button type="button" class="btn btn-default" onclick="printPage()">
-                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-                </button>
+              @* @Html.ActionLink("Imprimir", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" }) *@  
+
+           @Html.ActionLink("Link text", "Refrescar", "Visitantes", new { }, new { @class = "myLink", data_id = item.ID_RESERVACION, data_ced = item.CEDULA, data_tipo = item.RESERVACION.ANFITRIONA }) 
+        @* <button type="button" class="btn btn-default" onclick="printPage('" + item.RESERVACION.NUMERO + "')" >
+           <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+       </button>
+@*
+    <a class="btn btn-default" href="@Url.Action("Print", new { idRes = item.ID_RESERVACION, ced = item.CEDULA})">
+        <i class="glyphicon glyphicon-print"></i>
+        <span class="sr-only">Edit</span>
+    </a>*@
 
             </td>
             <td align="center">
@@ -107,11 +121,29 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
         new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
 
 <script>
-   function printPage()
+
+    $(".myLink").click(function ()
+    {
+        //alert($(this).data("id") + $(this).data("ced"));
+        //Console.log($(this).data("id"), $(this).data("ced"));
+        if ($(this).data("tipo") > 1)
+        {
+            w = window.open('/Visitantes/DetailsOET?idR=' + $(this).data("id") + '&cedula=' + $(this).data("ced") + '');
+            w.print();
+        }
+        else
+        {
+            w = window.open('/Visitantes/DetailsESINTRO?idR=' + $(this).data("id") + '&cedula=' + $(this).data("ced") + '');
+            w.print();
+        }                  
+    });
+
+   function printPage(a)
    {
+       //Console.log(idRes,ced);
        //var div = document.getElementById("printerDiv");
-       //w = window.open('/Visitantes/Details');
-       w.print();
+       //var idRes = $('item.ID_RESERVACION');
+       alert(a);
       //div.innerHTML = '<iframe src="~/" onload="this.contentWindow.print();"></iframe>';
    }
 </script>

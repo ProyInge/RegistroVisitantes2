@@ -57,7 +57,7 @@ namespace RegistroVisitantes.Controllers
         {
 
             if (idR == null || cedula == null)
-            {   
+            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(idR, cedula);
@@ -127,7 +127,7 @@ namespace RegistroVisitantes.Controllers
                 return HttpNotFound();
             }
             return View(infov);
-   
+
 
         }
 
@@ -138,7 +138,7 @@ namespace RegistroVisitantes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditOET( INFOVISITA infov)
+        public ActionResult EditOET(INFOVISITA infov)
         {
             if (ModelState.IsValid)
             {
@@ -268,5 +268,12 @@ namespace RegistroVisitantes.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [Authorize]
+        public ActionResult Refrescar()
+        {
+          return Redirect(Request.UrlReferrer.ToString());
+        }
+    
     }
 }
