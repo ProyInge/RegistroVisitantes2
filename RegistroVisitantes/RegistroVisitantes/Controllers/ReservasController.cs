@@ -13,7 +13,7 @@ namespace RegistroVisitantes.Controllers
 {
     public class ReservasController : Controller
     {
-        private BDReservas db = new BDReservas();
+        private BDRegistro db = new BDRegistro();
 
         // GET: Reservas
         [Authorize]
@@ -28,7 +28,7 @@ namespace RegistroVisitantes.Controllers
             ViewBag.fromDate = from;
             ViewBag.toDate = to;
 
-            var lista = db.RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0).OrderBy(s => s.ENTRA);
+            var lista = db.V_RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0).OrderBy(s => s.ENTRA);
 
             int Size_Of_Page = 10;
             int No_Of_Page = (Pagina ?? 1);
@@ -43,7 +43,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RESERVACION rESERVACION = db.RESERVACION.Find(id);
+            V_RESERVACION rESERVACION = db.V_RESERVACION.Find(id);
             if (rESERVACION == null)
             {
                 return HttpNotFound();
@@ -64,11 +64,11 @@ namespace RegistroVisitantes.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ANFITRIONA,NUMERO,ESTADO,PRIORIDAD,GRUPO,ENTRA,ENTRAMTN,SALE,SALEMTN,RESPONSABLE,SOLICITANTE,NOTAS,SOLICITADAEL,FORMAPAGO,SALDO,CUENTACLIENTEKEY,CUENTACLIENTEOCLASS,ESTACION,MODIFICADOR,MODIFICADO,MONTO_PREPAGO,REFERENCIA_PREPAGO,PRIMERA_COMIDA,CREACION,ULTIMA_MODIFICACION,MODIFICA_RACK,MODIFICADO_RACK,FLAG,URL")] RESERVACION rESERVACION)
+        public ActionResult Create([Bind(Include = "ID,ANFITRIONA,NUMERO,ESTADO,PRIORIDAD,GRUPO,ENTRA,ENTRAMTN,SALE,SALEMTN,RESPONSABLE,SOLICITANTE,NOTAS,SOLICITADAEL,FORMAPAGO,SALDO,CUENTACLIENTEKEY,CUENTACLIENTEOCLASS,ESTACION,MODIFICADOR,MODIFICADO,MONTO_PREPAGO,REFERENCIA_PREPAGO,PRIMERA_COMIDA,CREACION,ULTIMA_MODIFICACION,MODIFICA_RACK,MODIFICADO_RACK,FLAG,URL")] V_RESERVACION rESERVACION)
         {
             if (ModelState.IsValid)
             {
-                db.RESERVACION.Add(rESERVACION);
+                db.V_RESERVACION.Add(rESERVACION);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -84,7 +84,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RESERVACION rESERVACION = db.RESERVACION.Find(id);
+            V_RESERVACION rESERVACION = db.V_RESERVACION.Find(id);
             if (rESERVACION == null)
             {
                 return HttpNotFound();
@@ -98,7 +98,7 @@ namespace RegistroVisitantes.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "ID,ANFITRIONA,NUMERO,ESTADO,PRIORIDAD,GRUPO,ENTRA,ENTRAMTN,SALE,SALEMTN,RESPONSABLE,SOLICITANTE,NOTAS,SOLICITADAEL,FORMAPAGO,SALDO,CUENTACLIENTEKEY,CUENTACLIENTEOCLASS,ESTACION,MODIFICADOR,MODIFICADO,MONTO_PREPAGO,REFERENCIA_PREPAGO,PRIMERA_COMIDA,CREACION,ULTIMA_MODIFICACION,MODIFICA_RACK,MODIFICADO_RACK,FLAG,URL")] RESERVACION rESERVACION)
+        public ActionResult Edit([Bind(Include = "ID,ANFITRIONA,NUMERO,ESTADO,PRIORIDAD,GRUPO,ENTRA,ENTRAMTN,SALE,SALEMTN,RESPONSABLE,SOLICITANTE,NOTAS,SOLICITADAEL,FORMAPAGO,SALDO,CUENTACLIENTEKEY,CUENTACLIENTEOCLASS,ESTACION,MODIFICADOR,MODIFICADO,MONTO_PREPAGO,REFERENCIA_PREPAGO,PRIMERA_COMIDA,CREACION,ULTIMA_MODIFICACION,MODIFICA_RACK,MODIFICADO_RACK,FLAG,URL")] V_RESERVACION rESERVACION)
         {
             if (ModelState.IsValid)
             {
@@ -117,7 +117,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RESERVACION rESERVACION = db.RESERVACION.Find(id);
+            V_RESERVACION rESERVACION = db.V_RESERVACION.Find(id);
             if (rESERVACION == null)
             {
                 return HttpNotFound();
@@ -131,8 +131,8 @@ namespace RegistroVisitantes.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            RESERVACION rESERVACION = db.RESERVACION.Find(id);
-            db.RESERVACION.Remove(rESERVACION);
+            V_RESERVACION rESERVACION = db.V_RESERVACION.Find(id);
+            db.V_RESERVACION.Remove(rESERVACION);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

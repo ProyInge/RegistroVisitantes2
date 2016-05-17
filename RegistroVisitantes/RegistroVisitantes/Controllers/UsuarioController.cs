@@ -10,7 +10,7 @@ namespace RegistroVisitantes.Controllers
 {
     public class UsuarioController : Controller
     {
-        private BDReservas db = new BDReservas();
+        private BDRegistro db = new BDRegistro();
         public ActionResult Ingresar()
         {
             return View();
@@ -53,6 +53,10 @@ namespace RegistroVisitantes.Controllers
         [HttpPost]
         public ActionResult Login(USUARIO user)
         {
+            var query = from x in db.USUARIO
+                               where x.USUAR == user.USUAR && x.CONTRASENA == user.CONTRASENA
+                               select x;
+            var sql = query.ToString();
             USUARIO usr = db.USUARIO.Where(u => u.USUAR == user.USUAR && u.CONTRASENA == user.CONTRASENA).FirstOrDefault();
             if (usr != null)
             {
