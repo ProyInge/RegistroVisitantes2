@@ -61,58 +61,64 @@ else
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td align="center">
-                @Html.DisplayFor(modelItem => item.ID_RESERVACION)
-            </td>
-            <td align="center">
-                @Html.DisplayFor(modelItem => item.PERSONA.NOMBRE)
-            </td>
-            <td align="center">
-                @Html.DisplayFor(modelItem => item.PERSONA.APELLIDO)
-            </td>
-            <td align="center">
-                @Html.DisplayFor(modelItem => item.PERSONA.EMAIL)
-            </td>
-            <td align="center">
-                @Html.DisplayFor(modelItem => item.PERSONA.CEDULA)
-            </td>
-            <td align="center">
-                <input type="checkbox" name="firma" value="firma">
-            </td>
-            <td align="center">
-                <button type="button" class="btn btn-default" onclick="printPage()">
-                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-                </button>
+        if (item.ESTADO == false)
+        {
+            @:<tr style="background-color:blue;">
+        }
+        else
+        {
+            @:<tr>
+        }
 
-            </td>
-            <td align="center">
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-            <td align="center">
-                @Html.ActionLink("Ver informacion", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" })
-                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
-            </td>
-        </tr>
-    }
+        <td align="center">
+            @Html.DisplayFor(modelItem => item.ID_RESERVACION)
+        </td>
+                <td align="center">
+                    @Html.DisplayFor(modelItem => item.PERSONA.NOMBRE)
+                </td>
+                <td align="center">
+                    @Html.DisplayFor(modelItem => item.PERSONA.APELLIDO)
+                </td>
+                <td align="center">
+                    @Html.DisplayFor(modelItem => item.PERSONA.EMAIL)
+                </td>
+                <td align="center">
+                    @Html.DisplayFor(modelItem => item.PERSONA.CEDULA)
+                </td>
+                <td align="center">
+                    <input type="checkbox" name="firma" value="firma">
+                </td>
+                <td align="center">
+                    <button type="button" class="btn btn-default" onclick="printPage()">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                    </button>
+
+                </td>
+                <td align="center">
+                    @Html.ActionLink("Cambiar estado", "Delete", new { idRes = item.ID_RESERVACION, idPer = item.CEDULA })
+                </td>
+                <td align="center">
+                    @Html.ActionLink("Ver informacion", "Details", "Index", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" })
+                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                </td>
+                @:</tr>
+            }
 
 </table>
 
 <div id="printerDiv" style="display:none"></div>
 
 <br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-@Html.PagedListPager(Model, Pagina => Url.Action("Index",
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            @Html.PagedListPager(Model, Pagina => Url.Action("Index",
         new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
 
-<script>
-   function printPage()
-   {
-       //var div = document.getElementById("printerDiv");
-       //w = window.open('/Visitantes/Details');
-       w.print();
-      //div.innerHTML = '<iframe src="~/" onload="this.contentWindow.print();"></iframe>';
-   }
-</script>
-
+            <script>
+                function printPage() {
+                    //var div = document.getElementById("printerDiv");
+                    //w = window.open('/Visitantes/Details');
+                    w.print();
+                    //div.innerHTML = '<iframe src="~/" onload="this.contentWindow.print();"></iframe>';
+                }
+            </script>

@@ -231,30 +231,41 @@ namespace RegistroVisitantes.Controllers
             return View(pREREGISTROCONTACTO);
         }*/
 
-        // GET: Visitantes/Delete/5
+        //GET: Visitantes/Delete/5
+
         [Authorize]
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string idRes, string idPer)
         {
-            if (id == null)
+            if (idRes == null || idPer == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(id);
-            if (pREREGISTROCONTACTO == null)
+            INFOVISITA iInfoVisita = db.INFOVISITA.Find(idRes, idPer);
+            if (iInfoVisita == null)
             {
                 return HttpNotFound();
             }
-            return View(pREREGISTROCONTACTO);
+            return View(iInfoVisita);
         }
 
         // POST: Visitantes/Delete/5
         [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string idRes, string idPer)
         {
-            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(id);
-            db.INFOVISITA.Remove(pREREGISTROCONTACTO);
+            if (idRes == null || idPer == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            INFOVISITA iInfoVisita = db.INFOVISITA.Find(idRes, idPer);
+            if (iInfoVisita == null)
+            {
+                return HttpNotFound();
+            }
+            
+            iInfoVisita.ESTADO = false;
+            //db.INFOVISITA.Remove(pREREGISTROCONTACTO);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
