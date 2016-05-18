@@ -13,7 +13,8 @@ namespace RegistroVisitantes.Controllers
 {
     public class VisitantesController : Controller
     {
-        private BDReservas db = new BDReservas();
+        private BDReservas BDReservas = new BDReservas();
+        private BDRegistro BDRegistro = new BDRegistro();
 
         // GET: Visitantes
         [Authorize]
@@ -22,12 +23,12 @@ namespace RegistroVisitantes.Controllers
             IQueryable<INFOVISITA> pREREGISTRO;
             if (idRes != null && !idRes.Equals(""))
             {
-                pREREGISTRO = db.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes)).OrderBy(x => x.ID_RESERVACION);
+                pREREGISTRO = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes)).OrderBy(x => x.ID_RESERVACION);
                 ViewBag.idRes = idRes;
             }
             else
             {
-                pREREGISTRO = db.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
+                pREREGISTRO = BDRegistro.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
             }
 
 
@@ -40,7 +41,7 @@ namespace RegistroVisitantes.Controllers
         [Authorize]
         public ActionResult Details(String idRes, String ced)
         {
-            RESERVACION res = db.RESERVACION.Find(idRes);
+            RESERVACION res = BDReservas.RESERVACION.Find(idRes);
 
             if (res.ANFITRIONA.Equals("01"))
             {
@@ -60,10 +61,23 @@ namespace RegistroVisitantes.Controllers
             {   
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(idR, cedula);
+            INFOVISITA pREREGISTROCONTACTO = BDRegistro.INFOVISITA.Find(idR, cedula);           
             if (pREREGISTROCONTACTO == null)
             {
                 return HttpNotFound();
+            }
+            else {
+                if (pREREGISTROCONTACTO.PERSONA.GENERO.Equals('0'))
+                {
+                    ViewBag.sexo =  "Male";
+
+                }
+                else {
+                    ViewBag.sexo="Female";
+                }
+                    
+                    
+                   
             }
             return View(pREREGISTROCONTACTO);
         }
@@ -76,10 +90,40 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(idR, cedula);
+            INFOVISITA pREREGISTROCONTACTO = BDRegistro.INFOVISITA.Find(idR, cedula);
             if (pREREGISTROCONTACTO == null)
             {
                 return HttpNotFound();
+            }
+            else
+            {
+                
+                if (pREREGISTROCONTACTO.PERSONA.GENERO.Equals("0"))
+                {
+                    ViewBag.sexoList =  "Male";
+                }
+                else
+                {
+                    ViewBag.sexoList =  "Female" ;
+                }
+               
+                switch (pREREGISTROCONTACTO.DIETA) {
+                    case "No Restriction": 
+                            ViewBag.dieta = "No Restriction";
+                        break;
+                    case "Vegetarian":
+                        ViewBag.dieta = "Vegetarian";
+                        break;
+                    case "Vegan":
+                        ViewBag.dieta = "Vegan";
+                        break;
+                }
+               
+            ViewBag.Carne = pREREGISTROCONTACTO.CARNE;
+            ViewBag.Pollo = pREREGISTROCONTACTO.POLLO;
+            ViewBag.Pescado = pREREGISTROCONTACTO.PESCADO;
+            ViewBag.Cerdo = pREREGISTROCONTACTO.CERDO;
+
             }
             return View(pREREGISTROCONTACTO);
         }
@@ -89,7 +133,7 @@ namespace RegistroVisitantes.Controllers
         {
 
 
-            RESERVACION res = db.RESERVACION.Find(idRes);
+            RESERVACION res = BDReservas.RESERVACION.Find(idRes);
 
             if (res.ANFITRIONA.Equals("01"))
             {
@@ -107,7 +151,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA infov = db.INFOVISITA.Find(idRes, ced);
+            INFOVISITA infov = BDRegistro.INFOVISITA.Find(idRes, ced);
             if (infov == null)
             {
                 return HttpNotFound();
@@ -121,7 +165,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA infov = db.INFOVISITA.Find(idRes, ced);
+            INFOVISITA infov = BDRegistro.INFOVISITA.Find(idRes, ced);
             if (infov == null)
             {
                 return HttpNotFound();
@@ -142,8 +186,8 @@ namespace RegistroVisitantes.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(infov).State = EntityState.Modified;
-                db.SaveChanges();
+                BDRegistro.Entry(infov).State = EntityState.Modified;
+                BDRegistro.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
@@ -160,8 +204,8 @@ namespace RegistroVisitantes.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Entry(infov).State = EntityState.Modified;
-                db.SaveChanges();
+                BDRegistro.Entry(infov).State = EntityState.Modified;
+                BDRegistro.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
@@ -231,31 +275,44 @@ namespace RegistroVisitantes.Controllers
             return View(pREREGISTROCONTACTO);
         }*/
 
-        // GET: Visitantes/Delete/5
+        //GET: Visitantes/Delete/?idRes=xxxx?idPer=yyyy
+
         [Authorize]
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string idRes, string idPer)
         {
-            if (id == null)
+            if (idRes == null || idPer == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(id);
-            if (pREREGISTROCONTACTO == null)
+            INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, idPer);
+           
+            if (iInfoVisita == null)
             {
                 return HttpNotFound();
             }
-            return View(pREREGISTROCONTACTO);
+            return View(iInfoVisita);
         }
 
         // POST: Visitantes/Delete/5
         [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string idRes, string idPer)
         {
-            INFOVISITA pREREGISTROCONTACTO = db.INFOVISITA.Find(id);
-            db.INFOVISITA.Remove(pREREGISTROCONTACTO);
-            db.SaveChanges();
+            if (idRes == null || idPer == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, idPer);
+            if (iInfoVisita == null)
+            {
+                return HttpNotFound();
+            }
+            
+            iInfoVisita.ESTADO = false;
+            //db.INFOVISITA.Remove(pREREGISTROCONTACTO);
+            BDRegistro.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
@@ -264,7 +321,7 @@ namespace RegistroVisitantes.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                BDRegistro.Dispose();
             }
             base.Dispose(disposing);
         }

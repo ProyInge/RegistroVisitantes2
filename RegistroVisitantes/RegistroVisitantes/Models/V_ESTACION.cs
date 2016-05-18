@@ -12,17 +12,20 @@ namespace RegistroVisitantes.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class USUARIO
+    public partial class V_ESTACION
     {
-        public decimal ID { get; set; }
-        public string NOMBRE { get; set; }
-        public string APELLIDO { get; set; }
-        public string EMAIL { get; set; }
-        public string USUAR { get; set; }
-        public string CONTRASENA { get; set; }
-        public string ROL { get; set; }
-        public string IDESTACION { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public V_ESTACION()
+        {
+            this.USUARIO = new HashSet<USUARIO>();
+        }
     
-        public virtual V_ESTACION ESTACION { get; set; }
+        public string ID { get; set; }
+        public string NOMBRE { get; set; }
+        public string SIGLAS { get; set; }
+        public string RESERVABLE { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USUARIO> USUARIO { get; set; }
     }
 }

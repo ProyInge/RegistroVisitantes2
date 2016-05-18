@@ -12,6 +12,7 @@ namespace RegistroVisitantes.Controllers
 {
     public class FormularioController : Controller
     {
+        private BDRegistro BDRegistro = new BDRegistro ();
         private BDReservas BDReservas = new BDReservas();
 
 
@@ -23,7 +24,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var reservacion = BDReservas.RESERVACION.Find(idRes);
+            RESERVACION reservacion = BDReservas.RESERVACION.Find(idRes);
             if (reservacion == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
@@ -75,7 +76,7 @@ namespace RegistroVisitantes.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult CreateESINTRO(String idRes, [Bind()]Models.INFOVISITA form, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
+        public ActionResult CreateESINTRO(String idRes, [Bind()]Models.INFOVISITA form, string dietas, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
         {
             if (idRes == null)
             {
@@ -86,22 +87,12 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
-            if (checkCarne)
-            {
-                form.CARNE = true;
-            }
-            if (checkPollo)
-            {
-                form.POLLO = true;
-            }
-            if (checkCerdo)
-            {
-                form.CERDO = true;
-            }
-            if (checkPescado)
-            {
-                form.PESCADO = true;
-            }
+
+            form.CARNE = checkCarne;
+            form.POLLO = checkPollo;
+            form.CERDO = checkCerdo;
+            form.PESCADO = checkPescado;
+          
 
             if (genero == "female")
             {
@@ -115,12 +106,13 @@ namespace RegistroVisitantes.Controllers
 
 
             form.ID_RESERVACION= idRes;
-
+            form.DIETA = dietas;
 
             if (ModelState.IsValid)
             {
-                var db = BDReservas;
+                var db = BDRegistro;
                 db.INFOVISITA.Add(form);
+                
 
                 try
                 {
@@ -141,9 +133,9 @@ namespace RegistroVisitantes.Controllers
                     }
                     throw raise;
                 }
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
             }
-            return CreateESINTRO(idRes);
+            return RedirectToAction("Index", "Reservas");
         }
 
         public PartialViewResult AutocompletarESINTRO(String email)
@@ -222,7 +214,7 @@ namespace RegistroVisitantes.Controllers
 
             if (ModelState.IsValid)
             {
-                var db = BDReservas;
+                var db = BDRegistro;
                 db.INFOVISITA.Add(form);
                 
                 try
@@ -244,9 +236,9 @@ namespace RegistroVisitantes.Controllers
                     }
                     throw raise;
                 }
-                return RedirectToAction("Index");
+               // return RedirectToAction("Index");
             }
-            return CreateOET(idRes);
+            return RedirectToAction("Index", "Reservas");
         }
     }
 }
