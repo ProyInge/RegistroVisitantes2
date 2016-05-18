@@ -46,6 +46,7 @@
           <Property Name="RESOLUCION" Type="varchar2" MaxLength="30" />
           <Property Name="PERMISO" Type="varchar2" MaxLength="30" />
           <Property Name="EXPIRACION" Type="date" />
+          <Property Name="ESTADO" Type="number" Precision="1" Scale="0" />
         </EntityType>
         <EntityType Name="PERSONA">
           <Key>
@@ -324,6 +325,7 @@
           <Property Name="EXPIRACION" Type="DateTime" />
           <NavigationProperty Name="PERSONA" Relationship="ModelReservas.INFOVISITA_PERSONA_FK" FromRole="INFOVISITA" ToRole="PERSONA" />
           <NavigationProperty Name="RESERVACION" Relationship="ModelReservas.INFOVISITA_RESERVA_FK" FromRole="INFOVISITA" ToRole="RESERVACION" />
+          <Property Name="ESTADO" Type="Boolean" />
         </EntityType>
         <Association Name="INFOVISITA_PERSONA_FK">
           <End Type="ModelReservas.PERSONA" Role="PERSONA" Multiplicity="1" />
@@ -441,6 +443,7 @@
           <EntitySetMapping Name="INFOVISITA">
             <EntityTypeMapping TypeName="ModelReservas.INFOVISITA">
               <MappingFragment StoreEntitySet="INFOVISITA">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="EXPIRACION" ColumnName="EXPIRACION" />
                 <ScalarProperty Name="PERMISO" ColumnName="PERMISO" />
                 <ScalarProperty Name="RESOLUCION" ColumnName="RESOLUCION" />
