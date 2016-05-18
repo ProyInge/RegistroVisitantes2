@@ -284,13 +284,9 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-<<<<<<< HEAD
-            INFOVISITA iInfoVisita = db.INFOVISITA.Find(idRes, idPer);
+
+            INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, idPer);
             if (iInfoVisita == null)
-=======
-            INFOVISITA pREREGISTROCONTACTO = BDRegistro.INFOVISITA.Find(id);
-            if (pREREGISTROCONTACTO == null)
->>>>>>> 872fe9f4f0390de5ff8efd5575b496695b750e69
             {
                 return HttpNotFound();
             }
@@ -303,12 +299,11 @@ namespace RegistroVisitantes.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string idRes, string idPer)
         {
-<<<<<<< HEAD
             if (idRes == null || idPer == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA iInfoVisita = db.INFOVISITA.Find(idRes, idPer);
+            INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, idPer);
             if (iInfoVisita == null)
             {
                 return HttpNotFound();
@@ -316,12 +311,8 @@ namespace RegistroVisitantes.Controllers
             
             iInfoVisita.ESTADO = false;
             //db.INFOVISITA.Remove(pREREGISTROCONTACTO);
-            db.SaveChanges();
-=======
-            INFOVISITA pREREGISTROCONTACTO = BDRegistro.INFOVISITA.Find(id);
-            BDRegistro.INFOVISITA.Remove(pREREGISTROCONTACTO);
             BDRegistro.SaveChanges();
->>>>>>> 872fe9f4f0390de5ff8efd5575b496695b750e69
+
             return RedirectToAction("Index");
         }
 
