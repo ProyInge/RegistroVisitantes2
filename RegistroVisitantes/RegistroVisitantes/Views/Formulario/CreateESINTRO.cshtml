@@ -195,3 +195,28 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts {
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")" type="text/javascript"></script>>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnAjax').click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("AutocompletarOET", "Formulario")',
+                    data: { email: $('#e-mail').val() },
+                    success: function (result) {
+                        $('#personalInfo').html(result);
+                    },
+                    error: function (xhr, status) {
+                        alert(status);
+                        return false;
+                    }
+                });
+
+            });
+        });
+
+    </script>
+}
