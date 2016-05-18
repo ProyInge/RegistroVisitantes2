@@ -48,6 +48,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             var reservacion = BDReservas.RESERVACION.Find(idRes);
             if (reservacion == null || !reservacion.ANFITRIONA.Equals("02"))
             {
@@ -137,6 +138,12 @@ namespace RegistroVisitantes.Controllers
             return RedirectToAction("Index", "Reservas");
         }
 
+        public PartialViewResult AutocompletarESINTRO(String email)
+        {
+            PERSONA persona = BDReservas.PERSONA.Where(p => p.EMAIL == email).FirstOrDefault();
+            //PERSONA persona = BDReservas.PERSONA.Find("444097134");
+            return PartialView(persona);
+        }
 
         [HttpGet]
         [Authorize]
