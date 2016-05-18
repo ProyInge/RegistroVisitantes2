@@ -28,6 +28,16 @@ namespace RegistroVisitantes.Controllers
             ViewBag.fromDate = from;
             ViewBag.toDate = to;
 
+            /*IOrderedQueryable<V_RESERVACION> lista;
+            if((string)Session["Rol"]!="R")
+            {
+                lista = db.V_RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0).OrderBy(s => s.ENTRA);
+            }
+            else
+            {
+                lista = db.V_RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0 && String.Compare(x.ESTACION,(string)Session["IdEstacion"])==0).OrderBy(s => s.ENTRA);
+            }*/
+
             var lista = db.V_RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0).OrderBy(s => s.ENTRA);
 
             int Size_Of_Page = 10;
