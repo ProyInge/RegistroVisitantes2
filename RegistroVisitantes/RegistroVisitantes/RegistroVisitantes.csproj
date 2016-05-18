@@ -205,11 +205,26 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\INFOVISITA.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
+      <DependentUpon>registro.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PERSONA.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
+      <DependentUpon>registro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\registro.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>registro.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\registro.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>registro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\registro.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>registro.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\RESERVACION.cs">
       <DependentUpon>reservas.tt</DependentUpon>
@@ -230,7 +245,13 @@
       <DependentUpon>reservas.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\USUARIO.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
+      <DependentUpon>registro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_ESTACION.cs">
+      <DependentUpon>registro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_RESERVACION.cs">
+      <DependentUpon>registro.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -251,6 +272,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\registro.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>registro.edmx</DependentUpon>
+      <LastGenOutput>registro.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\registro.edmx.sql" />
+    <Content Include="Models\registro.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>registro.edmx</DependentUpon>
+      <LastGenOutput>registro.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\reservas.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>reservas.edmx</DependentUpon>
@@ -273,6 +305,13 @@
     </EntityDeploy>
     <Content Include="Models\reservas.edmx.diagram">
       <DependentUpon>reservas.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\registro.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>registro.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\registro.edmx.diagram">
+      <DependentUpon>registro.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -349,7 +388,10 @@
     <Content Include="Views\Visitantes\Index.cshtml" />
     <Content Include="Views\Visitantes\Reserva.cshtml" />
     <Content Include="Views\Formulario\AutocompletarOET.cshtml" />
-    <Content Include="Views\Formulario\AutocompletarESINTRO.cshtml" />
+    <Content Include="Views\Visitantes\DetailsESINTRO.cshtml" />
+    <Content Include="Views\Visitantes\DetailsOET.cshtml" />
+    <Content Include="Views\Visitantes\EditESINTRO.cshtml" />
+    <Content Include="Views\Visitantes\EditOET.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
