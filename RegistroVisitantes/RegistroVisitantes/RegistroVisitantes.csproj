@@ -392,6 +392,7 @@
     <Content Include="Views\Visitantes\DetailsOET.cshtml" />
     <Content Include="Views\Visitantes\EditESINTRO.cshtml" />
     <Content Include="Views\Visitantes\EditOET.cshtml" />
+    <Content Include="Views\Formulario\AutocompletarESINTRO.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

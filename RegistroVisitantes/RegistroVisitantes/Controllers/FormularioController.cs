@@ -64,12 +64,15 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
-    
+        public PartialViewResult AutocompletarESINTRO(String email)
+        {
+            PERSONA persona = BDReservas.PERSONA.Where(p => p.EMAIL == email).FirstOrDefault();
+            return PartialView(persona);
+        }
 
         public PartialViewResult AutocompletarOET(String email)
         {
             PERSONA persona = BDReservas.PERSONA.Where(p => p.EMAIL == email).FirstOrDefault();
-            //PERSONA persona = BDReservas.PERSONA.Find("444097134");
             return PartialView(persona);
         }
 
