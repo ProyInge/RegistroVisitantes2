@@ -347,7 +347,8 @@ namespace RegistroVisitantes.Controllers
                 return HttpNotFound();
             }
             
-            iInfoVisita.ESTADO = false;
+
+            iInfoVisita.ESTADO = !iInfoVisita.ESTADO;
             //db.INFOVISITA.Remove(pREREGISTROCONTACTO);
             BDRegistro.SaveChanges();
 
