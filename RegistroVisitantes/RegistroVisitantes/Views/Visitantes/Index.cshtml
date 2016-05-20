@@ -34,6 +34,9 @@ else
             Número reserva
         </th>
         <th>
+            Organización
+        </th>
+        <th>
             Nombre
         </th>
         <th>
@@ -71,37 +74,41 @@ else
         }
 
         <td align="center">
-            @Html.DisplayFor(modelItem => item.ID_RESERVACION)
+            @Html.DisplayFor(modelItem => item.RESERVACION.NUMERO)
         </td>
-                <td align="center">
-                    @Html.DisplayFor(modelItem => item.PERSONA.NOMBRE)
-                </td>
-                <td align="center">
-                    @Html.DisplayFor(modelItem => item.PERSONA.APELLIDO)
-                </td>
-                <td align="center">
-                    @Html.DisplayFor(modelItem => item.PERSONA.EMAIL)
-                </td>
-                <td align="center">
-                    @Html.DisplayFor(modelItem => item.PERSONA.CEDULA)
-                </td>
-                <td align="center">
-                    <input type="checkbox" name="firma" value="firma">
-                </td>
-                <td align="center">
-                    <button type="button" class="btn btn-default" onclick="printPage()">
-                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-                    </button>
+        <td align="center">
+            @Html.DisplayFor(modelItem => item.RESERVACION.ANFITRIONA)
+        </td>
+        <td align="center">
+            @Html.DisplayFor(modelItem => item.PERSONA.NOMBRE)
+        </td>
+        <td align="center">
+            @Html.DisplayFor(modelItem => item.PERSONA.APELLIDO)
+        </td>
+        <td align="center">
+            @Html.DisplayFor(modelItem => item.PERSONA.EMAIL)
+        </td>
+        <td align="center">
+            @Html.DisplayFor(modelItem => item.PERSONA.CEDULA)
+        </td>
+        <td align="center">
+            <input type="checkbox" name="firma" value="firma">
+        </td>
+         <td align="center">
+             @*<button type="button" class="btn btn-default" onclick="printPage()">
+                   <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+              </button>*@
+             @Html.ActionLink("linky", "Refrescar", "Visitantes", new { onclick = "myLink"})
 
-                </td>
-                <td align="center">
-                    @Html.ActionLink("Cambiar estado", "Delete", new { idRes = item.ID_RESERVACION, idPer = item.CEDULA })
-                </td>
-                <td align="center">
-                    @Html.ActionLink("Ver informacion", "Details", "Index", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" })
+        </td>
+        <td align="center">
+             @Html.ActionLink("Cambiar estado", "Delete", new { idRes = item.ID_RESERVACION, idPer = item.CEDULA })
+        </td>
+        <td align="center">
+              @Html.ActionLink("Ver informacion", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" })
                     @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                         @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
-                </td>
+        </td>
                 @:</tr>
             }
 
@@ -114,11 +121,10 @@ else
             @Html.PagedListPager(Model, Pagina => Url.Action("Index",
         new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
 
-            <script>
-                function printPage() {
-                    //var div = document.getElementById("printerDiv");
-                    //w = window.open('/Visitantes/Details');
-                    w.print();
-                    //div.innerHTML = '<iframe src="~/" onload="this.contentWindow.print();"></iframe>';
-                }
-            </script>
+<script>
+    $('#mylink').click(function () 
+    {
+        //doSomething($(this).data("id"));
+        window.print();
+    });
+</script>

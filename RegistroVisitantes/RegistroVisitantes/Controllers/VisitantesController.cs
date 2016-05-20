@@ -325,5 +325,11 @@ namespace RegistroVisitantes.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [Authorize]
+        public ActionResult Refrescar()
+        {
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }
