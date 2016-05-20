@@ -61,25 +61,41 @@ namespace RegistroVisitantes.Controllers
             {   
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA pREREGISTROCONTACTO = BDRegistro.INFOVISITA.Find(idR, cedula);           
-            if (pREREGISTROCONTACTO == null)
+            INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idR, cedula);
+            if (iInfoVisita == null)
             {
                 return HttpNotFound();
             }
-            else {
-                if (pREREGISTROCONTACTO.PERSONA.GENERO.Equals('0'))
+            else
+            {
+                if (iInfoVisita.PERSONA.GENERO.Equals("0"))
                 {
-                    ViewBag.sexo =  "Male";
+                    ViewBag.sexoList = "Male";
+                }
+                else
+                {
+                    ViewBag.sexoList = "Female";
+                }
 
+                switch (iInfoVisita.DIETA)
+                {
+                    case "No Restriction":
+                        ViewBag.dieta = "No Restriction";
+                        break;
+                    case "Vegetarian":
+                        ViewBag.dieta = "Vegetarian";
+                        break;
+                    case "Vegan":
+                        ViewBag.dieta = "Vegan";
+                        break;
                 }
-                else {
-                    ViewBag.sexo="Female";
-                }
-                    
-                    
-                   
+
+                ViewBag.Carne = iInfoVisita.CARNE;
+                ViewBag.Pollo = iInfoVisita.POLLO;
+                ViewBag.Pescado = iInfoVisita.PESCADO;
+                ViewBag.Cerdo = iInfoVisita.CERDO;
             }
-            return View(pREREGISTROCONTACTO);
+                return View(iInfoVisita);
         }
 
         [Authorize]
@@ -90,15 +106,14 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA pREREGISTROCONTACTO = BDRegistro.INFOVISITA.Find(idR, cedula);
-            if (pREREGISTROCONTACTO == null)
+            INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idR, cedula);
+            if (iInfoVisita == null)
             {
                 return HttpNotFound();
             }
             else
-            {
-                
-                if (pREREGISTROCONTACTO.PERSONA.GENERO.Equals("0"))
+            {                
+                if (iInfoVisita.PERSONA.GENERO.Equals("0"))
                 {
                     ViewBag.sexoList =  "Male";
                 }
@@ -107,7 +122,7 @@ namespace RegistroVisitantes.Controllers
                     ViewBag.sexoList =  "Female" ;
                 }
                
-                switch (pREREGISTROCONTACTO.DIETA) {
+                switch (iInfoVisita.DIETA) {
                     case "No Restriction": 
                             ViewBag.dieta = "No Restriction";
                         break;
@@ -119,13 +134,13 @@ namespace RegistroVisitantes.Controllers
                         break;
                 }
                
-            ViewBag.Carne = pREREGISTROCONTACTO.CARNE;
-            ViewBag.Pollo = pREREGISTROCONTACTO.POLLO;
-            ViewBag.Pescado = pREREGISTROCONTACTO.PESCADO;
-            ViewBag.Cerdo = pREREGISTROCONTACTO.CERDO;
+            ViewBag.Carne = iInfoVisita.CARNE;
+            ViewBag.Pollo = iInfoVisita.POLLO;
+            ViewBag.Pescado = iInfoVisita.PESCADO;
+            ViewBag.Cerdo = iInfoVisita.CERDO;
 
             }
-            return View(pREREGISTROCONTACTO);
+            return View(iInfoVisita);
         }
 
 
