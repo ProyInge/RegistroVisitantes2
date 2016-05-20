@@ -98,8 +98,10 @@ else
              @*<button type="button" class="btn btn-default" onclick="printPage()">
                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
               </button>*@
-             @Html.ActionLink("linky", "Refrescar", "Visitantes", new { onclick = "myLink"})
 
+                 <a class='mylink' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'>
+                     <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                 </a>
         </td>
         <td align="center">
              @Html.ActionLink("Cambiar estado", "Delete", new { idRes = item.ID_RESERVACION, idPer = item.CEDULA })
@@ -122,9 +124,17 @@ else
         new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
 
 <script>
-    $('#mylink').click(function () 
+    $('.mylink').click(function () 
     {
+        if ($(this).data('tipo') == 2)
+        {
+            w = window.open("/Visitantes/DetailsESINTRO?idR=" + $(this).data('id') + "&cedula=" + $(this).data('ced') + "");
+        }
+       else
+       {
+            w = window.open("/Visitantes/DetailsOET?idR=" + $(this).data('id') + "&cedula=" + $(this).data('ced') + "");
+       }
         //doSomething($(this).data("id"));
-        window.print();
+        w.print();
     });
 </script>
