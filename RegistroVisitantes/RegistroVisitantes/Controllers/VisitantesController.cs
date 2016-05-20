@@ -20,21 +20,59 @@ namespace RegistroVisitantes.Controllers
         [Authorize]
         public ActionResult Index(String idRes, int? Pagina)
         {
-            IQueryable<INFOVISITA> pREREGISTRO;
+            IQueryable<INFOVISITA> tabla;
             if (idRes != null && !idRes.Equals(""))
             {
-                pREREGISTRO = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes)).OrderBy(x => x.ID_RESERVACION);
+                if (Session["Rol"] != null)
+                {
+                    string rol = (string)Session["IdEstacion"];
+                    if ((string)Session["Rol"] == "S")
+                    {
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes) && String.Equals(x.RESERVACION.ESTACION, Session["IdReservacion"])).OrderBy(x => x.ID_RESERVACION);
+                    }
+                    else if ((string)Session["Rol"] == "A")
+                    {
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes) && String.Equals(x.RESERVACION.ESTACION, Session["IdReservacion"])).OrderBy(x => x.ID_RESERVACION);
+                    }
+                    else
+                    {
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes)).OrderBy(x => x.ID_RESERVACION);
+                    }
+                }
+                else
+                {
+                    tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes)).OrderBy(x => x.ID_RESERVACION);
+                }
                 ViewBag.idRes = idRes;
             }
             else
             {
-                pREREGISTRO = BDRegistro.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
+                if (Session["Rol"] != null)
+                {
+                    string estacion = (string)Session["IdEstacion"];
+                    if ((string)Session["Rol"] == "S")
+                    {
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.RESERVACION.ESTACION, estacion)).OrderBy(x => x.ID_RESERVACION);
+                    }
+                    else if ((string)Session["Rol"] == "A")
+                    {
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.RESERVACION.ESTACION, estacion)).OrderBy(x => x.ID_RESERVACION);
+                    }
+                    else
+                    {
+                        tabla = BDRegistro.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
+                    }
+                }
+                else
+                {
+                    tabla = BDRegistro.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
+                }
             }
 
 
             int Size_Of_Page = 10;
             int No_Of_Page = (Pagina ?? 1);
-            return View(pREREGISTRO.ToPagedList(No_Of_Page, Size_Of_Page));
+            return View(tabla.ToPagedList(No_Of_Page, Size_Of_Page));
         }
 
         // GET: Visitantes/Details/5
