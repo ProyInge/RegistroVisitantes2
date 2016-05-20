@@ -309,7 +309,8 @@ namespace RegistroVisitantes.Controllers
                 return HttpNotFound();
             }
             
-            iInfoVisita.ESTADO = false;
+
+            iInfoVisita.ESTADO = !iInfoVisita.ESTADO;
             //db.INFOVISITA.Remove(pREREGISTROCONTACTO);
             BDRegistro.SaveChanges();
 
@@ -324,6 +325,12 @@ namespace RegistroVisitantes.Controllers
                 BDRegistro.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [Authorize]
+        public ActionResult Refrescar()
+        {
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }
