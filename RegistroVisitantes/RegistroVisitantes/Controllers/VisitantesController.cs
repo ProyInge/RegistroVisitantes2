@@ -49,7 +49,7 @@ namespace RegistroVisitantes.Controllers
             }
             else
             {
-                 return RedirectToAction("DetailsESINTRO", new { idR = idRes, cedula = ced });
+                return RedirectToAction("DetailsESINTRO", new { idR = idRes, cedula = ced });
             }
         }
 
@@ -75,6 +75,9 @@ namespace RegistroVisitantes.Controllers
                 else {
                     ViewBag.sexo="Female";
                 }
+                    
+                    
+                   
             }
             return View(pREREGISTROCONTACTO);
         }
@@ -115,10 +118,11 @@ namespace RegistroVisitantes.Controllers
                         ViewBag.dieta = "Vegan";
                         break;
                 }
-                //ViewBag.Carne = pREREGISTROCONTACTO.CARNE;
-                //ViewBag.Pollo = pREREGISTROCONTACTO.POLLO;
-                //ViewBag.Pescado = pREREGISTROCONTACTO.PESCADO;
-                //ViewBag.Cerdo = pREREGISTROCONTACTO.CERDO;             
+               
+            ViewBag.Carne = pREREGISTROCONTACTO.CARNE;
+            ViewBag.Pollo = pREREGISTROCONTACTO.POLLO;
+            ViewBag.Pescado = pREREGISTROCONTACTO.PESCADO;
+            ViewBag.Cerdo = pREREGISTROCONTACTO.CERDO;
 
             }
             return View(pREREGISTROCONTACTO);
@@ -157,8 +161,7 @@ namespace RegistroVisitantes.Controllers
         }
         public ActionResult EditESINTRO(String idRes, String ced)
         {
-      
-            if (idRes == null || ced == null)
+            if (idRes == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -167,33 +170,9 @@ namespace RegistroVisitantes.Controllers
             {
                 return HttpNotFound();
             }
-            else
-            {
-
-                if (infov.PERSONA.GENERO.Equals("0"))
-                {
-                    ViewBag.sexoList = "Male";
-                }
-                else
-                {
-                    ViewBag.sexoList = "Female";
-                }
-
-                switch (infov.DIETA)
-                {
-                    case "No Restriction":
-                        ViewBag.dieta = "No Restriction";
-                        break;
-                    case "Vegetarian":
-                        ViewBag.dieta = "Vegetarian";
-                        break;
-                    case "Vegan":
-                        ViewBag.dieta = "Vegan";
-                        break;
-                }
-            }
-
             return View(infov);
+   
+
         }
 
 
@@ -224,7 +203,7 @@ namespace RegistroVisitantes.Controllers
         {
 
             if (ModelState.IsValid)
-            {              
+            {
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
                 return RedirectToAction("Index");
