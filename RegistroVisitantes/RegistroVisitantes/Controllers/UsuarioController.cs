@@ -38,12 +38,18 @@ namespace RegistroVisitantes.Controllers
                 FormsAuthentication.SignOut();
                 Session["Id"] = null;
                 Session["Username"] = null;
-                ViewBag.ReturnUrl = returnUrl;
+                Session["Nombre"] = null;
+                Session["Apellido"] = null;
+                Session["Rol"] = null;
+                Session["Estacion"] = null;
+                Session["IdEstacion"] = null;
+                Session["Siglas"] = null;
+                Session["retURL"] = returnUrl;
                 return Redirect(Request.RawUrl);
             }
             else
             {
-                ViewBag.ReturnUrl = returnUrl;
+                Session["retURL"] = returnUrl;
                 return View();
             }
         }
@@ -53,10 +59,6 @@ namespace RegistroVisitantes.Controllers
         [HttpPost]
         public ActionResult Login(USUARIO user)
         {
-            var query = from x in db.USUARIO
-                               where x.USUAR == user.USUAR && x.CONTRASENA == user.CONTRASENA
-                               select x;
-            var sql = query.ToString();
             USUARIO usr = db.USUARIO.Where(u => u.USUAR == user.USUAR && u.CONTRASENA == user.CONTRASENA).FirstOrDefault();
             if (usr != null)
             {
@@ -64,10 +66,13 @@ namespace RegistroVisitantes.Controllers
                 Session["Username"] = usr.USUAR.ToString();
                 Session["Nombre"] = usr.NOMBRE.ToString();
                 Session["Apellido"] = usr.APELLIDO.ToString();
+                //S=Secre, A=Admin, R=Superusuario
                 Session["Rol"] = usr.ROL.ToString();
+                //SII014192819200.7082987519=LS, SII014192819200.2788020223=PV, SII017112627200.5981444351=LC, SII014548761600.1313183743=NAO, SII014548761600.7018216447=CRO
                 //LS=La Selva, PV=Palo Verde, LC=Las Cruces, CRO=Costa Rican Offices, NAO=North American Offices
                 Session["Estacion"] = usr.ESTACION.NOMBRE;
                 Session["IdEstacion"] = usr.ESTACION.ID;
+                Session["Siglas"] = usr.ESTACION.SIGLAS;
                 FormsAuthentication.SetAuthCookie(usr.USUAR.ToString(), true);
                 resetRequest();
                 return RedirectToAction("Logueado");
@@ -100,13 +105,13 @@ namespace RegistroVisitantes.Controllers
         {
             if (Session["Id"] != null)
             {
-                if(ViewBag.ReturnUrl == null)
+                if(Session["retURL"] == null)
                 { 
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    return Redirect(ViewBag.ReturnUrl);
+                    return Redirect((string)Session["retURL"]);
                 }
             }
             else

@@ -27,9 +27,28 @@ namespace RegistroVisitantes.Controllers
 
             ViewBag.fromDate = from;
             ViewBag.toDate = to;
-
-            var lista = db.V_RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0).OrderBy(s => s.ENTRA);
-
+            //S=Secre, A=Admin, R=Superusuario
+            IOrderedQueryable<V_RESERVACION> lista;
+            if (Session["Rol"] != null){
+                string estacion = (string)Session["IdEstacion"];
+                if ((string)Session["Rol"] == "S")
+                {
+                    lista = db.V_RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0 && estacion == x.ESTACION).OrderBy(s => s.ENTRA);
+                }
+                else if((string)Session["Rol"] == "A")
+                {
+                    lista = db.V_RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0 && estacion == x.ESTACION).OrderBy(s => s.ENTRA);
+                }
+                else
+                {
+                    lista = db.V_RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0).OrderBy(s => s.ENTRA);
+                }
+            }
+            else
+            {
+                lista = db.V_RESERVACION.Where(x => x.ENTRA != null && DateTime.Compare(x.ENTRA.Value, from) > 0 && DateTime.Compare(x.ENTRA.Value, to) < 0).OrderBy(s => s.ENTRA);
+            }
+            
             int Size_Of_Page = 10;
             int No_Of_Page = (Pagina ?? 1);
             return View(lista.ToPagedList(No_Of_Page, Size_Of_Page));

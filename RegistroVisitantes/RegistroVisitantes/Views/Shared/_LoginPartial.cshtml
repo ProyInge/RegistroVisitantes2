@@ -7,10 +7,10 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hola " + Session["Nombre"]+" "+Session["Apellido"] + "!", "Usuario", "Administracion", routeValues: null, htmlAttributes: new { title = "Administracion" })
+            @Html.ActionLink("Hola " + Session["Nombre"]+" "+Session["Apellido"] + "!", "Usuario", "Administracion", routeValues: new { @returnUrl = Url.Action(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), ViewContext.RouteData.Values["id"]) }, htmlAttributes: new { title = "Administracion" })
         </li>
         <li>
-            @Html.ActionLink("Cerrar sesión", "Login", "Usuario")
+            @Html.ActionLink("Cerrar sesión", "Login", "Usuario", routeValues: new { @returnUrl = Url.Action(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), ViewContext.RouteData.Values["id"]) }, htmlAttributes: new { title = "Login" })
         </li>
     </ul>
     }
@@ -18,6 +18,6 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Iniciar sesión", "Login", "Usuario", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Iniciar sesión", "Login", "Usuario", routeValues: new { @returnUrl = Url.Action(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), ViewContext.RouteData.Values["id"]) }, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
