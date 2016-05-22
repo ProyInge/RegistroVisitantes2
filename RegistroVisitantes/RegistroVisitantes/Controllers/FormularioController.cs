@@ -54,11 +54,11 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
-            var sexo = new SelectList(new[] { "Male", "Female" });
-            var proposito = new SelectList(new[] { " Visiting Scientist(without project at the Station)", "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
+            //var sexo = new SelectList(new[] { "Male", "Female" });
+            var proposito = new SelectList(new[] { "Visiting Scientist(without project at the Station)", "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
             var position = new SelectList(new[] { "N/A", "Principal Investigator", "CO-IP", "Senior Staff", "Tutor", "Supervisor", "Coordinator", "Collaborator", "Student", "Technical", "Field Assistant", "Interns", "Volunteer" });
             var role = new SelectList(new[] { "N/A","Student", "Professor", "Coordinator", "Assistant" });
-            ViewBag.sexoList = sexo;
+            //ViewBag.sexoList = sexo;
             ViewBag.propositoList = proposito;
             ViewBag.positionList = position;
             ViewBag.roleList = role;
@@ -186,9 +186,9 @@ namespace RegistroVisitantes.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
             var sexo = new SelectList(new[] { "Female", "Male" });
-            var proposito = new SelectList(new[] { " Visiting Scientist(without project at the Station)", "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
-            var position = new SelectList(new[] { "N/A", "Principal Investigator", "CO-IP", "Senior Staff", "Tutor", "Supervisor", "Coordinator", "Collaborator", "Student", "Technical", "Field Assistant", "Interns", "Volunteer" });
-            var role = new SelectList(new[] { "N/A", "Student", "Professor", "Coordinator", "Assistant" });
+            var proposito = new SelectList(new[] { ViewResources.Resources.oet_prop1, ViewResources.Resources.oet_prop2, ViewResources.Resources.oet_prop3, ViewResources.Resources.oet_prop4, ViewResources.Resources.oet_prop5, ViewResources.Resources.oet_prop6, ViewResources.Resources.oet_prop7, ViewResources.Resources.oet_prop8, ViewResources.Resources.oet_prop9, ViewResources.Resources.oet_prop10, ViewResources.Resources.oet_prop11 });
+            var position = new SelectList(new[] { ViewResources.Resources.oet_pos1, ViewResources.Resources.oet_pos2, ViewResources.Resources.oet_pos3, ViewResources.Resources.oet_pos4, ViewResources.Resources.oet_pos5, ViewResources.Resources.oet_pos6, ViewResources.Resources.oet_pos7, ViewResources.Resources.oet_pos8, ViewResources.Resources.oet_pos9, ViewResources.Resources.oet_pos10, ViewResources.Resources.oet_pos11, ViewResources.Resources.oet_pos12 });
+            var role = new SelectList(new[] { ViewResources.Resources.oet_rol1, ViewResources.Resources.oet_rol2, ViewResources.Resources.oet_rol3, ViewResources.Resources.oet_rol4, ViewResources.Resources.oet_rol5 });
             ViewBag.sexoList = sexo;
             ViewBag.propositoList = proposito;
             ViewBag.positionList = position;

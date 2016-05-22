@@ -117,14 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="eot_waiver" xml:space="preserve">
-    <value />
-  </data>
   <data name="oet_alergias" xml:space="preserve">
     <value>Alergias</value>
   </data>
   <data name="oet_apellidos" xml:space="preserve">
     <value>Apellidos</value>
+  </data>
+  <data name="oet_auto" xml:space="preserve">
+    <value>Escriba su identificación o correo electrónico para completar sus datos</value>
+  </data>
+  <data name="oet_carne" xml:space="preserve">
+    <value>Carne</value>
+  </data>
+  <data name="oet_cerdo" xml:space="preserve">
+    <value>Cerdo</value>
   </data>
   <data name="oet_ciudad" xml:space="preserve">
     <value>Provincia</value>
@@ -141,14 +147,14 @@
   <data name="oet_correo" xml:space="preserve">
     <value>Correo electrónico</value>
   </data>
+  <data name="oet_cursoNombre" xml:space="preserve">
+    <value>Nombre del Curso</value>
+  </data>
   <data name="oet_cursoNum" xml:space="preserve">
     <value>Número del Curso</value>
   </data>
   <data name="oet_cursoRol" xml:space="preserve">
     <value>Participa Como</value>
-  </data>
-  <data name="oet_cursoTitulo" xml:space="preserve">
-    <value>Nombre del Curso</value>
   </data>
   <data name="oet_dieta" xml:space="preserve">
     <value>Dieta</value>
@@ -156,11 +162,23 @@
   <data name="oet_direccion" xml:space="preserve">
     <value>Dirección Completa</value>
   </data>
+  <data name="oet_enviar" xml:space="preserve">
+    <value>Enviar formulario</value>
+  </data>
+  <data name="oet_fem" xml:space="preserve">
+    <value>Femenino</value>
+  </data>
   <data name="oet_id" xml:space="preserve">
     <value>Pasaporte o cédula</value>
   </data>
   <data name="oet_institucion" xml:space="preserve">
     <value>Institución</value>
+  </data>
+  <data name="oet_investPosTitulo" xml:space="preserve">
+    <value>Posición</value>
+  </data>
+  <data name="oet_masc" xml:space="preserve">
+    <value>Masculino</value>
   </data>
   <data name="oet_nacionalidad" xml:space="preserve">
     <value>Nacionalidad</value>
@@ -171,11 +189,56 @@
   <data name="oet_otrasRes" xml:space="preserve">
     <value>Otras Restricciones Dietarias</value>
   </data>
+  <data name="oet_otro" xml:space="preserve">
+    <value>Otro</value>
+  </data>
   <data name="oet_pais" xml:space="preserve">
     <value>País</value>
   </data>
   <data name="oet_personal" xml:space="preserve">
     <value>Información Personal</value>
+  </data>
+  <data name="oet_pescado" xml:space="preserve">
+    <value>Pescado</value>
+  </data>
+  <data name="oet_pollo" xml:space="preserve">
+    <value>Pollo</value>
+  </data>
+  <data name="oet_pos1" xml:space="preserve">
+    <value>Voluntario</value>
+  </data>
+  <data name="oet_pos10" xml:space="preserve">
+    <value>Personal superior</value>
+  </data>
+  <data name="oet_pos11" xml:space="preserve">
+    <value>Investigador principal</value>
+  </data>
+  <data name="oet_pos12" xml:space="preserve">
+    <value>Otro</value>
+  </data>
+  <data name="oet_pos2" xml:space="preserve">
+    <value>Interino</value>
+  </data>
+  <data name="oet_pos3" xml:space="preserve">
+    <value>Asistente de campo</value>
+  </data>
+  <data name="oet_pos4" xml:space="preserve">
+    <value>Técnico</value>
+  </data>
+  <data name="oet_pos5" xml:space="preserve">
+    <value>Estudiante</value>
+  </data>
+  <data name="oet_pos6" xml:space="preserve">
+    <value>Colaborador</value>
+  </data>
+  <data name="oet_pos7" xml:space="preserve">
+    <value>Coordinador</value>
+  </data>
+  <data name="oet_pos8" xml:space="preserve">
+    <value>Supervisor</value>
+  </data>
+  <data name="oet_pos9" xml:space="preserve">
+    <value>Tutor</value>
   </data>
   <data name="oet_posicion" xml:space="preserve">
     <value>Posición</value>
@@ -183,17 +246,68 @@
   <data name="oet_preferencias" xml:space="preserve">
     <value>Preferencia de Carnes</value>
   </data>
+  <data name="oet_prop1" xml:space="preserve">
+    <value>Científico visitante (sin proyectos en la estación)</value>
+  </data>
+  <data name="oet_prop10" xml:space="preserve">
+    <value>Personal OET (en trabajo, no cubierto por otras categorías)</value>
+  </data>
+  <data name="oet_prop11" xml:space="preserve">
+    <value>Otro</value>
+  </data>
+  <data name="oet_prop2" xml:space="preserve">
+    <value>Investigación (con proyecto en la estación)</value>
+  </data>
+  <data name="oet_prop3" xml:space="preserve">
+    <value>Curso de pregrado</value>
+  </data>
+  <data name="oet_prop4" xml:space="preserve">
+    <value>Curso de posgrado</value>
+  </data>
+  <data name="oet_prop5" xml:space="preserve">
+    <value>Curso de extensión universitaria</value>
+  </data>
+  <data name="oet_prop6" xml:space="preserve">
+    <value>Programa de Educación Ambiental</value>
+  </data>
+  <data name="oet_prop7" xml:space="preserve">
+    <value>Visitante de historial natural</value>
+  </data>
+  <data name="oet_prop8" xml:space="preserve">
+    <value>Evento especial-reunión</value>
+  </data>
+  <data name="oet_prop9" xml:space="preserve">
+    <value>Periodista (reportero, escritor, filmación)</value>
+  </data>
   <data name="oet_proposito" xml:space="preserve">
     <value>Propósito</value>
   </data>
   <data name="oet_propositoTitulo" xml:space="preserve">
     <value>Propósito de la Visita</value>
   </data>
-  <data name="oet_resTititulo" xml:space="preserve">
+  <data name="oet_resTitulo" xml:space="preserve">
     <value>Restricciones Dietarias y Alergias</value>
+  </data>
+  <data name="oet_rol1" xml:space="preserve">
+    <value>Estudiante</value>
+  </data>
+  <data name="oet_rol2" xml:space="preserve">
+    <value>Profesor(a)</value>
+  </data>
+  <data name="oet_rol3" xml:space="preserve">
+    <value>Coordinador</value>
+  </data>
+  <data name="oet_rol4" xml:space="preserve">
+    <value>Asistente</value>
+  </data>
+  <data name="oet_rol5" xml:space="preserve">
+    <value>Otro</value>
   </data>
   <data name="oet_sexo" xml:space="preserve">
     <value>Sexo</value>
+  </data>
+  <data name="oet_sinrestr" xml:space="preserve">
+    <value>Sin restricción</value>
   </data>
   <data name="oet_solocursos" xml:space="preserve">
     <value>Solo para Participantes de Cursos</value>
@@ -206,6 +320,15 @@
   </data>
   <data name="oet_tituloPer" xml:space="preserve">
     <value>Título (Sr., Sra., Dr., otro)</value>
+  </data>
+  <data name="oet_vegano" xml:space="preserve">
+    <value>Vegano</value>
+  </data>
+  <data name="oet_vege" xml:space="preserve">
+    <value>Vegetariano</value>
+  </data>
+  <data name="oet_waiver" xml:space="preserve">
+    <value>He sido debidamente informado(a) que la visita a las instalaciones de la Organización para Estudios Tropicales (OET) conlleva a riesgos inherentes a estaciones biológicas, tales como transitar por senderos o áreas resbalosas, húmedas y cubiertas de follaje y árboles circundantes. Asimismo, que en la zona a visitar existen serpientes y otros animales con el consabido riesgo de mordeduras y que puedan darse picaduras de insectos de cualquier naturaleza. También manifiesto que no tengo ningún impedimento de salud para la(s) visita(s) que voy a realizar y me comprometo a seguir todas las instrucciones que se me den para mi seguridad. Desde ya libero de toda responsabilidad civil o penal o de cualquier otra índole a la OET, sus apoderados legales, representantes, directores o trabajadores por cualquier daño físico, moral, enfermedad o muerte que sufriese en el transcurso de la visita, la cual tomo bajo mi propio riesgo.</value>
   </data>
   <data name="oet_waiverTitulo" xml:space="preserve">
     <value>Renuncia de Responsabilidad</value>

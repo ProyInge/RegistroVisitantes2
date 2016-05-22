@@ -61,15 +61,6 @@ namespace ViewResources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
-        /// </summary>
-        public static string eot_waiver {
-            get {
-                return ResourceManager.GetString("eot_waiver", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a Alergias.
         /// </summary>
         public static string oet_alergias {
@@ -84,6 +75,33 @@ namespace ViewResources {
         public static string oet_apellidos {
             get {
                 return ResourceManager.GetString("oet_apellidos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Escriba su identificación o correo electrónico para completar sus datos.
+        /// </summary>
+        public static string oet_auto {
+            get {
+                return ResourceManager.GetString("oet_auto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Carne.
+        /// </summary>
+        public static string oet_carne {
+            get {
+                return ResourceManager.GetString("oet_carne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cerdo.
+        /// </summary>
+        public static string oet_cerdo {
+            get {
+                return ResourceManager.GetString("oet_cerdo", resourceCulture);
             }
         }
         
@@ -133,6 +151,15 @@ namespace ViewResources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Nombre del Curso.
+        /// </summary>
+        public static string oet_cursoNombre {
+            get {
+                return ResourceManager.GetString("oet_cursoNombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Número del Curso.
         /// </summary>
         public static string oet_cursoNum {
@@ -147,15 +174,6 @@ namespace ViewResources {
         public static string oet_cursoRol {
             get {
                 return ResourceManager.GetString("oet_cursoRol", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Nombre del Curso.
-        /// </summary>
-        public static string oet_cursoTitulo {
-            get {
-                return ResourceManager.GetString("oet_cursoTitulo", resourceCulture);
             }
         }
         
@@ -178,6 +196,24 @@ namespace ViewResources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Enviar formulario.
+        /// </summary>
+        public static string oet_enviar {
+            get {
+                return ResourceManager.GetString("oet_enviar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Femenino.
+        /// </summary>
+        public static string oet_fem {
+            get {
+                return ResourceManager.GetString("oet_fem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Pasaporte o cédula.
         /// </summary>
         public static string oet_id {
@@ -192,6 +228,24 @@ namespace ViewResources {
         public static string oet_institucion {
             get {
                 return ResourceManager.GetString("oet_institucion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Posición.
+        /// </summary>
+        public static string oet_investPosTitulo {
+            get {
+                return ResourceManager.GetString("oet_investPosTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Masculino.
+        /// </summary>
+        public static string oet_masc {
+            get {
+                return ResourceManager.GetString("oet_masc", resourceCulture);
             }
         }
         
@@ -223,6 +277,15 @@ namespace ViewResources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Otro.
+        /// </summary>
+        public static string oet_otro {
+            get {
+                return ResourceManager.GetString("oet_otro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a País.
         /// </summary>
         public static string oet_pais {
@@ -241,6 +304,132 @@ namespace ViewResources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Pescado.
+        /// </summary>
+        public static string oet_pescado {
+            get {
+                return ResourceManager.GetString("oet_pescado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Pollo.
+        /// </summary>
+        public static string oet_pollo {
+            get {
+                return ResourceManager.GetString("oet_pollo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Voluntario.
+        /// </summary>
+        public static string oet_pos1 {
+            get {
+                return ResourceManager.GetString("oet_pos1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Personal superior.
+        /// </summary>
+        public static string oet_pos10 {
+            get {
+                return ResourceManager.GetString("oet_pos10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Investigador principal.
+        /// </summary>
+        public static string oet_pos11 {
+            get {
+                return ResourceManager.GetString("oet_pos11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Otro.
+        /// </summary>
+        public static string oet_pos12 {
+            get {
+                return ResourceManager.GetString("oet_pos12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Interino.
+        /// </summary>
+        public static string oet_pos2 {
+            get {
+                return ResourceManager.GetString("oet_pos2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Asistente de campo.
+        /// </summary>
+        public static string oet_pos3 {
+            get {
+                return ResourceManager.GetString("oet_pos3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Técnico.
+        /// </summary>
+        public static string oet_pos4 {
+            get {
+                return ResourceManager.GetString("oet_pos4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Estudiante.
+        /// </summary>
+        public static string oet_pos5 {
+            get {
+                return ResourceManager.GetString("oet_pos5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Colaborador.
+        /// </summary>
+        public static string oet_pos6 {
+            get {
+                return ResourceManager.GetString("oet_pos6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Coordinador.
+        /// </summary>
+        public static string oet_pos7 {
+            get {
+                return ResourceManager.GetString("oet_pos7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Supervisor.
+        /// </summary>
+        public static string oet_pos8 {
+            get {
+                return ResourceManager.GetString("oet_pos8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tutor.
+        /// </summary>
+        public static string oet_pos9 {
+            get {
+                return ResourceManager.GetString("oet_pos9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Posición.
         /// </summary>
         public static string oet_posicion {
@@ -255,6 +444,105 @@ namespace ViewResources {
         public static string oet_preferencias {
             get {
                 return ResourceManager.GetString("oet_preferencias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Científico visitante (sin proyectos en la estación).
+        /// </summary>
+        public static string oet_prop1 {
+            get {
+                return ResourceManager.GetString("oet_prop1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Personal OET (en trabajo, no cubierto por otras categorías).
+        /// </summary>
+        public static string oet_prop10 {
+            get {
+                return ResourceManager.GetString("oet_prop10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Otro.
+        /// </summary>
+        public static string oet_prop11 {
+            get {
+                return ResourceManager.GetString("oet_prop11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Investigación (con proyecto en la estación).
+        /// </summary>
+        public static string oet_prop2 {
+            get {
+                return ResourceManager.GetString("oet_prop2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Curso de pregrado.
+        /// </summary>
+        public static string oet_prop3 {
+            get {
+                return ResourceManager.GetString("oet_prop3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Curso de posgrado.
+        /// </summary>
+        public static string oet_prop4 {
+            get {
+                return ResourceManager.GetString("oet_prop4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Curso de extensión universitaria.
+        /// </summary>
+        public static string oet_prop5 {
+            get {
+                return ResourceManager.GetString("oet_prop5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Programa de Educación Ambiental.
+        /// </summary>
+        public static string oet_prop6 {
+            get {
+                return ResourceManager.GetString("oet_prop6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Visitante de historial natural.
+        /// </summary>
+        public static string oet_prop7 {
+            get {
+                return ResourceManager.GetString("oet_prop7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Evento especial-reunión.
+        /// </summary>
+        public static string oet_prop8 {
+            get {
+                return ResourceManager.GetString("oet_prop8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Periodista (reportero, escritor, filmación).
+        /// </summary>
+        public static string oet_prop9 {
+            get {
+                return ResourceManager.GetString("oet_prop9", resourceCulture);
             }
         }
         
@@ -279,9 +567,54 @@ namespace ViewResources {
         /// <summary>
         ///   Busca una cadena traducida similar a Restricciones Dietarias y Alergias.
         /// </summary>
-        public static string oet_resTititulo {
+        public static string oet_resTitulo {
             get {
-                return ResourceManager.GetString("oet_resTititulo", resourceCulture);
+                return ResourceManager.GetString("oet_resTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Estudiante.
+        /// </summary>
+        public static string oet_rol1 {
+            get {
+                return ResourceManager.GetString("oet_rol1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Profesor(a).
+        /// </summary>
+        public static string oet_rol2 {
+            get {
+                return ResourceManager.GetString("oet_rol2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Coordinador.
+        /// </summary>
+        public static string oet_rol3 {
+            get {
+                return ResourceManager.GetString("oet_rol3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Asistente.
+        /// </summary>
+        public static string oet_rol4 {
+            get {
+                return ResourceManager.GetString("oet_rol4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Otro.
+        /// </summary>
+        public static string oet_rol5 {
+            get {
+                return ResourceManager.GetString("oet_rol5", resourceCulture);
             }
         }
         
@@ -291,6 +624,15 @@ namespace ViewResources {
         public static string oet_sexo {
             get {
                 return ResourceManager.GetString("oet_sexo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sin restricción.
+        /// </summary>
+        public static string oet_sinrestr {
+            get {
+                return ResourceManager.GetString("oet_sinrestr", resourceCulture);
             }
         }
         
@@ -327,6 +669,33 @@ namespace ViewResources {
         public static string oet_tituloPer {
             get {
                 return ResourceManager.GetString("oet_tituloPer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Vegano.
+        /// </summary>
+        public static string oet_vegano {
+            get {
+                return ResourceManager.GetString("oet_vegano", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Vegetariano.
+        /// </summary>
+        public static string oet_vege {
+            get {
+                return ResourceManager.GetString("oet_vege", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a He sido debidamente informado(a) que la visita a las instalaciones de la Organización para Estudios Tropicales (OET) conlleva a riesgos inherentes a estaciones biológicas, tales como transitar por senderos o áreas resbalosas, húmedas y cubiertas de follaje y árboles circundantes. Asimismo, que en la zona a visitar existen serpientes y otros animales con el consabido riesgo de mordeduras y que puedan darse picaduras de insectos de cualquier naturaleza. También manifiesto que no tengo ningún impedimento de sa [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        public static string oet_waiver {
+            get {
+                return ResourceManager.GetString("oet_waiver", resourceCulture);
             }
         }
         
