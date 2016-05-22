@@ -61,6 +61,24 @@ namespace ViewResources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Inglés.
+        /// </summary>
+        public static string english {
+            get {
+                return ResourceManager.GetString("english", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Francés.
+        /// </summary>
+        public static string french {
+            get {
+                return ResourceManager.GetString("french", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Alergias.
         /// </summary>
         public static string oet_alergias {
@@ -705,6 +723,24 @@ namespace ViewResources {
         public static string oet_waiverTitulo {
             get {
                 return ResourceManager.GetString("oet_waiverTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Seleccionar Lenguaje.
+        /// </summary>
+        public static string seleccionarLen {
+            get {
+                return ResourceManager.GetString("seleccionarLen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Español.
+        /// </summary>
+        public static string spanish {
+            get {
+                return ResourceManager.GetString("spanish", resourceCulture);
             }
         }
     }

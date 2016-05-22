@@ -8,6 +8,16 @@
 
 <h2>@ViewResources.Resources.oet_titulo</h2>
 @culture
+@using (Html.BeginForm("ChangeCulture", "Formulario", new { idRes = ViewBag.idRes }))
+{
+<p>
+    @ViewResources.Resources.seleccionarLen : @Html.DropDownList("ddlCulture", new SelectList(new[]
+ {
+ new{value="es",text=@ViewResources.Resources.spanish},
+ new{value="en",text=@ViewResources.Resources.english}
+ }, "value", "text", Session["CurrentCulture"]), new { onchange = "this.form.submit();" })
+</p>
+}
 
 @using (Html.BeginForm())
 {

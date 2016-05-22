@@ -8,14 +8,34 @@ using PagedList;
 using PagedList.Mvc;
 using System.Net;
 using ViewResources;
+using System.Threading;
+using System.Globalization;
 
 namespace RegistroVisitantes.Controllers
 {
-    public class FormularioController : BaseController
+    public class FormularioController : Controller
     {
         private BDRegistro BDRegistro = new BDRegistro ();
         private BDReservas BDReservas = new BDReservas();
 
+        protected override void Initialize(System.Web.Routing.RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+            if (Session["CurrentCulture"] != null)
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(Session["CurrentCulture"].ToString());
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Session["CurrentCulture"].ToString());
+            }
+        }
+
+        public ActionResult ChangeCulture(string ddlCulture, string idRes)
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(ddlCulture);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(ddlCulture);
+
+            Session["CurrentCulture"] = ddlCulture;
+            return RedirectToAction("Index", new { idRes = idRes });
+        }
 
         // GET: Formulario
         [Authorize]
@@ -171,7 +191,6 @@ namespace RegistroVisitantes.Controllers
             return RedirectToAction("Index", "Reservas");
         }
 
-
         [HttpGet]
         [Authorize]
         public ActionResult CreateOET(String idRes)
@@ -193,6 +212,7 @@ namespace RegistroVisitantes.Controllers
             ViewBag.propositoList = proposito;
             ViewBag.positionList = position;
             ViewBag.roleList = role;
+            ViewBag.idRes = idRes;
             return View();
         }
 

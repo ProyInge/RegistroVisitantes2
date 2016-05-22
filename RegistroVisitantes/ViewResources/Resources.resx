@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="english" xml:space="preserve">
+    <value>Inglés</value>
+  </data>
+  <data name="french" xml:space="preserve">
+    <value>Francés</value>
+  </data>
   <data name="oet_alergias" xml:space="preserve">
     <value>Alergias</value>
   </data>
@@ -332,5 +338,11 @@
   </data>
   <data name="oet_waiverTitulo" xml:space="preserve">
     <value>Renuncia de Responsabilidad</value>
+  </data>
+  <data name="seleccionarLen" xml:space="preserve">
+    <value>Seleccionar Lenguaje</value>
+  </data>
+  <data name="spanish" xml:space="preserve">
+    <value>Español</value>
   </data>
 </root>
