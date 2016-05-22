@@ -20,21 +20,59 @@ namespace RegistroVisitantes.Controllers
         [Authorize]
         public ActionResult Index(String idRes, int? Pagina)
         {
-            IQueryable<INFOVISITA> pREREGISTRO;
+            IQueryable<INFOVISITA> tabla;
             if (idRes != null && !idRes.Equals(""))
             {
-                pREREGISTRO = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes)).OrderBy(x => x.ID_RESERVACION);
+                if (Session["Rol"] != null)
+                {
+                    string rol = (string)Session["IdEstacion"];
+                    if ((string)Session["Rol"] == "S")
+                    {
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes) && String.Equals(x.RESERVACION.ESTACION, Session["IdReservacion"])).OrderBy(x => x.ID_RESERVACION);
+                    }
+                    else if ((string)Session["Rol"] == "A")
+                    {
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes) && String.Equals(x.RESERVACION.ESTACION, Session["IdReservacion"])).OrderBy(x => x.ID_RESERVACION);
+                    }
+                    else
+                    {
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes)).OrderBy(x => x.ID_RESERVACION);
+                    }
+                }
+                else
+                {
+                    tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes)).OrderBy(x => x.ID_RESERVACION);
+                }
                 ViewBag.idRes = idRes;
             }
             else
             {
-                pREREGISTRO = BDRegistro.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
+                if (Session["Rol"] != null)
+                {
+                    string estacion = (string)Session["IdEstacion"];
+                    if ((string)Session["Rol"] == "S")
+                    {
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.RESERVACION.ESTACION, estacion)).OrderBy(x => x.ID_RESERVACION);
+                    }
+                    else if ((string)Session["Rol"] == "A")
+                    {
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.RESERVACION.ESTACION, estacion)).OrderBy(x => x.ID_RESERVACION);
+                    }
+                    else
+                    {
+                        tabla = BDRegistro.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
+                    }
+                }
+                else
+                {
+                    tabla = BDRegistro.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
+                }
             }
 
 
             int Size_Of_Page = 10;
             int No_Of_Page = (Pagina ?? 1);
-            return View(pREREGISTRO.ToPagedList(No_Of_Page, Size_Of_Page));
+            return View(tabla.ToPagedList(No_Of_Page, Size_Of_Page));
         }
 
         // GET: Visitantes/Details/5
@@ -61,25 +99,41 @@ namespace RegistroVisitantes.Controllers
             {   
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA pREREGISTROCONTACTO = BDRegistro.INFOVISITA.Find(idR, cedula);           
-            if (pREREGISTROCONTACTO == null)
+            INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idR, cedula);
+            if (iInfoVisita == null)
             {
                 return HttpNotFound();
             }
-            else {
-                if (pREREGISTROCONTACTO.PERSONA.GENERO.Equals('0'))
+            else
+            {
+                if (iInfoVisita.PERSONA.GENERO.Equals("0"))
                 {
-                    ViewBag.sexo =  "Male";
+                    ViewBag.sexoList = "Male";
+                }
+                else
+                {
+                    ViewBag.sexoList = "Female";
+                }
 
+                switch (iInfoVisita.DIETA)
+                {
+                    case "No Restriction":
+                        ViewBag.dieta = "No Restriction";
+                        break;
+                    case "Vegetarian":
+                        ViewBag.dieta = "Vegetarian";
+                        break;
+                    case "Vegan":
+                        ViewBag.dieta = "Vegan";
+                        break;
                 }
-                else {
-                    ViewBag.sexo="Female";
-                }
-                    
-                    
-                   
+
+                ViewBag.Carne = iInfoVisita.CARNE;
+                ViewBag.Pollo = iInfoVisita.POLLO;
+                ViewBag.Pescado = iInfoVisita.PESCADO;
+                ViewBag.Cerdo = iInfoVisita.CERDO;
             }
-            return View(pREREGISTROCONTACTO);
+                return View(iInfoVisita);
         }
 
         [Authorize]
@@ -90,15 +144,14 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA pREREGISTROCONTACTO = BDRegistro.INFOVISITA.Find(idR, cedula);
-            if (pREREGISTROCONTACTO == null)
+            INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idR, cedula);
+            if (iInfoVisita == null)
             {
                 return HttpNotFound();
             }
             else
-            {
-                
-                if (pREREGISTROCONTACTO.PERSONA.GENERO.Equals("0"))
+            {                
+                if (iInfoVisita.PERSONA.GENERO.Equals("0"))
                 {
                     ViewBag.sexoList =  "Male";
                 }
@@ -107,7 +160,7 @@ namespace RegistroVisitantes.Controllers
                     ViewBag.sexoList =  "Female" ;
                 }
                
-                switch (pREREGISTROCONTACTO.DIETA) {
+                switch (iInfoVisita.DIETA) {
                     case "No Restriction": 
                             ViewBag.dieta = "No Restriction";
                         break;
@@ -119,13 +172,13 @@ namespace RegistroVisitantes.Controllers
                         break;
                 }
                
-            ViewBag.Carne = pREREGISTROCONTACTO.CARNE;
-            ViewBag.Pollo = pREREGISTROCONTACTO.POLLO;
-            ViewBag.Pescado = pREREGISTROCONTACTO.PESCADO;
-            ViewBag.Cerdo = pREREGISTROCONTACTO.CERDO;
+            ViewBag.Carne = iInfoVisita.CARNE;
+            ViewBag.Pollo = iInfoVisita.POLLO;
+            ViewBag.Pescado = iInfoVisita.PESCADO;
+            ViewBag.Cerdo = iInfoVisita.CERDO;
 
             }
-            return View(pREREGISTROCONTACTO);
+            return View(iInfoVisita);
         }
 
 
