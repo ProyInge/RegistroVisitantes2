@@ -1,11 +1,13 @@
 ﻿@model RegistroVisitantes.Models.INFOVISITA
 
 @{
-    ViewBag.Title = "CreateOET";
+    ViewBag.Title = @ViewResources.Resources.oet_titulo;
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
 }
 
-<h2>CreateOET</h2>
+<h2>@ViewResources.Resources.oet_titulo</h2>
+@culture
 
 @using (Html.BeginForm())
 {

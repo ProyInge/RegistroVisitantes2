@@ -7,10 +7,11 @@ using RegistroVisitantes.Models;
 using PagedList;
 using PagedList.Mvc;
 using System.Net;
+using ViewResources;
 
 namespace RegistroVisitantes.Controllers
 {
-    public class FormularioController : Controller
+    public class FormularioController : BaseController
     {
         private BDRegistro BDRegistro = new BDRegistro ();
         private BDReservas BDReservas = new BDReservas();
