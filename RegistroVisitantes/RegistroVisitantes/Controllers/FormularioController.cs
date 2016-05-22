@@ -64,16 +64,46 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
-        public PartialViewResult AutocompletarESINTRO(String email)
+        bool IsValidEmail(string email)
         {
-            PERSONA persona = BDReservas.PERSONA.Where(p => p.EMAIL == email).FirstOrDefault();
-            return PartialView(persona);
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public PartialViewResult AutocompletarOET(String email)
+        public PartialViewResult AutocompletarESINTRO(String ajaxInput)
         {
-            PERSONA persona = BDReservas.PERSONA.Where(p => p.EMAIL == email).FirstOrDefault();
-            return PartialView(persona);
+            if (IsValidEmail(ajaxInput)) //Es un email
+            {
+                PERSONA persona = BDReservas.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
+                return PartialView(persona);
+            }
+            else
+            {   //Es una cedula
+                PERSONA persona = BDReservas.PERSONA.Find(ajaxInput);
+                return PartialView(persona);
+            }
+            
+        }
+
+        public PartialViewResult AutocompletarOET(String ajaxInput)
+        {
+            if (IsValidEmail(ajaxInput)) //Es un email
+            {
+                PERSONA persona = BDReservas.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
+                return PartialView(persona);
+            }
+            else
+            {   //Es una cedula
+                PERSONA persona = BDReservas.PERSONA.Find(ajaxInput);
+                return PartialView(persona);
+            }
         }
 
         [HttpPost]
