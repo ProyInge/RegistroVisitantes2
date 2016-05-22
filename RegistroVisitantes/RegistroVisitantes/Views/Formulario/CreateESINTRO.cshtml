@@ -20,39 +20,40 @@
         <div class="container">
             <h2 style="border-bottom:8px solid #FDBB30">Personal Information</h2>
             <br />
+            <div class="form-group col-sm-6">
+                <label>Type your ID or email for auto - filling the form</label>
+                <input id="ajaxInput" class="form-control"/>
+                <button id="btnAjax" class="btn btn-success" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
             <div id="personalInfo">
-                    <div class="form-group col-sm-6">
-                        @Html.LabelFor(model => model.PERSONA.EMAIL, "E-mail", htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control", @id = "e-mail" } })
-                        @Html.ValidationMessageFor(model => model.PERSONA.EMAIL, "", new { @class = "text-danger" })
-                        <button id="btnAjax" class="btn btn-success" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
                     <div class="form-group col-sm-6">
                         @Html.LabelFor(model => model.PERSONA.NOMBRE, "First Name", htmlAttributes: new { @class = "control-label" })
                         @Html.EditorFor(model => model.PERSONA.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.PERSONA.NOMBRE, "", new { @class = "text-danger" })
-                    </div>
+                    </div>  
 
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.PERSONA.APELLIDO, "Last Name", htmlAttributes: new { @class = "control-label " })
                     @Html.EditorFor(model => model.PERSONA.APELLIDO, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.APELLIDO, "", new { @class = "text-danger" })
                 </div>
-
                 <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.NACIONALIDAD, "Citizenship ", htmlAttributes: new { @class = "control-label " })
-                    @Html.EditorFor(model => model.PERSONA.NACIONALIDAD, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PERSONA.NACIONALIDAD, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.PERSONA.EMAIL, "E-mail", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PERSONA.EMAIL, "", new { @class = "text-danger" })
                 </div>
-
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.PERSONA.CEDULA, "Identification ", htmlAttributes: new { @class = "control-label " })
                     @Html.EditorFor(model => model.PERSONA.CEDULA, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.CEDULA, "", new { @class = "text-danger" })
                 </div>
-
+                <div class="form-group col-sm-6">
+                    @Html.LabelFor(model => model.PERSONA.NACIONALIDAD, "Citizenship ", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.PERSONA.NACIONALIDAD, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PERSONA.NACIONALIDAD, "", new { @class = "text-danger" })
+                </div>
                 <div class="form-group col-sm-6" style="margin-top: 20px">
                     @Html.LabelFor(model => model.PERSONA.DIRECCION, "Address ", htmlAttributes: new { @class = "control-label " })
                     @Html.TextAreaFor(model => model.PERSONA.DIRECCION, new { htmlAttributes = new { @class = "form-control" } })
@@ -218,7 +219,7 @@
                 $.ajax({
                     type: 'GET',
                     url: '@Url.Action("AutocompletarESINTRO", "Formulario")',
-                    data: { email: $('#e-mail').val() },
+                    data: { ajaxInput: $('#ajaxInput').val() },
                     success: function (result) {
                         $('#personalInfo').html(result);
                     },
