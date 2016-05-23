@@ -10,24 +10,25 @@
 <h3>¿Está seguro de que desea cambiar el estado?</h3>
 <hr />
 <div>
-    <div class="col-lg-12">
-        <div class="col-lg-6">
-            @Html.DisplayNameFor(model => model.CEDULA)
-            @Html.DisplayFor(model => model.CEDULA)
+    <div class="col-sm-12">
+        <div class="form-group col-sm-6">
+            @Html.LabelFor(model => model.PERSONA.CEDULA, "Identificación", htmlAttributes: new { @class = "control-label " })
+            @Html.EditorFor(model => model.PERSONA.CEDULA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
         </div>
-        <div class="col-lg-6">
-            @Html.DisplayNameFor(model => model.PERSONA.NOMBRE)
-            @Html.DisplayFor(model => model.PERSONA.NOMBRE)
+        <div class="form-group col-sm-6">
+            @Html.LabelFor(model => model.PERSONA.NOMBRE, "Nombre", htmlAttributes: new { @class = "control-label " })
+            @Html.EditorFor(model => model.PERSONA.NOMBRE, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
         </div>
     </div>
 
     <hr>
+    <br />
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Cambiar" class="btn btn-default" /> 
+            <input type="submit" value="Cambiar" class="btn btn-successOET" /> 
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
