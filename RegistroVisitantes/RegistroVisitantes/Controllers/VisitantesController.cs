@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using RegistroVisitantes.Models;
 using PagedList;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace RegistroVisitantes.Controllers
 {
@@ -218,12 +220,56 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA infov = BDRegistro.INFOVISITA.Find(idRes, ced);
-            if (infov == null)
+            INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, ced);
+            
+            if (iInfoVisita == null)
             {
                 return HttpNotFound();
+            }else
+            {
+
+                var listSexo = new List<SelectListItem>();
+                if (iInfoVisita.PERSONA.GENERO.Equals("0"))
+                {
+                    listSexo.Add(new SelectListItem { Selected = true, Text = "Male", Value = "Male" });
+                    listSexo.Add(new SelectListItem { Text = "Female", Value = "Female" });
+                    
+                }
+                else
+                {
+                    listSexo.Add(new SelectListItem { Selected = true, Text = "Female", Value = "Female" });
+                    listSexo.Add(new SelectListItem { Text = "Male", Value = "Male" });
+                }
+                ViewBag.listSexo = listSexo;
+
+                var listDieta = new List<SelectListItem>();
+                switch (iInfoVisita.DIETA)
+                {
+                    case "No Restriction":
+                        listDieta.Add(new SelectListItem { Selected = true, Text = "No Restriction", Value = "No Restriction" });
+                        listDieta.Add(new SelectListItem { Text = "Vegetarian", Value = "Vegetarian" });
+                        listDieta.Add(new SelectListItem { Text = "Vegan", Value = "Vegan" });
+                        break;
+                    case "Vegetarian":
+                        listDieta.Add(new SelectListItem { Selected = true, Text = "Vegetarian", Value = "Vegetarian" });
+                        listDieta.Add(new SelectListItem { Text = "No Restriction", Value = "No Restriction" });
+                        listDieta.Add(new SelectListItem { Text = "Vegan", Value = "Vegan" });
+                        break;
+                    case "Vegan":
+                        listDieta.Add(new SelectListItem { Selected = true, Text = "Vegan", Value = "Vegan" });
+                        listDieta.Add(new SelectListItem { Selected = true, Text = "No Restriction", Value = "No Restriction" });
+                        listDieta.Add(new SelectListItem { Text = "Vegetarian", Value = "Vegetarian" });                      
+                        break;
+                }
+                ViewBag.listDieta = listDieta;
+                ViewBag.Carne = iInfoVisita.CARNE;
+                ViewBag.Pollo = iInfoVisita.POLLO;
+                ViewBag.Pescado = iInfoVisita.PESCADO;
+                ViewBag.Cerdo = iInfoVisita.CERDO;
+
             }
-            return View(infov);
+           
+            return View(iInfoVisita);
    
 
         }
@@ -257,10 +303,23 @@ namespace RegistroVisitantes.Controllers
 
             if (ModelState.IsValid)
             {
+
+                if (infov.PERSONA.GENERO == "female")
+                {
+                    infov.PERSONA.GENERO = '1'.ToString();
+
+                }
+                else
+                {
+                    infov.PERSONA.GENERO = '0'.ToString();
+                }
+                
+               
                 BDRegistro.Entry(infov).State = EntityState.Modified;
+                BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
                 return RedirectToAction("Index");
-            }
+             }
             return View();
         }
 
@@ -385,5 +444,6 @@ namespace RegistroVisitantes.Controllers
         {
             return Redirect(Request.UrlReferrer.ToString());
         }
+
     }
 }
