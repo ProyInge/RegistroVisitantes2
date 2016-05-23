@@ -7,6 +7,9 @@ using RegistroVisitantes.Models;
 using PagedList;
 using PagedList.Mvc;
 using System.Net;
+using ViewResources;
+using System.Threading;
+using System.Globalization;
 
 namespace RegistroVisitantes.Controllers
 {
@@ -15,6 +18,24 @@ namespace RegistroVisitantes.Controllers
         private BDRegistro BDRegistro = new BDRegistro ();
         private BDReservas BDReservas = new BDReservas();
 
+        protected override void Initialize(System.Web.Routing.RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+            if (Session["CurrentCulture"] != null)
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(Session["CurrentCulture"].ToString());
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Session["CurrentCulture"].ToString());
+            }
+        }
+
+        public ActionResult ChangeCulture(string ddlCulture, string idRes)
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(ddlCulture);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(ddlCulture);
+
+            Session["CurrentCulture"] = ddlCulture;
+            return RedirectToAction("Index", new { idRes = idRes });
+        }
 
         // GET: Formulario
         [Authorize]
@@ -53,27 +74,57 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
-            var sexo = new SelectList(new[] { "Male", "Female" });
-            var proposito = new SelectList(new[] { " Visiting Scientist(without project at the Station)", "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
+            //var sexo = new SelectList(new[] { "Male", "Female" });
+            var proposito = new SelectList(new[] { "Visiting Scientist(without project at the Station)", "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
             var position = new SelectList(new[] { "N/A", "Principal Investigator", "CO-IP", "Senior Staff", "Tutor", "Supervisor", "Coordinator", "Collaborator", "Student", "Technical", "Field Assistant", "Interns", "Volunteer" });
             var role = new SelectList(new[] { "N/A","Student", "Professor", "Coordinator", "Assistant" });
-            ViewBag.sexoList = sexo;
+            //ViewBag.sexoList = sexo;
             ViewBag.propositoList = proposito;
             ViewBag.positionList = position;
             ViewBag.roleList = role;
             return View();
         }
 
-        public PartialViewResult AutocompletarESINTRO(String email)
+        bool IsValidEmail(string email)
         {
-            PERSONA persona = BDReservas.PERSONA.Where(p => p.EMAIL == email).FirstOrDefault();
-            return PartialView(persona);
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public PartialViewResult AutocompletarOET(String email)
+        public PartialViewResult AutocompletarESINTRO(String ajaxInput)
         {
-            PERSONA persona = BDReservas.PERSONA.Where(p => p.EMAIL == email).FirstOrDefault();
-            return PartialView(persona);
+            if (IsValidEmail(ajaxInput)) //Es un email
+            {
+                PERSONA persona = BDReservas.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
+                return PartialView(persona);
+            }
+            else
+            {   //Es una cedula
+                PERSONA persona = BDReservas.PERSONA.Find(ajaxInput);
+                return PartialView(persona);
+            }
+            
+        }
+
+        public PartialViewResult AutocompletarOET(String ajaxInput)
+        {
+            if (IsValidEmail(ajaxInput)) //Es un email
+            {
+                PERSONA persona = BDReservas.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
+                return PartialView(persona);
+            }
+            else
+            {   //Es una cedula
+                PERSONA persona = BDReservas.PERSONA.Find(ajaxInput);
+                return PartialView(persona);
+            }
         }
 
         [HttpPost]
@@ -140,7 +191,6 @@ namespace RegistroVisitantes.Controllers
             return RedirectToAction("Index", "Reservas");
         }
 
-
         [HttpGet]
         [Authorize]
         public ActionResult CreateOET(String idRes)
@@ -155,13 +205,14 @@ namespace RegistroVisitantes.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
             var sexo = new SelectList(new[] { "Female", "Male" });
-            var proposito = new SelectList(new[] { " Visiting Scientist(without project at the Station)", "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
-            var position = new SelectList(new[] { "N/A", "Principal Investigator", "CO-IP", "Senior Staff", "Tutor", "Supervisor", "Coordinator", "Collaborator", "Student", "Technical", "Field Assistant", "Interns", "Volunteer" });
-            var role = new SelectList(new[] { "N/A", "Student", "Professor", "Coordinator", "Assistant" });
+            var proposito = new SelectList(new[] { ViewResources.Resources.oet_prop1, ViewResources.Resources.oet_prop2, ViewResources.Resources.oet_prop3, ViewResources.Resources.oet_prop4, ViewResources.Resources.oet_prop5, ViewResources.Resources.oet_prop6, ViewResources.Resources.oet_prop7, ViewResources.Resources.oet_prop8, ViewResources.Resources.oet_prop9, ViewResources.Resources.oet_prop10, ViewResources.Resources.oet_prop11 });
+            var position = new SelectList(new[] { ViewResources.Resources.oet_pos1, ViewResources.Resources.oet_pos2, ViewResources.Resources.oet_pos3, ViewResources.Resources.oet_pos4, ViewResources.Resources.oet_pos5, ViewResources.Resources.oet_pos6, ViewResources.Resources.oet_pos7, ViewResources.Resources.oet_pos8, ViewResources.Resources.oet_pos9, ViewResources.Resources.oet_pos10, ViewResources.Resources.oet_pos11, ViewResources.Resources.oet_pos12 });
+            var role = new SelectList(new[] { ViewResources.Resources.oet_rol1, ViewResources.Resources.oet_rol2, ViewResources.Resources.oet_rol3, ViewResources.Resources.oet_rol4, ViewResources.Resources.oet_rol5 });
             ViewBag.sexoList = sexo;
             ViewBag.propositoList = proposito;
             ViewBag.positionList = position;
             ViewBag.roleList = role;
+            ViewBag.idRes = idRes;
             return View();
         }
 
