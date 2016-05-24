@@ -313,7 +313,7 @@ namespace RegistroVisitantes.Controllers
                 {
                     infov.PERSONA.GENERO = '0'.ToString();
                 }
-               
+                
                
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
