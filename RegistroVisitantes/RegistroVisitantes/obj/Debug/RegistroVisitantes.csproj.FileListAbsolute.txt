@@ -672,3 +672,9 @@ C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisit
 C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.csprojResolveAssemblyReference.cache
 C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.dll
 C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.pdb
+C:\Users\Marco\Downloads\ProyectoInge2\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\Content\Images\logo_oet.png
+C:\Users\Marco\Downloads\ProyectoInge2\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\ViewResources.dll
+C:\Users\Marco\Downloads\ProyectoInge2\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\WebActivatorEx.dll
+C:\Users\Marco\Downloads\ProyectoInge2\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\ViewResources.pdb
+C:\Users\Marco\Downloads\ProyectoInge2\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\en\ViewResources.resources.dll
+C:\Users\Marco\Downloads\ProyectoInge2\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\fr\ViewResources.resources.dll

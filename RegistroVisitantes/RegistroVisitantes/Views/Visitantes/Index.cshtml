@@ -30,35 +30,32 @@ else
 
 <table class="table table-bordered table-condensed">
     <tr>
-        <th>
+        <th align="center">
             Número reserva
         </th>
-        <th>
+        <th align="center">
             Organización
         </th>
-        <th>
+        <th align="center">
             Nombre
         </th>
-        <th>
+        <th align="center">
             Apellido
         </th>
         <th>
             Correo electrónico
         </th>
-        <th>
+        <th align="center">
             Identificación
         </th>
-        <th>
+        <th align="center">
             Firma
         </th>
-        <th>
-
+        <th align="center"> 
+            Imprimir
         </th>
-        <th>
-
-        </th>
-        <th>
-
+        <th align="center">
+            Información
         </th>
     </tr>
 
@@ -100,9 +97,10 @@ else
                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
               </button>*@
 
-            <a class='mylink' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'>
+            <button type="button" class='mylink' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'>
                 <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-            </a>
+            </button>
+
         </td>
         if ((string)Session["Rol"] == "S")
         {
