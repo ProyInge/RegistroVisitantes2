@@ -28,7 +28,7 @@ else
 }
 
 
-<table class="table table-bordered table-striped table-condensed table-hover">
+<table class="table table-bordered table-condensed">
     <tr>
         <th>
             Número reserva
@@ -92,16 +92,17 @@ else
             @Html.DisplayFor(modelItem => item.PERSONA.CEDULA)
         </td>
         <td align="center">
-            <input type="checkbox" name="firma" value="firma">
+            <input type="checkbox" name="firma" value="firma" @(item.ESTADO == false ? "disabled = \"disabled\" ": "")>
+
         </td>
          <td align="center">
              @*<button type="button" class="btn btn-default" onclick="printPage()">
                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
               </button>*@
 
-                 <a class='mylink' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'>
-                     <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-                 </a>
+            <a class='mylink' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'>
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+            </a>
         </td>
         if ((string)Session["Rol"] == "S")
         {
@@ -111,9 +112,17 @@ else
         }
 
         <td align="center">
-              @Html.ActionLink("Ver informacion", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" })
+            @{if(item.ESTADO == false)
+                {
+                    @Html.ActionLink("Ver informacion", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success", disabled = "disabled" })
+                }
+                else
+                {
+                    @Html.ActionLink("Ver informacion", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" })
                     @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                } 
+            }
         </td>
                 @:</tr>
       }
