@@ -97,7 +97,8 @@ else
                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
               </button>*@
 
-            <button type="button" class='mylink' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'>
+            <button type="button" class='mylink' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'
+                    @(item.ESTADO == false ? "disabled = \"disabled\"" : "")>
                 <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
             </button>
 
@@ -110,19 +111,11 @@ else
         }
 
         <td align="center">
-            @{if(item.ESTADO == false)
-                {
-                    @Html.ActionLink("Ver informacion", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success", disabled = "disabled" })
-                }
-                else
-                {
-                    @Html.ActionLink("Ver informacion", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" })
-                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
-                } 
-            }
+            @Html.ActionLink("Ver informacion", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" })
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
         </td>
-                @:</tr>
+    @:</tr>
       }
 </table>
 
