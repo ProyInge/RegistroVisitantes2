@@ -3,20 +3,18 @@
 @{
     ViewBag.Title = @ViewResources.Resources.oet_titulo;
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
 }
 
 <h2>@ViewResources.Resources.oet_titulo</h2>
-@culture
 @using (Html.BeginForm("ChangeCulture", "Formulario", new { idRes = ViewBag.idRes }))
 {
-<p>
-    @ViewResources.Resources.seleccionarLen : @Html.DropDownList("ddlCulture", new SelectList(new[]
+    <p>
+        @ViewResources.Resources.seleccionarLen: @Html.DropDownList("ddlCulture", new SelectList(new[]
  {
  new{value="es",text=@ViewResources.Resources.spanish},
  new{value="en",text=@ViewResources.Resources.english}
- }, "value", "text", Session["CurrentCulture"]), new { onchange = "this.form.submit();" })
-</p>
+ }, "value", "text", Session["CurrentCulture"]), new { onchange = "this.form.submit();", @class = "form-control" })
+    </p>
 }
 
 @using (Html.BeginForm())
@@ -305,7 +303,7 @@
                         $('#personalInfo').html(result);
                     },
                     error: function (xhr, status) {
-                        alert(status);
+                        alert("Not an existing email or ID.");
                     }
                 });
 

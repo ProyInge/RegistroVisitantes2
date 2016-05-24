@@ -145,6 +145,9 @@
     </div>
 </div>
 <p>
-  @Html.ActionLink("Edit", "EditOET", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA }) |
-  @Html.ActionLink("Back to List", "Index")
+    @if ((string)Session["Rol"] == "S")
+    {
+      @Html.ActionLink("Edit", "EditOET", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA })
+    }
+    @Html.ActionLink("Back to List", "Index")
 </p>
