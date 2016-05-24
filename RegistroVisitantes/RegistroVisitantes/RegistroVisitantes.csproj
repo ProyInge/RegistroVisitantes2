@@ -416,6 +416,7 @@
       <Project>{f0885127-5867-43cf-81c0-c0ee89caf920}</Project>
       <Name>ViewResources</Name>
       <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

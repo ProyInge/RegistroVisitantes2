@@ -25,14 +25,14 @@ namespace RegistroVisitantes.Controllers
             {
                 if (Session["Rol"] != null)
                 {
-                    string rol = (string)Session["IdEstacion"];
+                    string estacion = (string)Session["IdEstacion"];
                     if ((string)Session["Rol"] == "S")
                     {
-                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes) && String.Equals(x.RESERVACION.ESTACION, Session["IdReservacion"])).OrderBy(x => x.ID_RESERVACION);
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes) && String.Equals(x.RESERVACION.ESTACION, estacion)).OrderBy(x => x.ID_RESERVACION);
                     }
                     else if ((string)Session["Rol"] == "A")
                     {
-                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes) && String.Equals(x.RESERVACION.ESTACION, Session["IdReservacion"])).OrderBy(x => x.ID_RESERVACION);
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes) && String.Equals(x.RESERVACION.ESTACION, estacion)).OrderBy(x => x.ID_RESERVACION);
                     }
                     else
                     {
