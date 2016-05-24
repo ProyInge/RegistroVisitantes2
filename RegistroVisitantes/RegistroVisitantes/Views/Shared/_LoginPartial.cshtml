@@ -5,9 +5,11 @@
     {
     @Html.AntiForgeryToken()
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Bienvenid" + Session["Genero"] + " a la estación " + Session["Estacion"] + " (" + Session["Siglas"] + ")", "Index", "Reservas")
-        </li>        
+        @if((string)Session["Rol"]!="R") {
+            <li>
+                @Html.ActionLink("Bienvenid" + Session["Genero"] + " a " + Session["Estacion"] + " (" + Session["Siglas"] + ")", "Index", "Reservas")
+            </li>  
+        }      
         <li>
             @Html.ActionLink("" + Session["Nombre"] + " " + Session["Apellido"] + "", "Usuario", "Administracion", routeValues: new { @returnUrl = Url.Action(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), ViewContext.RouteData.Values) }, htmlAttributes: new { title = "Administracion" })
         </li>
