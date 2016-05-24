@@ -82,6 +82,7 @@ namespace RegistroVisitantes.Controllers
             ViewBag.propositoList = proposito;
             ViewBag.positionList = position;
             ViewBag.roleList = role;
+            ViewBag.idRes = idRes;
             return View();
         }
 
