@@ -15,6 +15,12 @@ namespace RegistroVisitantes.Controllers
         }
 
         [Authorize]
+        public ActionResult Error()
+        {
+            return View();
+        }
+
+        [Authorize]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

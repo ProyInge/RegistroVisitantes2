@@ -43,12 +43,12 @@ namespace RegistroVisitantes.Controllers
         {
             if (idRes == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error", "Home"); //new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             RESERVACION reservacion = BDReservas.RESERVACION.Find(idRes);
             if (reservacion == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
+                return RedirectToAction("Error", "Home");  //new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
             if(reservacion.ANFITRIONA.Equals("01"))
             {
@@ -67,12 +67,12 @@ namespace RegistroVisitantes.Controllers
         {
             if (idRes == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error", "Home");  //new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var reservacion = BDReservas.RESERVACION.Find(idRes);
             if (reservacion == null || !reservacion.ANFITRIONA.Equals("02"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
+                return RedirectToAction("Error", "Home");  //new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
             //var sexo = new SelectList(new[] { "Male", "Female" });
             var proposito = new SelectList(new[] { "Visiting Scientist(without project at the Station)", "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
@@ -134,12 +134,12 @@ namespace RegistroVisitantes.Controllers
         {
             if (idRes == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error", "Home");  //new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var reservacion = BDReservas.RESERVACION.Find(idRes);
             if (reservacion == null || !reservacion.ANFITRIONA.Equals("02"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
+                return RedirectToAction("Error", "Home");  //new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
 
             form.CARNE = checkCarne;
@@ -203,7 +203,7 @@ namespace RegistroVisitantes.Controllers
             var reservacion = BDReservas.RESERVACION.Find(idRes);
             if (idRes != null && (reservacion == null || !reservacion.ANFITRIONA.Equals("01")))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
+                return RedirectToAction("Error", "Home");  //new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
             var sexo = new SelectList(new[] { "Female", "Male" });
             var proposito = new SelectList(new[] { ViewResources.Resources.oet_prop1, ViewResources.Resources.oet_prop2, ViewResources.Resources.oet_prop3, ViewResources.Resources.oet_prop4, ViewResources.Resources.oet_prop5, ViewResources.Resources.oet_prop6, ViewResources.Resources.oet_prop7, ViewResources.Resources.oet_prop8, ViewResources.Resources.oet_prop9, ViewResources.Resources.oet_prop10, ViewResources.Resources.oet_prop11 });
@@ -223,12 +223,12 @@ namespace RegistroVisitantes.Controllers
         {
             if (idRes == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error","Home");  //new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var reservacion = BDReservas.RESERVACION.Find(idRes);
             if (reservacion == null || !reservacion.ANFITRIONA.Equals("01"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
+                return RedirectToAction("Error", "Home");  //new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
             if (checkCarne) {
                 form.CARNE = true;

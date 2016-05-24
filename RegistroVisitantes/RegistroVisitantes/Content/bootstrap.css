@@ -2867,6 +2867,8 @@ input[type="button"].btn-block {
 
 .glyphicon-exclamation-sign:before {
   content: "\e101";
+  font-size: 150px;
+  color: #FDBB30;
 }
 
 .glyphicon-gift:before {
@@ -5615,6 +5617,7 @@ a.list-group-item:focus {
 
 .well {
   min-height: 20px;
+  font-size:medium;
   padding: 19px;
   margin-bottom: 20px;
   background-color: #f5f5f5;
