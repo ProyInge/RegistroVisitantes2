@@ -26,14 +26,14 @@ namespace RegistroVisitantes.Controllers
             {
                 if (Session["Rol"] != null)
                 {
-                    string estacion = (string)Session["IdEstacion"];
+                    string rol = (string)Session["IdEstacion"];
                     if ((string)Session["Rol"] == "S")
                     {
-                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes) && String.Equals(x.RESERVACION.ESTACION, estacion)).OrderBy(x => x.ID_RESERVACION);
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes) && String.Equals(x.RESERVACION.ESTACION, Session["IdReservacion"])).OrderBy(x => x.ID_RESERVACION);
                     }
                     else if ((string)Session["Rol"] == "A")
                     {
-                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes) && String.Equals(x.RESERVACION.ESTACION, estacion)).OrderBy(x => x.ID_RESERVACION);
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes) && String.Equals(x.RESERVACION.ESTACION, Session["IdReservacion"])).OrderBy(x => x.ID_RESERVACION);
                     }
                     else
                     {
@@ -100,6 +100,7 @@ namespace RegistroVisitantes.Controllers
             {   
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idR, cedula);
             if (iInfoVisita == null)
             {
@@ -303,7 +304,7 @@ namespace RegistroVisitantes.Controllers
             if (ModelState.IsValid)
             {
 
-                if (infov.PERSONA.GENERO == "female")
+                if (infov.PERSONA.GENERO == "Female")
                 {
                     infov.PERSONA.GENERO = '1'.ToString();
 
@@ -312,8 +313,13 @@ namespace RegistroVisitantes.Controllers
                 {
                     infov.PERSONA.GENERO = '0'.ToString();
                 }
-                
-               
+
+                infov.CARNE = true;
+                infov.POLLO = true;
+                infov.CERDO = true;
+                infov.PESCADO = true;
+             
+
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();

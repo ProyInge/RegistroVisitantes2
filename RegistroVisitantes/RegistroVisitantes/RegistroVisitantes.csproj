@@ -287,9 +287,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="SQL\base.sql" />
     <Content Include="SQL\contactos.sql" />
-    <Content Include="SQL\reservas.sql" />
-    <Content Include="SQL\registro.sql" />
+    <Content Include="SQL\v_empleados.sql" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -379,7 +379,6 @@
       <Project>{f0885127-5867-43cf-81c0-c0ee89caf920}</Project>
       <Name>ViewResources</Name>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

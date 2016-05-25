@@ -205,9 +205,7 @@ namespace RegistroVisitantes.Controllers
                 Session["Estacion"] = null;
                 Session["IdEstacion"] = null;
                 Session["Siglas"] = null;
-                Session["Genero"] = null;
                 Session["retURL"] = returnUrl;
-                
                 return Redirect(Request.RawUrl);
             }
             else
@@ -236,7 +234,6 @@ namespace RegistroVisitantes.Controllers
                 Session["Estacion"] = usr.ESTACION.NOMBRE;
                 Session["IdEstacion"] = usr.ESTACION.ID;
                 Session["Siglas"] = usr.ESTACION.SIGLAS;
-                Session["Genero"] = usr.SEXO == "M" ? "o":"a";
                 FormsAuthentication.SetAuthCookie(usr.USUAR.ToString(), true);
                 resetRequest();
                 return RedirectToAction("Logueado");

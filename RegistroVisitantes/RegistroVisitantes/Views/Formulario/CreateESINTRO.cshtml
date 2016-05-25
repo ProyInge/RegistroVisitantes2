@@ -15,25 +15,28 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             
-
+        
 
         <div class="container">
+            <div class="row">
+                <div class="col-sm-6" style="float:right">
+                    <label>@ViewResources.Resources.oet_auto</label>
+                    <input id="ajaxInput" class="form-control col-sm-10" />
+                    <button id="btnAjax" class="btn btn-success col-sm-1 col-sm-offset-1" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+                
             <h2 style="border-bottom:8px solid #FDBB30">Personal Information</h2>
             <br />
-            <div class="form-group col-sm-6">
-                <label>Type your ID or email for auto - filling the form</label>
-                <input id="ajaxInput" class="form-control"/>
-                <button id="btnAjax" class="btn btn-success" type="button">
-                    <i class="fa fa-search"></i>
-                </button>
-            </div>
+            
             <div id="personalInfo">
-                    <div class="form-group col-sm-6">
-                        @Html.LabelFor(model => model.PERSONA.NOMBRE, "First Name", htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.PERSONA.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PERSONA.NOMBRE, "", new { @class = "text-danger" })
-                    </div>  
-
+                <div class="form-group col-sm-6">
+                    @Html.LabelFor(model => model.PERSONA.NOMBRE, "First Name", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.PERSONA.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PERSONA.NOMBRE, "", new { @class = "text-danger" })
+                </div>  
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.PERSONA.APELLIDO, "Last Name", htmlAttributes: new { @class = "control-label " })
                     @Html.EditorFor(model => model.PERSONA.APELLIDO, new { htmlAttributes = new { @class = "form-control" } })
@@ -224,7 +227,7 @@
                         $('#personalInfo').html(result);
                     },
                     error: function (xhr, status) {
-                        alert("Not an existing email or ID.");
+                        alert(status);
                     }
                 });
 
