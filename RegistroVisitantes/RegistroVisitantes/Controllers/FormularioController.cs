@@ -16,7 +16,6 @@ namespace RegistroVisitantes.Controllers
     public class FormularioController : Controller
     {
         private BDRegistro BDRegistro = new BDRegistro ();
-        private BDReservas BDReservas = new BDReservas();
 
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
@@ -45,7 +44,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RESERVACION reservacion = BDReservas.RESERVACION.Find(idRes);
+            V_RESERVACION reservacion = BDRegistro.V_RESERVACION.Find(idRes);
             if (reservacion == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
@@ -69,7 +68,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var reservacion = BDReservas.RESERVACION.Find(idRes);
+            var reservacion = BDRegistro.V_RESERVACION.Find(idRes);
             if (reservacion == null || !reservacion.ANFITRIONA.Equals("02"))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
@@ -102,12 +101,12 @@ namespace RegistroVisitantes.Controllers
         {
             if (IsValidEmail(ajaxInput)) //Es un email
             {
-                PERSONA persona = BDReservas.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
+                PERSONA persona = BDRegistro.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
                 return PartialView(persona);
             }
             else
             {   //Es una cedula
-                PERSONA persona = BDReservas.PERSONA.Find(ajaxInput);
+                PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
                 return PartialView(persona);
             }
             
@@ -117,12 +116,12 @@ namespace RegistroVisitantes.Controllers
         {
             if (IsValidEmail(ajaxInput)) //Es un email
             {
-                PERSONA persona = BDReservas.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
+                PERSONA persona = BDRegistro.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
                 return PartialView(persona);
             }
             else
             {   //Es una cedula
-                PERSONA persona = BDReservas.PERSONA.Find(ajaxInput);
+                PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
                 return PartialView(persona);
             }
         }
@@ -135,7 +134,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var reservacion = BDReservas.RESERVACION.Find(idRes);
+            var reservacion = BDRegistro.V_RESERVACION.Find(idRes);
             if (reservacion == null || !reservacion.ANFITRIONA.Equals("02"))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
@@ -199,7 +198,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }*/
-            var reservacion = BDReservas.RESERVACION.Find(idRes);
+            var reservacion = BDRegistro.V_RESERVACION.Find(idRes);
             if (idRes != null && (reservacion == null || !reservacion.ANFITRIONA.Equals("01")))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
@@ -224,7 +223,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var reservacion = BDReservas.RESERVACION.Find(idRes);
+            var reservacion = BDRegistro.V_RESERVACION.Find(idRes);
             if (reservacion == null || !reservacion.ANFITRIONA.Equals("01"))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404

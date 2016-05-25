@@ -11,10 +11,10 @@
             </li>  
         }      
         <li>
-            @Html.ActionLink("" + Session["Nombre"] + " " + Session["Apellido"] + "", "Usuario", "Administracion", routeValues: new { @returnUrl = Url.Action(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), ViewContext.RouteData.Values) }, htmlAttributes: new { title = "Administracion" })
+            @Html.ActionLink("" + Session["Nombre"] + " " + Session["Apellido"] + "", "Administracion", "Usuario", routeValues: new { @idUsr = Session["Id"], @returnUrl = Request.Url.PathAndQuery }, htmlAttributes: new { title = "Administracion" })
         </li>
         <li>
-            @Html.ActionLink("Cerrar sesión", "Login", "Usuario", routeValues: new { @returnUrl = Url.Action(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), ViewContext.RouteData.Values["id"]) }, htmlAttributes: new { title = "Login" })
+            @Html.ActionLink("Cerrar sesión", "Login", "Usuario", routeValues: new { @returnUrl = Request.Url.PathAndQuery }, htmlAttributes: new { title = "Login" })
         </li>
     </ul>
     }
@@ -22,6 +22,6 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Iniciar sesión", "Login", "Usuario", routeValues: new { @returnUrl = Url.Action(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), ViewContext.RouteData.Values["id"]) }, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Iniciar sesión", "Login", "Usuario", routeValues: new { @returnUrl = Request.Url.PathAndQuery  }, htmlAttributes: new { id = "Login" })</li>
     </ul>
 }

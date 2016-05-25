@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 23/05/2016 23:22:15
+-- Date Created: 24/05/2016 21:58:26
 -- Generated from EDMX file: C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\Models\registro.edmx
 -- --------------------------------------------------
 
