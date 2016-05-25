@@ -43,20 +43,17 @@
                     @Html.ValidationMessageFor(model => model.PERSONA.APELLIDO, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.EMAIL, "E-mail", htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PERSONA.EMAIL, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.PERSONA.NACIONALIDAD, "Citizenship ", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.PERSONA.NACIONALIDAD, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PERSONA.NACIONALIDAD, "", new { @class = "text-danger" })
                 </div>
+                
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.PERSONA.CEDULA, "Identification ", htmlAttributes: new { @class = "control-label " })
                     @Html.EditorFor(model => model.PERSONA.CEDULA, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.CEDULA, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.NACIONALIDAD, "Citizenship ", htmlAttributes: new { @class = "control-label " })
-                    @Html.EditorFor(model => model.PERSONA.NACIONALIDAD, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PERSONA.NACIONALIDAD, "", new { @class = "text-danger" })
-                </div>
+
                 <div class="form-group col-sm-6" style="margin-top: 20px">
                     @Html.LabelFor(model => model.PERSONA.DIRECCION, "Address ", htmlAttributes: new { @class = "control-label " })
                     @Html.TextAreaFor(model => model.PERSONA.DIRECCION, new { htmlAttributes = new { @class = "form-control" } })
@@ -69,7 +66,11 @@
                     @Html.ValidationMessageFor(model => model.PERSONA.TELEFONO, "", new { @class = "text-danger" })
                 </div>
 
-
+                <div class="form-group col-sm-6">
+                    @Html.LabelFor(model => model.PERSONA.EMAIL, "E-mail", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PERSONA.EMAIL, "", new { @class = "text-danger" })
+                </div>
 
                 @*<div class="form-group col-sm-6" style="margin-top: -45px">
                     @Html.LabelFor(model => model.PERSONA.GENERO, "Gender ", htmlAttributes: new { @class = "control-label " })
