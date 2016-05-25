@@ -32,13 +32,13 @@ public partial class INFOVISITA
 
     public string COMIDA { get; set; }
 
-    public Nullable<bool> CARNE { get; set; }
+    public bool CARNE { get; set; }
 
-    public Nullable<bool> POLLO { get; set; }
+    public bool POLLO { get; set; }
 
-    public Nullable<bool> PESCADO { get; set; }
+    public bool PESCADO { get; set; }
 
-    public Nullable<bool> CERDO { get; set; }
+    public bool CERDO { get; set; }
 
     public string DIETA { get; set; }
 

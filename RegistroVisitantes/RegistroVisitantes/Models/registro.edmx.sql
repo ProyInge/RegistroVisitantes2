@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 24/05/2016 22:20:12
+-- Date Created: 24/05/2016 22:49:11
 -- Generated from EDMX file: C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\Models\registro.edmx
 -- --------------------------------------------------
 
@@ -109,10 +109,10 @@ CREATE TABLE "REGISTRO"."INFOVISITA" (
    "EMAIL_EMERGENCIA" VARCHAR2(150 CHAR) ,
    "REL_EMERGENCIA" VARCHAR2(150 CHAR) ,
    "COMIDA" VARCHAR2(300 CHAR) ,
-   "CARNE" NUMBER(1) ,
-   "POLLO" NUMBER(1) ,
-   "PESCADO" NUMBER(1) ,
-   "CERDO" NUMBER(1) ,
+   "CARNE" NUMBER(1) NOT NULL,
+   "POLLO" NUMBER(1) NOT NULL,
+   "PESCADO" NUMBER(1) NOT NULL,
+   "CERDO" NUMBER(1) NOT NULL,
    "DIETA" VARCHAR2(150 CHAR) ,
    "OBSERVACIONES_DIETA" VARCHAR2(150 CHAR) ,
    "ALERGIAS" VARCHAR2(150 CHAR) ,

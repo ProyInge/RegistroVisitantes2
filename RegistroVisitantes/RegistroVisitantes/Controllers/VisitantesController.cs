@@ -413,10 +413,10 @@ namespace RegistroVisitantes.Controllers
                     infov.PERSONA.GENERO = '0'.ToString();
                 }
 
-                infov.CARNE = true;
+               /* infov.CARNE = true;
                 infov.POLLO = true;
                 infov.CERDO = true;
-                infov.PESCADO = true;
+                infov.PESCADO = true;*/
              
 
                 BDRegistro.Entry(infov).State = EntityState.Modified;
