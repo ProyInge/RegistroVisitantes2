@@ -99,9 +99,9 @@ else
                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
               </button>*@
 
-                 <a class='mylink' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'>
+                 <button class='mylink' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'>
                      <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-                 </a>
+                 </button>
         </td>
         <td align="center">
              @Html.ActionLink("Cambiar estado", "Delete", new { idRes = item.ID_RESERVACION, idPer = item.CEDULA })
