@@ -206,14 +206,120 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INFOVISITA infov = BDRegistro.INFOVISITA.Find(idRes, ced);
-            if (infov == null)
+            INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, ced);
+            if (iInfoVisita == null)
             {
                 return HttpNotFound();
             }
-            return View(infov);
+            else
+            {
+                var listSexo = new List<SelectListItem>();
+                if (iInfoVisita.PERSONA.GENERO.Equals("0"))
+                {
+                    listSexo.Add(new SelectListItem { Selected = true, Text = "Male", Value = "Male" });
+                    listSexo.Add(new SelectListItem { Text = "Female", Value = "Female" });
 
+                }
+                else
+                {
+                    listSexo.Add(new SelectListItem { Selected = true, Text = "Female", Value = "Female" });
+                    listSexo.Add(new SelectListItem { Text = "Male", Value = "Male" });
+                }
+                ViewBag.listSexo = listSexo;
+
+                var listDieta = new List<SelectListItem>();
+                switch (iInfoVisita.DIETA)
+                {
+                    case "No Restriction":
+                        listDieta.Add(new SelectListItem { Selected = true, Text = "No Restriction", Value = "No Restriction" });
+                        listDieta.Add(new SelectListItem { Text = "Vegetarian", Value = "Vegetarian" });
+                        listDieta.Add(new SelectListItem { Text = "Vegan", Value = "Vegan" });
+                        break;
+                    case "Vegetarian":
+                        listDieta.Add(new SelectListItem { Selected = true, Text = "Vegetarian", Value = "Vegetarian" });
+                        listDieta.Add(new SelectListItem { Text = "No Restriction", Value = "No Restriction" });
+                        listDieta.Add(new SelectListItem { Text = "Vegan", Value = "Vegan" });
+                        break;
+                    case "Vegan":
+                        listDieta.Add(new SelectListItem { Selected = true, Text = "Vegan", Value = "Vegan" });
+                        listDieta.Add(new SelectListItem { Text = "No Restriction", Value = "No Restriction" });
+                        listDieta.Add(new SelectListItem { Text = "Vegetarian", Value = "Vegetarian" });
+                        break;
+                }
+
+                var listaPosicion = new List<SelectListItem>();
+                listaPosicion.Add(
+                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos1) ? 
+                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos1, Value = ViewResources.Resources.oet_pos1 }):
+                    (new SelectListItem { Text = ViewResources.Resources.oet_pos1, Value = ViewResources.Resources.oet_pos1 })
+                );
+                listaPosicion.Add(
+                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos2) ?
+                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos2, Value = ViewResources.Resources.oet_pos2 }) :
+                    (new SelectListItem { Text = ViewResources.Resources.oet_pos2, Value = ViewResources.Resources.oet_pos2 })
+                );
+                listaPosicion.Add(
+                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos3) ?
+                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos3, Value = ViewResources.Resources.oet_pos3 }) :
+                    (new SelectListItem { Text = ViewResources.Resources.oet_pos3, Value = ViewResources.Resources.oet_pos3 })
+                );
+                listaPosicion.Add(
+                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos4) ?
+                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos4, Value = ViewResources.Resources.oet_pos4 }) :
+                    (new SelectListItem { Text = ViewResources.Resources.oet_pos4, Value = ViewResources.Resources.oet_pos4 })
+                );
+                listaPosicion.Add(
+                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos5) ?
+                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos5, Value = ViewResources.Resources.oet_pos5 }) :
+                    (new SelectListItem { Text = ViewResources.Resources.oet_pos5, Value = ViewResources.Resources.oet_pos5 })
+                );
+                listaPosicion.Add(
+                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos6) ?
+                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos6, Value = ViewResources.Resources.oet_pos6 }) :
+                    (new SelectListItem { Text = ViewResources.Resources.oet_pos6, Value = ViewResources.Resources.oet_pos6 })
+                );
+                listaPosicion.Add(
+                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos7) ?
+                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos7, Value = ViewResources.Resources.oet_pos7 }) :
+                    (new SelectListItem { Text = ViewResources.Resources.oet_pos7, Value = ViewResources.Resources.oet_pos7 })
+                );
+                listaPosicion.Add(
+                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos8) ?
+                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos8, Value = ViewResources.Resources.oet_pos8 }) :
+                    (new SelectListItem { Text = ViewResources.Resources.oet_pos8, Value = ViewResources.Resources.oet_pos8 })
+                );
+                listaPosicion.Add(
+                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos9) ?
+                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos9, Value = ViewResources.Resources.oet_pos9 }) :
+                    (new SelectListItem { Text = ViewResources.Resources.oet_pos9, Value = ViewResources.Resources.oet_pos9 })
+                );
+                listaPosicion.Add(
+                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos10) ?
+                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos10, Value = ViewResources.Resources.oet_pos10 }) :
+                    (new SelectListItem { Text = ViewResources.Resources.oet_pos10, Value = ViewResources.Resources.oet_pos10 })
+                );
+                listaPosicion.Add(
+                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos11) ?
+                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos11, Value = ViewResources.Resources.oet_pos11 }) :
+                    (new SelectListItem { Text = ViewResources.Resources.oet_pos11, Value = ViewResources.Resources.oet_pos11 })
+                );
+                listaPosicion.Add(
+                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos12) ?
+                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos12, Value = ViewResources.Resources.oet_pos12 }) :
+                    (new SelectListItem { Text = ViewResources.Resources.oet_pos12, Value = ViewResources.Resources.oet_pos12 })
+                );
+
+                ViewBag.listaPosicion = listaPosicion;
+                ViewBag.listDieta = listDieta;
+                ViewBag.Carne = iInfoVisita.CARNE;
+                ViewBag.Pollo = iInfoVisita.POLLO;
+                ViewBag.Pescado = iInfoVisita.PESCADO;
+                ViewBag.Cerdo = iInfoVisita.CERDO;
+
+            }
+            return View(iInfoVisita);
         }
+
         public ActionResult EditESINTRO(String idRes, String ced)
         {
             if (idRes == null)
