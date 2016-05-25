@@ -782,3 +782,7 @@ C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitante
 C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\ViewResources.pdb
 C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\en\ViewResources.resources.dll
 C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\fr\ViewResources.resources.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\ViewResources.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\ViewResources.pdb
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\en\ViewResources.resources.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\fr\ViewResources.resources.dll
