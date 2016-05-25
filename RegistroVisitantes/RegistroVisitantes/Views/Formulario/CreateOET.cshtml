@@ -63,7 +63,29 @@
                     @Html.EditorFor(model => model.PERSONA.CEDULA, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.CEDULA, "", new { @class = "text-danger" })
                 </div>
+                <div class="form-group col-sm-6">
+                    @Html.LabelFor(model => model.PERSONA.TITULO, @ViewResources.Resources.oet_tituloPer + ":", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.PERSONA.TITULO, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PERSONA.TITULO, "", new { @class = "text-danger" })
+                </div>
 
+                <div class="form-group  col-sm-6">
+                    @Html.LabelFor(model => model.PERSONA.CIUDAD, @ViewResources.Resources.oet_ciudad + ":", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.PERSONA.CIUDAD, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PERSONA.CIUDAD, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-sm-6">
+                    @Html.LabelFor(model => model.PERSONA.PAIS, @ViewResources.Resources.oet_pais + ":", htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.PERSONA.PAIS, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PERSONA.PAIS, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-sm-6">
+                    @Html.LabelFor(model => model.PERSONA.COD_POSTAL, @ViewResources.Resources.oet_codigo + ":", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.PERSONA.COD_POSTAL, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PERSONA.COD_POSTAL, "", new { @class = "text-danger" })
+                </div>
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.PERSONA.DIRECCION, @ViewResources.Resources.oet_direccion + ":", htmlAttributes: new { @class = "control-label " })
                     @Html.EditorFor(model => model.PERSONA.DIRECCION, new { htmlAttributes = new { @class = "form-control" } })
@@ -99,31 +121,6 @@
                     @Html.EditorFor(model => model.PERSONA.INSTITUCION, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.INSTITUCION, "", new { @class = "text-danger" })
                 </div>
-
-                <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.TITULO, @ViewResources.Resources.oet_tituloPer + ":", htmlAttributes: new { @class = "control-label " })
-                    @Html.EditorFor(model => model.PERSONA.TITULO, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PERSONA.TITULO, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group  col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.CIUDAD, @ViewResources.Resources.oet_ciudad + ":", htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.PERSONA.CIUDAD, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PERSONA.CIUDAD, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.PAIS, @ViewResources.Resources.oet_pais + ":", htmlAttributes: new { @class = "control-label " })
-                    @Html.EditorFor(model => model.PERSONA.PAIS, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PERSONA.PAIS, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.COD_POSTAL, @ViewResources.Resources.oet_codigo + ":", htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.PERSONA.COD_POSTAL, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PERSONA.COD_POSTAL, "", new { @class = "text-danger" })
-                </div>
-
             </div>
             </div>
 
