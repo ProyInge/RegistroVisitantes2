@@ -225,7 +225,6 @@ namespace RegistroVisitantes.Controllers
                     listSexo.Add(new SelectListItem { Selected = true, Text = "Female", Value = "Female" });
                     listSexo.Add(new SelectListItem { Text = "Male", Value = "Male" });
                 }
-                ViewBag.listSexo = listSexo;
 
                 var listDieta = new List<SelectListItem>();
                 switch (iInfoVisita.DIETA)
@@ -309,6 +308,7 @@ namespace RegistroVisitantes.Controllers
                     (new SelectListItem { Text = ViewResources.Resources.oet_pos12, Value = ViewResources.Resources.oet_pos12 })
                 );
 
+                ViewBag.listSexo = listSexo;
                 ViewBag.listaPosicion = listaPosicion;
                 ViewBag.listDieta = listDieta;
                 ViewBag.Carne = iInfoVisita.CARNE;
