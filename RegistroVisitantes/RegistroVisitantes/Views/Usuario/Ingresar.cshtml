@@ -7,68 +7,89 @@
 
 <h2>Ingresar</h2>
 
+@if((string)Session["Rol"]=="R") { 
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm()) 
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">Nombre</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Apellido</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.APELLIDO, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.APELLIDO, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">E-mail</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Sexo</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SEXO, (IEnumerable<SelectListItem>)ViewBag.listSexo, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SEXO, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Rol</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.ROL, (IEnumerable<SelectListItem>)ViewBag.listRol, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ROL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Estación</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.IDESTACION, (IEnumerable<SelectListItem>)ViewBag.listEstacion, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IDESTACION, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-md-2">Usuario</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.USUAR, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.USUAR, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Contraseña</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CONTRASENA, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                    @Html.ValidationMessageFor(model => model.CONTRASENA, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+}
+else
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <label class="control-label col-md-2">Nombre</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Apellido</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.APELLIDO, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.APELLIDO, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">E-mail</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Sexo</label>
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SEXO, (IEnumerable<SelectListItem>)ViewBag.listSexo, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.SEXO, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Usuario</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.USUAR, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.USUAR, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Contraseña</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CONTRASENA, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
-                @Html.ValidationMessageFor(model => model.CONTRASENA, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Registrarse" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+    <p>Consulte con el Administrador del sistema para agregar nuevos usuarios</p>
 }
 
 
