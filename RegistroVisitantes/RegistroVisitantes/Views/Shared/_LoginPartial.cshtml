@@ -21,6 +21,7 @@
 }
 else
 {
+    FormsAuthentication.SignOut();
     <ul class="nav navbar-nav navbar-right">
         <li>@Html.ActionLink("Iniciar sesión", "Login", "Usuario", routeValues: new { @returnUrl = Request.Url.PathAndQuery  }, htmlAttributes: new { id = "Login" })</li>
     </ul>

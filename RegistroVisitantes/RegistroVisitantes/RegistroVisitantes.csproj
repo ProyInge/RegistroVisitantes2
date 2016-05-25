@@ -289,7 +289,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="SQL\base.sql" />
     <Content Include="SQL\contactos.sql" />
-    <Content Include="SQL\v_empleados.sql" />
+    <Content Include="SQL\reservas.sql" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
