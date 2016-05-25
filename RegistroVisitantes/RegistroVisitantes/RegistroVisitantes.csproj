@@ -200,9 +200,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ESTACION.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\INFOVISITA.cs">
       <DependentUpon>registro.tt</DependentUpon>
@@ -225,24 +222,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>registro.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RESERVACION.cs">
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\reservas.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>reservas.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\reservas.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>reservas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\reservas.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>reservas.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\USUARIO.cs">
       <DependentUpon>registro.tt</DependentUpon>
@@ -283,29 +262,12 @@
       <DependentUpon>registro.edmx</DependentUpon>
       <LastGenOutput>registro.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\reservas.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>reservas.edmx</DependentUpon>
-      <LastGenOutput>reservas.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\reservas.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>reservas.edmx</DependentUpon>
-      <LastGenOutput>reservas.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
-    <EntityDeploy Include="Models\reservas.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>reservas.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\reservas.edmx.diagram">
-      <DependentUpon>reservas.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\registro.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>registro.Designer.cs</LastGenOutput>
@@ -393,6 +355,7 @@
     <Content Include="Views\Visitantes\EditESINTRO.cshtml" />
     <Content Include="Views\Visitantes\EditOET.cshtml" />
     <Content Include="Views\Formulario\AutocompletarESINTRO.cshtml" />
+    <Content Include="Views\Usuario\Administracion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

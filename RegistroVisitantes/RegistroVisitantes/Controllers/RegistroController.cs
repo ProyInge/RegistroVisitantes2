@@ -12,7 +12,7 @@ namespace RegistroVisitantes.Controllers
 {
     public class RegistroController : Controller
     {
-        private BDReservas BDReserv = new BDReservas();
+        private BDRegistro db = new BDRegistro();
 
 
         // GET: Registro

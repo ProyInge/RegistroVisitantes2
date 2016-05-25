@@ -15,6 +15,7 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
         <div class="form-group">
             <label class="control-label col-md-2">Nombre</label>
             <div class="col-md-10">
@@ -47,6 +48,25 @@
             </div>
         </div>
 
+        @if ((string)Session["Rol"] == "R")
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">Rol</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.ROL, (IEnumerable<SelectListItem>)ViewBag.listRol, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ROL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Estación</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.IDESTACION, (IEnumerable<SelectListItem>)ViewBag.listEstacion, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IDESTACION, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
         <div class="form-group">
             <label class="control-label col-md-2">Usuario</label>
             <div class="col-md-10">
@@ -65,7 +85,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Registrarse" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
         </div>
     </div>

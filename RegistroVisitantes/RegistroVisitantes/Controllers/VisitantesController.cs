@@ -15,7 +15,6 @@ namespace RegistroVisitantes.Controllers
 {
     public class VisitantesController : Controller
     {
-        private BDReservas BDReservas = new BDReservas();
         private BDRegistro BDRegistro = new BDRegistro();
 
         // GET: Visitantes
@@ -81,7 +80,7 @@ namespace RegistroVisitantes.Controllers
         [Authorize]
         public ActionResult Details(String idRes, String ced)
         {
-            RESERVACION res = BDReservas.RESERVACION.Find(idRes);
+            V_RESERVACION res = BDRegistro.V_RESERVACION.Find(idRes);
 
             if (res.ANFITRIONA.Equals("01"))
             {
@@ -101,6 +100,7 @@ namespace RegistroVisitantes.Controllers
             {   
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idR, cedula);
             if (iInfoVisita == null)
             {
@@ -188,7 +188,7 @@ namespace RegistroVisitantes.Controllers
         {
 
 
-            RESERVACION res = BDReservas.RESERVACION.Find(idRes);
+            V_RESERVACION res = BDRegistro.V_RESERVACION.Find(idRes);
 
             if (res.ANFITRIONA.Equals("01"))
             {
