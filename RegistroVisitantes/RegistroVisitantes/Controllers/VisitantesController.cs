@@ -218,7 +218,6 @@ namespace RegistroVisitantes.Controllers
                 {
                     listSexo.Add(new SelectListItem { Selected = true, Text = "Male", Value = "Male" });
                     listSexo.Add(new SelectListItem { Text = "Female", Value = "Female" });
-
                 }
                 else
                 {
@@ -247,67 +246,46 @@ namespace RegistroVisitantes.Controllers
                 }
 
                 var listaPosicion = new List<SelectListItem>();
-                listaPosicion.Add(
-                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos1) ? 
-                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos1, Value = ViewResources.Resources.oet_pos1 }):
-                    (new SelectListItem { Text = ViewResources.Resources.oet_pos1, Value = ViewResources.Resources.oet_pos1 })
-                );
-                listaPosicion.Add(
-                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos2) ?
-                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos2, Value = ViewResources.Resources.oet_pos2 }) :
-                    (new SelectListItem { Text = ViewResources.Resources.oet_pos2, Value = ViewResources.Resources.oet_pos2 })
-                );
-                listaPosicion.Add(
-                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos3) ?
-                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos3, Value = ViewResources.Resources.oet_pos3 }) :
-                    (new SelectListItem { Text = ViewResources.Resources.oet_pos3, Value = ViewResources.Resources.oet_pos3 })
-                );
-                listaPosicion.Add(
-                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos4) ?
-                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos4, Value = ViewResources.Resources.oet_pos4 }) :
-                    (new SelectListItem { Text = ViewResources.Resources.oet_pos4, Value = ViewResources.Resources.oet_pos4 })
-                );
-                listaPosicion.Add(
-                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos5) ?
-                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos5, Value = ViewResources.Resources.oet_pos5 }) :
-                    (new SelectListItem { Text = ViewResources.Resources.oet_pos5, Value = ViewResources.Resources.oet_pos5 })
-                );
-                listaPosicion.Add(
-                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos6) ?
-                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos6, Value = ViewResources.Resources.oet_pos6 }) :
-                    (new SelectListItem { Text = ViewResources.Resources.oet_pos6, Value = ViewResources.Resources.oet_pos6 })
-                );
-                listaPosicion.Add(
-                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos7) ?
-                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos7, Value = ViewResources.Resources.oet_pos7 }) :
-                    (new SelectListItem { Text = ViewResources.Resources.oet_pos7, Value = ViewResources.Resources.oet_pos7 })
-                );
-                listaPosicion.Add(
-                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos8) ?
-                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos8, Value = ViewResources.Resources.oet_pos8 }) :
-                    (new SelectListItem { Text = ViewResources.Resources.oet_pos8, Value = ViewResources.Resources.oet_pos8 })
-                );
-                listaPosicion.Add(
-                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos9) ?
-                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos9, Value = ViewResources.Resources.oet_pos9 }) :
-                    (new SelectListItem { Text = ViewResources.Resources.oet_pos9, Value = ViewResources.Resources.oet_pos9 })
-                );
-                listaPosicion.Add(
-                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos10) ?
-                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos10, Value = ViewResources.Resources.oet_pos10 }) :
-                    (new SelectListItem { Text = ViewResources.Resources.oet_pos10, Value = ViewResources.Resources.oet_pos10 })
-                );
-                listaPosicion.Add(
-                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos11) ?
-                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos11, Value = ViewResources.Resources.oet_pos11 }) :
-                    (new SelectListItem { Text = ViewResources.Resources.oet_pos11, Value = ViewResources.Resources.oet_pos11 })
-                );
-                listaPosicion.Add(
-                    (iInfoVisita.PERSONA.POSICION == ViewResources.Resources.oet_pos12) ?
-                    (new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_pos12, Value = ViewResources.Resources.oet_pos12 }) :
-                    (new SelectListItem { Text = ViewResources.Resources.oet_pos12, Value = ViewResources.Resources.oet_pos12 })
-                );
+                String[] posiciones = { "Volunteer", "Superior staff", "Principal researcher", "Other, Intern",
+                    "Field Assistant", "Technician", "Student", "Colaborator", "Coordinator", "Supervisor", "Tutor"};
 
+                foreach(String pos in posiciones)
+                {
+                    listaPosicion.Add(
+                       (iInfoVisita.PERSONA.POSICION == pos) ?
+                           (new SelectListItem { Selected = true, Text = pos, Value = pos }) :
+                           (new SelectListItem { Text = pos, Value = pos })
+                    );
+                }
+
+                var listaPropositos = new List<SelectListItem>();
+                String[] propositos = { "Visiting Scientist (without project at the station)",
+                    "OTS staff (on business not covered by other categories)",
+                    "Researcher(with project at the station)", "Undergraduate course","Graduate course",
+                    "University extension course","Environmental education program", "Natural History visitor",
+                    "Special event or meetings","Journalist(reporter, writer, filmer)","Other" };
+                
+                foreach (String prop in propositos)
+                {
+                    listaPropositos.Add( (iInfoVisita.PROPOSITO == prop) ?
+                        (new SelectListItem { Selected = true, Text = prop, Value = prop}) :
+                        (new SelectListItem { Text = prop, Value = prop})
+                    );
+                }
+
+
+                var listaRoles = new List<SelectListItem>();
+                String [] roles = { "Student", "Professor", "Coordinator", "Assistant", "Other" };
+                foreach (String rol in roles)
+                {
+                    listaRoles.Add((iInfoVisita.ROL_CURSO == rol) ?
+                        (new SelectListItem { Selected = true, Text = rol, Value = rol }) :
+                        (new SelectListItem { Text = rol, Value = rol })
+                    );
+                }
+
+                ViewBag.listRoles = listaRoles;
+                ViewBag.listProposito = listaPropositos;
                 ViewBag.listSexo = listSexo;
                 ViewBag.listaPosicion = listaPosicion;
                 ViewBag.listDieta = listDieta;
@@ -377,7 +355,6 @@ namespace RegistroVisitantes.Controllers
            
             return View(iInfoVisita);
    
-
         }
 
 
@@ -387,21 +364,37 @@ namespace RegistroVisitantes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditOET( INFOVISITA infov)
+        public ActionResult EditOET(INFOVISITA infov)
         {
+
             if (ModelState.IsValid)
             {
+
+                if (infov.PERSONA.GENERO == "Female")
+                {
+                    infov.PERSONA.GENERO = '1'.ToString();
+
+                }
+                else
+                {
+                    infov.PERSONA.GENERO = '0'.ToString();
+                }
+
+                infov.CARNE = true;
+                infov.POLLO = true;
+                infov.CERDO = true;
+                infov.PESCADO = true;
+
+                
                 BDRegistro.Entry(infov).State = EntityState.Modified;
+                BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("DetailsOET", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA});
             }
             return View();
+
         }
-
-
-        // POST: /visitantes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+           
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditESINTRO(INFOVISITA infov)
@@ -429,18 +422,12 @@ namespace RegistroVisitantes.Controllers
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("DetailESINTRO");
              }
             return View();
         }
 
-
-
-
-
-
-
-
+        
         // GET: Visitantes/Create
         [Authorize]
         public ActionResult Create()
