@@ -13,7 +13,7 @@ namespace RegistroVisitantes.Controllers
     public class UsuarioController : Controller
     {
         private BDRegistro db = new BDRegistro();
-        public ActionResult Ingresar()
+        public ActionResult Ingresar(string returnUrl)
         {
             var listSexo = new List<SelectListItem>();
             listSexo.Add(new SelectListItem { Text = "Hombre", Value = "M" });
@@ -46,7 +46,7 @@ namespace RegistroVisitantes.Controllers
                 ModelState.Clear();
                 ViewBag.Message = usuarioNuevo.NOMBRE + " " + usuarioNuevo.APELLIDO + " se ingresó exitosamente.";
             }
-            return Login(returnUrl);
+            return Redirect(returnUrl);
         }
 
         [Authorize]
@@ -205,6 +205,7 @@ namespace RegistroVisitantes.Controllers
                 Session["Estacion"] = null;
                 Session["IdEstacion"] = null;
                 Session["Siglas"] = null;
+                Session["Genero"] = null;
                 Session["retURL"] = returnUrl;
                 return Redirect(Request.RawUrl);
             }
@@ -234,6 +235,7 @@ namespace RegistroVisitantes.Controllers
                 Session["Estacion"] = usr.ESTACION.NOMBRE;
                 Session["IdEstacion"] = usr.ESTACION.ID;
                 Session["Siglas"] = usr.ESTACION.SIGLAS;
+                Session["Genero"] = usr.SEXO == "M" ? "o" : "a";
                 FormsAuthentication.SetAuthCookie(usr.USUAR.ToString(), true);
                 resetRequest();
                 return RedirectToAction("Logueado");

@@ -1,7 +1,7 @@
 ﻿@model RegistroVisitantes.Models.USUARIO
 
 @{
-    ViewBag.Title = "Ingresar";
+    ViewBag.Title = "Administración";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -88,6 +88,9 @@
                 <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
         </div>
+    </div>
+    <div>
+        @Html.ActionLink("Registrar nuevo usuario", "Ingresar", "Usuario", routeValues: new { @returnUrl = Request.Url.PathAndQuery }, htmlAttributes: new { title = "Ingresar" })
     </div>
 }
 
