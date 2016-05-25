@@ -57,6 +57,7 @@
             <Property Name="CONTRASENA" Type="varchar2" Nullable="false" MaxLength="40" />
             <Property Name="ROL" Type="char" Nullable="false" MaxLength="1" />
             <Property Name="IDESTACION" Type="varchar2" Nullable="false" MaxLength="26" />
+            <Property Name="SEXO" Type="char" Nullable="true" MaxLength="1" />
         </EntityType>
         <EntityType Name="V_ESTACION">
             <Key>
@@ -115,10 +116,10 @@
             <Property Name="EMAIL_EMERGENCIA" Type="varchar2" Nullable="true" MaxLength="150" />
             <Property Name="REL_EMERGENCIA" Type="varchar2" Nullable="true" MaxLength="150" />
             <Property Name="COMIDA" Type="varchar2" Nullable="true" MaxLength="300" />
-            <Property Name="CARNE" Type="number" Nullable="true" Precision="1" />
-            <Property Name="POLLO" Type="number" Nullable="true" Precision="1" />
-            <Property Name="PESCADO" Type="number" Nullable="true" Precision="1" />
-            <Property Name="CERDO" Type="number" Nullable="true" Precision="1" />
+            <Property Name="CARNE" Type="number" Nullable="false" Precision="1" />
+            <Property Name="POLLO" Type="number" Nullable="false" Precision="1" />
+            <Property Name="PESCADO" Type="number" Nullable="false" Precision="1" />
+            <Property Name="CERDO" Type="number" Nullable="false" Precision="1" />
             <Property Name="DIETA" Type="varchar2" Nullable="true" MaxLength="150" />
             <Property Name="OBSERVACIONES_DIETA" Type="varchar2" Nullable="true" MaxLength="150" />
             <Property Name="ALERGIAS" Type="varchar2" Nullable="true" MaxLength="150" />
@@ -218,6 +219,7 @@
           <Property Name="ROL" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ESTACION" Relationship="Model.USUARIOV_ESTACION" FromRole="USUARIO" ToRole="V_ESTACION" />
           <Property Name="IDESTACION" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="false" />
+          <Property Name="SEXO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="V_ESTACION">
           <Key>
@@ -309,10 +311,10 @@
           <Property Name="EMAIL_EMERGENCIA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="REL_EMERGENCIA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="COMIDA" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="CARNE" Type="Boolean" />
-          <Property Name="POLLO" Type="Boolean" />
-          <Property Name="PESCADO" Type="Boolean" />
-          <Property Name="CERDO" Type="Boolean" />
+          <Property Name="CARNE" Type="Boolean" Nullable="false" />
+          <Property Name="POLLO" Type="Boolean" Nullable="false" />
+          <Property Name="PESCADO" Type="Boolean" Nullable="false" />
+          <Property Name="CERDO" Type="Boolean" Nullable="false" />
           <Property Name="DIETA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="OBSERVACIONES_DIETA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ALERGIAS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -396,6 +398,7 @@
                     <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
                     <ScalarProperty Name="ROL" ColumnName="ROL" />
                     <ScalarProperty Name="IDESTACION" ColumnName="IDESTACION" />
+                    <ScalarProperty Name="SEXO" ColumnName="SEXO" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>
