@@ -228,11 +228,6 @@ namespace RegistroVisitantes.Controllers
                 var listDieta = new List<SelectListItem>();
                 switch (iInfoVisita.DIETA)
                 {
-                    case "No Restriction":
-                        listDieta.Add(new SelectListItem { Selected = true, Text = "No Restriction", Value = "No Restriction" });
-                        listDieta.Add(new SelectListItem { Text = "Vegetarian", Value = "Vegetarian" });
-                        listDieta.Add(new SelectListItem { Text = "Vegan", Value = "Vegan" });
-                        break;
                     case "Vegetarian":
                         listDieta.Add(new SelectListItem { Selected = true, Text = "Vegetarian", Value = "Vegetarian" });
                         listDieta.Add(new SelectListItem { Text = "No Restriction", Value = "No Restriction" });
@@ -242,6 +237,11 @@ namespace RegistroVisitantes.Controllers
                         listDieta.Add(new SelectListItem { Selected = true, Text = "Vegan", Value = "Vegan" });
                         listDieta.Add(new SelectListItem { Text = "No Restriction", Value = "No Restriction" });
                         listDieta.Add(new SelectListItem { Text = "Vegetarian", Value = "Vegetarian" });
+                        break;
+                    default:
+                        listDieta.Add(new SelectListItem { Selected = true, Text = "No Restriction", Value = "No Restriction" });
+                        listDieta.Add(new SelectListItem { Text = "Vegetarian", Value = "Vegetarian" });
+                        listDieta.Add(new SelectListItem { Text = "Vegan", Value = "Vegan" });
                         break;
                 }
 
