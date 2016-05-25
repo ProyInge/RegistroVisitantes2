@@ -7,7 +7,7 @@
 
 <h2>Cambiar estado</h2>
 
-<h3>¿Está seguro de que desea cambiar el estado?</h3>
+<h3>¿Está seguro de que desea cambiar el estado de este visitante?</h3>
 <hr />
 <div>
     <div class="col-sm-12">
@@ -21,15 +21,14 @@
         </div>
     </div>
 
-    <hr>
-    <br />
+    <br /> <br /> <br /> <br /> <br />
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Cambiar" class="btn btn-successOET" /> 
-            @Html.ActionLink("Back to List", "Index")
+        <div class="col-sm-6" style="float:left">
+            <input type="submit" value="Cambiar" class="btn btn-successOET" />
+            <button class="btn btn-cancelOET" onclick="location.href='@Url.Action("Index", "Visitantes")';return false;">Cancelar</button>
         </div>
     }
 </div>
