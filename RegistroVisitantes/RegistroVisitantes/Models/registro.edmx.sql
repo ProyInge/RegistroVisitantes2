@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 23/05/2016 23:22:15
+-- Date Created: 13/05/2016 11:10:06
 -- Generated from EDMX file: C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\Models\registro.edmx
 -- --------------------------------------------------
 
@@ -53,8 +53,7 @@ CREATE TABLE "REGISTRO"."USUARIO" (
    "USUAR" VARCHAR2(40 CHAR) NOT NULL,
    "CONTRASENA" VARCHAR2(40 CHAR) NOT NULL,
    "ROL" CHAR(1 CHAR) NOT NULL,
-   "IDESTACION" VARCHAR2(26 CHAR) NOT NULL,
-   "SEXO" CHAR(1 CHAR) 
+   "IDESTACION" VARCHAR2(26 CHAR) NOT NULL
 );
 
 -- Creating table 'V_ESTACION'
