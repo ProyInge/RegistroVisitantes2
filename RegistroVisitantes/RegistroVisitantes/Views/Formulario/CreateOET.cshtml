@@ -275,7 +275,7 @@
 
         <div class="form-group">
             <div class="col-sm-12">
-                <input type="submit" value="@(ViewResources.Resources.oet_enviar)" class="btn btn-successOET" />
+                <input type="submit" value="Submit" class="btn btn-successOET" />
             </div>
         </div>
 }
@@ -296,7 +296,7 @@
                         $('#personalInfo').html(result);
                     },
                     error: function (xhr, status) {
-                        alert(status);
+                        alert("Not an existint email or ID");
                     }
                 });
 

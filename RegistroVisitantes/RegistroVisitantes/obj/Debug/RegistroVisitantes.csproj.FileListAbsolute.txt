@@ -776,3 +776,9 @@ C:\Users\Jeffry\Documents\Visual Studio 2015\Projects\RegV2\RegistroVisitantes\R
 C:\Users\Jeffry\Documents\Visual Studio 2015\Projects\RegV2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.csprojResolveAssemblyReference.cache
 C:\Users\Jeffry\Documents\Visual Studio 2015\Projects\RegV2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.dll
 C:\Users\Jeffry\Documents\Visual Studio 2015\Projects\RegV2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.pdb
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\Content\Images\logo_oet.png
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\ViewResources.dll
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\WebActivatorEx.dll
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\ViewResources.pdb
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\en\ViewResources.resources.dll
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\fr\ViewResources.resources.dll
