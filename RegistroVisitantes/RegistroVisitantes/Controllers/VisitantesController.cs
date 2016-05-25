@@ -304,7 +304,7 @@ namespace RegistroVisitantes.Controllers
             if (ModelState.IsValid)
             {
 
-                if (infov.PERSONA.GENERO == "female")
+                if (infov.PERSONA.GENERO == "Female")
                 {
                     infov.PERSONA.GENERO = '1'.ToString();
 
@@ -313,8 +313,13 @@ namespace RegistroVisitantes.Controllers
                 {
                     infov.PERSONA.GENERO = '0'.ToString();
                 }
-                
-               
+
+                infov.CARNE = true;
+                infov.POLLO = true;
+                infov.CERDO = true;
+                infov.PESCADO = true;
+             
+
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
