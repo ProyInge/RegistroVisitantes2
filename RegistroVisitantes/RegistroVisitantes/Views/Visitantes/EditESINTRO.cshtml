@@ -113,26 +113,21 @@
                     </div>
                     <div class="form-group col-sm-6">
                         <label for="dieta">Preference</label>
-                        <br />
-                        @*@Html.LabelFor(model => model.CARNE, "Beef", htmlAttributes: new { @class = "control-label" })
-                        @Html.CheckBoxFor(model => model.CARNE.Value,  new { @class = "form-control" })
+                        <br />                                             
+                        @Html.LabelFor(model => model.CARNE, "Beef", htmlAttributes: new { @class = "control-label" })
+                        @Html.CheckBoxFor(model => model.CARNE,  new { @class = "form-control, (bool)ViewBag.Carne" })
                         @Html.LabelFor(model => model.POLLO, "Chicken", htmlAttributes: new { @class = "control-label" })
-                        @Html.CheckBoxFor(model => model.POLLO, new { @class = "form-control" })
+                        @Html.CheckBoxFor(model => model.POLLO, new { @class = "form-control, (bool)ViewBag.Carne" })
                         @Html.LabelFor(model => model.PESCADO, "Fish", htmlAttributes: new { @class = "control-label" })
-                        @Html.CheckBoxFor(model => model.PESCADO, new { @class = "form-control" })
+                        @Html.CheckBoxFor(model => model.PESCADO, new { @class = "form-control, (bool)ViewBag.Carne" })
                         @Html.LabelFor(model => model.CERDO, "Pork", htmlAttributes: new { @class = "control-label" })
-                        @Html.CheckBoxFor(model => model.CERDO, new { @class = "form-control"  })*@
+                        @Html.CheckBoxFor(model => model.CERDO, new { @class = "form-control, (bool)ViewBag.Carne" })
                     </div>
                     <div class="form-group col-sm-6">
                         @Html.LabelFor(model => model.ALERGIAS, "Allergies", htmlAttributes: new { @class = "control-label" })
                         @Html.TextAreaFor(model => model.ALERGIAS, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.ALERGIAS, "", new { @class = "text-danger" })
                     </div>
-
-               
-
-
-
                 </div>
             <div class="container">
                 <h2 style="border-bottom:8px solid #FDBB30">How did you find this place?</h2>
