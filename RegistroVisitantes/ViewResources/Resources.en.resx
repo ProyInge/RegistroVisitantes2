@@ -130,7 +130,7 @@
     <value>Last Name</value>
   </data>
   <data name="oet_auto" xml:space="preserve">
-    <value>Type your identification or email to complete your information</value>
+    <value>Type your identification or email to fill in your information</value>
   </data>
   <data name="oet_carne" xml:space="preserve">
     <value>Beef</value>

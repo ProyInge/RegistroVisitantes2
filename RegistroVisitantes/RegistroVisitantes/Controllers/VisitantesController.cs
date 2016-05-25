@@ -101,6 +101,7 @@ namespace RegistroVisitantes.Controllers
             {   
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idR, cedula);
             if (iInfoVisita == null)
             {
