@@ -1,0 +1,89 @@
+﻿@model RegistroVisitantes.Models.USUARIO
+
+@{
+    ViewBag.Title = "Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar usuario</h2>
+
+<h3>¿Está seguro(a) que desea eliminar este usuario?</h3>
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Nombre");   
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.Label("Apellido");
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.APELLIDO)
+        </dd>
+
+        <dt>
+            @Html.Label("E-mail");
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMAIL)
+        </dd>
+
+        <dt>
+            @Html.Label("Usuario");
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUAR)
+        </dd>
+
+        <dt>
+            @Html.Label("Contraseña");
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONTRASENA)
+        </dd>
+
+        <dt>
+            @Html.Label("Rol");
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ROL)
+        </dd>
+
+        <dt>
+            @Html.Label("Sexo");
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SEXO)
+        </dd>
+
+        <dt>
+            @Html.Label("Estación");
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESTACION.NOMBRE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Atrás", "Index", "Usuario", new { @class = "btn btn-success" })
+        </div>
+    }
+</div>
