@@ -28,7 +28,7 @@ else
 }
 
 
-<table class="table table-bordered table-striped table-condensed table-hover">
+<table class="table table-bordered table-condensed">
     <tr>
         <th>
             Número reserva
@@ -52,13 +52,13 @@ else
             Firma
         </th>
         <th>
-
+            Imprimir
         </th>
         <th>
-
+            Inhabilitar
         </th>
         <th>
-
+            Información
         </th>
     </tr>
 
@@ -76,43 +76,45 @@ else
         <td align="center">
             @Html.DisplayFor(modelItem => item.RESERVACION.NUMERO)
         </td>
-        <td align="center">
-            @Html.DisplayFor(modelItem => item.RESERVACION.ANFITRIONA)
-        </td>
-        <td align="center">
-            @Html.DisplayFor(modelItem => item.PERSONA.NOMBRE)
-        </td>
-        <td align="center">
-            @Html.DisplayFor(modelItem => item.PERSONA.APELLIDO)
-        </td>
-        <td align="center">
-            @Html.DisplayFor(modelItem => item.PERSONA.EMAIL)
-        </td>
-        <td align="center">
-            @Html.DisplayFor(modelItem => item.PERSONA.CEDULA)
-        </td>
-        <td align="center">
-            <input type="checkbox" name="firma" value="firma">
-        </td>
-         <td align="center">
-             @*<button type="button" class="btn btn-default" onclick="printPage()">
-                   <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-              </button>*@
+            <td align="center">
+                    @if (item.RESERVACION.ANFITRIONA == "01") { <p>OET</p> } else { <p>ESINTRO</p>}
+            </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => item.PERSONA.NOMBRE)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => item.PERSONA.APELLIDO)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => item.PERSONA.EMAIL)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => item.PERSONA.CEDULA)
+                        </td>
+                        <td align="center">
+                            <input type="checkbox" name="firma" value="firma"
+                                   @(item.ESTADO == false ? "disabled = \"disabled \" " : "")>
+                        </td>
+                        <td align="center">
+                            <button type="button" class="btn btn-default" onclick="printPage()"
+                                    @(item.ESTADO == false ? "disabled = \"disabled \" " : "")>
+                                <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                            </button>
 
-                 <button class='mylink' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'>
-                     <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-                 </button>
-        </td>
-        <td align="center">
-             @Html.ActionLink("Cambiar estado", "Delete", new { idRes = item.ID_RESERVACION, idPer = item.CEDULA })
-        </td>
-        <td align="center">
-            @Html.ActionLink("Ver informacion", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" })
-            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
-        </td>
-    @:</tr>
-      }
+                            @*<a class='mylink' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'>
+                                    <span class="glyphicon glychecphicon-print" aria-hidden="true"></span>
+                                </a>*@
+                        </td>
+                        <td align="center">
+                            @Html.ActionLink("Cambiar estado", "Delete", new { idRes = item.ID_RESERVACION, idPer = item.CEDULA })
+                        </td>
+                        <td align="center">
+                            @Html.ActionLink("Ver información", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" })
+                            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                        </td>
+                        @:</tr>
+                    }
 </table>
 
 <div id="printerDiv" style="display:none"></div>
