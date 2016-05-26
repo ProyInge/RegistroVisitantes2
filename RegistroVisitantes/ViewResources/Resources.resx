@@ -324,6 +324,9 @@
   <data name="oet_titulo" xml:space="preserve">
     <value>Formulario de Registro</value>
   </data>
+  <data name="esintro_titulo" xml:space="preserve">
+    <value>Formulario de Registro</value>
+  </data>
   <data name="oet_tituloPer" xml:space="preserve">
     <value>Título (Sr., Sra., Dr., otro)</value>
   </data>
@@ -345,4 +348,11 @@
   <data name="spanish" xml:space="preserve">
     <value>Español</value>
   </data>
+  <data name="entero" xml:space="preserve">
+    <value>Cómo se enteró?</value>
+  </data>
+  <data name="editar" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  
 </root>

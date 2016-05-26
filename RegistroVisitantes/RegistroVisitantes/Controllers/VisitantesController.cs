@@ -10,12 +10,32 @@ using RegistroVisitantes.Models;
 using PagedList;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using ViewResources;
+using System.Threading;
+using System.Globalization;
 
 namespace RegistroVisitantes.Controllers
 {
     public class VisitantesController : Controller
     {
         private BDRegistro BDRegistro = new BDRegistro();
+        protected override void Initialize(System.Web.Routing.RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+            if (Session["CurrentCulture"] != null)
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(Session["CurrentCulture"].ToString());
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Session["CurrentCulture"].ToString());
+            }
+        }
+        public ActionResult ChangeCulture(string ddlCulture, string idRes)
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(ddlCulture);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(ddlCulture);
+
+            Session["CurrentCulture"] = ddlCulture;
+            return RedirectToAction("Index", new { idRes = idRes });
+        }
 
         // GET: Visitantes
         [Authorize]
@@ -152,25 +172,26 @@ namespace RegistroVisitantes.Controllers
                 return HttpNotFound();
             }
             else
-            {                
+            {
+               
                 if (iInfoVisita.PERSONA.GENERO.Equals("0"))
                 {
-                    ViewBag.sexoList =  "Male";
+                    ViewBag.sexoList = ViewResources.Resources.oet_masc;
                 }
                 else
                 {
-                    ViewBag.sexoList =  "Female" ;
+                    ViewBag.sexoList = ViewResources.Resources.oet_fem;
                 }
                
                 switch (iInfoVisita.DIETA) {
-                    case "No Restriction": 
-                            ViewBag.dieta = "No Restriction";
+                    case "No Restriction":
+                        ViewBag.dieta = "jjj";//ViewResources.Resources.oet_sinrestr;
                         break;
                     case "Vegetarian":
-                        ViewBag.dieta = "Vegetarian";
+                        ViewBag.dieta = ViewResources.Resources.oet_vege;
                         break;
                     case "Vegan":
-                        ViewBag.dieta = "Vegan";
+                        ViewBag.dieta = ViewResources.Resources.oet_vegano;
                         break;
                 }
                

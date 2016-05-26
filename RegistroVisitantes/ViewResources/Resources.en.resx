@@ -324,6 +324,9 @@
   <data name="oet_titulo" xml:space="preserve">
     <value>Registration Form</value>
   </data>
+  <data name="esintro_titulo" xml:space="preserve">
+    <value>Registration Form</value>
+  </data>
   <data name="oet_tituloPer" xml:space="preserve">
     <value>Title: Mr., Mrs., Ms., Dr., other</value>
   </data>
@@ -344,5 +347,11 @@
   </data>
   <data name="spanish" xml:space="preserve">
     <value>Spanish</value>
+  </data>
+  <data name="entero" xml:space="preserve">
+    <value>How did you know about this place</value>
+  </data>
+ <data name="editar" xml:space="preserve">
+    <value>Edit</value>
   </data>
 </root>

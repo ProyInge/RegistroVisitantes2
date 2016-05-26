@@ -61,11 +61,38 @@ namespace ViewResources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Editar.
+        /// </summary>
+        public static string editar {
+            get {
+                return ResourceManager.GetString("editar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Inglés.
         /// </summary>
         public static string english {
             get {
                 return ResourceManager.GetString("english", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cómo se enteró?.
+        /// </summary>
+        public static string entero {
+            get {
+                return ResourceManager.GetString("entero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Formulario de Registro.
+        /// </summary>
+        public static string esintro_titulo {
+            get {
+                return ResourceManager.GetString("esintro_titulo", resourceCulture);
             }
         }
         
