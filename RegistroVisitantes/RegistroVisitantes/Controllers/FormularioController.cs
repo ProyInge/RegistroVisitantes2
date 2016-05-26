@@ -146,7 +146,7 @@ namespace RegistroVisitantes.Controllers
             form.PESCADO = checkPescado;
           
 
-            if (genero == "female")
+            if (genero == "Female")
             {
                 form.PERSONA.GENERO = '1'.ToString();
 
