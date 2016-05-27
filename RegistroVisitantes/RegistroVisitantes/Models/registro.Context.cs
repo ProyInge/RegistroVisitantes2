@@ -42,6 +42,12 @@ public partial class BDRegistro : DbContext
 
     public virtual DbSet<INFOVISITA> INFOVISITA { get; set; }
 
+    public virtual DbSet<V_CONTACTO> V_CONTACTO { get; set; }
+
+    public virtual DbSet<V_GRUPOANON> V_GRUPOANON { get; set; }
+
+    public virtual DbSet<V_GRUPORSRV> V_GRUPORSRV { get; set; }
+
 }
 
 }

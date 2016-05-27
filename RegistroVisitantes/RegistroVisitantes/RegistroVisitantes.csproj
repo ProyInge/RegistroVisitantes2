@@ -226,7 +226,16 @@
     <Compile Include="Models\USUARIO.cs">
       <DependentUpon>registro.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\V_CONTACTO.cs">
+      <DependentUpon>registro.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\V_ESTACION.cs">
+      <DependentUpon>registro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_GRUPOANON.cs">
+      <DependentUpon>registro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_GRUPORSRV.cs">
       <DependentUpon>registro.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\V_RESERVACION.cs">

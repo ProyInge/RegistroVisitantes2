@@ -11,6 +11,9 @@
             <EntitySet Name="V_ESTACION" EntityType="Model.Store.V_ESTACION" store:Type="Tables" Schema="REGISTRO" />
             <EntitySet Name="V_RESERVACION" EntityType="Model.Store.V_RESERVACION" store:Type="Tables" Schema="REGISTRO" />
             <EntitySet Name="INFOVISITA" EntityType="Model.Store.INFOVISITA" store:Type="Tables" Schema="REGISTRO" />
+            <EntitySet Name="V_CONTACTO" EntityType="Model.Store.V_CONTACTO" store:Type="Tables" Schema="REGISTRO" />
+            <EntitySet Name="V_GRUPOANON" EntityType="Model.Store.V_GRUPOANON" store:Type="Tables" Schema="REGISTRO" />
+            <EntitySet Name="V_GRUPORSRV" EntityType="Model.Store.V_GRUPORSRV" store:Type="Tables" Schema="REGISTRO" />
             <AssociationSet Name="USUARIOV_ESTACION" Association="Model.Store.USUARIOV_ESTACION">
                 <End Role="USUARIO" EntitySet="USUARIO" />
                 <End Role="V_ESTACION" EntitySet="V_ESTACION" />
@@ -21,6 +24,14 @@
             </AssociationSet>
             <AssociationSet Name="INFOVISITAV_RESERVACION" Association="Model.Store.INFOVISITAV_RESERVACION">
                 <End Role="INFOVISITA" EntitySet="INFOVISITA" />
+                <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
+            </AssociationSet>
+            <AssociationSet Name="V_RESERVACIONV_CONTACTO1" Association="Model.Store.V_RESERVACIONV_CONTACTO1">
+                <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
+                <End Role="V_CONTACTO" EntitySet="V_CONTACTO" />
+            </AssociationSet>
+            <AssociationSet Name="V_RESERVACIONV_CONTACTO2" Association="Model.Store.V_RESERVACIONV_CONTACTO2">
+                <End Role="V_CONTACTO" EntitySet="V_CONTACTO" />
                 <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
             </AssociationSet>
         </EntityContainer>
@@ -138,6 +149,51 @@
             <Property Name="EXPIRACION" Type="date" Nullable="true" />
             <Property Name="ESTADO" Type="number" Nullable="true" Precision="1" />
         </EntityType>
+        <EntityType Name="V_CONTACTO">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="varchar2" Nullable="false" MaxLength="30" />
+            <Property Name="FISICO" Type="char" Nullable="false" MaxLength="1" />
+            <Property Name="SALUDOID" Type="varchar2" Nullable="true" MaxLength="4" />
+            <Property Name="NOMBRE" Type="varchar2" Nullable="false" MaxLength="80" />
+            <Property Name="APELLIDOS" Type="varchar2" Nullable="true" MaxLength="80" />
+            <Property Name="PAISID" Type="varchar2" Nullable="true" MaxLength="26" />
+            <Property Name="SEXO" Type="varchar2" Nullable="true" MaxLength="1" />
+            <Property Name="EMAIL" Type="varchar2" Nullable="true" MaxLength="132" />
+            <Property Name="IDENTIFICACION" Type="varchar2" Nullable="true" MaxLength="50" />
+            <Property Name="COMENTARIO" Type="varchar2" Nullable="true" MaxLength="1000" />
+            <Property Name="CREADOR" Type="varchar2" Nullable="true" MaxLength="100" />
+            <Property Name="CREADO" Type="date" Nullable="true" />
+            <Property Name="MODIFICADOR" Type="varchar2" Nullable="true" MaxLength="100" />
+            <Property Name="MODIFICADO" Type="date" Nullable="true" />
+            <Property Name="CODSUENA" Type="varchar2" Nullable="true" MaxLength="100" />
+            <Property Name="REFERENCIA_CONTACTOS" Type="number" Nullable="true" Precision="10" />
+        </EntityType>
+        <EntityType Name="V_GRUPOANON">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="varchar2" Nullable="false" MaxLength="30" />
+            <Property Name="INFANTES" Type="number" Nullable="true" Precision="5" />
+            <Property Name="NINOS" Type="number" Nullable="true" Precision="5" />
+            <Property Name="MUJERES" Type="number" Nullable="true" Precision="5" />
+            <Property Name="HOMBRES" Type="number" Nullable="true" Precision="5" />
+        </EntityType>
+        <EntityType Name="V_GRUPORSRV">
+            <Key>
+                <PropertyRef Name="ID" />
+            </Key>
+            <Property Name="ID" Type="varchar2" Nullable="false" MaxLength="30" />
+            <Property Name="NOMBRE" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="TIPO" Type="varchar2" Nullable="true" MaxLength="3" />
+            <Property Name="DEL" Type="date" Nullable="true" />
+            <Property Name="AL" Type="date" Nullable="true" />
+            <Property Name="VEGGIES" Type="number" Nullable="true" Precision="5" />
+            <Property Name="NOTASALIMENTACION" Type="varchar2" Nullable="true" MaxLength="2000" />
+            <Property Name="PARTEDE" Type="varchar2" Nullable="true" MaxLength="26" />
+            <Property Name="COORDINADOR" Type="varchar2" Nullable="true" MaxLength="400" />
+        </EntityType>
     <Association Name="USUARIOV_ESTACION">
         <End Role="USUARIO" Type="Model.Store.USUARIO" Multiplicity="*">
         </End>
@@ -177,6 +233,34 @@
             </Principal>
             <Dependent Role="INFOVISITA">
                 <PropertyRef Name="ID_RESERVACION" />
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="V_RESERVACIONV_CONTACTO1">
+        <End Role="V_RESERVACION" Type="Model.Store.V_RESERVACION" Multiplicity="*">
+        </End>
+        <End Role="V_CONTACTO" Type="Model.Store.V_CONTACTO" Multiplicity="0..1">
+        </End>
+        <ReferentialConstraint>
+            <Principal Role="V_CONTACTO">
+                <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="V_RESERVACION">
+                <PropertyRef Name="RESPONSABLE" />
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="V_RESERVACIONV_CONTACTO2">
+        <End Role="V_CONTACTO" Type="Model.Store.V_CONTACTO" Multiplicity="0..1">
+        </End>
+        <End Role="V_RESERVACION" Type="Model.Store.V_RESERVACION" Multiplicity="*">
+        </End>
+        <ReferentialConstraint>
+            <Principal Role="V_CONTACTO">
+                <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="V_RESERVACION">
+                <PropertyRef Name="SOLICITANTE" />
             </Dependent>
         </ReferentialConstraint>
     </Association>
@@ -267,6 +351,10 @@
           <Property Name="URL" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="TIPO" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="INFOVISITA" Relationship="Model.INFOVISITAV_RESERVACION" FromRole="V_RESERVACION" ToRole="INFOVISITA" />
+          <NavigationProperty Name="RESPONSABLEI" Relationship="Model.V_RESERVACIONV_CONTACTO1" FromRole="V_RESERVACION" ToRole="V_CONTACTO" />
+          <NavigationProperty Name="SOLICITANTEI" Relationship="Model.V_RESERVACIONV_CONTACTO2" FromRole="V_RESERVACION" ToRole="V_CONTACTO" />
+          <NavigationProperty Name="GRUPONUMS" Relationship="Model.V_RESERVACIONV_GRUPOANON" FromRole="V_RESERVACION" ToRole="V_GRUPOANON" />
+          <NavigationProperty Name="GRUPOI" Relationship="Model.V_RESERVACIONV_GRUPORSRV" FromRole="V_RESERVACION" ToRole="V_GRUPORSRV" />
         </EntityType>
         <EntityContainer Name="BDRegistro" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="PERSONA" EntityType="Self.PERSONA" />
@@ -284,6 +372,25 @@
           </AssociationSet>
           <AssociationSet Name="INFOVISITAV_RESERVACION" Association="Model.INFOVISITAV_RESERVACION">
             <End Role="INFOVISITA" EntitySet="INFOVISITA" />
+            <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
+          </AssociationSet>
+          <EntitySet Name="V_CONTACTO" EntityType="Model.V_CONTACTO" />
+          <EntitySet Name="V_GRUPOANON" EntityType="Model.V_GRUPOANON" />
+          <EntitySet Name="V_GRUPORSRV" EntityType="Model.V_GRUPORSRV" />
+          <AssociationSet Name="V_RESERVACIONV_CONTACTO1" Association="Model.V_RESERVACIONV_CONTACTO1">
+            <End EntitySet="V_RESERVACION" Role="V_RESERVACION" />
+            <End EntitySet="V_CONTACTO" Role="V_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="V_RESERVACIONV_CONTACTO2" Association="Model.V_RESERVACIONV_CONTACTO2">
+            <End EntitySet="V_CONTACTO" Role="V_CONTACTO" />
+            <End EntitySet="V_RESERVACION" Role="V_RESERVACION" />
+          </AssociationSet>
+          <AssociationSet Name="V_RESERVACIONV_GRUPOANON" Association="Model.V_RESERVACIONV_GRUPOANON">
+            <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
+            <End Role="V_GRUPOANON" EntitySet="V_GRUPOANON" />
+          </AssociationSet>
+          <AssociationSet Name="V_RESERVACIONV_GRUPORSRV" Association="Model.V_RESERVACIONV_GRUPORSRV">
+            <End Role="V_GRUPORSRV" EntitySet="V_GRUPORSRV" />
             <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
           </AssociationSet>
         </EntityContainer>
@@ -356,6 +463,103 @@
             </Principal>
             <Dependent Role="INFOVISITA">
               <PropertyRef Name="ID_RESERVACION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="V_CONTACTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FISICO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="SALUDOID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="PAISID" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+          <Property Name="SEXO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="132" FixedLength="false" Unicode="false" />
+          <Property Name="IDENTIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COMENTARIO" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="CREADOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CREADO" Type="DateTime" />
+          <Property Name="MODIFICADOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MODIFICADO" Type="DateTime" />
+          <Property Name="CODSUENA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="REFERENCIA_CONTACTOS" Type="Int32" />
+          <NavigationProperty Name="RESPONSABLES" Relationship="Model.V_RESERVACIONV_CONTACTO1" FromRole="V_CONTACTO" ToRole="V_RESERVACION" />
+          <NavigationProperty Name="SOLICITANTES" Relationship="Model.V_RESERVACIONV_CONTACTO2" FromRole="V_CONTACTO" ToRole="V_RESERVACION" />
+        </EntityType>
+        <EntityType Name="V_GRUPOANON">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="INFANTES" Type="Int16" />
+          <Property Name="NINOS" Type="Int16" />
+          <Property Name="MUJERES" Type="Int16" />
+          <Property Name="HOMBRES" Type="Int16" />
+          <NavigationProperty Name="RESERVACIONESNUMS" Relationship="Model.V_RESERVACIONV_GRUPOANON" FromRole="V_GRUPOANON" ToRole="V_RESERVACION" />
+        </EntityType>
+        <EntityType Name="V_GRUPORSRV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="DEL" Type="DateTime" />
+          <Property Name="AL" Type="DateTime" />
+          <Property Name="VEGGIES" Type="Int16" />
+          <Property Name="NOTASALIMENTACION" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="PARTEDE" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+          <Property Name="COORDINADOR" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RESERVACIONES" Relationship="Model.V_RESERVACIONV_GRUPORSRV" FromRole="V_GRUPORSRV" ToRole="V_RESERVACION" />
+        </EntityType>
+        <Association Name="V_RESERVACIONV_CONTACTO1">
+          <End Type="Model.V_RESERVACION" Multiplicity="*" Role="V_RESERVACION" />
+          <End Type="Model.V_CONTACTO" Multiplicity="0..1" Role="V_CONTACTO" />
+          <ReferentialConstraint>
+            <Principal Role="V_CONTACTO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="V_RESERVACION">
+              <PropertyRef Name="RESPONSABLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="V_RESERVACIONV_CONTACTO2">
+          <End Type="Model.V_CONTACTO" Multiplicity="0..1" Role="V_CONTACTO" />
+          <End Type="Model.V_RESERVACION" Multiplicity="*" Role="V_RESERVACION" />
+          <ReferentialConstraint>
+            <Principal Role="V_CONTACTO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="V_RESERVACION">
+              <PropertyRef Name="SOLICITANTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="V_RESERVACIONV_GRUPOANON">
+          <End Type="Model.V_RESERVACION" Role="V_RESERVACION" Multiplicity="*" />
+          <End Type="Model.V_GRUPOANON" Role="V_GRUPOANON" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="V_GRUPOANON">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="V_RESERVACION">
+              <PropertyRef Name="GRUPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="V_RESERVACIONV_GRUPORSRV">
+          <End Type="Model.V_GRUPORSRV" Role="V_GRUPORSRV" Multiplicity="0..1" />
+          <End Type="Model.V_RESERVACION" Role="V_RESERVACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="V_GRUPORSRV">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="V_RESERVACION">
+              <PropertyRef Name="GRUPO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -480,6 +684,54 @@
                     <ScalarProperty Name="PERMISO" ColumnName="PERMISO" />
                     <ScalarProperty Name="EXPIRACION" ColumnName="EXPIRACION" />
                     <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="V_CONTACTO">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.V_CONTACTO)">
+                <MappingFragment StoreEntitySet="V_CONTACTO">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="FISICO" ColumnName="FISICO" />
+                    <ScalarProperty Name="SALUDOID" ColumnName="SALUDOID" />
+                    <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                    <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                    <ScalarProperty Name="PAISID" ColumnName="PAISID" />
+                    <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                    <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                    <ScalarProperty Name="IDENTIFICACION" ColumnName="IDENTIFICACION" />
+                    <ScalarProperty Name="COMENTARIO" ColumnName="COMENTARIO" />
+                    <ScalarProperty Name="CREADOR" ColumnName="CREADOR" />
+                    <ScalarProperty Name="CREADO" ColumnName="CREADO" />
+                    <ScalarProperty Name="MODIFICADOR" ColumnName="MODIFICADOR" />
+                    <ScalarProperty Name="MODIFICADO" ColumnName="MODIFICADO" />
+                    <ScalarProperty Name="CODSUENA" ColumnName="CODSUENA" />
+                    <ScalarProperty Name="REFERENCIA_CONTACTOS" ColumnName="REFERENCIA_CONTACTOS" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="V_GRUPOANON">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.V_GRUPOANON)">
+                <MappingFragment StoreEntitySet="V_GRUPOANON">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="INFANTES" ColumnName="INFANTES" />
+                    <ScalarProperty Name="NINOS" ColumnName="NINOS" />
+                    <ScalarProperty Name="MUJERES" ColumnName="MUJERES" />
+                    <ScalarProperty Name="HOMBRES" ColumnName="HOMBRES" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="V_GRUPORSRV">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.V_GRUPORSRV)">
+                <MappingFragment StoreEntitySet="V_GRUPORSRV">
+                    <ScalarProperty Name="ID" ColumnName="ID" />
+                    <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                    <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+                    <ScalarProperty Name="DEL" ColumnName="DEL" />
+                    <ScalarProperty Name="AL" ColumnName="AL" />
+                    <ScalarProperty Name="VEGGIES" ColumnName="VEGGIES" />
+                    <ScalarProperty Name="NOTASALIMENTACION" ColumnName="NOTASALIMENTACION" />
+                    <ScalarProperty Name="PARTEDE" ColumnName="PARTEDE" />
+                    <ScalarProperty Name="COORDINADOR" ColumnName="COORDINADOR" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>

@@ -55,7 +55,7 @@
                 @Html.DisplayFor(modelItem => item.NUMERO)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GRUPO)
+                @Html.DisplayFor(modelItem => item.GRUPOI.NOMBRE)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ENTRA)
@@ -64,10 +64,12 @@
                 @Html.DisplayFor(modelItem => item.SALE)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RESPONSABLE)
+                @Html.DisplayFor(modelItem => item.RESPONSABLEI.NOMBRE) 
+                @Html.DisplayFor(modelItem => item.RESPONSABLEI.APELLIDOS)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SOLICITANTE)
+                @Html.DisplayFor(modelItem => item.SOLICITANTEI.NOMBRE)
+                @Html.DisplayFor(modelItem => item.SOLICITANTEI.APELLIDOS)
             </td>
             <td>
                 @Html.ActionLink("Ver visitantes", "Index", "Visitantes", new { idRes = item.ID }, new { @class = "btn btn-success" })
