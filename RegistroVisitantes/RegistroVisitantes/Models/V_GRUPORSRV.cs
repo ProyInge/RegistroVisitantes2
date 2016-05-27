@@ -15,57 +15,41 @@ namespace RegistroVisitantes.Models
 using System;
     using System.Collections.Generic;
     
-public partial class PERSONA
+public partial class V_GRUPORSRV
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public PERSONA()
+    public V_GRUPORSRV()
     {
 
-        this.INFOVISITA = new HashSet<INFOVISITA>();
+        this.RESERVACIONES = new HashSet<V_RESERVACION>();
 
     }
 
 
-    public string CEDULA { get; set; }
+    public string ID { get; set; }
 
     public string NOMBRE { get; set; }
 
-    public string APELLIDO { get; set; }
+    public string TIPO { get; set; }
 
-    public string EMAIL { get; set; }
+    public Nullable<System.DateTime> DEL { get; set; }
 
-    public string TELEFONO { get; set; }
+    public Nullable<System.DateTime> AL { get; set; }
 
-    public string NACIONALIDAD { get; set; }
+    public Nullable<short> VEGGIES { get; set; }
 
-    public string PAIS { get; set; }
+    public string NOTASALIMENTACION { get; set; }
 
-    public string ESTADO { get; set; }
+    public string PARTEDE { get; set; }
 
-    public string CIUDAD { get; set; }
-
-    public string DIRECCION { get; set; }
-
-    public string POSICION { get; set; }
-
-    public Nullable<int> INSTITUCION { get; set; }
-
-    public string TITULO { get; set; }
-
-    public string ROL { get; set; }
-
-    public string GENERO { get; set; }
-
-    public string COD_POSTAL { get; set; }
+    public string COORDINADOR { get; set; }
 
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<INFOVISITA> INFOVISITA { get; set; }
-
-    public virtual V_INSTITUCION INSTITUCIONI { get; set; }
+    public virtual ICollection<V_RESERVACION> RESERVACIONES { get; set; }
 
 }
 

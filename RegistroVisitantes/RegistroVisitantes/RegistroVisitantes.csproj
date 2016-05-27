@@ -226,7 +226,22 @@
     <Compile Include="Models\USUARIO.cs">
       <DependentUpon>registro.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\V_CONTACTO.cs">
+      <DependentUpon>registro.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\V_ESTACION.cs">
+      <DependentUpon>registro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_GRUPOANON.cs">
+      <DependentUpon>registro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_GRUPORSRV.cs">
+      <DependentUpon>registro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_INSTITUCION.cs">
+      <DependentUpon>registro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_PAISES.cs">
       <DependentUpon>registro.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\V_RESERVACION.cs">
@@ -356,6 +371,9 @@
     <Content Include="Views\Visitantes\EditOET.cshtml" />
     <Content Include="Views\Formulario\AutocompletarESINTRO.cshtml" />
     <Content Include="Views\Usuario\Administracion.cshtml" />
+    <Content Include="Views\Shared\_LayoutForm.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

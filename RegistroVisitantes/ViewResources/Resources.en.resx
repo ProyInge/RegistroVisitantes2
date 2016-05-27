@@ -120,6 +120,12 @@
   <data name="english" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="es_como" xml:space="preserve">
+    <value>How did you find this place?</value>
+  </data>
+  <data name="es_waiver" xml:space="preserve">
+    <value>I hereby confirm that I have been properly informed that any and all visits to the Organization for Tropial Studies (OTS) involve inherent risks related to carrying out activities in biological conservation stations, such as walking through slippery, moist trails and/or areas, covered with foliage and trees. In addition, I have been informed that in the area to be visited there are snakes, insects and other animals with the well-known rish such as bites and stings. I have no health problems that forbid me from participating in the visit that I am about to make and I agree to follow all instructions given to my for my own safety. I hereby release OTS and ESINTRO S.A., their legal representatives, directors and employees, of all civil, penal and any other kind of responsability for any physical or moral injury, sickness or death resulting from my stay in OTS facilities, which I am assuming under my own risk.</value>
+  </data>
   <data name="french" xml:space="preserve">
     <value>French</value>
   </data>
@@ -324,9 +330,6 @@
   <data name="oet_titulo" xml:space="preserve">
     <value>Registration Form</value>
   </data>
-  <data name="esintro_titulo" xml:space="preserve">
-    <value>Registration Form</value>
-  </data>
   <data name="oet_tituloPer" xml:space="preserve">
     <value>Title: Mr., Mrs., Ms., Dr., other</value>
   </data>
@@ -347,11 +350,5 @@
   </data>
   <data name="spanish" xml:space="preserve">
     <value>Spanish</value>
-  </data>
-  <data name="entero" xml:space="preserve">
-    <value>How did you know about this place</value>
-  </data>
- <data name="editar" xml:space="preserve">
-    <value>Edit</value>
   </data>
 </root>

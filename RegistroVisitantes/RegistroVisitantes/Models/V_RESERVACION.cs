@@ -95,6 +95,14 @@ public partial class V_RESERVACION
 
     public virtual ICollection<INFOVISITA> INFOVISITA { get; set; }
 
+    public virtual V_CONTACTO RESPONSABLEI { get; set; }
+
+    public virtual V_CONTACTO SOLICITANTEI { get; set; }
+
+    public virtual V_GRUPOANON GRUPONUMS { get; set; }
+
+    public virtual V_GRUPORSRV GRUPOI { get; set; }
+
 }
 
 }

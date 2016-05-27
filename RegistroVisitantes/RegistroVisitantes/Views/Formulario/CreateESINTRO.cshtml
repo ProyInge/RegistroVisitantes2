@@ -2,10 +2,21 @@
 
 @{
     ViewBag.Title = "CreateESINTRO";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
 
-<h2>Formulario</h2>
+<h2>@ViewResources.Resources.oet_titulo</h2>
+@using (Html.BeginForm("ChangeCulture", "Formulario", new { idRes = ViewBag.idRes }))
+{
+    <p>
+        @(ViewResources.Resources.seleccionarLen): @Html.DropDownList("ddlCulture", new SelectList(new[]
+ {
+ new{value="es",text=@ViewResources.Resources.spanish},
+ new{value="en",text=@ViewResources.Resources.english},
+  new{value="fr",text=@ViewResources.Resources.french}
+ }, "value", "text", Session["CurrentCulture"]), new { onchange = "this.form.submit();", @class = "form-control" })
+    </p>
+}
 
 @using (Html.BeginForm()) 
 {
@@ -28,46 +39,46 @@
                 </div>
             </div>
                 
-            <h2 style="border-bottom:8px solid #FDBB30">Personal Information</h2>
+            <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_personal</h2>
             <br />
             
             <div id="personalInfo">
                 <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.NOMBRE, "First Name", htmlAttributes: new { @class = "control-label" })
+                    @Html.LabelFor(model => model.PERSONA.NOMBRE, @ViewResources.Resources.oet_nombre + ":", htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.PERSONA.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.NOMBRE, "", new { @class = "text-danger" })
                 </div>  
                 <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.APELLIDO, "Last Name", htmlAttributes: new { @class = "control-label " })
+                    @Html.LabelFor(model => model.PERSONA.APELLIDO, @ViewResources.Resources.oet_apellidos + ":", htmlAttributes: new { @class = "control-label " })
                     @Html.EditorFor(model => model.PERSONA.APELLIDO, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.APELLIDO, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.NACIONALIDAD, "Citizenship ", htmlAttributes: new { @class = "control-label " })
+                    @Html.LabelFor(model => model.PERSONA.NACIONALIDAD, @ViewResources.Resources.oet_nacionalidad + ":", htmlAttributes: new { @class = "control-label " })
                     @Html.EditorFor(model => model.PERSONA.NACIONALIDAD, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.NACIONALIDAD, "", new { @class = "text-danger" })
                 </div>
                 
                 <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.CEDULA, "Identification ", htmlAttributes: new { @class = "control-label " })
+                    @Html.LabelFor(model => model.PERSONA.CEDULA, @ViewResources.Resources.oet_institucion + ":", htmlAttributes: new { @class = "control-label " })
                     @Html.EditorFor(model => model.PERSONA.CEDULA, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.CEDULA, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group col-sm-6" style="margin-top: 20px">
-                    @Html.LabelFor(model => model.PERSONA.DIRECCION, "Address ", htmlAttributes: new { @class = "control-label " })
+                    @Html.LabelFor(model => model.PERSONA.DIRECCION, @ViewResources.Resources.oet_direccion + ":", htmlAttributes: new { @class = "control-label " })
                     @Html.TextAreaFor(model => model.PERSONA.DIRECCION, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.DIRECCION, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.TELEFONO, "Telephone ", htmlAttributes: new { @class = "control-label" })
+                    @Html.LabelFor(model => model.PERSONA.TELEFONO, @ViewResources.Resources.oet_telefono + ":", htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.PERSONA.TELEFONO, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.TELEFONO, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.EMAIL, "E-mail", htmlAttributes: new { @class = "control-label" })
+                    @Html.LabelFor(model => model.PERSONA.EMAIL, @ViewResources.Resources.oet_correo + ":", htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.EMAIL, "", new { @class = "text-danger" })
                 </div>
@@ -81,35 +92,35 @@
                 <div class="form-group col-sm-6">
                     <label for="genero"></label>
                     <select name="genero" class="form-control">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <option value="Male">@ViewResources.Resources.oet_masc</option>
+                        <option value="Female">@ViewResources.Resources.oet_fem</option>
                     </select>
                 </div>
             </div>
         </div>
 
         <div class="container">
-            <h2 style="border-bottom:8px solid #FDBB30">Emergency Contact</h2>
+            <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_contactosTitulo</h2>
             <br />
             <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.NOMBRE_EMERGENCIA, "Contact", htmlAttributes: new { @class = "control-label" })
+                @Html.LabelFor(model => model.NOMBRE_EMERGENCIA, @ViewResources.Resources.oet_nombre + ":", htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.NOMBRE_EMERGENCIA, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NOMBRE_EMERGENCIA, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.TEL_EMERGENCIA, "Contact Number", htmlAttributes: new { @class = "control-label " })
+                @Html.LabelFor(model => model.TEL_EMERGENCIA, @ViewResources.Resources.oet_telefono + ":", htmlAttributes: new { @class = "control-label " })
                 @Html.EditorFor(model => model.TEL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TEL_EMERGENCIA, "", new { @class = "text-danger" })
             </div>
             <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.EMAIL_EMERGENCIA, "Contact E-mail", htmlAttributes: new { @class = "control-label " })
+                @Html.LabelFor(model => model.EMAIL_EMERGENCIA, @ViewResources.Resources.oet_correo + ":", htmlAttributes: new { @class = "control-label " })
                 @Html.EditorFor(model => model.EMAIL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.EMAIL_EMERGENCIA, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.REL_EMERGENCIA, "Relationship", htmlAttributes: new { @class = "control-label" })
+                @Html.LabelFor(model => model.REL_EMERGENCIA, @ViewResources.Resources.oet_contactoRelacion + ":", htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.REL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.REL_EMERGENCIA, "", new { @class = "text-danger" })
             </div>
@@ -117,14 +128,14 @@
         </div>
 
         <div class="container">
-            <h2 style="border-bottom:8px solid #FDBB30">Dietary Restrictions and Allergies</h2>
+            <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_resTitulo</h2>
             <br />
             <div class="form-group col-sm-6">
-                <label for="dieta">Diet</label>
+                <label for="dieta">@(ViewResources.Resources.oet_dieta):</label>
                 <select name="dietas" class="form-control">
-                    <option value="No Restriction">No Restriction</option>
-                    <option value="Vegetarian">Vegetarian</option>
-                    <option value="Vegan">Vegan</option>
+                    <option value="No Restriction">@ViewResources.Resources.oet_sinrestr</option>
+                    <option value="Vegetarian">@ViewResources.Resources.oet_vege</option>
+                    <option value="Vegan">@ViewResources.Resources.oet_vegano</option>
                 </select>
             </div>
 
@@ -135,36 +146,26 @@
 
                 <form action="demo_form.asp" method="get">
                     <div class="row">
-                        <input id="carne" type="checkbox" name="checkCarne" value="true"> Beef<br>
-                        <input id="pollo" type="checkbox" name="checkPollo" value="true"> Chicken<br>
-                        <input id="pescado" type="checkbox" name="checkPescado" value="true"> Fish<br>
-                        <input id="cerdo" type="checkbox" name="checkCerdo" value="true"> Pork<br>
+                        <input id="carne" type="checkbox" name="checkCarne" value="true"> @ViewResources.Resources.oet_carne<br>
+                        <input id="pollo" type="checkbox" name="checkPollo" value="true"> @ViewResources.Resources.oet_pollo<br>
+                        <input id="pescado" type="checkbox" name="checkPescado" value="true"> @ViewResources.Resources.oet_pescado<br>
+                        <input id="cerdo" type="checkbox" name="checkCerdo" value="true"> @ViewResources.Resources.oet_cerdo<br>
 
                     </div>
                 </form>
-                @*@Html.LabelFor(model => model.CARNE, "Beef", htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.CARNE.Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.LabelFor(model => model.POLLO, "Chicken", htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.POLLO.Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.LabelFor(model => model.PESCADO, "Fish", htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.PESCADO.Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.LabelFor(model => model.CERDO, "Pork", htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.CERDO.Value, new { htmlAttributes = new { @class = "form-control" } })*@
-            
-            
-            
+     
             </div>
 
 
 
             <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.ALERGIAS,"Allergies", htmlAttributes: new { @class = "control-label" })
+                @Html.LabelFor(model => model.ALERGIAS, @ViewResources.Resources.oet_alergias + ":", htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.ALERGIAS, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ALERGIAS, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.OBSERVACIONES_DIETA, "Other Dietary ",htmlAttributes: new { @class = "control-label" })
+                @Html.LabelFor(model => model.OBSERVACIONES_DIETA, @ViewResources.Resources.oet_otrasRes + ":", htmlAttributes: new { @class = "control-label" })
                 @Html.TextAreaFor(model => model.OBSERVACIONES_DIETA, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.OBSERVACIONES_DIETA, "", new { @class = "text-danger" })
 
@@ -174,7 +175,7 @@
 
 
         <div class="container">
-            <h2 style="border-bottom:8px solid #FDBB30">How did you find this place?</h2>
+            <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.es_como</h2>
             <br />
 
             <div class="form-group col-sm-6">
@@ -185,26 +186,15 @@
             </div>
 
         <div class="container">
-            <h2 style="border-bottom:8px solid #FDBB30">Waiver of Liability</h2>
+            <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_waiverTitulo</h2>
             <div class="well" style="font-size:medium">
-                I hereby confirm that I have been properly informed that any and all visits to the Organization for Tropical
-                Studies(OTS) involve inherent risks related to carrying out activities in biological conservation stations,
-                such as walking through slippery, moist trails and/or areas, covered with foliage and trees. In addition, I
-                have been informed that in the area to be visited there are snakes, insects and other animals with the well-known
-                risk such as bites and stings. I have no health problems that forbid me from participating in the visit that I am
-                about to make and I agree to follow all instructions given to me for my own safety. I hereby release OTS and
-                ESINTRO S.A., their legal representatives, directors and employees, of all civil, penal and any other kind of
-                responsability for any physical or moral injury, sickness or death resulting from my stay in OTS facilities, which
-                I am assuming under my own risk.
+                @ViewResources.Resources.es_waiver
             </div>
         </div>
 
-
-
-
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Submit" class="btn btn-successOET" />
+                    <input type="submit" value="@(ViewResources.Resources.oet_enviar)" class="btn btn-successOET" />
                 </div>
             </div>
         </div>

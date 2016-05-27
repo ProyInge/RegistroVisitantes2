@@ -1,6 +1,8 @@
-﻿using RegistroVisitantes.Models;
+﻿using PagedList;
+using RegistroVisitantes.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -13,6 +15,49 @@ namespace RegistroVisitantes.Controllers
     public class UsuarioController : Controller
     {
         private BDRegistro db = new BDRegistro();
+
+        public ActionResult Index()
+        {
+            
+            return View(db.USUARIO.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int? id, bool? saveChangesError = false)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewBag.ErrorMessage = "Hubo un error al eliminar el usuario. Por favor, intente de nuevo.";
+            }
+            USUARIO usr = db.USUARIO.Find(id);
+            if (usr == null)
+            {
+                return HttpNotFound();
+            }
+            return View(usr);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                USUARIO usr = db.USUARIO.Find(id);
+                db.USUARIO.Remove(usr);
+                db.SaveChanges();
+            }
+            catch (DataException)
+            {
+                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+            }
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Ingresar(string returnUrl)
         {
             var listSexo = new List<SelectListItem>();
