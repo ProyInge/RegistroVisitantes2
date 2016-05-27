@@ -25,6 +25,12 @@ namespace RegistroVisitantes.Controllers
                 Thread.CurrentThread.CurrentCulture = new CultureInfo(Session["CurrentCulture"].ToString());
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Session["CurrentCulture"].ToString());
             }
+            else
+            {
+                CultureInfo ci = new CultureInfo("en");
+                Thread.CurrentThread.CurrentCulture = ci;
+                Thread.CurrentThread.CurrentUICulture = ci;
+            }
         }
 
         public ActionResult ChangeCulture(string ddlCulture, string idRes)
