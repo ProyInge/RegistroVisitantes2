@@ -7,15 +7,14 @@
 }
 
 <h2>@ViewResources.Resources.oet_titulo</h2>
-@culture
-@using (Html.BeginForm("ChangeCulture", "Formulario", new { idRes = ViewBag.idRes }))
+@using (Html.BeginForm("ChangeCulture", "Visitantes/DetailsESINTRO", new { idRes = ViewBag.idRes }))
 {
     <p>
-        @ViewResources.Resources.seleccionarLen : @Html.DropDownList("ddlCulture", new SelectList(new[]
- {
+        @(ViewResources.Resources.seleccionarLen): @Html.DropDownList("ddlCulture", new SelectList(new[]
+ {new{value="en",text=@ViewResources.Resources.english},
  new{value="es",text=@ViewResources.Resources.spanish},
- new{value="en",text=@ViewResources.Resources.english}
- }, "value", "text", Session["CurrentCulture"]), new { onchange = "this.form.submit();" })
+  new{value="fr",text=@ViewResources.Resources.french}
+ }, "value", "text", Session["CurrentCulture"]), new { onchange = "this.form.submit();", @class = "form-control" })
     </p>
 }
 
@@ -125,7 +124,7 @@
 
         </div>
         <div class="container">
-            <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.entero</h2>
+            <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.es_como</h2>
             <br />
 
             <div class="form-group col-sm-6">
