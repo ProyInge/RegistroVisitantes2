@@ -1,186 +1,189 @@
 ﻿@model RegistroVisitantes.Models.INFOVISITA
 
 @{
-  ViewBag.Title = "DetailsOET";
-  Layout = "~/Views/Shared/_Layout.cshtml";
+    //ViewBag.Title = @ViewResources.Resources.oet_titulo;
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
 }
+
+<h2>@ViewResources.Resources.oet_titulo</h2>
+    
 
 <div>
   <hr />
     <div class="container">
-        <h2 style="border-bottom:8px solid #FDBB30">Información Personal</h2>
+        <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_personal</h2>
         <br />
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.NOMBRE, "Nombre", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.PERSONA.NOMBRE, @ViewResources.Resources.oet_nombre, htmlAttributes: new { @class = "control-label " })
             @Html.EditorFor(model => model.PERSONA.NOMBRE, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
         </div>
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.APELLIDO, "Apellidos", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.PERSONA.APELLIDO, @ViewResources.Resources.oet_apellidos, htmlAttributes: new { @class = "control-label " })
             @Html.EditorFor(model => model.PERSONA.APELLIDO, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" } })
         </div>
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.NACIONALIDAD, "Nacionalidad", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.PERSONA.NACIONALIDAD, @ViewResources.Resources.oet_nacionalidad, htmlAttributes: new { @class = "control-label " })
             @Html.EditorFor(model => model.PERSONA.NACIONALIDAD, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
         </div>
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.CEDULA, "Identificación", htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.PERSONA.CEDULA, @ViewResources.Resources.oet_id, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.PERSONA.CEDULA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
         </div>
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.TITULO, "Titulo", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.PERSONA.TITULO, @ViewResources.Resources.oet_tituloPer, htmlAttributes: new { @class = "control-label " })
             @Html.EditorFor(model => model.PERSONA.TITULO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
 
         <div class="form-group  col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.CIUDAD, "Provincia", htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.PERSONA.CIUDAD, @ViewResources.Resources.oet_ciudad, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.PERSONA.CIUDAD, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.PAIS, "País", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.PERSONA.PAIS, @ViewResources.Resources.oet_pais, htmlAttributes: new { @class = "control-label " })
             @Html.EditorFor(model => model.PERSONA.PAIS, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.COD_POSTAL, "Código Postal", htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.PERSONA.COD_POSTAL, @ViewResources.Resources.oet_codigo, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.PERSONA.COD_POSTAL, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
 
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.DIRECCION, "Dirección", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.PERSONA.DIRECCION, @ViewResources.Resources.oet_direccion, htmlAttributes: new { @class = "control-label " })
             @Html.TextAreaFor(model => model.PERSONA.DIRECCION, new { disabled = "disabled", @class="form-control" })
         </div>
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.TELEFONO, "Teléfono", htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.PERSONA.TELEFONO, @ViewResources.Resources.oet_telefono, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.PERSONA.TELEFONO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
             <br />
         </div>        
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.EMAIL, "Correo eléctronico", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.PERSONA.EMAIL, @ViewResources.Resources.oet_correo, htmlAttributes: new { @class = "control-label " })
             @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
         </div>
         <div class="form-group col-sm-6"> 
-            @Html.LabelFor(model => model.PERSONA.GENERO, "Sexo", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.PERSONA.GENERO, @ViewResources.Resources.oet_sexo, htmlAttributes: new { @class = "control-label " })
             @Html.EditorFor(model => model.PERSONA.GENERO, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.sexoList } })
         </div>
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.INSTITUCION, "Institución", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.PERSONA.INSTITUCION, @ViewResources.Resources.oet_institucion, htmlAttributes: new { @class = "control-label " })
             @Html.EditorFor(model => model.PERSONA.INSTITUCION, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
         </div>
     </div>
 
     <div class="container">
-        <h2 style="border-bottom:8px solid #FDBB30">Contacto de Emergencia</h2>
+        <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_contactosTitulo</h2>
         <br />
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.NOMBRE_EMERGENCIA, "Nombre", htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.NOMBRE_EMERGENCIA, @ViewResources.Resources.oet_nombre, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.NOMBRE_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
         </div>
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.TEL_EMERGENCIA, "Teléfono", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.TEL_EMERGENCIA, @ViewResources.Resources.oet_telefono, htmlAttributes: new { @class = "control-label " })
             @Html.EditorFor(model => model.TEL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
         </div>
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.EMAIL_EMERGENCIA, "Correo Eléctronico", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.EMAIL_EMERGENCIA, @ViewResources.Resources.oet_correo, htmlAttributes: new { @class = "control-label " })
             @Html.EditorFor(model => model.EMAIL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
         </div>
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.REL_EMERGENCIA, "Relación", htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.REL_EMERGENCIA, @ViewResources.Resources.oet_contactoRelacion, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.REL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
         </div>
 
     </div>
     <div class="container">
-        <h2 style="border-bottom:8px solid #FDBB30">Restricciones Dietarias y Alergias</h2>
+        <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_resTitulo</h2>
         <br />
         <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.DIETA, "Dieta", htmlAttributes: new { @class = "control-label " })
+                @Html.LabelFor(model => model.DIETA, @ViewResources.Resources.oet_dieta, htmlAttributes: new { @class = "control-label " })
                 @Html.EditorFor(model => model.DIETA, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.dieta } })
          </div>
 
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.OBSERVACIONES_DIETA, "Otra Dieta", htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.OBSERVACIONES_DIETA, @ViewResources.Resources.oet_otrasRes, htmlAttributes: new { @class = "control-label" })
             @Html.TextAreaFor(model => model.OBSERVACIONES_DIETA, new { disabled = "disabled", @class = "form-control" })
         </div>
 
         <div class="form-group col-sm-6">
-            <label for="dieta">Preferencia</label>
+            <label for="dieta">@ViewResources.Resources.oet_preferencias</label>
             <br />
 
-            @Html.LabelFor(model => model.CARNE, "Carne", htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.CARNE, @ViewResources.Resources.oet_carne, htmlAttributes: new { @class = "control-label" })
             @Html.CheckBoxFor(model => model.CARNE, new { htmlAttributes = new {@class = "form-control" } })
-            @Html.LabelFor(model => model.POLLO, "Pollo", htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.POLLO, @ViewResources.Resources.oet_pollo, htmlAttributes: new { @class = "control-label" })
             @Html.CheckBoxFor(model => model.POLLO, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.LabelFor(model => model.PESCADO, "Pescado", htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.PESCADO, @ViewResources.Resources.oet_pescado, htmlAttributes: new { @class = "control-label" })
             @Html.CheckBoxFor(model => model.PESCADO, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.LabelFor(model => model.CERDO, "Cerdo", htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.CERDO, @ViewResources.Resources.oet_cerdo, htmlAttributes: new { @class = "control-label" })
             @Html.CheckBoxFor(model => model.CERDO, new { htmlAttributes = new { @class = "form-control"} })
 
         </div>
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.ALERGIAS, "Alergias", htmlAttributes: new { @class = "control-label" })
+            @Html.LabelFor(model => model.ALERGIAS, @ViewResources.Resources.oet_alergias, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.ALERGIAS, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly"} })
         </div>
 
     </div>
 
     <div class="container">
-        <h2 style="border-bottom:8px solid #FDBB30">Propósito de la Visita</h2>
+        <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_propositoTitulo</h2>
         <br />
             <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.PROPOSITO, "Propósito", htmlAttributes: new { @class = "control-label" })
+                @Html.LabelFor(model => model.PROPOSITO, @ViewResources.Resources.oet_proposito, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.PROPOSITO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
             </div>
             <div id="textboxOtroProposito" class="form-group col-sm-6">
-                @Html.LabelFor(model => model.OTRO_PROPOSITO, "Otro", htmlAttributes: new { @class = "control-label" })
+                @Html.LabelFor(model => model.OTRO_PROPOSITO, @ViewResources.Resources.oet_otro, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.OTRO_PROPOSITO, new { htmlAttributes = new { @class = "form-control ", disabled = "disabled" } })
             </div>        
        </div>
 
     <div class="container">
-        <h2 style="border-bottom:8px solid #FDBB30">Solo para Participantes de Cursos</h2>
+        <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_solocursos</h2>
         <br />
             <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.NOMBRE_CURSO, "Nombre del Curso", htmlAttributes: new { @class = "control-label" })
+                @Html.LabelFor(model => model.NOMBRE_CURSO, @ViewResources.Resources.oet_cursoNombre, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.NOMBRE_CURSO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.NOMBRE_CURSO, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.NUMERO_CURSO, "Número del Curso", htmlAttributes: new { @class = "control-label" })
+                @Html.LabelFor(model => model.NUMERO_CURSO, @ViewResources.Resources.oet_cursoNum, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.NUMERO_CURSO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.NUMERO_CURSO, "", new { @class = "text-danger" })
             </div>
             <br />
   
             <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.ROL_CURSO, "Participa como", htmlAttributes: new { @class = "control-label" })
+                @Html.LabelFor(model => model.ROL_CURSO, @ViewResources.Resources.oet_cursoRol, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.ROL_CURSO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.ROL_CURSO, "", new { @class = "text-danger" })
             </div>
     </div>
 
     <div class="container">
-        <h2 style="border-bottom:8px solid #FDBB30">Posición(For Investigators)</h2>
+        <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_investPosTitulo</h2>
         <br />
             <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.PERSONA.POSICION, "Posición", htmlAttributes: new { @class = "control-label" })
+                @Html.LabelFor(model => model.PERSONA.POSICION, @ViewResources.Resources.oet_posicion, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.PERSONA.POSICION, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.PERSONA.POSICION, "", new { @class = "text-danger" })
             </div>
     </div>
 </div>
 <p>
-  @Html.ActionLink("Editar", "EditOET", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA })
+    <div class="col-sm-6" style="float:left">
+        <button class="btn btn-successOET" onclick="location.href='@Url.Action("EditOET", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA })';return false;">Editar</button>
+        <button class="btn btn-cancelOET" onclick="location.href='@Url.Action("Index", "Visitantes")';return false;">Volver</button>
+    </div>
 </p>
