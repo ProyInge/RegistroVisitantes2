@@ -10,6 +10,7 @@ using RegistroVisitantes.Models;
 using PagedList;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using ViewResources;
 
 namespace RegistroVisitantes.Controllers
 {
@@ -110,23 +111,29 @@ namespace RegistroVisitantes.Controllers
             {
                 if (iInfoVisita.PERSONA.GENERO.Equals("0"))
                 {
-                    ViewBag.sexoList = "Male";
+                    ViewBag.sexoList = ViewResources.Resources.oet_masc;
                 }
                 else
                 {
-                    ViewBag.sexoList = "Female";
+                    ViewBag.sexoList = ViewResources.Resources.oet_fem;
                 }
 
                 switch (iInfoVisita.DIETA)
                 {
                     case "No Restriction":
-                        ViewBag.dieta = "No Restriction";
+                    case "Sin restricción":
+                    case "Pas de restrictions":
+                        ViewBag.dieta = ViewResources.Resources.oet_sinrestr;
                         break;
                     case "Vegetarian":
-                        ViewBag.dieta = "Vegetarian";
+                    case "Vegetariano":
+                    case "Végétarien":
+                        ViewBag.dieta = ViewResources.Resources.oet_vege;
                         break;
+
                     case "Vegan":
-                        ViewBag.dieta = "Vegan";
+                    case "Vegano":
+                        ViewBag.dieta = ViewResources.Resources.oet_vegano;
                         break;
                 }
 
@@ -155,22 +162,26 @@ namespace RegistroVisitantes.Controllers
             {                
                 if (iInfoVisita.PERSONA.GENERO.Equals("0"))
                 {
-                    ViewBag.sexoList =  "Male";
+                    ViewBag.sexoList = ViewResources.Resources.oet_masc;
                 }
                 else
                 {
-                    ViewBag.sexoList =  "Female" ;
+                    ViewBag.sexoList = ViewResources.Resources.oet_fem;
                 }
                
                 switch (iInfoVisita.DIETA) {
-                    case "No Restriction": 
-                            ViewBag.dieta = "No Restriction";
-                        break;
+                    case "No Restriction":
+                    case "Sin restricción":
+                    case "Pas de restrictions":
+                        ViewBag.dieta = ViewResources.Resources.oet_sinrestr;
+                            break; 
                     case "Vegetarian":
-                        ViewBag.dieta = "Vegetarian";
+                    case "Végétarien":
+                        ViewBag.dieta = ViewResources.Resources.oet_vege;
                         break;
                     case "Vegan":
-                        ViewBag.dieta = "Vegan";
+                    case "Vegano":
+                        ViewBag.dieta = ViewResources.Resources.oet_vegano;
                         break;
                 }
                
@@ -216,40 +227,50 @@ namespace RegistroVisitantes.Controllers
                 var listSexo = new List<SelectListItem>();
                 if (iInfoVisita.PERSONA.GENERO.Equals("0"))
                 {
-                    listSexo.Add(new SelectListItem { Selected = true, Text = "Male", Value = "Male" });
-                    listSexo.Add(new SelectListItem { Text = "Female", Value = "Female" });
+                    listSexo.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
+                    listSexo.Add(new SelectListItem { Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
                 }
                 else
                 {
-                    listSexo.Add(new SelectListItem { Selected = true, Text = "Female", Value = "Female" });
-                    listSexo.Add(new SelectListItem { Text = "Male", Value = "Male" });
+                    listSexo.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
+                    listSexo.Add(new SelectListItem { Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
                 }
 
                 var listDieta = new List<SelectListItem>();
                 switch (iInfoVisita.DIETA)
                 {
                     case "Vegetarian":
-                        listDieta.Add(new SelectListItem { Selected = true, Text = "Vegetarian", Value = "Vegetarian" });
-                        listDieta.Add(new SelectListItem { Text = "No Restriction", Value = "No Restriction" });
-                        listDieta.Add(new SelectListItem { Text = "Vegan", Value = "Vegan" });
+                    case "Vegetariano":
+                    case "Végétarien":
+                        listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_vege, Value = ViewResources.Resources.oet_vege });
+                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
+                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vegano, Value = ViewResources.Resources.oet_vegano });
                         break;
+
                     case "Vegan":
-                        listDieta.Add(new SelectListItem { Selected = true, Text = "Vegan", Value = "Vegan" });
-                        listDieta.Add(new SelectListItem { Text = "No Restriction", Value = "No Restriction" });
-                        listDieta.Add(new SelectListItem { Text = "Vegetarian", Value = "Vegetarian" });
+                    case "Vegano":
+                        listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_vegano, Value = "Vegan" });
+                        listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
+                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vege, Value = ViewResources.Resources.oet_vege });
                         break;
+
                     default:
-                        listDieta.Add(new SelectListItem { Selected = true, Text = "No Restriction", Value = "No Restriction" });
-                        listDieta.Add(new SelectListItem { Text = "Vegetarian", Value = "Vegetarian" });
-                        listDieta.Add(new SelectListItem { Text = "Vegan", Value = "Vegan" });
+                        listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
+                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vege, Value = ViewResources.Resources.oet_vege });
+                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vegano, Value = ViewResources.Resources.oet_vegano });
                         break;
                 }
 
                 var listaPosicion = new List<SelectListItem>();
-                String[] posiciones = { "Volunteer", "Superior staff", "Principal researcher", "Other, Intern",
-                    "Field Assistant", "Technician", "Student", "Colaborator", "Coordinator", "Supervisor", "Tutor"};
+                String[] posiciones =  { ViewResources.Resources.oet_pos1, ViewResources.Resources.oet_pos2,
+                    ViewResources.Resources.oet_pos3, ViewResources.Resources.oet_pos4,
+                    ViewResources.Resources.oet_pos5, ViewResources.Resources.oet_pos6,
+                    ViewResources.Resources.oet_pos7, ViewResources.Resources.oet_pos8,
+                    ViewResources.Resources.oet_pos9, ViewResources.Resources.oet_pos10,
+                    ViewResources.Resources.oet_pos11, ViewResources.Resources.oet_pos12 };
+                
 
-                foreach(String pos in posiciones)
+                foreach (String pos in posiciones)
                 {
                     listaPosicion.Add(
                        (iInfoVisita.PERSONA.POSICION == pos) ?
@@ -259,12 +280,13 @@ namespace RegistroVisitantes.Controllers
                 }
 
                 var listaPropositos = new List<SelectListItem>();
-                String[] propositos = { "Visiting Scientist (without project at the station)",
-                    "OTS staff (on business not covered by other categories)",
-                    "Researcher(with project at the station)", "Undergraduate course","Graduate course",
-                    "University extension course","Environmental education program", "Natural History visitor",
-                    "Special event or meetings","Journalist(reporter, writer, filmer)","Other" };
-                
+                String[] propositos = { ViewResources.Resources.oet_prop1, ViewResources.Resources.oet_prop2,
+                    ViewResources.Resources.oet_prop3, ViewResources.Resources.oet_prop4,
+                    ViewResources.Resources.oet_prop5, ViewResources.Resources.oet_prop6,
+                    ViewResources.Resources.oet_prop7, ViewResources.Resources.oet_prop8,
+                    ViewResources.Resources.oet_prop9, ViewResources.Resources.oet_prop10,
+                    ViewResources.Resources.oet_prop11 };
+
                 foreach (String prop in propositos)
                 {
                     listaPropositos.Add( (iInfoVisita.PROPOSITO == prop) ?
@@ -275,7 +297,7 @@ namespace RegistroVisitantes.Controllers
 
 
                 var listaRoles = new List<SelectListItem>();
-                String [] roles = { "Student", "Professor", "Coordinator", "Assistant", "Other" };
+                String [] roles = { ViewResources.Resources.oet_rol1, ViewResources.Resources.oet_rol2, ViewResources.Resources.oet_rol3, ViewResources.Resources.oet_rol4, ViewResources.Resources.oet_rol5 };
                 foreach (String rol in roles)
                 {
                     listaRoles.Add((iInfoVisita.ROL_CURSO == rol) ?
@@ -311,38 +333,42 @@ namespace RegistroVisitantes.Controllers
                 return HttpNotFound();
             }else
             {
-
                 var listSexo = new List<SelectListItem>();
                 if (iInfoVisita.PERSONA.GENERO.Equals("0"))
                 {
-                    listSexo.Add(new SelectListItem { Selected = true, Text = "Male", Value = "Male" });
-                    listSexo.Add(new SelectListItem { Text = "Female", Value = "Female" });
+                    listSexo.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
+                    listSexo.Add(new SelectListItem { Text = ViewResources.Resources.oet_fem, Value = ViewResources.Resources.oet_fem });
                     
                 }
                 else
                 {
-                    listSexo.Add(new SelectListItem { Selected = true, Text = "Female", Value = "Female" });
-                    listSexo.Add(new SelectListItem { Text = "Male", Value = "Male" });
+                    listSexo.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_fem, Value = ViewResources.Resources.oet_fem });
+                    listSexo.Add(new SelectListItem { Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
                 }
                 ViewBag.listSexo = listSexo;
 
                 var listDieta = new List<SelectListItem>();
                 switch (iInfoVisita.DIETA)
-                {
-                    case "No Restriction":
-                        listDieta.Add(new SelectListItem { Selected = true, Text = "No Restriction", Value = "No Restriction" });
-                        listDieta.Add(new SelectListItem { Text = "Vegetarian", Value = "Vegetarian" });
-                        listDieta.Add(new SelectListItem { Text = "Vegan", Value = "Vegan" });
-                        break;
+                {                   
                     case "Vegetarian":
-                        listDieta.Add(new SelectListItem { Selected = true, Text = "Vegetarian", Value = "Vegetarian" });
-                        listDieta.Add(new SelectListItem { Text = "No Restriction", Value = "No Restriction" });
-                        listDieta.Add(new SelectListItem { Text = "Vegan", Value = "Vegan" });
+                    case "Vegetariano":
+                    case "Végétarien":
+                        listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_vege, Value = ViewResources.Resources.oet_vege });
+                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
+                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vegano, Value = ViewResources.Resources.oet_vegano });
                         break;
+
                     case "Vegan":
-                        listDieta.Add(new SelectListItem { Selected = true, Text = "Vegan", Value = "Vegan" });
-                        listDieta.Add(new SelectListItem { Selected = true, Text = "No Restriction", Value = "No Restriction" });
-                        listDieta.Add(new SelectListItem { Text = "Vegetarian", Value = "Vegetarian" });                      
+                    case "Vegano":
+                        listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_vegano, Value = "Vegan" });
+                        listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
+                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vege, Value = ViewResources.Resources.oet_vege });                      
+                        break;
+
+                    default:
+                        listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
+                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vege, Value = ViewResources.Resources.oet_vege });
+                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vegano, Value = ViewResources.Resources.oet_vegano });
                         break;
                 }
                 ViewBag.listDieta = listDieta;
@@ -370,7 +396,7 @@ namespace RegistroVisitantes.Controllers
             if (ModelState.IsValid)
             {
 
-                if (infov.PERSONA.GENERO == "Female")
+                if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
                 {
                     infov.PERSONA.GENERO = '1'.ToString();
 
@@ -403,7 +429,7 @@ namespace RegistroVisitantes.Controllers
             if (ModelState.IsValid)
             {
 
-                if (infov.PERSONA.GENERO == "Female")
+                if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
                 {
                     infov.PERSONA.GENERO = '1'.ToString();
 
@@ -418,7 +444,6 @@ namespace RegistroVisitantes.Controllers
                 infov.CERDO = true;
                 infov.PESCADO = true;*/
              
-
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
