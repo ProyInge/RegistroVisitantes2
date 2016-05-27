@@ -48,6 +48,14 @@
                 <End Role="PERSONA" EntitySet="PERSONA" />
                 <End Role="V_INSTITUCION" EntitySet="V_INSTITUCION" />
             </AssociationSet>
+            <AssociationSet Name="PERSONAV_PAISES" Association="Model.Store.PERSONAV_PAISES">
+                <End Role="PERSONA" EntitySet="PERSONA" />
+                <End Role="V_PAISES" EntitySet="V_PAISES" />
+            </AssociationSet>
+            <AssociationSet Name="V_PAISESPERSONA" Association="Model.Store.V_PAISESPERSONA">
+                <End Role="V_PAISES" EntitySet="V_PAISES" />
+                <End Role="PERSONA" EntitySet="PERSONA" />
+            </AssociationSet>
         </EntityContainer>
         <EntityType Name="PERSONA">
             <Key>
@@ -221,7 +229,7 @@
         </EntityType>
         <EntityType Name="V_PAISES">
             <Key>
-                <PropertyRef Name="CAT_PAISES" />
+                <PropertyRef Name="ISO" />
             </Key>
             <Property Name="CAT_PAISES" Type="number" Nullable="false" Precision="10" />
             <Property Name="ISO" Type="varchar2" Nullable="false" MaxLength="5" />
@@ -340,6 +348,34 @@
             </Dependent>
         </ReferentialConstraint>
     </Association>
+    <Association Name="PERSONAV_PAISES">
+        <End Role="PERSONA" Type="Model.Store.PERSONA" Multiplicity="*">
+        </End>
+        <End Role="V_PAISES" Type="Model.Store.V_PAISES" Multiplicity="0..1">
+        </End>
+        <ReferentialConstraint>
+            <Principal Role="V_PAISES">
+                <PropertyRef Name="ISO" />
+            </Principal>
+            <Dependent Role="PERSONA">
+                <PropertyRef Name="NACIONALIDAD" />
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="V_PAISESPERSONA">
+        <End Role="V_PAISES" Type="Model.Store.V_PAISES" Multiplicity="0..1">
+        </End>
+        <End Role="PERSONA" Type="Model.Store.PERSONA" Multiplicity="*">
+        </End>
+        <ReferentialConstraint>
+            <Principal Role="V_PAISES">
+                <PropertyRef Name="ISO" />
+            </Principal>
+            <Dependent Role="PERSONA">
+                <PropertyRef Name="PAIS" />
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -366,6 +402,8 @@
           <Property Name="COD_POSTAL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="INFOVISITA" Relationship="Model.INFOVISITA_PERSONA_FK" FromRole="PERSONA" ToRole="INFOVISITA" />
           <NavigationProperty Name="INSTITUCIONI" Relationship="Model.PERSONAV_INSTITUCION" FromRole="PERSONA" ToRole="V_INSTITUCION" />
+          <NavigationProperty Name="NACIONALIDADI" Relationship="Model.PERSONAV_PAISES" FromRole="PERSONA" ToRole="V_PAISES" />
+          <NavigationProperty Name="PAISI" Relationship="Model.V_PAISESPERSONA" FromRole="PERSONA" ToRole="V_PAISES" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -476,6 +514,14 @@
             <End EntitySet="V_INSTITUCION" Role="V_INSTITUCION" />
           </AssociationSet>
           <EntitySet Name="V_PAISES" EntityType="Model.V_PAISES" />
+          <AssociationSet Name="PERSONAV_PAISES" Association="Model.PERSONAV_PAISES">
+            <End Role="PERSONA" EntitySet="PERSONA" />
+            <End Role="V_PAISES" EntitySet="V_PAISES" />
+          </AssociationSet>
+          <AssociationSet Name="V_PAISESPERSONA" Association="Model.V_PAISESPERSONA">
+            <End Role="V_PAISES" EntitySet="V_PAISES" />
+            <End Role="PERSONA" EntitySet="PERSONA" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="USUARIOV_ESTACION">
           <End Type="Model.USUARIO" Role="USUARIO" Multiplicity="*" />
@@ -672,13 +718,39 @@
         </Association>
         <EntityType Name="V_PAISES">
           <Key>
-            <PropertyRef Name="CAT_PAISES" />
+            <PropertyRef Name="ISO" />
           </Key>
           <Property Name="CAT_PAISES" Type="Int32" Nullable="false" />
           <Property Name="ISO" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Name="GENTILICIO" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NACIONPRS" Relationship="Model.PERSONAV_PAISES" FromRole="V_PAISES" ToRole="PERSONA" />
+          <NavigationProperty Name="PAISPRS" Relationship="Model.V_PAISESPERSONA" FromRole="V_PAISES" ToRole="PERSONA" />
         </EntityType>
+        <Association Name="PERSONAV_PAISES">
+          <End Type="Model.PERSONA" Role="PERSONA" Multiplicity="*" />
+          <End Type="Model.V_PAISES" Role="V_PAISES" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="V_PAISES">
+              <PropertyRef Name="ISO" />
+            </Principal>
+            <Dependent Role="PERSONA">
+              <PropertyRef Name="NACIONALIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="V_PAISESPERSONA">
+          <End Type="Model.V_PAISES" Role="V_PAISES" Multiplicity="0..1" />
+          <End Type="Model.PERSONA" Role="PERSONA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="V_PAISES">
+              <PropertyRef Name="ISO" />
+            </Principal>
+            <Dependent Role="PERSONA">
+              <PropertyRef Name="PAIS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -866,8 +938,8 @@
         <EntitySetMapping Name="V_PAISES">
             <EntityTypeMapping TypeName="IsTypeOf(Model.V_PAISES)">
                 <MappingFragment StoreEntitySet="V_PAISES">
-                    <ScalarProperty Name="CAT_PAISES" ColumnName="CAT_PAISES" />
                     <ScalarProperty Name="ISO" ColumnName="ISO" />
+                    <ScalarProperty Name="CAT_PAISES" ColumnName="CAT_PAISES" />
                     <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                     <ScalarProperty Name="GENTILICIO" ColumnName="GENTILICIO" />
                 </MappingFragment>

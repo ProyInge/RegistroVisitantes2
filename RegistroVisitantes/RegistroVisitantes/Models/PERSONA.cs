@@ -67,6 +67,10 @@ public partial class PERSONA
 
     public virtual V_INSTITUCION INSTITUCIONI { get; set; }
 
+    public virtual V_PAISES NACIONALIDADI { get; set; }
+
+    public virtual V_PAISES PAISI { get; set; }
+
 }
 
 }
