@@ -14,6 +14,8 @@
             <EntitySet Name="V_CONTACTO" EntityType="Model.Store.V_CONTACTO" store:Type="Tables" Schema="REGISTRO" />
             <EntitySet Name="V_GRUPOANON" EntityType="Model.Store.V_GRUPOANON" store:Type="Tables" Schema="REGISTRO" />
             <EntitySet Name="V_GRUPORSRV" EntityType="Model.Store.V_GRUPORSRV" store:Type="Tables" Schema="REGISTRO" />
+            <EntitySet Name="V_INSTITUCION" EntityType="Model.Store.V_INSTITUCION" store:Type="Tables" Schema="REGISTRO" />
+            <EntitySet Name="V_PAISES" EntityType="Model.Store.V_PAISES" store:Type="Tables" Schema="REGISTRO" />
             <AssociationSet Name="USUARIOV_ESTACION" Association="Model.Store.USUARIOV_ESTACION">
                 <End Role="USUARIO" EntitySet="USUARIO" />
                 <End Role="V_ESTACION" EntitySet="V_ESTACION" />
@@ -34,6 +36,18 @@
                 <End Role="V_CONTACTO" EntitySet="V_CONTACTO" />
                 <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
             </AssociationSet>
+            <AssociationSet Name="V_RESERVACIONV_GRUPOANON" Association="Model.Store.V_RESERVACIONV_GRUPOANON">
+                <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
+                <End Role="V_GRUPOANON" EntitySet="V_GRUPOANON" />
+            </AssociationSet>
+            <AssociationSet Name="V_RESERVACIONV_GRUPORSRV" Association="Model.Store.V_RESERVACIONV_GRUPORSRV">
+                <End Role="V_GRUPORSRV" EntitySet="V_GRUPORSRV" />
+                <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
+            </AssociationSet>
+            <AssociationSet Name="PERSONAV_INSTITUCION" Association="Model.Store.PERSONAV_INSTITUCION">
+                <End Role="PERSONA" EntitySet="PERSONA" />
+                <End Role="V_INSTITUCION" EntitySet="V_INSTITUCION" />
+            </AssociationSet>
         </EntityContainer>
         <EntityType Name="PERSONA">
             <Key>
@@ -50,7 +64,7 @@
             <Property Name="CIUDAD" Type="varchar2" Nullable="true" MaxLength="150" />
             <Property Name="DIRECCION" Type="varchar2" Nullable="true" MaxLength="400" />
             <Property Name="POSICION" Type="varchar2" Nullable="true" MaxLength="150" />
-            <Property Name="INSTITUCION" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="INSTITUCION" Type="number" Nullable="true" Precision="10" />
             <Property Name="TITULO" Type="varchar2" Nullable="true" MaxLength="150" />
             <Property Name="ROL" Type="varchar2" Nullable="true" MaxLength="150" />
             <Property Name="GENERO" Type="char" Nullable="true" MaxLength="1" />
@@ -194,6 +208,26 @@
             <Property Name="PARTEDE" Type="varchar2" Nullable="true" MaxLength="26" />
             <Property Name="COORDINADOR" Type="varchar2" Nullable="true" MaxLength="400" />
         </EntityType>
+        <EntityType Name="V_INSTITUCION">
+            <Key>
+                <PropertyRef Name="CAT_INSTITUCION" />
+            </Key>
+            <Property Name="CAT_INSTITUCION" Type="number" Nullable="false" Precision="10" />
+            <Property Name="DESCRIPCION" Type="varchar2" Nullable="true" MaxLength="1000" />
+            <Property Name="FULL_NAME" Type="varchar2" Nullable="true" MaxLength="1000" />
+            <Property Name="COUNTRY" Type="varchar2" Nullable="true" MaxLength="20" />
+            <Property Name="X_SISTEMA" Type="number" Nullable="true" Precision="1" />
+            <Property Name="CREADO" Type="date" Nullable="true" />
+        </EntityType>
+        <EntityType Name="V_PAISES">
+            <Key>
+                <PropertyRef Name="CAT_PAISES" />
+            </Key>
+            <Property Name="CAT_PAISES" Type="number" Nullable="false" Precision="10" />
+            <Property Name="ISO" Type="varchar2" Nullable="false" MaxLength="5" />
+            <Property Name="NOMBRE" Type="varchar2" Nullable="false" MaxLength="400" />
+            <Property Name="GENTILICIO" Type="varchar2" Nullable="true" MaxLength="400" />
+        </EntityType>
     <Association Name="USUARIOV_ESTACION">
         <End Role="USUARIO" Type="Model.Store.USUARIO" Multiplicity="*">
         </End>
@@ -264,6 +298,48 @@
             </Dependent>
         </ReferentialConstraint>
     </Association>
+    <Association Name="V_RESERVACIONV_GRUPOANON">
+        <End Role="V_RESERVACION" Type="Model.Store.V_RESERVACION" Multiplicity="*">
+        </End>
+        <End Role="V_GRUPOANON" Type="Model.Store.V_GRUPOANON" Multiplicity="0..1">
+        </End>
+        <ReferentialConstraint>
+            <Principal Role="V_GRUPOANON">
+                <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="V_RESERVACION">
+                <PropertyRef Name="GRUPO" />
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="V_RESERVACIONV_GRUPORSRV">
+        <End Role="V_GRUPORSRV" Type="Model.Store.V_GRUPORSRV" Multiplicity="0..1">
+        </End>
+        <End Role="V_RESERVACION" Type="Model.Store.V_RESERVACION" Multiplicity="*">
+        </End>
+        <ReferentialConstraint>
+            <Principal Role="V_GRUPORSRV">
+                <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="V_RESERVACION">
+                <PropertyRef Name="GRUPO" />
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
+    <Association Name="PERSONAV_INSTITUCION">
+        <End Role="PERSONA" Type="Model.Store.PERSONA" Multiplicity="*">
+        </End>
+        <End Role="V_INSTITUCION" Type="Model.Store.V_INSTITUCION" Multiplicity="0..1">
+        </End>
+        <ReferentialConstraint>
+            <Principal Role="V_INSTITUCION">
+                <PropertyRef Name="CAT_INSTITUCION" />
+            </Principal>
+            <Dependent Role="PERSONA">
+                <PropertyRef Name="INSTITUCION" />
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -283,12 +359,13 @@
           <Property Name="CIUDAD" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="DIRECCION" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Name="POSICION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="INSTITUCION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="INSTITUCION" Type="Int32" />
           <Property Name="TITULO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ROL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="GENERO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="COD_POSTAL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="INFOVISITA" Relationship="Model.INFOVISITA_PERSONA_FK" FromRole="PERSONA" ToRole="INFOVISITA" />
+          <NavigationProperty Name="INSTITUCIONI" Relationship="Model.PERSONAV_INSTITUCION" FromRole="PERSONA" ToRole="V_INSTITUCION" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -393,6 +470,12 @@
             <End Role="V_GRUPORSRV" EntitySet="V_GRUPORSRV" />
             <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
           </AssociationSet>
+          <EntitySet Name="V_INSTITUCION" EntityType="Model.V_INSTITUCION" />
+          <AssociationSet Name="PERSONAV_INSTITUCION" Association="Model.PERSONAV_INSTITUCION">
+            <End EntitySet="PERSONA" Role="PERSONA" />
+            <End EntitySet="V_INSTITUCION" Role="V_INSTITUCION" />
+          </AssociationSet>
+          <EntitySet Name="V_PAISES" EntityType="Model.V_PAISES" />
         </EntityContainer>
         <Association Name="USUARIOV_ESTACION">
           <End Type="Model.USUARIO" Role="USUARIO" Multiplicity="*" />
@@ -563,6 +646,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="V_INSTITUCION">
+          <Key>
+            <PropertyRef Name="CAT_INSTITUCION" />
+          </Key>
+          <Property Name="CAT_INSTITUCION" Nullable="false" Type="Int32" />
+          <Property Name="DESCRIPCION" MaxLength="1000" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="FULL_NAME" MaxLength="1000" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="COUNTRY" MaxLength="20" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="X_SISTEMA" Type="Boolean" />
+          <Property Name="CREADO" Type="DateTime" />
+          <NavigationProperty Name="PERSONAS" Relationship="Model.PERSONAV_INSTITUCION" FromRole="V_INSTITUCION" ToRole="PERSONA" />
+        </EntityType>
+        <Association Name="PERSONAV_INSTITUCION">
+          <End Type="Model.PERSONA" Multiplicity="*" Role="PERSONA" />
+          <End Type="Model.V_INSTITUCION" Multiplicity="0..1" Role="V_INSTITUCION" />
+          <ReferentialConstraint>
+            <Principal Role="V_INSTITUCION">
+              <PropertyRef Name="CAT_INSTITUCION" />
+            </Principal>
+            <Dependent Role="PERSONA">
+              <PropertyRef Name="INSTITUCION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="V_PAISES">
+          <Key>
+            <PropertyRef Name="CAT_PAISES" />
+          </Key>
+          <Property Name="CAT_PAISES" Type="Int32" Nullable="false" />
+          <Property Name="ISO" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="GENTILICIO" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -732,6 +848,28 @@
                     <ScalarProperty Name="NOTASALIMENTACION" ColumnName="NOTASALIMENTACION" />
                     <ScalarProperty Name="PARTEDE" ColumnName="PARTEDE" />
                     <ScalarProperty Name="COORDINADOR" ColumnName="COORDINADOR" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="V_INSTITUCION">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.V_INSTITUCION)">
+                <MappingFragment StoreEntitySet="V_INSTITUCION">
+                    <ScalarProperty Name="CAT_INSTITUCION" ColumnName="CAT_INSTITUCION" />
+                    <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                    <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+                    <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+                    <ScalarProperty Name="X_SISTEMA" ColumnName="X_SISTEMA" />
+                    <ScalarProperty Name="CREADO" ColumnName="CREADO" />
+                </MappingFragment>
+            </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="V_PAISES">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.V_PAISES)">
+                <MappingFragment StoreEntitySet="V_PAISES">
+                    <ScalarProperty Name="CAT_PAISES" ColumnName="CAT_PAISES" />
+                    <ScalarProperty Name="ISO" ColumnName="ISO" />
+                    <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                    <ScalarProperty Name="GENTILICIO" ColumnName="GENTILICIO" />
                 </MappingFragment>
             </EntityTypeMapping>
         </EntitySetMapping>

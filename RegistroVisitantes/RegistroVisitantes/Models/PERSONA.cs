@@ -49,7 +49,7 @@ public partial class PERSONA
 
     public string POSICION { get; set; }
 
-    public string INSTITUCION { get; set; }
+    public Nullable<int> INSTITUCION { get; set; }
 
     public string TITULO { get; set; }
 
@@ -64,6 +64,8 @@ public partial class PERSONA
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<INFOVISITA> INFOVISITA { get; set; }
+
+    public virtual V_INSTITUCION INSTITUCIONI { get; set; }
 
 }
 
