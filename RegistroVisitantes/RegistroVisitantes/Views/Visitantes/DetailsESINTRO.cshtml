@@ -1,143 +1,150 @@
 ﻿@model RegistroVisitantes.Models.INFOVISITA
 
 @{
-    ViewBag.Title = "DetailsESINTRO";
+    ViewBag.Title = @ViewResources.Resources.oet_titulo;
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
 }
 
-<h2>Detalles</h2>
-
+<h2>@ViewResources.Resources.oet_titulo</h2>
+@culture
+@using (Html.BeginForm("ChangeCulture", "Formulario", new { idRes = ViewBag.idRes }))
+{
+    <p>
+        @ViewResources.Resources.seleccionarLen : @Html.DropDownList("ddlCulture", new SelectList(new[]
+ {
+ new{value="es",text=@ViewResources.Resources.spanish},
+ new{value="en",text=@ViewResources.Resources.english}
+ }, "value", "text", Session["CurrentCulture"]), new { onchange = "this.form.submit();" })
+    </p>
+}
 
 <div>
     <hr />
 
     <div class="container">
-        <h2 style="border-bottom:8px solid #FDBB30">Información Personal</h2>
+        <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_personal</h2>
         <br />
-        <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.NOMBRE, "Nombre", htmlAttributes: new { @class = "control-label " })
-            @Html.EditorFor(model => model.PERSONA.NOMBRE, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } }) 
-      </div>
+        <div id="personalInfo">
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.PERSONA.NOMBRE, @ViewResources.Resources.oet_nombre + ":", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.PERSONA.NOMBRE, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
 
-        <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.APELLIDO, "Apellidos", htmlAttributes: new { @class = "control-label " })
-            @Html.EditorFor(model => model.PERSONA.APELLIDO, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" } })
-        </div>
-        
-        <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.NACIONALIDAD, "Nacionalidad", htmlAttributes: new { @class = "control-label " })
-            @Html.EditorFor(model => model.PERSONA.NACIONALIDAD, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-        </div>
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.PERSONA.APELLIDO, @ViewResources.Resources.oet_apellidos + ":", htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.PERSONA.APELLIDO, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" } })
+            </div>
 
-        <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.CEDULA, "Identificación", htmlAttributes: new { @class = "control-label " })
-            @Html.EditorFor(model => model.PERSONA.CEDULA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-         </div>
-        <div class="form-group col-sm-6" style="margin-top: 20px">
-            @Html.LabelFor(model => model.PERSONA.DIRECCION, "Dirección", htmlAttributes: new { @class = "control-label " })
-            @Html.TextAreaFor(model => model.PERSONA.DIRECCION, new { @class = "form-control", @readonly = "readonly" })
-        </div>
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.PERSONA.NACIONALIDAD, @ViewResources.Resources.oet_nacionalidad + ":", htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.PERSONA.NACIONALIDAD, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
 
-        <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.TELEFONO, "Teléfono", htmlAttributes: new { @class = "control-label" })
-            @Html.EditorFor(model => model.PERSONA.TELEFONO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-        </div>
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.PERSONA.CEDULA, @ViewResources.Resources.oet_id + ":", htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.PERSONA.CEDULA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
+            <div class="form-group col-sm-6" style="margin-top: 20px">
+                @Html.LabelFor(model => model.PERSONA.DIRECCION, @ViewResources.Resources.oet_direccion + ":", htmlAttributes: new { @class = "control-label " })
+                @Html.TextAreaFor(model => model.PERSONA.DIRECCION, new { @class = "form-control", @readonly = "readonly" })
+            </div>
 
-        <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.EMAIL, "Correo", htmlAttributes: new { @class = "control-label " })
-            @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-         </div>
-        <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.GENERO, "Sexo", htmlAttributes: new { @class = "control-label " })
-            @Html.EditorFor(model => model.PERSONA.GENERO, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.sexoList } })           
-           </div>
-     </div>
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.PERSONA.TELEFONO, @ViewResources.Resources.oet_telefono + ":", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.PERSONA.TELEFONO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
 
-    <div class="container">
-        <h2 style="border-bottom:8px solid #FDBB30">Contacto de Emergencia</h2>
-        <br />
-        <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.NOMBRE_EMERGENCIA, "Contacto", htmlAttributes: new { @class = "control-label" })
-            @Html.EditorFor(model => model.NOMBRE_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.PERSONA.EMAIL, @ViewResources.Resources.oet_correo + ":", htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.PERSONA.GENERO, @ViewResources.Resources.oet_sexo, htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.PERSONA.GENERO, (String)ViewBag.sexoList, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
+
         </div>
 
-        <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.TEL_EMERGENCIA, "Número", htmlAttributes: new { @class = "control-label " })
-            @Html.EditorFor(model => model.TEL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_contactosTitulo</h2>
+            <br />
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.NOMBRE_EMERGENCIA, @ViewResources.Resources.oet_nombre + ":", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.NOMBRE_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.TEL_EMERGENCIA, @ViewResources.Resources.oet_telefono + ":", htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.TEL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.EMAIL_EMERGENCIA, @ViewResources.Resources.oet_correo + ":", htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.EMAIL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.REL_EMERGENCIA, @ViewResources.Resources.oet_contactoRelacion + ":", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.REL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
+
         </div>
-        <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.EMAIL_EMERGENCIA, "Correo", htmlAttributes: new { @class = "control-label " })
-            @Html.EditorFor(model => model.EMAIL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_resTitulo</h2>
+            <br />
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.DIETA, @ViewResources.Resources.oet_dieta, htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.DIETA, (String) ViewBag.dieta, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.OBSERVACIONES_DIETA, @ViewResources.Resources.oet_otrasRes + ":", htmlAttributes: new { @class = "control-label" })
+                @Html.TextAreaFor(model => model.OBSERVACIONES_DIETA, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.OBSERVACIONES_DIETA, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-sm-6">
+                <label for="dieta">@ViewResources.Resources.oet_preferencias</label>
+                <br />
+                @Html.LabelFor(model => model.CARNE, @ViewResources.Resources.oet_carne, htmlAttributes: new { @class = "control-label" })
+                @Html.CheckBoxFor(model => model.CARNE, new { @class = "form-control, (bool)ViewBag.Carne" })
+                @Html.LabelFor(model => model.POLLO, @ViewResources.Resources.oet_pollo, htmlAttributes: new { @class = "control-label" })
+                @Html.CheckBoxFor(model => model.POLLO, new { @class = "form-control, (bool)ViewBag.Pollo" })
+                @Html.LabelFor(model => model.PESCADO, @ViewResources.Resources.oet_pescado, htmlAttributes: new { @class = "control-label" })
+                @Html.CheckBoxFor(model => model.PESCADO, new { @class = "form-control, (bool)ViewBag.Pescado" })
+                @Html.LabelFor(model => model.CERDO, @ViewResources.Resources.oet_cerdo, htmlAttributes: new { @class = "control-label" })
+                @Html.CheckBoxFor(model => model.CERDO, new { @class = "form-control, (bool)ViewBag.Cerdo" })
+            </div>
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.ALERGIAS, @ViewResources.Resources.oet_alergias + ":", htmlAttributes: new { @class = "control-label" })
+                @Html.TextAreaFor(model => model.ALERGIAS, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.ALERGIAS, "", new { @class = "text-danger" })
+            </div>
+
+
+
+        </div>
+        <div class="container">
+            <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.entero</h2>
+            <br />
+
+            <div class="form-group col-sm-6">
+                @*@Html.LabelFor(model => model.COMOENTERO,  htmlAttributes: new { @class = "control-label col-md-2" })*@
+                @Html.EditorFor(model => model.COMO_ENTERO, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.COMO_ENTERO, "", new { @class = "text-danger" })
+            </div>
         </div>
 
-        <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.REL_EMERGENCIA, "Relación", htmlAttributes: new { @class = "control-label" })
-            @Html.EditorFor(model => model.REL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-        </div>
 
     </div>
     <div class="container">
-        <h2 style="border-bottom:8px solid #FDBB30">Restricciones Dietarias y Alergias</h2>
-        <br />
-        <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.DIETA, "Dieta", htmlAttributes: new { @class = "control-label " })
-            @Html.EditorFor(model => model.DIETA, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.dieta } })
-        </div>
-        <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.OBSERVACIONES_DIETA, "Otra Dieta", htmlAttributes: new { @class = "control-label" })
-            @Html.TextAreaFor(model => model.OBSERVACIONES_DIETA, new { @class = "form-control", @readonly = "readonly" })
-            @Html.ValidationMessageFor(model => model.OBSERVACIONES_DIETA, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group col-sm-6">
-            <label for="dieta">Preferencia</label>
-            <br />          
-            @Html.LabelFor(model => model.CARNE, "Carne", htmlAttributes: new { @class = "control-label" })
-            @Html.CheckBoxFor(model => model.CARNE, new { @class = "form-control, (bool)ViewBag.Carne" })
-            @Html.LabelFor(model => model.POLLO, "Pollo", htmlAttributes: new { @class = "control-label" })
-            @Html.CheckBoxFor(model => model.POLLO, new { @class = "form-control, (bool)ViewBag.Pollo" })
-            @Html.LabelFor(model => model.PESCADO, "Pescado", htmlAttributes: new { @class = "control-label" })
-            @Html.CheckBoxFor(model => model.PESCADO, new { @class = "form-control, (bool)ViewBag.Pescado" })
-            @Html.LabelFor(model => model.CERDO, "Cerdo", htmlAttributes: new { @class = "control-label" })
-            @Html.CheckBoxFor(model => model.CERDO, new { @class = "form-control, (bool)ViewBag.Cerdo" })
-        </div>
-
-        <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.ALERGIAS, "Alergias", htmlAttributes: new { @class = "control-label" })
-            @Html.TextAreaFor(model => model.ALERGIAS, new { @class = "form-control", @readonly = "readonly" })
-            @Html.ValidationMessageFor(model => model.ALERGIAS, "", new { @class = "text-danger" })
-        </div>
-
-      
-
-    </div>
-    <div class="container">
-        <h2 style="border-bottom:8px solid #FDBB30">Cómo se entero?</h2>
-        <br />
-
-        <div class="form-group col-sm-6">
-            @*@Html.LabelFor(model => model.COMOENTERO,  htmlAttributes: new { @class = "control-label col-md-2" })*@
-            @Html.EditorFor(model => model.COMO_ENTERO, new { htmlAttributes = new { @class = "form-control",  @readonly = "readonly" } })
-            @Html.ValidationMessageFor(model => model.COMO_ENTERO, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="container">
-        <h2 style="border-bottom:8px solid #FDBB30">Renuncia de Responsabilidad</h2>
+        <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_waiverTitulo</h2>
         <div class="well" style="font-size:medium">
-            He sido debidamente informado(a) que la visita a las instalaciones de la Organización para Estudios Tropicales
-            (OET) conlleva a riesgos inherentes a estaciones biológicas, tales como transitar por senderos o áreas 
-            resbalosas, húmedas y cubiertas de follaje y árboles circundantes. Asimismo, que en la zona a visitar 
-            existen serpientes y otros animales con el consabido riesgo de mordeduras y que puedan darse picaduras 
-            de insectos de cualquier naturaleza. También manifiesto que no tengo ningún impedimento de salud para 
-            la(s) visita(s) que voy a realizar y me comprometo a seguir todas las instrucciones que se me den para 
-            mi seguridad. Desde ya libero de toda responsabilidad civil o penal o de cualquier otra índole a la OET, 
-            sus apoderados legales, representantes, directores o trabajadores por cualquier daño físico, moral, 
-            enfermedad o muerte que sufriese en el transcurso de la visita, la cual tomo bajo mi propio riesgo.
+            @ViewResources.Resources.oet_waiver
         </div>
     </div>
+</div>
 
-    </div>
 <p>
-    @Html.ActionLink("Editar", "EditESINTRO", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA })
+    @Html.ActionLink(@ViewResources.Resources.editar, "EditESINTRO", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA })
 </p>
