@@ -48,10 +48,10 @@
                         @Html.ActionLink("Visitantes", "Index", "Visitantes")
                     </li>
 
-                    @{ url = Url.Action("Index", "Formulario"); }
-                    <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
-                        @Html.ActionLink("Formulario", "Index", "Formulario")
-                    </li>
+                @*@{ url = Url.Action("Index", "Formulario"); }
+    <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
+        @Html.ActionLink("Formulario", "Index", "Formulario")
+    </li>*@    
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="">@Html.Partial("_LoginPartial")</li>
