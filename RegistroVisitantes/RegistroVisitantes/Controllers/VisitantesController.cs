@@ -11,12 +11,37 @@ using PagedList;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using ViewResources;
+using System.Threading;
+using System.Globalization;
 
 namespace RegistroVisitantes.Controllers
 {
     public class VisitantesController : Controller
     {
         private BDRegistro BDRegistro = new BDRegistro();
+        protected override void Initialize(System.Web.Routing.RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+            if (Session["CurrentCulture"] != null)
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(Session["CurrentCulture"].ToString());
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Session["CurrentCulture"].ToString());
+            }
+            else
+            {
+                CultureInfo ci = new CultureInfo("es");
+                Thread.CurrentThread.CurrentCulture = ci;
+                Thread.CurrentThread.CurrentUICulture = ci;
+            }
+        }
+        public ActionResult ChangeCulture(string ddlCulture, string idRes, string cedula)
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(ddlCulture);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(ddlCulture);
+
+            Session["CurrentCulture"] = ddlCulture;
+            return RedirectToAction("Details", new { idRes = idRes, ced=cedula });
+        }
 
         // GET: Visitantes
         [Authorize]
@@ -151,36 +176,34 @@ namespace RegistroVisitantes.Controllers
                 return HttpNotFound();
             }
             else
-            {                
+            {
+               
                 if (iInfoVisita.PERSONA.GENERO.Equals("0"))
                 {
-                    ViewBag.sexoList = ViewResources.Resources.oet_masc;
+                    ViewBag.sexo = ViewResources.Resources.oet_masc;
                 }
                 else
                 {
-                    ViewBag.sexoList = ViewResources.Resources.oet_fem;
+                    ViewBag.sexo = ViewResources.Resources.oet_fem;
                 }
                
                 switch (iInfoVisita.DIETA) {
                     case "No Restriction":
-                    case "Sin restricción":
-                    case "Pas de restrictions":
                         ViewBag.dieta = ViewResources.Resources.oet_sinrestr;
                             break; 
                     case "Vegetarian":
-                    case "Végétarien":
                         ViewBag.dieta = ViewResources.Resources.oet_vege;
                         break;
                     case "Vegan":
-                    case "Vegano":
                         ViewBag.dieta = ViewResources.Resources.oet_vegano;
                         break;
                 }
-               
-            ViewBag.Carne = iInfoVisita.CARNE;
-            ViewBag.Pollo = iInfoVisita.POLLO;
-            ViewBag.Pescado = iInfoVisita.PESCADO;
-            ViewBag.Cerdo = iInfoVisita.CERDO;
+                ViewBag.Carne = iInfoVisita.CARNE;
+                ViewBag.Pollo = iInfoVisita.POLLO;
+                ViewBag.Pescado = iInfoVisita.PESCADO;
+                ViewBag.Cerdo = iInfoVisita.CERDO;
+                ViewBag.idRes = idR;
+                ViewBag.ced = cedula;
 
             }
             return View(iInfoVisita);
@@ -343,15 +366,12 @@ namespace RegistroVisitantes.Controllers
                 switch (iInfoVisita.DIETA)
                 {                   
                     case "Vegetarian":
-                    case "Vegetariano":
-                    case "Végétarien":
                         listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_vege, Value = ViewResources.Resources.oet_vege });
                         listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
                         listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vegano, Value = ViewResources.Resources.oet_vegano });
                         break;
 
                     case "Vegan":
-                    case "Vegano":
                         listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_vegano, Value = "Vegan" });
                         listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
                         listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vege, Value = ViewResources.Resources.oet_vege });                      
@@ -430,17 +450,29 @@ namespace RegistroVisitantes.Controllers
                 {
                     infov.PERSONA.GENERO = '0'.ToString();
                 }
+                if (infov.DIETA.Equals(ViewResources.Resources.oet_sinrestr))
+                {
+                    infov.DIETA = "No Restriction";
+                }
+                else {
+                    if (infov.DIETA.Equals(ViewResources.Resources.oet_vege))
+                    {
+                        infov.DIETA = "Vegetarian";
+                    }
+                    else
+                    {
+                        infov.DIETA = "Vegan";
+                    }
 
-               /* infov.CARNE = true;
-                infov.POLLO = true;
-                infov.CERDO = true;
-                infov.PESCADO = true;*/
-             
+                }
+
+
+
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
-                return RedirectToAction("DetailESINTRO");
-             }
+                return RedirectToAction("DetailsESINTRO", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA });
+            }
             return View();
         }
 

@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 26/05/2016 23:00:29
+-- Date Created: 27/05/2016 13:28:31
 -- Generated from EDMX file: C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\Models\registro.edmx
 -- --------------------------------------------------
 
@@ -271,10 +271,10 @@ ADD CONSTRAINT "PK_V_INSTITUCION"
    VALIDATE;
 
 
--- Creating primary key on "CAT_PAISES"in table 'V_PAISES'
+-- Creating primary key on "ISO"in table 'V_PAISES'
 ALTER TABLE "REGISTRO"."V_PAISES"
 ADD CONSTRAINT "PK_V_PAISES"
-   PRIMARY KEY ("CAT_PAISES" )
+   PRIMARY KEY ("ISO" )
    ENABLE
    VALIDATE;
 
@@ -394,6 +394,34 @@ ADD CONSTRAINT "FK_PERSONAV_INSTITUCION"
 CREATE INDEX "IX_FK_PERSONAV_INSTITUCION"
 ON "REGISTRO"."PERSONA"
    ("INSTITUCION");
+
+-- Creating foreign key on "NACIONALIDAD" in table 'PERSONA'
+ALTER TABLE "REGISTRO"."PERSONA"
+ADD CONSTRAINT "FK_PERSONAV_PAISES"
+   FOREIGN KEY ("NACIONALIDAD")
+   REFERENCES "REGISTRO"."V_PAISES"
+       ("ISO")
+   ENABLE
+   VALIDATE;
+
+-- Creating index for FOREIGN KEY 'FK_PERSONAV_PAISES'
+CREATE INDEX "IX_FK_PERSONAV_PAISES"
+ON "REGISTRO"."PERSONA"
+   ("NACIONALIDAD");
+
+-- Creating foreign key on "PAIS" in table 'PERSONA'
+ALTER TABLE "REGISTRO"."PERSONA"
+ADD CONSTRAINT "FK_V_PAISESPERSONA"
+   FOREIGN KEY ("PAIS")
+   REFERENCES "REGISTRO"."V_PAISES"
+       ("ISO")
+   ENABLE
+   VALIDATE;
+
+-- Creating index for FOREIGN KEY 'FK_V_PAISESPERSONA'
+CREATE INDEX "IX_FK_V_PAISESPERSONA"
+ON "REGISTRO"."PERSONA"
+   ("PAIS");
 
 -- --------------------------------------------------
 -- Script has ended
