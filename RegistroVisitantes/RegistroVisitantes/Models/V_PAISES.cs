@@ -18,6 +18,17 @@ using System;
 public partial class V_PAISES
 {
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public V_PAISES()
+    {
+
+        this.NACIONPRS = new HashSet<PERSONA>();
+
+        this.PAISPRS = new HashSet<PERSONA>();
+
+    }
+
+
     public int CAT_PAISES { get; set; }
 
     public string ISO { get; set; }
@@ -25,6 +36,16 @@ public partial class V_PAISES
     public string NOMBRE { get; set; }
 
     public string GENTILICIO { get; set; }
+
+
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<PERSONA> NACIONPRS { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<PERSONA> PAISPRS { get; set; }
 
 }
 
