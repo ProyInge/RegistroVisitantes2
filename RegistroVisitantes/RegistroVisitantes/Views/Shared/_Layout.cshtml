@@ -30,21 +30,21 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
             </div>
-            <div class="navbar-collapse collapse">
+            <div id="menu" class="navbar-collapse collapse">
                 @{ string url; }
                 <ul class="nav navbar-nav">
                     @{ url = Url.Action("Index", "Home"); }
-                    <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
+                    <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)" id="index">
                         @Html.ActionLink("Inicio", "Index", "Home")
                     </li>
 
                     @{ url = Url.Action("Index", "Reservas"); }
-                    <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
+                    <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)" id="reservas">
                         @Html.ActionLink("Reservas", "Index", "Reservas")
                     </li>
 
                     @{ url = Url.Action("Index", "Visitantes"); }
-                    <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
+                    <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)" id="visitantes">
                         @Html.ActionLink("Visitantes", "Index", "Visitantes")
                     </li>
 

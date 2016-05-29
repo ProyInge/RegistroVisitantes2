@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script>
+    document.getElementById("visitantes").className += "active";
+</script>
+
 <h2>@ViewResources.Resources.oet_titulo</h2>
 @*@using (Html.BeginForm("ChangeCulture", "Visitantes", new { idRes = ViewBag.idRes, cedula = ViewBag.ced }))
 {
