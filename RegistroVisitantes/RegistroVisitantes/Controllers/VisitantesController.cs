@@ -245,11 +245,11 @@ namespace RegistroVisitantes.Controllers
                 if (iInfoVisita.PERSONA.GENERO.Equals("0"))
                 {
                     listSexo.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
-                    listSexo.Add(new SelectListItem { Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
+                    listSexo.Add(new SelectListItem { Text = ViewResources.Resources.oet_fem, Value = ViewResources.Resources.oet_fem });
                 }
                 else
                 {
-                    listSexo.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
+                    listSexo.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_fem, Value = ViewResources.Resources.oet_fem });
                     listSexo.Add(new SelectListItem { Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
                 }
 

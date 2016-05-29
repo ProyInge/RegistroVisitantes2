@@ -177,11 +177,17 @@
   <data name="oet_direccion" xml:space="preserve">
     <value>Dirección Completa</value>
   </data>
+  <data name="oet_edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
   <data name="oet_enviar" xml:space="preserve">
     <value>Enviar formulario</value>
   </data>
   <data name="oet_fem" xml:space="preserve">
     <value>Femenino</value>
+  </data>
+  <data name="oet_guardar" xml:space="preserve">
+    <value>Guardar</value>
   </data>
   <data name="oet_id" xml:space="preserve">
     <value>Pasaporte o cédula</value>

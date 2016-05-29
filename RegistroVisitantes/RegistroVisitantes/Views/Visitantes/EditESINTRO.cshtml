@@ -47,14 +47,14 @@
              </div>  
              <div class="form-group col-sm-6">
                  @Html.LabelFor(model => model.PERSONA.CEDULA, @ViewResources.Resources.oet_id + ":", htmlAttributes: new { @class = "control-label " })
-                 @Html.EditorFor(model => model.PERSONA.CEDULA, new { htmlAttributes = new { @class = "form-control" ,disabled = "disabled", @readonly = "readonly" } })
+                 @Html.EditorFor(model => model.PERSONA.CEDULA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
                  @Html.ValidationMessageFor(model => model.PERSONA.CEDULA, "", new { @class = "text-danger" })
              </div>   
     
 
             <div class="form-group col-sm-6" style="margin-top: 20px">
                 @Html.LabelFor(model => model.PERSONA.DIRECCION, @ViewResources.Resources.oet_direccion + ":", htmlAttributes: new { @class = "control-label " })
-                @Html.TextAreaFor(model => model.PERSONA.DIRECCION,  new { @class = "form-control" })
+                @Html.TextAreaFor(model => model.PERSONA.DIRECCION, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PERSONA.DIRECCION, "", new { @class = "text-danger" })
             </div>
             <div class="form-group col-sm-6">
@@ -69,7 +69,7 @@
                  @Html.ValidationMessageFor(model => model.PERSONA.EMAIL, "", new { @class = "text-danger" })
              </div>
             <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.PERSONA.GENERO, @ViewResources.Resources.oet_sexo + ":",  htmlAttributes: new { @class = "control-label " })
+                @Html.LabelFor(model => model.PERSONA.GENERO, @ViewResources.Resources.oet_sexo + ":", htmlAttributes: new { @class = "control-label " })
                 @Html.DropDownListFor(model => model.PERSONA.GENERO, (IEnumerable<SelectListItem>)ViewBag.listSexo, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PERSONA.GENERO, "", new { @class = "text-danger" })
             </div>
@@ -80,12 +80,12 @@
                 <br />
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.NOMBRE_EMERGENCIA, @ViewResources.Resources.oet_nombre + ":", htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.NOMBRE_EMERGENCIA, new { htmlAttributes = new { @class = "form-control"} })
+                    @Html.EditorFor(model => model.NOMBRE_EMERGENCIA, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
 
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.TEL_EMERGENCIA, @ViewResources.Resources.oet_telefono + ":", htmlAttributes: new { @class = "control-label " })
-                    @Html.EditorFor(model => model.TEL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control"} })
+                    @Html.EditorFor(model => model.TEL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.EMAIL_EMERGENCIA, @ViewResources.Resources.oet_correo + ":", htmlAttributes: new { @class = "control-label " })
@@ -117,7 +117,7 @@
                         <label for="dieta">@ViewResources.Resources.oet_preferencias</label>
                         <br />                                             
                         @Html.LabelFor(model => model.CARNE, @ViewResources.Resources.oet_carne, htmlAttributes: new { @class = "control-label" })
-                        @Html.CheckBoxFor(model => model.CARNE,  new { @class = "form-control, (bool)ViewBag.Carne" })
+                        @Html.CheckBoxFor(model => model.CARNE, new { @class = "form-control, (bool)ViewBag.Carne" })
                         @Html.LabelFor(model => model.POLLO, @ViewResources.Resources.oet_pollo, htmlAttributes: new { @class = "control-label" })
                         @Html.CheckBoxFor(model => model.POLLO, new { @class = "form-control, (bool)ViewBag.Carne" })
                         @Html.LabelFor(model => model.PESCADO, @ViewResources.Resources.oet_pescado, htmlAttributes: new { @class = "control-label" })
@@ -147,21 +147,12 @@
                 </div>
             </div>
 
-
-       
-    
-
-
-
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value=@ViewResources.Resources.oet_guardar class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-            <div>
-                @Html.ActionLink("Back to List", "Index")
-            </div>
+           

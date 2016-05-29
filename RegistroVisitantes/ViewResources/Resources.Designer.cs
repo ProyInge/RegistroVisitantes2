@@ -241,6 +241,15 @@ namespace ViewResources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Editar.
+        /// </summary>
+        public static string oet_edit {
+            get {
+                return ResourceManager.GetString("oet_edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Enviar formulario.
         /// </summary>
         public static string oet_enviar {
@@ -255,6 +264,15 @@ namespace ViewResources {
         public static string oet_fem {
             get {
                 return ResourceManager.GetString("oet_fem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Guardar.
+        /// </summary>
+        public static string oet_guardar {
+            get {
+                return ResourceManager.GetString("oet_guardar", resourceCulture);
             }
         }
         
