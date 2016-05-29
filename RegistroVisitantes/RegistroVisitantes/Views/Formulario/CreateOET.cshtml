@@ -21,6 +21,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ESTADO)
 
     <div class="container">
         <hr />
@@ -42,7 +43,7 @@
             <div id="personalInfo">
 
                 <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.NOMBRE, @ViewResources.Resources.oet_nombre+":", htmlAttributes: new { @class = "control-label" })
+                    @Html.LabelFor(model => model.PERSONA.NOMBRE, @ViewResources.Resources.oet_nombre + ":", htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.PERSONA.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.NOMBRE, "", new { @class = "text-danger" })
                 </div>
@@ -108,11 +109,20 @@
                         <option value="male">@ViewResources.Resources.oet_masc</option>
                         <option value="female">@ViewResources.Resources.oet_fem</option>
                     </select>
-                    @*@Html.LabelFor(model => model.PERSONA.GENERO, "Gender" ,htmlAttributes: new { @class = "control-label " })
-                    @Html.DropDownListFor(model => model.PERSONA.GENERO, (SelectList)ViewBag.sexoList, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PERSONA.GENERO, "", new { @class = "text-danger" })*@
-
                 </div>
+           
+                    @*  @Html.LabelFor(model => model.PERSONA.GENERO, "Gender" ,htmlAttributes: new { @class = "control-label " })
+                    @Html.DropDownListFor(model => model.PERSONA.GENERO, (SelectList)ViewBag.sexoList, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.PERSONA.GENERO, "", new { @class = "text-danger" })
+                *@
+          
+
+            @*<div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.PERSONA.GENERO, @ViewResources.Resources.oet_sexo + ":", htmlAttributes: new { @class = "control-label " })
+                @Html.DropDownListFor(model => model.PERSONA.GENERO, (SelectList) ViewBag.sexoList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PERSONA.GENERO, "", new { @class = "text-danger" })
+            </div>*@
+
 
 
                 <div class="form-group col-sm-6">
@@ -177,7 +187,6 @@
                             <input id="pollo" type="checkbox" name="checkPollo" value="true"> @ViewResources.Resources.oet_pollo<br>
                             <input id="pescado" type="checkbox" name="checkPescado" value="true"> @ViewResources.Resources.oet_pescado<br>
                             <input id="cerdo" type="checkbox" name="checkCerdo" value="true"> @ViewResources.Resources.oet_cerdo<br>
-
                         </div>
                     </form>
 
@@ -235,6 +244,11 @@
                     @Html.EditorFor(model => model.NOMBRE_CURSO, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.NOMBRE_CURSO, "", new { @class = "text-danger" })
                 </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
 
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.NUMERO_CURSO, @ViewResources.Resources.oet_cursoNum+":", htmlAttributes: new { @class = "control-label" })
@@ -272,11 +286,14 @@
         </div>
 
 
-        <div class="form-group">
+        @*<div class="form-group">
             <div class="col-sm-12">
                 <input type="submit" value="@(ViewResources.Resources.oet_enviar)" class="btn btn-successOET" />
             </div>
-        </div>
+        </div>*@
+
+        
+
 }
 
 

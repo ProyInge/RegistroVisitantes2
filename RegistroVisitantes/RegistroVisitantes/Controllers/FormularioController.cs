@@ -65,31 +65,7 @@ namespace RegistroVisitantes.Controllers
             }
         }
 
-        // GET: /Formulario/ESINTRO
-        [Authorize]
-        [HttpGet]
-        public ActionResult CreateESINTRO(String idRes)
-        {
-            if (idRes == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var reservacion = BDRegistro.V_RESERVACION.Find(idRes);
-            if (reservacion == null || !reservacion.ANFITRIONA.Equals("02"))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
-            }
-            //var sexo = new SelectList(new[] { "Male", "Female" });
-            var proposito = new SelectList(new[] { "Visiting Scientist(without project at the Station)", "Researcher (with project at the Station", "Educational Course", "University extension course", "Environmental education program", "Natural history visitor", "Special event or meeting", "Journalist (reporter, writer, filmer)", "OTS staff (on business not covered by other categories)", "Other" });
-            var position = new SelectList(new[] { "N/A", "Principal Investigator", "CO-IP", "Senior Staff", "Tutor", "Supervisor", "Coordinator", "Collaborator", "Student", "Technical", "Field Assistant", "Interns", "Volunteer" });
-            var role = new SelectList(new[] { "N/A","Student", "Professor", "Coordinator", "Assistant" });
-            //ViewBag.sexoList = sexo;
-            ViewBag.propositoList = proposito;
-            ViewBag.positionList = position;
-            ViewBag.roleList = role;
-            ViewBag.idRes = idRes;
-            return View();
-        }
+        
 
         bool IsValidEmail(string email)
         {
@@ -132,7 +108,31 @@ namespace RegistroVisitantes.Controllers
                 return PartialView(persona);
             }
         }
-
+        // GET: /Formulario/ESINTRO
+        [Authorize]
+        [HttpGet]
+        public ActionResult CreateESINTRO(String idRes)
+        {
+            if (idRes == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var reservacion = BDRegistro.V_RESERVACION.Find(idRes);
+            if (reservacion == null || !reservacion.ANFITRIONA.Equals("02"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
+            }
+            var listSexo = new SelectList(new[] { ViewResources.Resources.oet_masc, ViewResources.Resources.oet_fem});
+            var proposito = new SelectList(new[] { ViewResources.Resources.oet_prop1, ViewResources.Resources.oet_prop2, ViewResources.Resources.oet_prop3, ViewResources.Resources.oet_prop4, ViewResources.Resources.oet_prop5, ViewResources.Resources.oet_prop6, ViewResources.Resources.oet_prop7, ViewResources.Resources.oet_prop8, ViewResources.Resources.oet_prop9, ViewResources.Resources.oet_prop10, ViewResources.Resources.oet_prop11 });
+            var position = new SelectList(new[] { ViewResources.Resources.oet_pos1, ViewResources.Resources.oet_pos2, ViewResources.Resources.oet_pos3, ViewResources.Resources.oet_pos4, ViewResources.Resources.oet_pos5, ViewResources.Resources.oet_pos6, ViewResources.Resources.oet_pos7, ViewResources.Resources.oet_pos8, ViewResources.Resources.oet_pos9, ViewResources.Resources.oet_pos10, ViewResources.Resources.oet_pos11, ViewResources.Resources.oet_pos12 });
+            var role = new SelectList(new[] { ViewResources.Resources.oet_rol1, ViewResources.Resources.oet_rol2, ViewResources.Resources.oet_rol3, ViewResources.Resources.oet_rol4, ViewResources.Resources.oet_rol5 });
+            ViewBag.sexoList = listSexo;
+            ViewBag.propositoList = proposito;
+            ViewBag.positionList = position;
+            ViewBag.roleList = role;
+            ViewBag.idRes = idRes;
+            return View();
+        }
         [HttpPost]
         [Authorize]
         public ActionResult CreateESINTRO(String idRes, [Bind()]Models.INFOVISITA form, string dietas, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
@@ -154,7 +154,8 @@ namespace RegistroVisitantes.Controllers
             form.PESCADO = checkPescado;
           
 
-            if (genero == "Female")
+            form.ID_RESERVACION= idRes;
+            if (genero == ViewResources.Resources.oet_fem)
             {
                 form.PERSONA.GENERO = '1'.ToString();
 
@@ -163,10 +164,23 @@ namespace RegistroVisitantes.Controllers
             {
                 form.PERSONA.GENERO = '0'.ToString();
             }
+            if (dietas == ViewResources.Resources.oet_sinrestr)
+            {
+                form.DIETA = "No Restriction";
+            }
+            else
+            {
+                if (dietas.Equals(ViewResources.Resources.oet_vege))
+                {
+                    form.DIETA = "Vegetarian";
+                }
+                else
+                {
+                    form.DIETA = "Vegan";
+                }
 
-
-            form.ID_RESERVACION= idRes;
-            form.DIETA = dietas;
+            }
+            form.ESTADO = true;
 
             if (ModelState.IsValid)
             {
@@ -211,11 +225,12 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
-            var sexo = new SelectList(new[] { "Female", "Male" });
+           
+            var listSexo = new SelectList(new[] { ViewResources.Resources.oet_masc, ViewResources.Resources.oet_fem});
             var proposito = new SelectList(new[] { ViewResources.Resources.oet_prop1, ViewResources.Resources.oet_prop2, ViewResources.Resources.oet_prop3, ViewResources.Resources.oet_prop4, ViewResources.Resources.oet_prop5, ViewResources.Resources.oet_prop6, ViewResources.Resources.oet_prop7, ViewResources.Resources.oet_prop8, ViewResources.Resources.oet_prop9, ViewResources.Resources.oet_prop10, ViewResources.Resources.oet_prop11 });
             var position = new SelectList(new[] { ViewResources.Resources.oet_pos1, ViewResources.Resources.oet_pos2, ViewResources.Resources.oet_pos3, ViewResources.Resources.oet_pos4, ViewResources.Resources.oet_pos5, ViewResources.Resources.oet_pos6, ViewResources.Resources.oet_pos7, ViewResources.Resources.oet_pos8, ViewResources.Resources.oet_pos9, ViewResources.Resources.oet_pos10, ViewResources.Resources.oet_pos11, ViewResources.Resources.oet_pos12 });
             var role = new SelectList(new[] { ViewResources.Resources.oet_rol1, ViewResources.Resources.oet_rol2, ViewResources.Resources.oet_rol3, ViewResources.Resources.oet_rol4, ViewResources.Resources.oet_rol5 });
-            ViewBag.sexoList = sexo;
+            ViewBag.sexoList = listSexo;
             ViewBag.propositoList = proposito;
             ViewBag.positionList = position;
             ViewBag.roleList = role;
@@ -225,8 +240,8 @@ namespace RegistroVisitantes.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult CreateOET(String idRes, [Bind()]Models.INFOVISITA form, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
-        {
+        public ActionResult CreateOET(String idRes, [Bind()]Models.INFOVISITA form, string dietas, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
+         {
             if (idRes == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -237,28 +252,20 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
-            if (checkCarne) {
-                form.CARNE = true;
-            }
-            if (checkPollo)
-            {
-                form.POLLO = true;
-            }
-            if (checkCerdo)
-            {
-                form.CERDO = true;
-            }
-            if (checkPescado)
-            {
-                form.PESCADO = true;
-            }
+           
+            form.CARNE = checkCarne;
+            form.POLLO = checkPollo;
+          form.CERDO = checkCerdo;
+           form.PESCADO = checkPescado;
+            
 
-            if (genero == "female")
+            if (form.PERSONA.GENERO == ViewResources.Resources.oet_fem)
             {
                 form.PERSONA.GENERO = '1'.ToString();
 
             }
-            else {
+            else
+            {
                 form.PERSONA.GENERO = '0'.ToString();
             }
 

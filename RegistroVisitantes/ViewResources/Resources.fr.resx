@@ -258,4 +258,10 @@
   <data name="editar" xml:space="preserve">
     <value>Modifier</value>
   </data>
+  <data name="oet_edit" xml:space="preserve">
+    <value>éditer</value>
+  </data>
+  <data name="oet_guardar" xml:space="preserve">
+    <value>garder</value>
+  </data>
 </root>

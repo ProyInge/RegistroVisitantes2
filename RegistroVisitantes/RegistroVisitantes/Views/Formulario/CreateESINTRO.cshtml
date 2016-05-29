@@ -1,8 +1,10 @@
 ﻿@model RegistroVisitantes.Models.INFOVISITA
 
 @{
-    ViewBag.Title = "CreateESINTRO";
+    ViewBag.Title = @ViewResources.Resources.oet_titulo;
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+
 }
 
 <h2>@ViewResources.Resources.oet_titulo</h2>
@@ -20,8 +22,10 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+    @Html.HiddenFor(model => model.ESTADO)
+    @Html.HiddenFor(model => model.PERSONA.ESTADO)
+
+    <div class="container">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             
@@ -59,14 +63,14 @@
                 </div>
                 
                 <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.CEDULA, @ViewResources.Resources.oet_institucion + ":", htmlAttributes: new { @class = "control-label " })
+                    @Html.LabelFor(model => model.PERSONA.CEDULA, @ViewResources.Resources.oet_id + ":", htmlAttributes: new { @class = "control-label " })
                     @Html.EditorFor(model => model.PERSONA.CEDULA, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.CEDULA, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group col-sm-6" style="margin-top: 20px">
                     @Html.LabelFor(model => model.PERSONA.DIRECCION, @ViewResources.Resources.oet_direccion + ":", htmlAttributes: new { @class = "control-label " })
-                    @Html.TextAreaFor(model => model.PERSONA.DIRECCION, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.PERSONA.DIRECCION,  new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.PERSONA.DIRECCION, "", new { @class = "text-danger" })
                 </div>
 
@@ -89,7 +93,7 @@
                 </div>*@
 
                 <div class="form-group col-sm-6">
-                    <label for="genero"></label>
+                    <label for="genero">@ViewResources.Resources.oet_sexo: </label>
                     <select name="genero" class="form-control">
                         <option value="Male">@ViewResources.Resources.oet_masc</option>
                         <option value="Female">@ViewResources.Resources.oet_fem</option>
@@ -123,7 +127,6 @@
                 @Html.EditorFor(model => model.REL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.REL_EMERGENCIA, "", new { @class = "text-danger" })
             </div>
-
         </div>
 
         <div class="container">
@@ -137,23 +140,26 @@
                     <option value="Vegan">@ViewResources.Resources.oet_vegano</option>
                 </select>
             </div>
+            <div class="form-group col-sm-6" margin-top="10px">
+                @Html.LabelFor(model => model.OBSERVACIONES_DIETA, @ViewResources.Resources.oet_otrasRes + ":", htmlAttributes: new { @class = "control-label" })
+                @Html.TextAreaFor(model => model.OBSERVACIONES_DIETA, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OBSERVACIONES_DIETA, "", new { @class = "text-danger" })
 
+            </div>
             <div class="form-group col-sm-6">
-                <label for="dieta">Preference</label>
+                <label for="dieta">@ViewResources.Resources.oet_preferencias</label>
                 <br />
-
-
                 <form action="demo_form.asp" method="get">
                     <div class="row">
                         <input id="carne" type="checkbox" name="checkCarne" value="true"> @ViewResources.Resources.oet_carne<br>
                         <input id="pollo" type="checkbox" name="checkPollo" value="true"> @ViewResources.Resources.oet_pollo<br>
                         <input id="pescado" type="checkbox" name="checkPescado" value="true"> @ViewResources.Resources.oet_pescado<br>
                         <input id="cerdo" type="checkbox" name="checkCerdo" value="true"> @ViewResources.Resources.oet_cerdo<br>
-
                     </div>
                 </form>
-     
             </div>
+
+          
 
 
 
@@ -163,12 +169,7 @@
                 @Html.ValidationMessageFor(model => model.ALERGIAS, "", new { @class = "text-danger" })
             </div>
 
-            <div class="form-group col-sm-6">
-                @Html.LabelFor(model => model.OBSERVACIONES_DIETA, @ViewResources.Resources.oet_otrasRes + ":", htmlAttributes: new { @class = "control-label" })
-                @Html.TextAreaFor(model => model.OBSERVACIONES_DIETA, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OBSERVACIONES_DIETA, "", new { @class = "text-danger" })
-
-            </div>
+           
 
         </div>
 

@@ -177,11 +177,17 @@
   <data name="oet_direccion" xml:space="preserve">
     <value>Address</value>
   </data>
+  <data name="oet_edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
   <data name="oet_enviar" xml:space="preserve">
     <value>Send Form</value>
   </data>
   <data name="oet_fem" xml:space="preserve">
     <value>Female</value>
+  </data>
+  <data name="oet_guardar" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="oet_id" xml:space="preserve">
     <value>Passport or Identification</value>
