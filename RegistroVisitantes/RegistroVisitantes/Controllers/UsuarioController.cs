@@ -16,12 +16,14 @@ namespace RegistroVisitantes.Controllers
     {
         private BDRegistro db = new BDRegistro();
 
+        [Authorize]
         public ActionResult Index()
         {
             
             return View(db.USUARIO.ToList());
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Delete(int? id, bool? saveChangesError = false)
         {
@@ -41,6 +43,7 @@ namespace RegistroVisitantes.Controllers
             return View(usr);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
@@ -55,10 +58,11 @@ namespace RegistroVisitantes.Controllers
             {
                 return RedirectToAction("Delete", new { id = id, saveChangesError = true });
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Usuario");
         }
 
-        public ActionResult Ingresar(string returnUrl)
+        [Authorize]
+        public ActionResult Registrar()
         {
             var listSexo = new List<SelectListItem>();
             listSexo.Add(new SelectListItem { Text = "Hombre", Value = "M" });
@@ -78,9 +82,10 @@ namespace RegistroVisitantes.Controllers
             ViewBag.listEstacion = listEstacion;
             return View();
         }
-         
+
+        [Authorize]
         [HttpPost]
-        public ActionResult Ingresar(USUARIO usuarioNuevo, string returnUrl)
+        public ActionResult Registrar(USUARIO usuarioNuevo)
         {
             if (ModelState.IsValid)
             {
@@ -91,17 +96,17 @@ namespace RegistroVisitantes.Controllers
                 ModelState.Clear();
                 ViewBag.Message = usuarioNuevo.NOMBRE + " " + usuarioNuevo.APELLIDO + " se ingresó exitosamente.";
             }
-            return Redirect(returnUrl);
+            return Index() ;
         }
 
         [Authorize]
-        public ActionResult Administracion(int? idUsr, string returnUrl)
+        public ActionResult Administracion(int? idUsr)
         {
             if (idUsr == null)
             {
-                return HttpNotFound();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            if((decimal)Session["Id"] == idUsr) { 
+            if( (string)Session["Rol"]=="R" || (decimal)Session["Id"] == idUsr ) { 
                 USUARIO usr = db.USUARIO.Find(idUsr);
                 if (usr == null)
                 {
@@ -189,13 +194,13 @@ namespace RegistroVisitantes.Controllers
             } 
             else
             {
-                return Login(returnUrl);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult Administracion(USUARIO editado, string returnUrl)
+        public ActionResult Administracion(USUARIO editado)
         {
             if (ModelState.IsValid)
             {
@@ -213,21 +218,21 @@ namespace RegistroVisitantes.Controllers
                 {
                     usr.ESTACION = db.V_ESTACION.Find(usr.IDESTACION);
                 }
+                if((decimal)Session["id"] == usr.ID) { 
+                    Session["Id"] = usr.ID;
+                    Session["Username"] = usr.USUAR.ToString();
+                    Session["Nombre"] = usr.NOMBRE.ToString();
+                    Session["Apellido"] = usr.APELLIDO.ToString();
+                    //S=Secre, A=Admin, R=Superusuario
+                    Session["Rol"] = usr.ROL.ToString();
+                    //SII014192819200.7082987519=LS, SII014192819200.2788020223=PV, SII017112627200.5981444351=LC, SII014548761600.1313183743=NAO, SII014548761600.7018216447=CRO
+                    //LS=La Selva, PV=Palo Verde, LC=Las Cruces, CRO=Costa Rican Offices, NAO=North American Offices
+                    Session["Estacion"] = usr.ESTACION.NOMBRE;
+                    Session["IdEstacion"] = usr.ESTACION.ID;
+                    Session["Siglas"] = usr.ESTACION.SIGLAS;
+                    Session["Genero"] = usr.SEXO == "M" ? "o" : "a";
+                }
 
-                Session["Id"] = usr.ID;
-                Session["Username"] = usr.USUAR.ToString();
-                Session["Nombre"] = usr.NOMBRE.ToString();
-                Session["Apellido"] = usr.APELLIDO.ToString();
-                //S=Secre, A=Admin, R=Superusuario
-                Session["Rol"] = usr.ROL.ToString();
-                //SII014192819200.7082987519=LS, SII014192819200.2788020223=PV, SII017112627200.5981444351=LC, SII014548761600.1313183743=NAO, SII014548761600.7018216447=CRO
-                //LS=La Selva, PV=Palo Verde, LC=Las Cruces, CRO=Costa Rican Offices, NAO=North American Offices
-                Session["Estacion"] = usr.ESTACION.NOMBRE;
-                Session["IdEstacion"] = usr.ESTACION.ID;
-                Session["Siglas"] = usr.ESTACION.SIGLAS;
-                Session["Genero"] = usr.SEXO == "M" ? "o" : "a";
-                Session["retUrl"] = returnUrl;
-          
 
                 db.Entry(usr).State = EntityState.Modified;
                 db.SaveChanges();
@@ -238,7 +243,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Ingresar()
         {
             if(Request.IsAuthenticated) { 
                 FormsAuthentication.SignOut();
@@ -251,12 +256,10 @@ namespace RegistroVisitantes.Controllers
                 Session["IdEstacion"] = null;
                 Session["Siglas"] = null;
                 Session["Genero"] = null;
-                Session["retURL"] = returnUrl;
                 return Redirect(Request.RawUrl);
             }
             else
             {
-                Session["retURL"] = returnUrl;
                 return View();
             }
         }
@@ -264,7 +267,7 @@ namespace RegistroVisitantes.Controllers
 
 
         [HttpPost]
-        public ActionResult Login(USUARIO user)
+        public ActionResult Ingresar(USUARIO user)
         {
             USUARIO usr = db.USUARIO.Where(u => u.USUAR == user.USUAR && u.CONTRASENA == user.CONTRASENA).FirstOrDefault();
             if (usr != null)
@@ -309,18 +312,12 @@ namespace RegistroVisitantes.Controllers
             }
         }
 
+        [Authorize]
         public ActionResult Logueado()
         {
             if (Session["Id"] != null)
             {
-                if(Session["retURL"] == null)
-                { 
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    return Redirect((string)Session["retURL"]);
-                }
+                return RedirectToAction("Index", "Home");
             }
             else
             {

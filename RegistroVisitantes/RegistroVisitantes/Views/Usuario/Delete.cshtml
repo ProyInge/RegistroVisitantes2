@@ -13,7 +13,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.Label("Nombre");   
+            <label class="control-label col-md-2">Nombre</label>
         </dt>
 
         <dd>
@@ -21,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.Label("Apellido");
+            <label class="control-label col-md-2">Apellidos</label>
         </dt>
 
         <dd>
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.Label("E-mail");
+            <label class="control-label col-md-2">Correo</label>
         </dt>
 
         <dd>
@@ -37,45 +37,13 @@
         </dd>
 
         <dt>
-            @Html.Label("Usuario");
+            <label class="control-label col-md-2">Usuario</label>
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.USUAR)
         </dd>
-
-        <dt>
-            @Html.Label("Contraseña");
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CONTRASENA)
-        </dd>
-
-        <dt>
-            @Html.Label("Rol");
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ROL)
-        </dd>
-
-        <dt>
-            @Html.Label("Sexo");
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SEXO)
-        </dd>
-
-        <dt>
-            @Html.Label("Estación");
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ESTACION.NOMBRE)
-        </dd>
-
+        
     </dl>
 
     @using (Html.BeginForm()) {

@@ -8,13 +8,19 @@
         @if((string)Session["Rol"]!="R") {
             <li>
                 @Html.ActionLink("Bienvenid" + Session["Genero"] + " a " + Session["Estacion"] + " (" + Session["Siglas"] + ")", "Index", "Reservas")
-            </li>  
-        }      
+            </li>
+        }
+        else
+        {
+            <li>
+                @Html.ActionLink("Usuarios", "Index", "Usuario")
+            </li>
+        }
         <li>
-            @Html.ActionLink("" + Session["Nombre"] + " " + Session["Apellido"] + "", "Administracion", "Usuario", routeValues: new { @idUsr = Session["Id"], @returnUrl = Request.Url.PathAndQuery }, htmlAttributes: new { title = "Administracion" })
+            @Html.ActionLink("" + Session["Nombre"] + " " + Session["Apellido"] + "", "Administracion", "Usuario", routeValues: new { @idUsr = Session["Id"] }, htmlAttributes: new { title = "Administracion" })
         </li>
         <li>
-            @Html.ActionLink("Cerrar sesión", "Login", "Usuario", routeValues: new { @returnUrl = Request.Url.PathAndQuery }, htmlAttributes: new { title = "Login" })
+            @Html.ActionLink("Cerrar sesión", "Ingresar", "Usuario")
         </li>
     </ul>
     }
@@ -23,6 +29,6 @@ else
 {
     FormsAuthentication.SignOut();
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Iniciar sesión", "Login", "Usuario", routeValues: new { @returnUrl = Request.Url.PathAndQuery  }, htmlAttributes: new { id = "Login" })</li>
+        <li>@Html.ActionLink("Iniciar sesión", "Ingresar", "Usuario")</li>
     </ul>
 }

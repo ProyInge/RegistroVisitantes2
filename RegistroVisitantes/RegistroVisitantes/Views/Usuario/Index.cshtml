@@ -8,15 +8,15 @@
 <h2>Administración de usuarios</h2>
 
 <p>
-    @Html.ActionLink("Crear nuevo", "Create")
+    @Html.ActionLink("Crear nuevo", "Registrar")
 </p>
-<table class="table">
+<table class="table table-bordered table-striped table-condensed table-hover">
     <tr>
         <th>
             @Html.Label("Nombre")
         </th>
         <th>
-            @Html.Label("Apellido")
+            @Html.Label("Apellidos")
         </th>
         <th>
             @Html.Label("E-mail")
@@ -38,38 +38,37 @@
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.APELLIDO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMAIL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.USUAR)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CONTRASENA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ROL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SEXO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ESTACION.NOMBRE)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.APELLIDO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMAIL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.USUAR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CONTRASENA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ROL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SEXO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ESTACION.NOMBRE)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Administracion", new { idUsr = item.ID }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 </table>
