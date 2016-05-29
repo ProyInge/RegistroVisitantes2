@@ -17,7 +17,7 @@
             </li>
         }
         <li>
-            @Html.ActionLink("" + Session["Nombre"] + " " + Session["Apellido"] + "", "Administracion", "Usuario", routeValues: new { @idUsr = Session["Id"] }, htmlAttributes: new { title = "Administracion" })
+            @Html.ActionLink("" + Session["Nombre"] + " " + Session["Apellido"] + "", "Administrar", "Usuario", routeValues: new { @idUsr = Session["Id"] }, htmlAttributes: new { title = "Administracion" })
         </li>
         <li>
             @Html.ActionLink("Cerrar sesión", "Ingresar", "Usuario")

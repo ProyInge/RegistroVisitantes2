@@ -100,7 +100,7 @@ namespace RegistroVisitantes.Controllers
         }
 
         [Authorize]
-        public ActionResult Administracion(int? idUsr)
+        public ActionResult Administrar(int? idUsr)
         {
             if (idUsr == null)
             {
@@ -200,7 +200,7 @@ namespace RegistroVisitantes.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Administracion(USUARIO editado)
+        public ActionResult Administrar(USUARIO editado)
         {
             if (ModelState.IsValid)
             {
