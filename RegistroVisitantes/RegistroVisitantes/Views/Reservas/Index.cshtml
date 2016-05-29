@@ -13,6 +13,7 @@
         Buscar por fecha:
         <input style="position: relative; z-index: 100000;" type="text" name="fromDate" id="fromDate" value="@string.Format("{0:d}", ViewBag.fromDate)" />
         <input style="position: relative; z-index: 100000;" type="text" name="toDate" id="toDate" value="@string.Format("{0:d}", ViewBag.toDate)" />
+        <input type="hidden" name="Pagina" value="1"/>
         <button type="submit" class="btn btn-success">
             <i class="fa fa-search"></i>
         </button>
@@ -82,7 +83,7 @@
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 @Html.PagedListPager(Model, Pagina => Url.Action("Index",
-        new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+        new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue, fromDate = ViewBag.fromDate, toDate = ViewBag.toDate}))
 
 @section Scripts{
 
@@ -108,7 +109,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
                 dateFormat: 'dd/mm/yy',
                 showOn: "button"
             });
-            var date2 = $('#toDate').datepicker('getDate');
+            var date2 = $('#fromDate').datepicker('getDate');
             $('#toDate').datepicker('option', 'minDate', date2);
 
         });
