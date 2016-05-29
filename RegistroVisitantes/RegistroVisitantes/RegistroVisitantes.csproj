@@ -370,7 +370,7 @@
     <Content Include="Views\Visitantes\EditESINTRO.cshtml" />
     <Content Include="Views\Visitantes\EditOET.cshtml" />
     <Content Include="Views\Formulario\AutocompletarESINTRO.cshtml" />
-    <Content Include="Views\Usuario\Administracion.cshtml" />
+    <Content Include="Views\Usuario\Administrar.cshtml" />
     <Content Include="Views\Shared\_LayoutForm.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Usuario\Delete.cshtml" />
