@@ -96,7 +96,7 @@ namespace RegistroVisitantes.Controllers
                 ModelState.Clear();
                 ViewBag.Message = usuarioNuevo.NOMBRE + " " + usuarioNuevo.APELLIDO + " se ingresó exitosamente.";
             }
-            return Index() ;
+            return RedirectToAction("Index","Usuario");
         }
 
         [Authorize]
