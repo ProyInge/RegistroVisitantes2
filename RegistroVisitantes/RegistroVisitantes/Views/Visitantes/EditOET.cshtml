@@ -1,11 +1,23 @@
 ﻿@model RegistroVisitantes.Models.INFOVISITA
 
 @{
-    ViewBag.Title = "EditOET";
+    ViewBag.Title = @ViewResources.Resources.oet_titulo;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewResources.Resources.oet_titulo</h2>
+@*@using (Html.BeginForm("ChangeCulture", "Visitantes", new { idRes = ViewBag.idRes, cedula = ViewBag.ced }))
+{
+    <p>
+        @(ViewResources.Resources.seleccionarLen): @Html.DropDownList("ddlCulture", new SelectList(new[]
+        {
+            new {value="es",text=@ViewResources.Resources.spanish},
+            new{value="en",text=@ViewResources.Resources.english},
+            new{value="fr",text=@ViewResources.Resources.french}
+        }, "value", "text", Session["CurrentCulture"]), 
+        new { onchange = "this.form.submit();", @class = "form-control" })
+    </p>
+}*@
 
 @using (Html.BeginForm())
 {
@@ -43,6 +55,31 @@
                 @Html.EditorFor(model => model.PERSONA.CEDULA, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                 @Html.ValidationMessageFor(model => model.PERSONA.NACIONALIDAD, "", new { @class = "text-danger" })
             </div>
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.PERSONA.TITULO, @ViewResources.Resources.oet_tituloPer, htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.PERSONA.TITULO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PERSONA.TITULO, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group  col-sm-6">
+                @Html.LabelFor(model => model.PERSONA.CIUDAD, @ViewResources.Resources.oet_ciudad, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.PERSONA.CIUDAD, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PERSONA.CIUDAD, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.PERSONA.PAIS, @ViewResources.Resources.oet_pais, htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.PERSONA.PAIS, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PERSONA.PAIS, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.PERSONA.COD_POSTAL, @ViewResources.Resources.oet_codigo, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.PERSONA.COD_POSTAL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PERSONA.COD_POSTAL, "", new { @class = "text-danger" })
+            </div>
+
             <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.PERSONA.DIRECCION, @ViewResources.Resources.oet_direccion, htmlAttributes: new { @class = "control-label " })
                 @Html.TextAreaFor(model => model.PERSONA.DIRECCION, new { @class = "form-control" })
@@ -182,8 +219,8 @@
         <br /><br />
         <div class="form-group">
             <div class="col-sm-12">
-                <input type="submit" value="Guardar" class="btn btn-successOET" />
-                <button class="btn btn-cancelOET" onclick="location.href='@Url.Action("Index", "Visitantes")';return false;">Cancelar</button>
+                <input type="submit" value="Guardar" class="btn btn-successOET" />                
+                <button class="btn btn-cancelOET" onclick="location.href='@Url.Action("Details","Visitantes", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA })';return false;">Cancelar</button>
             </div>
         </div>
     </div>    

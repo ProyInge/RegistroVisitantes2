@@ -1,13 +1,24 @@
 ﻿@model RegistroVisitantes.Models.INFOVISITA
 
 @{
-    //ViewBag.Title = @ViewResources.Resources.oet_titulo;
+    ViewBag.Title = @ViewResources.Resources.oet_titulo;
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
 }
 
 <h2>@ViewResources.Resources.oet_titulo</h2>
-    
+@using (Html.BeginForm("ChangeCulture", "Visitantes", new { idRes = ViewBag.idRes, cedula = ViewBag.ced }))
+{
+    <p>
+        @(ViewResources.Resources.seleccionarLen): @Html.DropDownList("ddlCulture", new SelectList(new[]
+        {
+            new {value="es",text=@ViewResources.Resources.spanish},
+            new{value="en",text=@ViewResources.Resources.english},
+            new{value="fr",text=@ViewResources.Resources.french}
+        }, "value", "text", Session["CurrentCulture"]), 
+        new { onchange = "this.form.submit();", @class = "form-control" })
+    </p>
+}
 
 <div>
   <hr />
