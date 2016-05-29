@@ -99,8 +99,8 @@ namespace RegistroVisitantes.Controllers
         public ActionResult Details(String idRes, String ced)
         {
             V_RESERVACION res = BDRegistro.V_RESERVACION.Find(idRes);
-
-            if (res.ANFITRIONA.Equals("01"))
+            
+            if (res.ANFITRIONA.Equals("01") || res.ANFITRIONA == null)
             {
                 return RedirectToAction("DetailsOET", new { idR = idRes, cedula = ced });
             }
@@ -158,6 +158,8 @@ namespace RegistroVisitantes.Controllers
                 ViewBag.Pollo = iInfoVisita.POLLO;
                 ViewBag.Pescado = iInfoVisita.PESCADO;
                 ViewBag.Cerdo = iInfoVisita.CERDO;
+                ViewBag.idRes = idR;
+                ViewBag.ced = cedula;
             }
                 return View(iInfoVisita);
         }
@@ -330,7 +332,8 @@ namespace RegistroVisitantes.Controllers
                 ViewBag.Pollo = iInfoVisita.POLLO;
                 ViewBag.Pescado = iInfoVisita.PESCADO;
                 ViewBag.Cerdo = iInfoVisita.CERDO;
-
+                ViewBag.idRes = idRes;
+                ViewBag.ced = ced;
             }
             return View(iInfoVisita);
         }
@@ -388,11 +391,8 @@ namespace RegistroVisitantes.Controllers
                 ViewBag.Pollo = iInfoVisita.POLLO;
                 ViewBag.Pescado = iInfoVisita.PESCADO;
                 ViewBag.Cerdo = iInfoVisita.CERDO;
-
             }
-           
             return View(iInfoVisita);
-   
         }
 
 
