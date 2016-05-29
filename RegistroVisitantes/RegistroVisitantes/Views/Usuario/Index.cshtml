@@ -25,9 +25,6 @@
                 @Html.Label("Usuario")
             </th>
             <th>
-                @Html.Label("Contraseña")
-            </th>
-            <th>
                 @Html.Label("Rol")
             </th>
             <th>
@@ -54,13 +51,28 @@
                     @Html.DisplayFor(modelItem => item.USUAR)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CONTRASENA)
+                    @if(item.ROL == "R")
+                    {
+                        <p>Superusuario</p>
+                    }
+                    else if (item.ROL == "S")
+                    {
+                        <p>Secretario</p>
+                    }
+                    else
+                    {
+                        <p>Administrador</p>
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ROL)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SEXO)
+                    @if (item.SEXO == "M")
+                    {
+                        <p>Hombre</p>
+                    }
+                    else
+                    {
+                        <p>Mujer</p>
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ESTACION.NOMBRE)
