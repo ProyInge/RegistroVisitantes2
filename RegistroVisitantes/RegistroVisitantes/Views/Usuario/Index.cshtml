@@ -6,70 +6,74 @@
 }
 
 <h2>Administración de usuarios</h2>
-
-<p>
-    @Html.ActionLink("Crear nuevo", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.Label("Nombre")
-        </th>
-        <th>
-            @Html.Label("Apellido")
-        </th>
-        <th>
-            @Html.Label("E-mail")
-        </th>
-        <th>
-            @Html.Label("Usuario")
-        </th>
-        <th>
-            @Html.Label("Contraseña")
-        </th>
-        <th>
-            @Html.Label("Rol")
-        </th>
-        <th>
-            @Html.Label("Sexo")
-        </th>
-        <th>
-            @Html.Label("Estación")
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.APELLIDO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMAIL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.USUAR)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CONTRASENA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ROL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SEXO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ESTACION.NOMBRE)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+@if((string)Session["Rol"]=="R") { 
+    <p>
+        @Html.ActionLink("Crear nuevo", "Registrar")
+    </p>
+    <table class="table table-bordered table-striped table-condensed table-hover">
+        <tr>
+            <th>
+                @Html.Label("Nombre")
+            </th>
+            <th>
+                @Html.Label("Apellidos")
+            </th>
+            <th>
+                @Html.Label("E-mail")
+            </th>
+            <th>
+                @Html.Label("Usuario")
+            </th>
+            <th>
+                @Html.Label("Contraseña")
+            </th>
+            <th>
+                @Html.Label("Rol")
+            </th>
+            <th>
+                @Html.Label("Sexo")
+            </th>
+            <th>
+                @Html.Label("Estación")
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NOMBRE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.APELLIDO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMAIL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.USUAR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CONTRASENA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ROL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SEXO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ESTACION.NOMBRE)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Administrar", new { idUsr = item.ID }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </table>
 }
-
-</table>
+else
+{
+    <p>Debe ser Superusuario para administrar los usuarios.</p>
+}
