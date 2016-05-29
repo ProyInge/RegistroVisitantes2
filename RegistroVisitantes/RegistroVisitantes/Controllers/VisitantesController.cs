@@ -55,7 +55,7 @@ namespace RegistroVisitantes.Controllers
                     string rol = (string)Session["IdEstacion"];
                     if ((string)Session["Rol"] != "R")
                     {
-                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes) && String.Equals(x.RESERVACION.ESTACION, Session["IdReservacion"])).OrderBy(x => x.ID_RESERVACION);
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes) && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION);
                     }
                     else
                     {
@@ -66,7 +66,8 @@ namespace RegistroVisitantes.Controllers
                 {
                     tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes)).OrderBy(x => x.ID_RESERVACION);
                 }
-                ViewBag.idRes = idRes;
+                V_RESERVACION num = BDRegistro.V_RESERVACION.Find(idRes);
+                ViewBag.idRes = num.NUMERO;
             }
             else
             {
