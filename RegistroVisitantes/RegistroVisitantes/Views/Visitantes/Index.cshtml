@@ -18,7 +18,7 @@
 {
     <p>
         Buscar por Número de reservación:
-        <input type="text" name="numRes" id="numRes" />
+        <input type="text" name="numRes" id="numRes" class="form-control" style="display:inline"/>
         <button type="submit" class="btn btn-success">
             <i class="fa fa-search"></i>
         </button>
@@ -27,34 +27,34 @@
 
 <table class="table table-bordered table-condensed">
     <tr style="background-color:#dff0d8">
-        <th>
+        <th style="text-align:center;">
             Número reserva
         </th>
-        <th>
+        <th style="text-align:center;">
             Organización
         </th>
-        <th>
+        <th style="text-align:center;">
             Nombre
         </th>
-        <th>
+        <th style="text-align:center;">
             Apellido
         </th>
-        <th>
+        <th style="text-align:center;">
             Correo electrónico
         </th>
-        <th>
+        <th style="text-align:center;">
             Identificación
         </th>
-        <th>
+        <th style="text-align:center;">
             Firma
         </th>
-        <th>
+        <th style="text-align:center;">
             Imprimir
         </th>
-        <th>
+        <th style="text-align:center;">
             Inhabilitar
         </th>
-        <th>
+        <th style="text-align:center;">
             Información
         </th>
     </tr>
@@ -89,17 +89,17 @@
                             @Html.DisplayFor(modelItem => item.PERSONA.CEDULA)
                         </td>
                         <td align="center">
-                            <input type="checkbox" name="firma" value="firma"
+                            <input type="checkbox" name="firma" value="firma" class="form-control"
                                    @(item.ESTADO == false ? "disabled = \"disabled \" " : "")>
                         </td>
                         <td align="center">
 
-                            <button class='mylink' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'  @(item.ESTADO == false ? "disabled = \"disabled \" " : "")>
+                            <button class='mylink btn btn-success' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'  @(item.ESTADO == false ? "disabled = \"disabled \" " : "")>
                                     <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
                                 </button>
                         </td>
                         <td align="center">
-                            @Html.ActionLink("Cambiar estado", "Delete", new { idRes = item.ID_RESERVACION, idPer = item.CEDULA })
+                            @Html.ActionLink("Cambiar estado", "Delete", new { idRes = item.ID_RESERVACION, idPer = item.CEDULA }, new { @class = "btn btn-success" })
                         </td>
                         <td align="center">
                             @Html.ActionLink("Ver información", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" })
