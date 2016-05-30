@@ -3,30 +3,27 @@
 @using PagedList.Mvc;
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Consulta de Visitantes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista de Visitantes</h2>
+<h2>Consulta de Visitantes</h2>
 
 @if (ViewBag.idRes != null)
 {
     <h3>Reservación:  @ViewBag.idRes</h3>
 }
-else
-{
-    using (Html.BeginForm())
-    {
-        <p>
-            Buscar por Número de reservación:
-            <input type="text" name="id" id="fromDate" />
-            <button type="submit" class="btn btn-success">
-                <i class="fa fa-search"></i>
-            </button>
-        </p>
-    }
-}
 
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar por Número de reservación:
+        <input type="text" name="idRes" id="idRes" />
+        <button type="submit" class="btn btn-success">
+            <i class="fa fa-search"></i>
+        </button>
+    </p>
+}
 
 <table class="table table-bordered table-condensed">
     <tr style="background-color:#dff0d8">
