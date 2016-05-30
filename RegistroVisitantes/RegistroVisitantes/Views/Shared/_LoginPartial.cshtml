@@ -4,7 +4,7 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
-    string url = "";
+    string url = "", url2 = "";
     <ul class="nav navbar-nav navbar-right">
         
         @if((string)Session["Rol"]!="R") {
@@ -15,7 +15,8 @@
         else
         {
             url = Url.Action("Index", "Usuario");
-            <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
+            url2 = Url.Action("Registrar", "Usuario");
+            <li class="@(url == Request.Url.AbsolutePath || url2 == Request.Url.AbsolutePath ? "active" : string.Empty)">
                 @Html.ActionLink("Usuarios", "Index", "Usuario")
             </li>
         }
