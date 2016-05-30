@@ -269,10 +269,9 @@ namespace RegistroVisitantes.Controllers
                 form.PERSONA.GENERO = '0'.ToString();
             }
 
-
             form.ID_RESERVACION = idRes;
             form.CEDULA = form.PERSONA.CEDULA;
-
+            form.ESTADO = true;            
 
             if (ModelState.IsValid)
             {

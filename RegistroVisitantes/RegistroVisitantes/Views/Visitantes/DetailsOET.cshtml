@@ -149,7 +149,7 @@
 
         <div class="form-group col-sm-6">
             @Html.LabelFor(model => model.ALERGIAS, @ViewResources.Resources.oet_alergias, htmlAttributes: new { @class = "control-label" })
-            @Html.EditorFor(model => model.ALERGIAS, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly"} })
+            @Html.TextAreaFor(model => model.ALERGIAS, new { @class = "form-control", disabled = "disabled", @readonly = "readonly"})
         </div>
 
     </div>
@@ -195,10 +195,19 @@
                 @Html.EditorFor(model => model.PERSONA.POSICION, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
             </div>
     </div>
+
+    <div class="container">
+        <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_waiverTitulo</h2>
+        <div class="well" style="font-size:medium">
+            @ViewResources.Resources.oet_waiver
+        </div>
+    </div>
+
 </div>
-<p>
+
+
     <div class="col-sm-6" style="float:left">
         <button class="btn btn-successOET" onclick="location.href='@Url.Action("EditOET", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA })';return false;">Editar</button>
         <button class="btn btn-cancelOET" onclick="location.href='@Url.Action("Index", "Visitantes")';return false;">Volver</button>
     </div>
-</p>
+

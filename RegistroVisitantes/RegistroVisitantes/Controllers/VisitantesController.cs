@@ -43,7 +43,13 @@ namespace RegistroVisitantes.Controllers
             return RedirectToAction("Details", new { idRes = idRes, ced=cedula });
         }
 
-        // GET: Visitantes
+        /*
+         * Desc: Devuelve la pagina con la tabla de visitantes de una reservacion, si esta no se especifica se
+         * muestran todas las personas con una reservacion.
+         * Requiere: El id de la reservacion a consultar, numero de pagina de la tabla de visitantes.
+         * Devuelve: la vista con la información de visitantes   
+         * 
+         */
         [Authorize]
         public ActionResult Index(String idRes, int? Pagina)
         {
@@ -89,13 +95,16 @@ namespace RegistroVisitantes.Controllers
                 }
             }
 
-
             int Size_Of_Page = 10;
             int No_Of_Page = (Pagina ?? 1);
             return View(tabla.ToPagedList(No_Of_Page, Size_Of_Page));
         }
 
-        // GET: Visitantes/Details/5
+        /*
+         * Desc: Revisa a cuál organizacion pertenece la reservacion de la persona identificada or cedula.
+         * Requiere: el id de la reservacion a la que pertenece la persona y su cedula
+         * Devuelve: La pagina con la información de registro de la persona determinada por cedula.
+         */ 
         [Authorize]
         public ActionResult Details(String idRes, String ced)
         {
@@ -111,6 +120,12 @@ namespace RegistroVisitantes.Controllers
             }
         }
 
+
+        /*
+         * Desc: Muestra la pagina del formulario con la informacion ingresada por un visitante de la OET
+         * Requiere: id de la reservacion y la cedula de la persona
+         * Devulve: vista de la pagina con la informacion de la persona registrada
+         */
         [Authorize]
         public ActionResult DetailsOET(String idR, String cedula)
         {
@@ -165,6 +180,11 @@ namespace RegistroVisitantes.Controllers
                 return View(iInfoVisita);
         }
 
+        /*
+        * Desc: Muestra la pagina del formulario con la informacion ingresada por un visitante de ESINTRO
+        * Requiere: id de la reservacion y la cedula de la persona
+        * Devulve: vista de la pagina con la informacion de la persona registrada
+        */
         [Authorize]
         public ActionResult DetailsESINTRO(String idR, String cedula)
         {
