@@ -1,11 +1,11 @@
 ﻿@model RegistroVisitantes.Models.USUARIO
 
 @{
-    ViewBag.Title = "Ingresar";
+    ViewBag.Title = "Registrar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Ingresar</h2>
+<h2>Registrar Usuario</h2>
 
 @if((string)Session["Rol"]=="R") { 
     using (Html.BeginForm())
