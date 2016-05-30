@@ -103,7 +103,7 @@ namespace RegistroVisitantes.Controllers
         /*
          * Desc: Revisa a cuál organizacion pertenece la reservacion de la persona identificada or cedula.
          * Requiere: el id de la reservacion a la que pertenece la persona y su cedula
-         * Devuelve: La pagina con la información de registro de la persona determinada por cedula.
+         * Devuelve: vista de la pagina con la información de registro de la persona determinada por cedula.
          */ 
         [Authorize]
         public ActionResult Details(String idRes, String ced)
@@ -183,7 +183,7 @@ namespace RegistroVisitantes.Controllers
         /*
         * Desc: Muestra la pagina del formulario con la informacion ingresada por un visitante de ESINTRO
         * Requiere: id de la reservacion y la cedula de la persona
-        * Devulve: vista de la pagina con la informacion de la persona registrada
+        * Devuelve: vista de la pagina con la informacion de la persona registrada
         */
         [Authorize]
         public ActionResult DetailsESINTRO(String idR, String cedula)
@@ -232,11 +232,14 @@ namespace RegistroVisitantes.Controllers
             return View(iInfoVisita);
         }
 
-
+        /*
+         * Desc: Revisa la organizacion a la que esta asociada la reserva y redirecciona a la vista segun sea el caso
+         * Requiere: el id de la reservación asociada y la cedula de la persona
+         * Devuelve: un enlace a la vista correspondiente según la organización de a reservación
+         * 
+         */ 
         public ActionResult Edit(String idRes, String ced)
-        {
-
-
+        { 
             V_RESERVACION res = BDRegistro.V_RESERVACION.Find(idRes);
 
             if (res.ANFITRIONA.Equals("01"))
@@ -249,6 +252,12 @@ namespace RegistroVisitantes.Controllers
             }
         }
 
+        /**
+         * Desc: Muestra el formulario con la información ingresada previamente por el visitante, para dar 
+         * la posibilidad de editarla o llenar los campos faltantes.
+         * Requiere: id de la reservación y cédula del visitnate que llenó el formulario
+         * Devuelve:La vista del formulario con la información de un visitante de la OET
+         */ 
         public ActionResult EditOET(String idRes, String ced)
         {
             if (idRes == null)
@@ -359,6 +368,12 @@ namespace RegistroVisitantes.Controllers
             return View(iInfoVisita);
         }
 
+        /**
+         * Desc: Muestra el formulario con la información ingresada previamente por el visitante, para dar 
+         * la posibilidad de editarla o llenar los campos faltantes.
+         * Requiere: id de la reservación y cédula del visitnate que llenó el formulario
+         * Devuelve:La vista del formulario con la información de un visitante de ESINTRO
+         */
         public ActionResult EditESINTRO(String idRes, String ced)
         {
             if (idRes == null)
@@ -418,17 +433,17 @@ namespace RegistroVisitantes.Controllers
 
 
 
-        // POST: /visitantes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /**
+        * Desc: Envía la información del formulario para guardar los cambios realizados.
+        * Requiere: una entidad infovisita con la información a guardar
+        * Devuelve: La vista del formulario de OET con la información modificada
+        */
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditOET(INFOVISITA infov)
         {
-
             if (ModelState.IsValid)
             {
-
                 if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
                 {
                     infov.PERSONA.GENERO = '1'.ToString();
@@ -453,7 +468,12 @@ namespace RegistroVisitantes.Controllers
             return View();
 
         }
-           
+
+        /**
+        * Desc: Envía la información del formulario para guardar los cambios realizados.
+        * Requiere: una entidad infovisita con la información a guardar
+        * Devuelve: La vista del formulario de ESINTRO con la información modificada
+        */
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditESINTRO(INFOVISITA infov)
@@ -484,11 +504,7 @@ namespace RegistroVisitantes.Controllers
                     {
                         infov.DIETA = "Vegan";
                     }
-
                 }
-
-
-
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
@@ -497,8 +513,7 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
-        
-        // GET: Visitantes/Create
+
         [Authorize]
         public ActionResult Create()
         {
@@ -522,23 +537,7 @@ namespace RegistroVisitantes.Controllers
             return View(pREREGISTROCONTACTO);
         }*/
 
-        // GET: Visitantes/Edit/5
-        [Authorize]
-        public ActionResult Edit(int? id)
-        {
-            /*if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PREREGISTROCONTACTO pREREGISTROCONTACTO = db.PREREGISTROCONTACTO.Find(id);
-            if (pREREGISTROCONTACTO == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pREREGISTROCONTACTO);*/
-            return null;
-        }
-
+    
         // POST: Visitantes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -555,8 +554,11 @@ namespace RegistroVisitantes.Controllers
             return View(pREREGISTROCONTACTO);
         }*/
 
-        //GET: Visitantes/Delete/?idRes=xxxx?idPer=yyyy
-
+        /*
+        * Desc: Muestra un mensaje de confirmación para cambiar el estado de una persona en un registro.
+        * Requiere: id de la reservación asociada y la cedula o identificación de la persona
+        * Devuelve: La vista del mensaje de confirmación
+        */
         [Authorize]
         public ActionResult Delete(string idRes, string idPer)
         {
@@ -573,7 +575,11 @@ namespace RegistroVisitantes.Controllers
             return View(iInfoVisita);
         }
 
-        // POST: Visitantes/Delete/5
+        /*
+        * Desc: Se confirma el cambio del estado de la persona en la reservación. Pasa de activo a inactivo o viceversa.
+        * Requiere: id de la reservación y identificación de la persona.
+        * Devuelve: La vista de la pagina principal de visitantes
+        */
         [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -587,15 +593,14 @@ namespace RegistroVisitantes.Controllers
             if (iInfoVisita == null)
             {
                 return HttpNotFound();
-            }
-            
+            }            
 
             iInfoVisita.ESTADO = !iInfoVisita.ESTADO;
-            //db.INFOVISITA.Remove(pREREGISTROCONTACTO);
             BDRegistro.SaveChanges();
 
             return RedirectToAction("Index");
         }
+
 
         [Authorize]
         protected override void Dispose(bool disposing)
