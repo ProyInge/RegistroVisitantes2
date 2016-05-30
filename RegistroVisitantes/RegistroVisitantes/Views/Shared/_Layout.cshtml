@@ -33,18 +33,18 @@
             <div id="menu" class="navbar-collapse collapse">
                 @{ string url; }
                 <ul class="nav navbar-nav">
-                    @{ url = Url.Action("Index", "Home"); }
-                    <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)" id="index">
+                    @{ url = Url.Action("Index", "Home").Split('/')[1]; }
+                    <li class="@(url == Request.Url.AbsolutePath.Split('/')[1] ? "active" : string.Empty)" id="index">
                         @Html.ActionLink("Inicio", "Index", "Home")
                     </li>
 
-                    @{ url = Url.Action("Index", "Reservas"); }
-                    <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)" id="reservas">
+                    @{ url = Url.Action("Index", "Reservas").Split('/')[1]; }
+                    <li class="@(url == Request.Url.AbsolutePath.Split('/')[1] ? "active" : string.Empty)" id="reservas">
                         @Html.ActionLink("Reservas", "Index", "Reservas")
                     </li>
 
-                    @{ url = Url.Action("Index", "Visitantes"); }
-                    <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)" id="visitantes">
+                    @{ url = Url.Action("Index", "Visitantes").Split('/')[1]; }
+                    <li class="@(url == Request.Url.AbsolutePath.Split('/')[1] ? "active" : string.Empty)" id="visitantes">
                         @Html.ActionLink("Visitantes", "Index", "Visitantes")
                     </li>
 

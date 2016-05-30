@@ -4,7 +4,9 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
+    string url = "";
     <ul class="nav navbar-nav navbar-right">
+        
         @if((string)Session["Rol"]!="R") {
             <li>
                 @Html.ActionLink("Bienvenid" + Session["Genero"] + " a " + Session["Estacion"] + " (" + Session["Siglas"] + ")", "Index", "Reservas")
@@ -12,11 +14,13 @@
         }
         else
         {
-            <li>
+            url = Url.Action("Index", "Usuario");
+            <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
                 @Html.ActionLink("Usuarios", "Index", "Usuario")
             </li>
         }
-        <li>
+        @{ url = Url.Action("Administrar", "Usuario"); }
+        <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)" id="visitantes">   
             @Html.ActionLink("" + Session["Nombre"] + " " + Session["Apellido"] + "", "Administrar", "Usuario", routeValues: new { @idUsr = Session["Id"] }, htmlAttributes: new { title = "Administracion" })
         </li>
         <li>
@@ -28,7 +32,9 @@
 else
 {
     FormsAuthentication.SignOut();
+    string url;
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Iniciar sesión", "Ingresar", "Usuario")</li>
+        @{ url = Url.Action("Ingresar", "Usuario"); }
+        <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">@Html.ActionLink("Iniciar sesión", "Ingresar", "Usuario")</li>
     </ul>
 }
