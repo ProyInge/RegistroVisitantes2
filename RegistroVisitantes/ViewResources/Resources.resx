@@ -123,6 +123,9 @@
   <data name="english" xml:space="preserve">
     <value>Inglés</value>
   </data>
+  <data name="esintro_back" xml:space="preserve">
+    <value>Volver</value>
+  </data>
   <data name="es_como" xml:space="preserve">
     <value>¿Cómo encontró este lugar?</value>
   </data>

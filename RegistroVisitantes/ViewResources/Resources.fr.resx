@@ -264,4 +264,7 @@
   <data name="oet_guardar" xml:space="preserve">
     <value>garder</value>
   </data>
+  <data name="esintro_back" xml:space="preserve">
+    <value>Retourner</value>
+  </data>
 </root>

@@ -51,10 +51,33 @@ namespace RegistroVisitantes.Controllers
          * 
          */
         [Authorize]
-        public ActionResult Index(String idRes, int? Pagina)
+        public ActionResult Index(String idRes, String numRes, int? Pagina)
         {
             IQueryable<INFOVISITA> tabla;
-            if (idRes != null && !idRes.Equals(""))
+            if (numRes != null && !numRes.Equals(""))
+            {
+                var resQuery = BDRegistro.V_RESERVACION.Where(x => String.Equals(x.NUMERO, numRes));
+                V_RESERVACION reservacion = resQuery.First();
+                if (Session["Rol"] != null)
+                {
+                    string rol = (string)Session["IdEstacion"];
+                    if ((string)Session["Rol"] != "R")
+                    {       
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID) && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION);
+                    }
+                    else
+                    {
+                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID)).OrderBy(x => x.ID_RESERVACION);
+                    }
+                }
+                else
+                {
+                    tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID)).OrderBy(x => x.ID_RESERVACION);
+                }
+                //V_RESERVACION num = BDRegistro.V_RESERVACION.Find(idRes);
+                ViewBag.idRes = reservacion.NUMERO;
+            }
+            else if (idRes != null && !idRes.Equals(""))
             {
                 if (Session["Rol"] != null)
                 {
@@ -74,7 +97,7 @@ namespace RegistroVisitantes.Controllers
                 }
                 V_RESERVACION num = BDRegistro.V_RESERVACION.Find(idRes);
                 ViewBag.idRes = num.NUMERO;
-            }
+            }          
             else
             {
                 if (Session["Rol"] != null)

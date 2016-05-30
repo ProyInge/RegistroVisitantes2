@@ -8,7 +8,7 @@
 <h2>Administración de usuarios</h2>
 @if((string)Session["Rol"]=="R") { 
     <p>
-        @Html.ActionLink("Crear nuevo", "Registrar")
+        @Html.ActionLink("Crear nuevo usuario", "Registrar", new {}, new { @class = "btn btn-success" })
     </p>
     <table class="table table-bordered table-striped table-condensed table-hover">
         <tr>
@@ -78,8 +78,8 @@
                     @Html.DisplayFor(modelItem => item.ESTACION.NOMBRE)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Administrar", new { idUsr = item.ID }) |
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+                    @Html.ActionLink("Editar", "Administrar", new { idUsr = item.ID }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }

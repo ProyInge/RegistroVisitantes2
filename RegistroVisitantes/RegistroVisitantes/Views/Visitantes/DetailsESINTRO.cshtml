@@ -153,6 +153,10 @@
         </div>
     </div>
 
+<div class="col-sm-6" style="float:left; margin-bottom:15px;">
+    @Html.ActionLink(@ViewResources.Resources.oet_edit, "EditESINTRO", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA }, new { @class = "btn btn-success"})
+    <button class="btn btn-danger" onclick="location.href='@Url.Action("Index", "Visitantes")';return false;">@ViewResources.Resources.esintro_back</button>
+</div>
 <p>
-    @Html.ActionLink(@ViewResources.Resources.oet_edit, "EditESINTRO", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA })
+    
 </p>
