@@ -117,6 +117,12 @@
             @Html.PagedListPager(Model, Pagina => Url.Action("Index",
         new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
 
+@if (ViewBag.idRes != null && !((string)ViewBag.idRes).IsEmpty())
+{
+     @Html.ActionLink("Volver a Reservas", "Index", "Reservas", new { }, new { @class = "btn btn-danger", @style = "margin-right:5px;" })
+     @Html.ActionLink("Ver todos los visitantes", "Index", "Visitantes", new { }, new { @class = "btn btn-danger" })
+}
+
 <script>
     $('.mylink').click(function () 
     {
