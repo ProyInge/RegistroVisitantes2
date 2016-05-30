@@ -97,6 +97,15 @@ namespace ViewResources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Volver.
+        /// </summary>
+        public static string esintro_back {
+            get {
+                return ResourceManager.GetString("esintro_back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Francés.
         /// </summary>
         public static string french {
