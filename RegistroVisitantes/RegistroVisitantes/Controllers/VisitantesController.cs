@@ -34,6 +34,12 @@ namespace RegistroVisitantes.Controllers
                 Thread.CurrentThread.CurrentUICulture = ci;
             }
         }
+        
+        /*
+        * Desc: cambia el idioma de la información que se presenta en el formulario
+        * Requiere: idioma al que se quiere cambiar, id de la reservación asociada al formulario de registro, cedula de la persona
+        * Devuelve: La vista del formulario con la información modificada
+        */
         public ActionResult ChangeCulture(string ddlCulture, string idRes, string cedula)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo(ddlCulture);
