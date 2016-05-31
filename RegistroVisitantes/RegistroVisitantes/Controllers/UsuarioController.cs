@@ -16,6 +16,12 @@ namespace RegistroVisitantes.Controllers
     {
         private BDRegistro db = new BDRegistro();
 
+        /*
+        * Desc: Muestra la lista con los datos más relevantes de los usuarios del sistema. 
+        * Requiere: n/a
+        * Devuelve: La vista de la lista de usuarios.
+        */
+
         [Authorize]
         public ActionResult Index()
         {
@@ -23,6 +29,11 @@ namespace RegistroVisitantes.Controllers
             return View(db.USUARIO.ToList());
         }
 
+        /*
+        * Desc: Entra a la página de confirmación de eliminación del usuario
+        * Requiere: el ID del usuario a eliminar y un booleano indicando si hubo algún error
+        * Devuelve: La vista de la confirmación de eliminación del usuario.
+        */
         [Authorize]
         [HttpGet]
         public ActionResult Delete(int? id, bool? saveChangesError = false)
@@ -43,6 +54,12 @@ namespace RegistroVisitantes.Controllers
             return View(usr);
         }
 
+        /*
+        * Desc: Ejecuta la eliminación del usuario y redirecciona al Index en caso de éxito o sino redirecciona al GET de Delete
+        *       indicando que hubo un error.
+        * Requiere: el ID del usuario a eliminar
+        * Devuelve: La vista del Index en caso de éxito o de Delete en caso de error.
+        */
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -61,6 +78,11 @@ namespace RegistroVisitantes.Controllers
             return RedirectToAction("Index","Usuario");
         }
 
+        /*
+        * Desc: Formulario que crea un nuevo usuario en el sistema.
+        * Requiere: n/a
+        * Devuelve: La vista del formulario para crear el usuario.
+        */
         [Authorize]
         public ActionResult Registrar()
         {
@@ -83,6 +105,13 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
+
+
+        /*
+        * Desc: Crea un nuevo usuario en el sistema.
+        * Requiere: un objeto USUARIO con el usuario a crear.
+        * Devuelve: la vista del Index.
+        */
         [Authorize]
         [HttpPost]
         public ActionResult Registrar(USUARIO usuarioNuevo)
