@@ -15,6 +15,11 @@ namespace RegistroVisitantes.Controllers
     {
         private BDRegistro db = new BDRegistro();
 
+        /*
+       * Desc: Funcion que devuelve todas las reservas dependiendo del rol de usuario que ingrese
+       * Requiere: Rango de fechas a buscar, numero de pagina si existe paginacion
+       * Devuelve: Una tabla con las reservas segun lo requerido
+       */
         // GET: Reservas
         [Authorize]
         public ActionResult Index(DateTime? fromDate, DateTime? toDate, int? Pagina)
@@ -54,6 +59,7 @@ namespace RegistroVisitantes.Controllers
             return View(lista.ToPagedList(No_Of_Page, Size_Of_Page));
         }
 
+        //-----------------------------Funciones Scaffolding----------------------------
         // GET: Reservas/Details/5
         [Authorize]
         public ActionResult Details(string id)

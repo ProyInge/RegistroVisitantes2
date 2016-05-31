@@ -14,15 +14,28 @@ namespace RegistroVisitantes.Controllers
 {
     public class UsuarioController : Controller
     {
+        //Instancia de la base de datos para efectuar consultas y guardar cambios
         private BDRegistro db = new BDRegistro();
 
+        /*
+        * Desc: Muestra la lista con los datos más relevantes de los usuarios del sistema. 
+        * Requiere: n/a
+        * Devuelve: La vista de la lista de usuarios.
+        */
+
         [Authorize]
+
         public ActionResult Index()
         {
             
             return View(db.USUARIO.ToList());
         }
 
+        /*
+        * Desc: Entra a la página de confirmación de eliminación del usuario
+        * Requiere: el ID del usuario a eliminar y un booleano indicando si hubo algún error
+        * Devuelve: La vista de la confirmación de eliminación del usuario.
+        */
         [Authorize]
         [HttpGet]
         public ActionResult Delete(int? id, bool? saveChangesError = false)
@@ -43,6 +56,12 @@ namespace RegistroVisitantes.Controllers
             return View(usr);
         }
 
+        /*
+        * Desc: Ejecuta la eliminación del usuario y redirecciona al Index en caso de éxito o sino redirecciona al GET de Delete
+        *       indicando que hubo un error.
+        * Requiere: el ID del usuario a eliminar
+        * Devuelve: La vista del Index en caso de éxito o de Delete en caso de error.
+        */
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -61,6 +80,11 @@ namespace RegistroVisitantes.Controllers
             return RedirectToAction("Index","Usuario");
         }
 
+        /*
+        * Desc: Formulario que crea un nuevo usuario en el sistema.
+        * Requiere: n/a
+        * Devuelve: La vista del formulario para crear el usuario.
+        */
         [Authorize]
         public ActionResult Registrar()
         {
@@ -83,6 +107,13 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
+
+
+        /*
+        * Desc: Crea un nuevo usuario en el sistema.
+        * Requiere: un objeto USUARIO con el usuario a crear.
+        * Devuelve: la vista del Index.
+        */
         [Authorize]
         [HttpPost]
         public ActionResult Registrar(USUARIO usuarioNuevo)
@@ -99,6 +130,11 @@ namespace RegistroVisitantes.Controllers
             return RedirectToAction("Index","Usuario");
         }
 
+        /*
+        * Desc: Muestra la información del usuario y permite editarla
+        * Requiere: Un id de usuario válido @idUsr
+        * Devuelve: La vista del formulario con la información del usuario
+        */
         [Authorize]
         public ActionResult Administrar(int? idUsr)
         {
@@ -198,6 +234,11 @@ namespace RegistroVisitantes.Controllers
             }
         }
 
+        /*
+        * Desc: Modifica al usuario determinado @usr con la información modificada del usuario obtenida @editado
+        * Requiere: Un usuario válido en el sistema
+        * Devuelve: Home en caso de estar logueado, la pantalla de ingreso en otro
+        */
         [Authorize]
         [HttpPost]
         public ActionResult Administrar(USUARIO editado)
@@ -242,6 +283,11 @@ namespace RegistroVisitantes.Controllers
             return Logueado();
         }
 
+        /*
+        * Desc: Crea el formulario de ingreso al sistema en caso de no estar logueado, en otro caso realiza el cierre de sesión
+        * Requiere: -
+        * Devuelve: La vista del formulario con la información modificada
+        */
         [AllowAnonymous]
         public ActionResult Ingresar()
         {
@@ -264,8 +310,11 @@ namespace RegistroVisitantes.Controllers
             }
         }
 
-
-
+        /*
+        * Desc: Loguea al usuario recibido @user en el sistema utilizando resetRequest 
+        * Requiere: Un usuario válido
+        * Devuelve: Home en caso de un login exitoso y la página de ingreso en otro caso
+        */
         [HttpPost]
         public ActionResult Ingresar(USUARIO user)
         {
@@ -297,7 +346,11 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
-
+        /*
+        * Desc: Reinicia el cookie en el navegador para manejar la seguridad con estos elementos
+        * Requiere: -
+        * Devuelve: -
+        */
         private void resetRequest()
         {
             var authCookie = System.Web.HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -312,6 +365,11 @@ namespace RegistroVisitantes.Controllers
             }
         }
 
+        /*
+        * Desc: Revisa si el usuario esta logueado y redirige según sea necesario
+        * Requiere: -
+        * Devuelve: La vista de login si el usuario no está logueado, la vista Home en cualquier otro caso
+        */
         [Authorize]
         public ActionResult Logueado()
         {
