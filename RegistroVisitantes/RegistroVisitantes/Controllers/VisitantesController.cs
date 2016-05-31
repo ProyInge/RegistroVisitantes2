@@ -54,7 +54,6 @@ namespace RegistroVisitantes.Controllers
          * muestran todas las personas con una reservacion.
          * Requiere: El id de la reservacion a consultar, numero de pagina de la tabla de visitantes.
          * Devuelve: la vista con la información de visitantes   
-         * 
          */
         [Authorize]
         public ActionResult Index(String idRes, String numRes, int? Pagina)

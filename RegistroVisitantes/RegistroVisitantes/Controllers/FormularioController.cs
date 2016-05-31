@@ -17,6 +17,12 @@ namespace RegistroVisitantes.Controllers
     {
         private BDRegistro BDRegistro = new BDRegistro ();
 
+        /*
+        * Desc: Lenguaje por defecto del formulario
+        * Requiere: solicitud de vista del formulario
+        * campo del formulario
+        * Devuelve: N/A
+        */
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
             base.Initialize(requestContext);
@@ -33,6 +39,11 @@ namespace RegistroVisitantes.Controllers
             }
         }
 
+        /*
+        * Desc: cambia el idioma de la información que se presenta en el formulario
+        * Requiere: idioma al que se quiere cambiar, id de la reservación asociada al formulario de registro
+        * Devuelve: La vista del formulario con el idioma actualizado
+        */
         public ActionResult ChangeCulture(string ddlCulture, string idRes)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo(ddlCulture);
@@ -42,7 +53,13 @@ namespace RegistroVisitantes.Controllers
             return RedirectToAction("Index", new { idRes = idRes });
         }
 
-        // GET: Formulario
+
+        /*
+         * Desc: Recibe la solicitud de la pagina del formulario, dependiendo de la organizacio a la que esta asociada
+         * la reservacion se muestra el formulario correspondiente.
+         * Requiere: El id de la reservacion a consultar
+         * Devuelve: la vista del formulaio correspondiente al registro
+         */
         [Authorize]
         public ActionResult Index(String idRes)
         {
@@ -55,18 +72,23 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
-            if(reservacion.ANFITRIONA.Equals("01"))
+            if(reservacion.ANFITRIONA.Equals("01")) // si es de OET
             {
                 return RedirectToAction("CreateOET", new { idRes = idRes });
             }
-            else
+            else //si es de ESINTRO
             {
                 return RedirectToAction("CreateESINTRO", new { idRes = idRes });
             }
         }
 
-        
 
+
+        /*
+         * Desc: valida el campo de correo electronico
+         * Requiere: el correo electronico ingresado por el usuario
+         * Devuelve: verdadero si cumple el estado de correo válido, falso si no.
+         */
         bool IsValidEmail(string email)
         {
             try
@@ -80,6 +102,13 @@ namespace RegistroVisitantes.Controllers
             }
         }
 
+
+        /*
+         * Desc: Permite llenar automaticamente los campos del formulario de ESINTRO, para una persona que 
+         * haya llenado el formulario en una visita anterior
+         * Requiere: La identificación o correo electronico de la persona
+         * Devuelve: el formulario con los campos completados
+         */
         public PartialViewResult AutocompletarESINTRO(String ajaxInput)
         {
             if (IsValidEmail(ajaxInput)) //Es un email
@@ -95,6 +124,12 @@ namespace RegistroVisitantes.Controllers
             
         }
 
+        /*
+         * Desc: Permite llenar automaticamente los campos del formulario de OET, para una persona que 
+         * haya llenado el formulario en una visita anterior
+         * Requiere: La identificación o correo electronico de la persona
+         * Devuelve: el formulario con los campos completados
+         */
         public PartialViewResult AutocompletarOET(String ajaxInput)
         {
             if (IsValidEmail(ajaxInput)) //Es un email
@@ -108,7 +143,12 @@ namespace RegistroVisitantes.Controllers
                 return PartialView(persona);
             }
         }
-        // GET: /Formulario/ESINTRO
+
+         /*
+         * Desc: Muestra un formulario de ESINTRO en blanco para el registro de un visitante
+         * Requiere: La identificación de la reservacion asociada al registro de la persona
+         * Devuelve: vista del formulario en blanco
+         */
         [Authorize]
         [HttpGet]
         public ActionResult CreateESINTRO(String idRes)
@@ -118,10 +158,11 @@ namespace RegistroVisitantes.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var reservacion = BDRegistro.V_RESERVACION.Find(idRes);
-            if (reservacion == null || !reservacion.ANFITRIONA.Equals("02"))
+            if (reservacion == null || !reservacion.ANFITRIONA.Equals("02")) //si no es un id de reserva valido
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
+            //para llenar los dropdownlist de la interfaz con la información adecuada
             var listSexo = new SelectList(new[] { ViewResources.Resources.oet_masc, ViewResources.Resources.oet_fem});
             var proposito = new SelectList(new[] { ViewResources.Resources.oet_prop1, ViewResources.Resources.oet_prop2, ViewResources.Resources.oet_prop3, ViewResources.Resources.oet_prop4, ViewResources.Resources.oet_prop5, ViewResources.Resources.oet_prop6, ViewResources.Resources.oet_prop7, ViewResources.Resources.oet_prop8, ViewResources.Resources.oet_prop9, ViewResources.Resources.oet_prop10, ViewResources.Resources.oet_prop11 });
             var position = new SelectList(new[] { ViewResources.Resources.oet_pos1, ViewResources.Resources.oet_pos2, ViewResources.Resources.oet_pos3, ViewResources.Resources.oet_pos4, ViewResources.Resources.oet_pos5, ViewResources.Resources.oet_pos6, ViewResources.Resources.oet_pos7, ViewResources.Resources.oet_pos8, ViewResources.Resources.oet_pos9, ViewResources.Resources.oet_pos10, ViewResources.Resources.oet_pos11, ViewResources.Resources.oet_pos12 });
@@ -133,6 +174,13 @@ namespace RegistroVisitantes.Controllers
             ViewBag.idRes = idRes;
             return View();
         }
+
+        /*
+        * Desc: Recibe los datos de un formulario de ESINTRO completado por un visitante
+        * Requiere: La identificación de la reservacion asociada al registro de la persona, los datos de cada
+        * campo del formulario
+        * Devuelve: mensaje con resultado de envío
+        */
         [HttpPost]
         [Authorize]
         public ActionResult CreateESINTRO(String idRes, [Bind()]Models.INFOVISITA form, string dietas, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
@@ -148,35 +196,34 @@ namespace RegistroVisitantes.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
 
-            form.CARNE = checkCarne;
+            form.CARNE = checkCarne; //checkboxes
             form.POLLO = checkPollo;
             form.CERDO = checkCerdo;
             form.PESCADO = checkPescado;
           
 
             form.ID_RESERVACION= idRes;
-            if (genero == ViewResources.Resources.oet_fem)
+            if (genero == ViewResources.Resources.oet_fem) // si es femenino
             {
                 form.PERSONA.GENERO = '1'.ToString();
-
             }
             else
             {
-                form.PERSONA.GENERO = '0'.ToString();
+                form.PERSONA.GENERO = '0'.ToString(); //es masculino
             }
-            if (dietas == ViewResources.Resources.oet_sinrestr)
+            if (dietas == ViewResources.Resources.oet_sinrestr)//si selecciona sin restricciones de dieta
             {
                 form.DIETA = "No Restriction";
             }
             else
             {
-                if (dietas.Equals(ViewResources.Resources.oet_vege))
+                if (dietas.Equals(ViewResources.Resources.oet_vege))//vegetariano
                 {
                     form.DIETA = "Vegetarian";
                 }
                 else
                 {
-                    form.DIETA = "Vegan";
+                    form.DIETA = "Vegan"; //si seleciona dieta vegana
                 }
 
             }
@@ -185,8 +232,7 @@ namespace RegistroVisitantes.Controllers
             if (ModelState.IsValid)
             {
                 var db = BDRegistro;
-                db.INFOVISITA.Add(form);
-                
+                db.INFOVISITA.Add(form);              
 
                 try
                 {
@@ -207,11 +253,15 @@ namespace RegistroVisitantes.Controllers
                     }
                     throw raise;
                 }
-                //return RedirectToAction("Index");
             }
             return RedirectToAction("Index", "Reservas");
         }
 
+        /*
+        * Desc: Muestra un formulario de OET en blanco para el registro de un visitante
+        * Requiere: La identificación de la reservacion asociada al registro de la persona
+        * Devuelve: vista del formulario en blanco
+        */
         [HttpGet]
         [Authorize]
         public ActionResult CreateOET(String idRes)
@@ -225,7 +275,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
-           
+            //llena los dropdownlist de la interfaz
             var listSexo = new SelectList(new[] { ViewResources.Resources.oet_masc, ViewResources.Resources.oet_fem});
             var proposito = new SelectList(new[] { ViewResources.Resources.oet_prop1, ViewResources.Resources.oet_prop2, ViewResources.Resources.oet_prop3, ViewResources.Resources.oet_prop4, ViewResources.Resources.oet_prop5, ViewResources.Resources.oet_prop6, ViewResources.Resources.oet_prop7, ViewResources.Resources.oet_prop8, ViewResources.Resources.oet_prop9, ViewResources.Resources.oet_prop10, ViewResources.Resources.oet_prop11 });
             var position = new SelectList(new[] { ViewResources.Resources.oet_pos1, ViewResources.Resources.oet_pos2, ViewResources.Resources.oet_pos3, ViewResources.Resources.oet_pos4, ViewResources.Resources.oet_pos5, ViewResources.Resources.oet_pos6, ViewResources.Resources.oet_pos7, ViewResources.Resources.oet_pos8, ViewResources.Resources.oet_pos9, ViewResources.Resources.oet_pos10, ViewResources.Resources.oet_pos11, ViewResources.Resources.oet_pos12 });
@@ -238,6 +288,12 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
+        /*
+        * Desc: Recibe los datos de un formulario de OET completado por un visitante
+        * Requiere: La identificación de la reservacion asociada al registro de la persona, los datos de cada
+        * campo del formulario
+        * Devuelve: mensaje con resultado de envío
+        */
         [HttpPost]
         [Authorize]
         public ActionResult CreateOET(String idRes, [Bind()]Models.INFOVISITA form, string dietas, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
@@ -253,20 +309,20 @@ namespace RegistroVisitantes.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
            
-            form.CARNE = checkCarne;
+            form.CARNE = checkCarne; //checkboxes
             form.POLLO = checkPollo;
-          form.CERDO = checkCerdo;
-           form.PESCADO = checkPescado;
+            form.CERDO = checkCerdo;
+            form.PESCADO = checkPescado;
             
 
-            if (form.PERSONA.GENERO == ViewResources.Resources.oet_fem)
+            if (form.PERSONA.GENERO == ViewResources.Resources.oet_fem)//si es femenino
             {
                 form.PERSONA.GENERO = '1'.ToString();
 
             }
             else
             {
-                form.PERSONA.GENERO = '0'.ToString();
+                form.PERSONA.GENERO = '0'.ToString(); //masculino
             }
 
             form.ID_RESERVACION = idRes;
@@ -280,7 +336,7 @@ namespace RegistroVisitantes.Controllers
                 
                 try
                 {
-                    db.SaveChanges();
+                    db.SaveChanges(); //se guarda la información
                 }
                 catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
                 {
