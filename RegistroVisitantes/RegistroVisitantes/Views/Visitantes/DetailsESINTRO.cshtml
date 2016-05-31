@@ -6,6 +6,10 @@
     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
 }
 
+<script>
+    document.getElementById("visitantes").className += "active";
+</script>
+
 <h2>@ViewResources.Resources.oet_titulo</h2>
 @using (Html.BeginForm("ChangeCulture", "Visitantes", new { idRes = ViewBag.idRes, cedula=ViewBag.ced}))
 {
@@ -149,6 +153,10 @@
         </div>
     </div>
 
+<div class="col-sm-6" style="float:left; margin-bottom:15px;">
+    @Html.ActionLink(@ViewResources.Resources.oet_edit, "EditESINTRO", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA }, new { @class = "btn btn-success"})
+    <button class="btn btn-danger" onclick="location.href='@Url.Action("Index", "Visitantes")';return false;">@ViewResources.Resources.esintro_back</button>
+</div>
 <p>
-    @Html.ActionLink(@ViewResources.Resources.oet_edit, "EditESINTRO", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA })
+    
 </p>
