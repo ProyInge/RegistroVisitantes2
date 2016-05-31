@@ -14,9 +14,11 @@ namespace RegistroVisitantes.Controllers
 {
     public class UsuarioController : Controller
     {
+        //Instancia de la base de datos para efectuar consultas y guardar cambios
         private BDRegistro db = new BDRegistro();
 
         [Authorize]
+
         public ActionResult Index()
         {
             
@@ -99,6 +101,11 @@ namespace RegistroVisitantes.Controllers
             return RedirectToAction("Index","Usuario");
         }
 
+        /*
+        * Desc: Muestra la información del usuario y permite editarla
+        * Requiere: Un id de usuario válido @idUsr
+        * Devuelve: La vista del formulario con la información del usuario
+        */
         [Authorize]
         public ActionResult Administrar(int? idUsr)
         {
@@ -198,6 +205,11 @@ namespace RegistroVisitantes.Controllers
             }
         }
 
+        /*
+        * Desc: Modifica al usuario determinado @usr con la información modificada del usuario obtenida @editado
+        * Requiere: Un usuario válido en el sistema
+        * Devuelve: Home en caso de estar logueado, la pantalla de ingreso en otro
+        */
         [Authorize]
         [HttpPost]
         public ActionResult Administrar(USUARIO editado)
@@ -242,6 +254,11 @@ namespace RegistroVisitantes.Controllers
             return Logueado();
         }
 
+        /*
+        * Desc: Crea el formulario de ingreso al sistema en caso de no estar logueado, en otro caso realiza el cierre de sesión
+        * Requiere: -
+        * Devuelve: La vista del formulario con la información modificada
+        */
         [AllowAnonymous]
         public ActionResult Ingresar()
         {
@@ -264,8 +281,11 @@ namespace RegistroVisitantes.Controllers
             }
         }
 
-
-
+        /*
+        * Desc: Loguea al usuario recibido @user en el sistema utilizando resetRequest 
+        * Requiere: Un usuario válido
+        * Devuelve: Home en caso de un login exitoso y la página de ingreso en otro caso
+        */
         [HttpPost]
         public ActionResult Ingresar(USUARIO user)
         {
@@ -297,7 +317,11 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
-
+        /*
+        * Desc: Reinicia el cookie en el navegador para manejar la seguridad con estos elementos
+        * Requiere: -
+        * Devuelve: -
+        */
         private void resetRequest()
         {
             var authCookie = System.Web.HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -312,6 +336,11 @@ namespace RegistroVisitantes.Controllers
             }
         }
 
+        /*
+        * Desc: Revisa si el usuario esta logueado y redirige según sea necesario
+        * Requiere: -
+        * Devuelve: La vista de login si el usuario no está logueado, la vista Home en cualquier otro caso
+        */
         [Authorize]
         public ActionResult Logueado()
         {
