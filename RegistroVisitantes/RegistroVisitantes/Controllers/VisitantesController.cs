@@ -529,17 +529,17 @@ namespace RegistroVisitantes.Controllers
 
                 string nominst = (string)collection["PERSONA.INSTITUCIONI.FULL_NAME"];
                 V_INSTITUCION inst = BDRegistro.V_INSTITUCION.Where(x => String.Equals(x.FULL_NAME, nominst)).FirstOrDefault();
-                infov.PERSONA.INSTITUCION = inst.CAT_INSTITUCION;
+                infov.PERSONA.INSTITUCION = (inst == null) ? (int?)null : inst.CAT_INSTITUCION;
                 infov.PERSONA.INSTITUCIONI = inst;
 
                 string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); ;
                 V_PAISES pais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
-                infov.PERSONA.PAIS = pais.ISO;
+                infov.PERSONA.PAIS = (pais == null) ? null : pais.ISO;
                 infov.PERSONA.PAISI = pais;
 
                 string gentpais = (string)collection["PERSONA.NACIONALIDADI.GENTILICIO"].ToUpper();
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
-                infov.PERSONA.NACIONALIDAD = nacion.ISO;
+                infov.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 infov.PERSONA.NACIONALIDADI = nacion;
 
                 infov.CARNE = true;
@@ -605,12 +605,12 @@ namespace RegistroVisitantes.Controllers
 
                 string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); ;
                 V_PAISES pais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
-                infov.PERSONA.PAIS = pais.ISO;
+                infov.PERSONA.PAIS = (pais == null) ? null : pais.ISO;
                 infov.PERSONA.PAISI = pais;
 
                 string gentpais = (string)collection["PERSONA.NACIONALIDADI.GENTILICIO"].ToUpper();
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
-                infov.PERSONA.NACIONALIDAD = nacion.ISO;
+                infov.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 infov.PERSONA.NACIONALIDADI = nacion;
 
                 BDRegistro.Entry(infov).State = EntityState.Modified;
