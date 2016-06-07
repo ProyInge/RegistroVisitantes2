@@ -18,8 +18,7 @@
         @(ViewResources.Resources.seleccionarLen): @Html.DropDownList("ddlCulture", new SelectList(new[]
         {
             new {value="es",text=@ViewResources.Resources.spanish},
-            new{value="en",text=@ViewResources.Resources.english},
-            new{value="fr",text=@ViewResources.Resources.french}
+            new{value="en",text=@ViewResources.Resources.english}
         }, "value", "text", Session["CurrentCulture"]), 
         new { onchange = "this.form.submit();", @class = "form-control" })
     </p>
