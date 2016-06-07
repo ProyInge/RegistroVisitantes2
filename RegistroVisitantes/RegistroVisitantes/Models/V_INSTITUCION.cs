@@ -45,6 +45,8 @@ public partial class V_INSTITUCION
 
     public virtual ICollection<PERSONA> PERSONAS { get; set; }
 
+    public virtual V_PAISES PAIS { get; set; }
+
 }
 
 }

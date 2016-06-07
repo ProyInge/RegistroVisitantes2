@@ -20,11 +20,12 @@
         <AssociationConnector Association="Model.V_RESERVACIONV_CONTACTO2" />
         <AssociationConnector Association="Model.V_RESERVACIONV_GRUPOANON" />
         <AssociationConnector Association="Model.V_RESERVACIONV_GRUPORSRV" />
-        <EntityTypeShape EntityType="Model.V_INSTITUCION" PointX="3.75" PointY="6.25" Width="1.5" />
+        <EntityTypeShape EntityType="Model.V_INSTITUCION" PointX="1" PointY="6" Width="1.5" />
         <AssociationConnector Association="Model.PERSONAV_INSTITUCION" />
         <EntityTypeShape EntityType="Model.V_PAISES" Width="1.5" PointX="1" PointY="1.875" />
         <AssociationConnector Association="Model.PERSONAV_PAISES" />
         <AssociationConnector Association="Model.V_PAISESPERSONA" />
+        <AssociationConnector Association="Model.V_INSTITUCIONV_PAISES" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
