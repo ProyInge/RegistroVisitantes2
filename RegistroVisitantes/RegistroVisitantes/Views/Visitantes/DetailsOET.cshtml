@@ -2,8 +2,9 @@
 
 @{
     ViewBag.Title = @ViewResources.Resources.oet_titulo;
-    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+
 }
 
 <script>
@@ -17,8 +18,7 @@
         @(ViewResources.Resources.seleccionarLen): @Html.DropDownList("ddlCulture", new SelectList(new[]
         {
             new {value="es",text=@ViewResources.Resources.spanish},
-            new{value="en",text=@ViewResources.Resources.english},
-            new{value="fr",text=@ViewResources.Resources.french}
+            new{value="en",text=@ViewResources.Resources.english}
         }, "value", "text", Session["CurrentCulture"]), 
         new { onchange = "this.form.submit();", @class = "form-control" })
     </p>
@@ -40,8 +40,8 @@
         </div>
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.NACIONALIDAD, @ViewResources.Resources.oet_nacionalidad, htmlAttributes: new { @class = "control-label " })
-            @Html.EditorFor(model => model.PERSONA.NACIONALIDAD, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            @Html.LabelFor(model => model.PERSONA.NACIONALIDADI.GENTILICIO, @ViewResources.Resources.oet_nacionalidad, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.PERSONA.NACIONALIDADI.GENTILICIO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
         </div>
 
         <div class="form-group col-sm-6">
@@ -60,8 +60,8 @@
         </div>
 
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.PAIS, @ViewResources.Resources.oet_pais, htmlAttributes: new { @class = "control-label " })
-            @Html.EditorFor(model => model.PERSONA.PAIS, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            @Html.LabelFor(model => model.PERSONA.PAISI.NOMBRE, @ViewResources.Resources.oet_pais, htmlAttributes: new { @class = "control-label " })
+            @Html.EditorFor(model => model.PERSONA.PAISI.NOMBRE, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
 
         <div class="form-group col-sm-6">
@@ -90,7 +90,7 @@
             @Html.EditorFor(model => model.PERSONA.GENERO, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.sexoList } })
         </div>
         <div class="form-group col-sm-6">
-            @Html.LabelFor(model => model.PERSONA.INSTITUCION, @ViewResources.Resources.oet_institucion, htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, @ViewResources.Resources.oet_institucion, htmlAttributes: new { @class = "control-label " })
             @Html.EditorFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
         </div>
     </div>

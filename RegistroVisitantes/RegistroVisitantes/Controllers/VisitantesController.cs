@@ -34,6 +34,12 @@ namespace RegistroVisitantes.Controllers
                 Thread.CurrentThread.CurrentUICulture = ci;
             }
         }
+        
+        /*
+        * Desc: cambia el idioma de la información que se presenta en el formulario
+        * Requiere: idioma al que se quiere cambiar, id de la reservación asociada al formulario de registro, cedula de la persona
+        * Devuelve: La vista del formulario con la información modificada
+        */
         public ActionResult ChangeCulture(string ddlCulture, string idRes, string cedula)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo(ddlCulture);
@@ -48,7 +54,6 @@ namespace RegistroVisitantes.Controllers
          * muestran todas las personas con una reservacion.
          * Requiere: El id de la reservacion a consultar, numero de pagina de la tabla de visitantes.
          * Devuelve: la vista con la información de visitantes   
-         * 
          */
         [Authorize]
         public ActionResult Index(String idRes, String numRes, int? Pagina)
@@ -199,8 +204,17 @@ namespace RegistroVisitantes.Controllers
                 ViewBag.Cerdo = iInfoVisita.CERDO;
                 ViewBag.idRes = idR;
                 ViewBag.ced = cedula;
-            }
+                if (iInfoVisita.PERSONA.PAISI != null)
+                { 
+                    iInfoVisita.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.PAISI.NOMBRE));
+                }
+                if (iInfoVisita.PERSONA.NACIONALIDADI != null)
+                {
+                    iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO));
+                }
                 return View(iInfoVisita);
+            }
+            
         }
 
         /*
@@ -250,6 +264,14 @@ namespace RegistroVisitantes.Controllers
                 ViewBag.Cerdo = iInfoVisita.CERDO;
                 ViewBag.idRes = idR;
                 ViewBag.ced = cedula;
+                if (iInfoVisita.PERSONA.PAISI != null)
+                {
+                    iInfoVisita.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.PAISI.NOMBRE));
+                }
+                if (iInfoVisita.PERSONA.NACIONALIDADI != null)
+                {
+                    iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO));
+                }
 
             }
             return View(iInfoVisita);
@@ -387,8 +409,17 @@ namespace RegistroVisitantes.Controllers
                 ViewBag.Cerdo = iInfoVisita.CERDO;
                 ViewBag.idRes = idRes;
                 ViewBag.ced = ced;
+                if (iInfoVisita.PERSONA.PAISI != null)
+                {
+                    iInfoVisita.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.PAISI.NOMBRE));
+                }
+                if (iInfoVisita.PERSONA.NACIONALIDADI != null)
+                {
+                    iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO));
+                }
+                return View(iInfoVisita);
             }
-            return View(iInfoVisita);
+            
         }
 
         /**
@@ -450,6 +481,14 @@ namespace RegistroVisitantes.Controllers
                 ViewBag.Pollo = iInfoVisita.POLLO;
                 ViewBag.Pescado = iInfoVisita.PESCADO;
                 ViewBag.Cerdo = iInfoVisita.CERDO;
+                if (iInfoVisita.PERSONA.PAISI != null)
+                {
+                    iInfoVisita.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.PAISI.NOMBRE));
+                }
+                if (iInfoVisita.PERSONA.NACIONALIDADI != null)
+                {
+                    iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO));
+                }
             }
             return View(iInfoVisita);
         }
@@ -463,11 +502,11 @@ namespace RegistroVisitantes.Controllers
         */
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditOET(INFOVISITA infov)
+        public ActionResult EditOET(INFOVISITA infov, FormCollection collection,string genero)
         {
             if (ModelState.IsValid)
             {
-                if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
+                /*if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
                 {
                     infov.PERSONA.GENERO = '1'.ToString();
 
@@ -475,13 +514,36 @@ namespace RegistroVisitantes.Controllers
                 else
                 {
                     infov.PERSONA.GENERO = '0'.ToString();
+                }*/
+
+                if (genero == ViewResources.Resources.oet_fem) // si es femenino
+                {
+                    infov.PERSONA.GENERO = '1'.ToString();
                 }
+                else
+                {
+                    infov.PERSONA.GENERO = '0'.ToString(); //es masculino
+                }
+
+                string nominst = (string)collection["PERSONA.INSTITUCIONI.FULL_NAME"];
+                V_INSTITUCION inst = BDRegistro.V_INSTITUCION.Where(x => String.Equals(x.FULL_NAME, nominst)).FirstOrDefault();
+                infov.PERSONA.INSTITUCION = inst.CAT_INSTITUCION;
+                infov.PERSONA.INSTITUCIONI = inst;
+
+                string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); ;
+                V_PAISES pais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
+                infov.PERSONA.PAIS = pais.ISO;
+                infov.PERSONA.PAISI = pais;
+
+                string gentpais = (string)collection["PERSONA.NACIONALIDADI.GENTILICIO"].ToUpper();
+                V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
+                infov.PERSONA.NACIONALIDAD = nacion.ISO;
+                infov.PERSONA.NACIONALIDADI = nacion;
 
                 infov.CARNE = true;
                 infov.POLLO = true;
                 infov.CERDO = true;
                 infov.PESCADO = true;
-
                 
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
@@ -499,13 +561,13 @@ namespace RegistroVisitantes.Controllers
         */
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditESINTRO(INFOVISITA infov)
+        public ActionResult EditESINTRO(INFOVISITA infov, FormCollection collection, string genero)
         {
 
             if (ModelState.IsValid)
             {
 
-                if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
+               /* if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
                 {
                     infov.PERSONA.GENERO = '1'.ToString();
 
@@ -513,7 +575,17 @@ namespace RegistroVisitantes.Controllers
                 else
                 {
                     infov.PERSONA.GENERO = '0'.ToString();
+                }*/
+
+                if (genero == ViewResources.Resources.oet_fem) // si es femenino
+                {
+                    infov.PERSONA.GENERO = '1'.ToString();
                 }
+                else
+                {
+                    infov.PERSONA.GENERO = '0'.ToString(); //es masculino
+                }
+
                 if (infov.DIETA.Equals(ViewResources.Resources.oet_sinrestr))
                 {
                     infov.DIETA = "No Restriction";
@@ -528,6 +600,17 @@ namespace RegistroVisitantes.Controllers
                         infov.DIETA = "Vegan";
                     }
                 }
+
+                string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); ;
+                V_PAISES pais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
+                infov.PERSONA.PAIS = pais.ISO;
+                infov.PERSONA.PAISI = pais;
+
+                string gentpais = (string)collection["PERSONA.NACIONALIDADI.GENTILICIO"].ToUpper();
+                V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
+                infov.PERSONA.NACIONALIDAD = nacion.ISO;
+                infov.PERSONA.NACIONALIDADI = nacion;
+
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
@@ -639,6 +722,38 @@ namespace RegistroVisitantes.Controllers
         public ActionResult Refrescar()
         {
             return Redirect(Request.UrlReferrer.ToString());
+        }
+
+
+        public ActionResult Instituciones(string term)
+        {
+            var result = (  from a in BDRegistro.V_INSTITUCION
+                            join b in BDRegistro.V_PAISES on a.COUNTRY equals b.ISO
+                            where a.FULL_NAME.ToLower().Contains(term.ToLower()) || b.NOMBRE.ToLower().Contains(term.ToLower())
+                            select new { a.FULL_NAME, b.NOMBRE, a.CAT_INSTITUCION }).Distinct();
+            // Get Tags from database
+            return this.Json(result,
+                            JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Paises(string term)
+        {
+            var result = (from r in BDRegistro.V_PAISES
+                          where r.NOMBRE.ToLower().Contains(term.ToLower())
+                          select new { r.NOMBRE, r.CAT_PAISES }).Distinct();
+            // Get Tags from database
+            return this.Json(result,
+                            JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Nacionalidades(string term)
+        {
+            var result = (from r in BDRegistro.V_PAISES
+                          where r.NOMBRE.ToLower().Contains(term.ToLower())
+                          select new { r.GENTILICIO, r.CAT_PAISES }).Distinct();
+            // Get Tags from database
+            return this.Json(result,
+                            JsonRequestBehavior.AllowGet);
         }
 
     }

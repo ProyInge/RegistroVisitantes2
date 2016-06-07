@@ -32,7 +32,11 @@
 }
 else
 {
-    FormsAuthentication.SignOut();
+    
+    if(Request.IsAuthenticated) {
+        FormsAuthentication.SignOut();
+        Response.Redirect("~/Usuario/Ingresar");
+    }    
     string url;
     <ul class="nav navbar-nav navbar-right">
         @{ url = Url.Action("Ingresar", "Usuario"); }
