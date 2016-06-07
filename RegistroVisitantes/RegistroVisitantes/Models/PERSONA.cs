@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
 using System.ComponentModel.DataAnnotations;
 
 namespace RegistroVisitantes.Models
@@ -27,52 +26,6 @@ public partial class PERSONA
         this.INFOVISITA = new HashSet<INFOVISITA>();
 
     }
-
-
-    public string CEDULA { get; set; }
-
-    public string NOMBRE { get; set; }
-
-    public string APELLIDO { get; set; }
-
-    public string EMAIL { get; set; }
-
-    public string TELEFONO { get; set; }
-
-    public string NACIONALIDAD { get; set; }
-
-    public string PAIS { get; set; }
-
-    public string ESTADO { get; set; }
-
-    public string CIUDAD { get; set; }
-
-    public string DIRECCION { get; set; }
-
-    public string POSICION { get; set; }
-
-    public Nullable<int> INSTITUCION { get; set; }
-
-    public string TITULO { get; set; }
-
-    public string ROL { get; set; }
-
-    public string GENERO { get; set; }
-
-    public string COD_POSTAL { get; set; }
-
-
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<INFOVISITA> INFOVISITA { get; set; }
-
-    public virtual V_INSTITUCION INSTITUCIONI { get; set; }
-
-    public virtual V_PAISES NACIONALIDADI { get; set; }
-
-    public virtual V_PAISES PAISI { get; set; }
-
 
     [Required]
     public string CEDULA { get; set; }

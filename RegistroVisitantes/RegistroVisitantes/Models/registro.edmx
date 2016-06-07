@@ -4,242 +4,242 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Alias="Self" Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2">
+    <Schema Namespace="Model.Store" Alias="Self" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
         <EntityContainer Name="ModelStoreContainer">
-            <EntitySet Name="PERSONA" EntityType="Model.Store.PERSONA" Schema="REGISTRO" store:Type="Tables" />
-            <EntitySet Name="USUARIO" EntityType="Model.Store.USUARIO" Schema="REGISTRO" store:Type="Tables" />
-            <EntitySet Name="V_ESTACION" EntityType="Model.Store.V_ESTACION" Schema="REGISTRO" store:Type="Tables" />
-            <EntitySet Name="V_RESERVACION" EntityType="Model.Store.V_RESERVACION" Schema="REGISTRO" store:Type="Tables" />
-            <EntitySet Name="INFOVISITA" EntityType="Model.Store.INFOVISITA" Schema="REGISTRO" store:Type="Tables" />
-            <EntitySet Name="V_CONTACTO" EntityType="Model.Store.V_CONTACTO" Schema="REGISTRO" store:Type="Tables" />
-            <EntitySet Name="V_GRUPOANON" EntityType="Model.Store.V_GRUPOANON" Schema="REGISTRO" store:Type="Tables" />
-            <EntitySet Name="V_GRUPORSRV" EntityType="Model.Store.V_GRUPORSRV" Schema="REGISTRO" store:Type="Tables" />
-            <EntitySet Name="V_INSTITUCION" EntityType="Model.Store.V_INSTITUCION" Schema="REGISTRO" store:Type="Tables" />
-            <EntitySet Name="V_PAISES" EntityType="Model.Store.V_PAISES" Schema="REGISTRO" store:Type="Tables" />
+            <EntitySet Name="PERSONA" EntityType="Model.Store.PERSONA" store:Type="Tables" Schema="REGISTRO" />
+            <EntitySet Name="USUARIO" EntityType="Model.Store.USUARIO" store:Type="Tables" Schema="REGISTRO" />
+            <EntitySet Name="V_ESTACION" EntityType="Model.Store.V_ESTACION" store:Type="Tables" Schema="REGISTRO" />
+            <EntitySet Name="V_RESERVACION" EntityType="Model.Store.V_RESERVACION" store:Type="Tables" Schema="REGISTRO" />
+            <EntitySet Name="INFOVISITA" EntityType="Model.Store.INFOVISITA" store:Type="Tables" Schema="REGISTRO" />
+            <EntitySet Name="V_CONTACTO" EntityType="Model.Store.V_CONTACTO" store:Type="Tables" Schema="REGISTRO" />
+            <EntitySet Name="V_GRUPOANON" EntityType="Model.Store.V_GRUPOANON" store:Type="Tables" Schema="REGISTRO" />
+            <EntitySet Name="V_GRUPORSRV" EntityType="Model.Store.V_GRUPORSRV" store:Type="Tables" Schema="REGISTRO" />
+            <EntitySet Name="V_INSTITUCION" EntityType="Model.Store.V_INSTITUCION" store:Type="Tables" Schema="REGISTRO" />
+            <EntitySet Name="V_PAISES" EntityType="Model.Store.V_PAISES" store:Type="Tables" Schema="REGISTRO" />
             <AssociationSet Name="USUARIOV_ESTACION" Association="Model.Store.USUARIOV_ESTACION">
-                <End EntitySet="USUARIO" Role="USUARIO" />
-                <End EntitySet="V_ESTACION" Role="V_ESTACION" />
+                <End Role="USUARIO" EntitySet="USUARIO" />
+                <End Role="V_ESTACION" EntitySet="V_ESTACION" />
             </AssociationSet>
             <AssociationSet Name="INFOVISITA_PERSONA_FK" Association="Model.Store.INFOVISITA_PERSONA_FK">
-                <End EntitySet="PERSONA" Role="PERSONA" />
-                <End EntitySet="INFOVISITA" Role="INFOVISITA" />
+                <End Role="PERSONA" EntitySet="PERSONA" />
+                <End Role="INFOVISITA" EntitySet="INFOVISITA" />
             </AssociationSet>
             <AssociationSet Name="INFOVISITAV_RESERVACION" Association="Model.Store.INFOVISITAV_RESERVACION">
-                <End EntitySet="INFOVISITA" Role="INFOVISITA" />
-                <End EntitySet="V_RESERVACION" Role="V_RESERVACION" />
+                <End Role="INFOVISITA" EntitySet="INFOVISITA" />
+                <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
             </AssociationSet>
             <AssociationSet Name="V_RESERVACIONV_CONTACTO1" Association="Model.Store.V_RESERVACIONV_CONTACTO1">
-                <End EntitySet="V_RESERVACION" Role="V_RESERVACION" />
-                <End EntitySet="V_CONTACTO" Role="V_CONTACTO" />
+                <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
+                <End Role="V_CONTACTO" EntitySet="V_CONTACTO" />
             </AssociationSet>
             <AssociationSet Name="V_RESERVACIONV_CONTACTO2" Association="Model.Store.V_RESERVACIONV_CONTACTO2">
-                <End EntitySet="V_CONTACTO" Role="V_CONTACTO" />
-                <End EntitySet="V_RESERVACION" Role="V_RESERVACION" />
+                <End Role="V_CONTACTO" EntitySet="V_CONTACTO" />
+                <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
             </AssociationSet>
             <AssociationSet Name="V_RESERVACIONV_GRUPOANON" Association="Model.Store.V_RESERVACIONV_GRUPOANON">
-                <End EntitySet="V_RESERVACION" Role="V_RESERVACION" />
-                <End EntitySet="V_GRUPOANON" Role="V_GRUPOANON" />
+                <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
+                <End Role="V_GRUPOANON" EntitySet="V_GRUPOANON" />
             </AssociationSet>
             <AssociationSet Name="V_RESERVACIONV_GRUPORSRV" Association="Model.Store.V_RESERVACIONV_GRUPORSRV">
-                <End EntitySet="V_GRUPORSRV" Role="V_GRUPORSRV" />
-                <End EntitySet="V_RESERVACION" Role="V_RESERVACION" />
+                <End Role="V_GRUPORSRV" EntitySet="V_GRUPORSRV" />
+                <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
             </AssociationSet>
             <AssociationSet Name="PERSONAV_INSTITUCION" Association="Model.Store.PERSONAV_INSTITUCION">
-                <End EntitySet="PERSONA" Role="PERSONA" />
-                <End EntitySet="V_INSTITUCION" Role="V_INSTITUCION" />
+                <End Role="PERSONA" EntitySet="PERSONA" />
+                <End Role="V_INSTITUCION" EntitySet="V_INSTITUCION" />
             </AssociationSet>
             <AssociationSet Name="PERSONAV_PAISES" Association="Model.Store.PERSONAV_PAISES">
-                <End EntitySet="PERSONA" Role="PERSONA" />
-                <End EntitySet="V_PAISES" Role="V_PAISES" />
+                <End Role="PERSONA" EntitySet="PERSONA" />
+                <End Role="V_PAISES" EntitySet="V_PAISES" />
             </AssociationSet>
             <AssociationSet Name="V_PAISESPERSONA" Association="Model.Store.V_PAISESPERSONA">
-                <End EntitySet="V_PAISES" Role="V_PAISES" />
-                <End EntitySet="PERSONA" Role="PERSONA" />
+                <End Role="V_PAISES" EntitySet="V_PAISES" />
+                <End Role="PERSONA" EntitySet="PERSONA" />
             </AssociationSet>
         </EntityContainer>
         <EntityType Name="PERSONA">
             <Key>
                 <PropertyRef Name="CEDULA" />
             </Key>
-            <Property Name="CEDULA" Nullable="false" MaxLength="30" Type="varchar2" />
-            <Property Name="NOMBRE" Nullable="true" MaxLength="200" Type="varchar2" />
-            <Property Name="APELLIDO" Nullable="true" MaxLength="200" Type="varchar2" />
-            <Property Name="EMAIL" Nullable="true" MaxLength="200" Type="varchar2" />
-            <Property Name="TELEFONO" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="NACIONALIDAD" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="PAIS" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="ESTADO" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="CIUDAD" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="DIRECCION" Nullable="true" MaxLength="400" Type="varchar2" />
-            <Property Name="POSICION" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="INSTITUCION" Nullable="true" Precision="10" Type="number" />
-            <Property Name="TITULO" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="ROL" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="GENERO" Nullable="true" MaxLength="1" Type="char" />
-            <Property Name="COD_POSTAL" Nullable="true" MaxLength="150" Type="varchar2" />
+            <Property Name="CEDULA" Type="varchar2" Nullable="false" MaxLength="30" />
+            <Property Name="NOMBRE" Type="varchar2" Nullable="true" MaxLength="200" />
+            <Property Name="APELLIDO" Type="varchar2" Nullable="true" MaxLength="200" />
+            <Property Name="EMAIL" Type="varchar2" Nullable="true" MaxLength="200" />
+            <Property Name="TELEFONO" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="NACIONALIDAD" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="PAIS" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="ESTADO" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="CIUDAD" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="DIRECCION" Type="varchar2" Nullable="true" MaxLength="400" />
+            <Property Name="POSICION" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="INSTITUCION" Type="number" Nullable="true" Precision="10" />
+            <Property Name="TITULO" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="ROL" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="GENERO" Type="char" Nullable="true" MaxLength="1" />
+            <Property Name="COD_POSTAL" Type="varchar2" Nullable="true" MaxLength="150" />
         </EntityType>
         <EntityType Name="USUARIO">
             <Key>
                 <PropertyRef Name="ID" />
             </Key>
-            <Property Name="ID" Nullable="false" Precision="32" Type="number" />
-            <Property Name="NOMBRE" Nullable="true" MaxLength="40" Type="varchar2" />
-            <Property Name="APELLIDO" Nullable="true" MaxLength="40" Type="varchar2" />
-            <Property Name="EMAIL" Nullable="true" MaxLength="40" Type="varchar2" />
-            <Property Name="USUAR" Nullable="false" MaxLength="40" Type="varchar2" />
-            <Property Name="CONTRASENA" Nullable="false" MaxLength="40" Type="varchar2" />
-            <Property Name="ROL" Nullable="false" MaxLength="1" Type="char" />
-            <Property Name="IDESTACION" Nullable="false" MaxLength="26" Type="varchar2" />
-            <Property Name="SEXO" Nullable="true" MaxLength="1" Type="char" />
+            <Property Name="ID" Type="number" Nullable="false" Precision="32" />
+            <Property Name="NOMBRE" Type="varchar2" Nullable="true" MaxLength="40" />
+            <Property Name="APELLIDO" Type="varchar2" Nullable="true" MaxLength="40" />
+            <Property Name="EMAIL" Type="varchar2" Nullable="true" MaxLength="40" />
+            <Property Name="USUAR" Type="varchar2" Nullable="false" MaxLength="40" />
+            <Property Name="CONTRASENA" Type="varchar2" Nullable="false" MaxLength="40" />
+            <Property Name="ROL" Type="char" Nullable="false" MaxLength="1" />
+            <Property Name="IDESTACION" Type="varchar2" Nullable="false" MaxLength="26" />
+            <Property Name="SEXO" Type="char" Nullable="true" MaxLength="1" />
         </EntityType>
         <EntityType Name="V_ESTACION">
             <Key>
                 <PropertyRef Name="ID" />
             </Key>
-            <Property Name="ID" Nullable="false" MaxLength="26" Type="varchar2" />
-            <Property Name="NOMBRE" Nullable="false" MaxLength="100" Type="varchar2" />
-            <Property Name="SIGLAS" Nullable="true" MaxLength="20" Type="varchar2" />
-            <Property Name="RESERVABLE" Nullable="true" MaxLength="1" Type="varchar2" />
+            <Property Name="ID" Type="varchar2" Nullable="false" MaxLength="26" />
+            <Property Name="NOMBRE" Type="varchar2" Nullable="false" MaxLength="100" />
+            <Property Name="SIGLAS" Type="varchar2" Nullable="true" MaxLength="20" />
+            <Property Name="RESERVABLE" Type="varchar2" Nullable="true" MaxLength="1" />
         </EntityType>
         <EntityType Name="V_RESERVACION">
             <Key>
                 <PropertyRef Name="ID" />
             </Key>
-            <Property Name="ID" Nullable="false" MaxLength="255" Type="varchar2" />
-            <Property Name="ANFITRIONA" Nullable="true" MaxLength="255" Type="varchar2" />
-            <Property Name="NUMERO" Nullable="false" MaxLength="255" Type="varchar2" />
-            <Property Name="ESTADO" Nullable="true" MaxLength="255" Type="varchar2" />
-            <Property Name="PRIORIDAD" Nullable="true" Precision="20" Type="number" />
-            <Property Name="GRUPO" Nullable="true" MaxLength="255" Type="varchar2" />
-            <Property Name="ENTRA" Nullable="true" Type="date" />
-            <Property Name="ENTRAMTN" Nullable="true" MaxLength="255" Type="varchar2" />
-            <Property Name="SALE" Nullable="true" Type="date" />
-            <Property Name="SALEMTN" Nullable="true" MaxLength="255" Type="varchar2" />
-            <Property Name="RESPONSABLE" Nullable="true" MaxLength="255" Type="varchar2" />
-            <Property Name="SOLICITANTE" Nullable="true" MaxLength="255" Type="varchar2" />
-            <Property Name="NOTAS" Nullable="true" MaxLength="4000" Type="varchar2" />
-            <Property Name="SOLICITADAEL" Nullable="true" Type="date" />
-            <Property Name="FORMAPAGO" Nullable="true" MaxLength="255" Type="varchar2" />
-            <Property Name="SALDO" Nullable="true" Precision="20" Scale="5" Type="number" />
-            <Property Name="CUENTACLIENTEKEY" Nullable="true" MaxLength="255" Type="varchar2" />
-            <Property Name="CUENTACLIENTEOCLASS" Nullable="true" MaxLength="255" Type="varchar2" />
-            <Property Name="ESTACION" Nullable="true" MaxLength="26" Type="varchar2" />
-            <Property Name="MODIFICADOR" Nullable="true" MaxLength="255" Type="varchar2" />
-            <Property Name="MODIFICADO" Nullable="true" Type="date" />
-            <Property Name="MONTO_PREPAGO" Nullable="true" Precision="15" Scale="2" Type="number" />
-            <Property Name="REFERENCIA_PREPAGO" Nullable="true" MaxLength="1000" Type="varchar2" />
-            <Property Name="PRIMERA_COMIDA" Nullable="true" MaxLength="50" Type="varchar2" />
-            <Property Name="CREACION" Nullable="true" Precision="19" Type="number" />
-            <Property Name="ULTIMA_MODIFICACION" Nullable="true" Precision="19" Type="number" />
-            <Property Name="MODIFICA_RACK" Nullable="true" MaxLength="255" Type="varchar2" />
-            <Property Name="MODIFICADO_RACK" Nullable="true" MaxLength="255" Type="varchar2" />
-            <Property Name="FLAG" Nullable="true" Precision="3" Type="number" />
-            <Property Name="URL" Nullable="true" MaxLength="2000" Type="varchar2" />
-            <Property Name="TIPO" Nullable="true" MaxLength="2" Type="varchar2" />
+            <Property Name="ID" Type="varchar2" Nullable="false" MaxLength="255" />
+            <Property Name="ANFITRIONA" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NUMERO" Type="varchar2" Nullable="false" MaxLength="255" />
+            <Property Name="ESTADO" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="PRIORIDAD" Type="number" Nullable="true" Precision="20" />
+            <Property Name="GRUPO" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ENTRA" Type="date" Nullable="true" />
+            <Property Name="ENTRAMTN" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="SALE" Type="date" Nullable="true" />
+            <Property Name="SALEMTN" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="RESPONSABLE" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="SOLICITANTE" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="NOTAS" Type="varchar2" Nullable="true" MaxLength="4000" />
+            <Property Name="SOLICITADAEL" Type="date" Nullable="true" />
+            <Property Name="FORMAPAGO" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="SALDO" Type="number" Nullable="true" Precision="20" Scale="5" />
+            <Property Name="CUENTACLIENTEKEY" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="CUENTACLIENTEOCLASS" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="ESTACION" Type="varchar2" Nullable="true" MaxLength="26" />
+            <Property Name="MODIFICADOR" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFICADO" Type="date" Nullable="true" />
+            <Property Name="MONTO_PREPAGO" Type="number" Nullable="true" Precision="15" Scale="2" />
+            <Property Name="REFERENCIA_PREPAGO" Type="varchar2" Nullable="true" MaxLength="1000" />
+            <Property Name="PRIMERA_COMIDA" Type="varchar2" Nullable="true" MaxLength="50" />
+            <Property Name="CREACION" Type="number" Nullable="true" Precision="19" />
+            <Property Name="ULTIMA_MODIFICACION" Type="number" Nullable="true" Precision="19" />
+            <Property Name="MODIFICA_RACK" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="MODIFICADO_RACK" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="FLAG" Type="number" Nullable="true" Precision="3" />
+            <Property Name="URL" Type="varchar2" Nullable="true" MaxLength="2000" />
+            <Property Name="TIPO" Type="varchar2" Nullable="true" MaxLength="2" />
         </EntityType>
         <EntityType Name="INFOVISITA">
             <Key>
                 <PropertyRef Name="ID_RESERVACION" />
                 <PropertyRef Name="CEDULA" />
             </Key>
-            <Property Name="ID_RESERVACION" Nullable="false" MaxLength="255" Type="varchar2" />
-            <Property Name="CEDULA" Nullable="false" MaxLength="30" Type="varchar2" />
-            <Property Name="NOMBRE_EMERGENCIA" Nullable="true" MaxLength="400" Type="varchar2" />
-            <Property Name="TEL_EMERGENCIA" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="EMAIL_EMERGENCIA" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="REL_EMERGENCIA" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="COMIDA" Nullable="true" MaxLength="300" Type="varchar2" />
-            <Property Name="CARNE" Nullable="false" Precision="1" Type="number" />
-            <Property Name="POLLO" Nullable="false" Precision="1" Type="number" />
-            <Property Name="PESCADO" Nullable="false" Precision="1" Type="number" />
-            <Property Name="CERDO" Nullable="false" Precision="1" Type="number" />
-            <Property Name="DIETA" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="OBSERVACIONES_DIETA" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="ALERGIAS" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="PROPOSITO" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="OTRO_PROPOSITO" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="COMO_ENTERO" Nullable="true" MaxLength="150" Type="varchar2" />
-            <Property Name="FECHA" Nullable="true" Type="date" />
-            <Property Name="NOMBRE_CURSO" Nullable="true" MaxLength="50" Type="varchar2" />
-            <Property Name="NUMERO_CURSO" Nullable="true" MaxLength="30" Type="varchar2" />
-            <Property Name="ROL_CURSO" Nullable="true" MaxLength="20" Type="varchar2" />
-            <Property Name="NOMBRE_PROYECTO" Nullable="true" MaxLength="50" Type="varchar2" />
-            <Property Name="INVERSIONES" Nullable="true" MaxLength="50" Type="varchar2" />
-            <Property Name="FUENTE" Nullable="true" MaxLength="50" Type="varchar2" />
-            <Property Name="RESOLUCION" Nullable="true" MaxLength="30" Type="varchar2" />
-            <Property Name="PERMISO" Nullable="true" MaxLength="30" Type="varchar2" />
-            <Property Name="EXPIRACION" Nullable="true" Type="date" />
-            <Property Name="ESTADO" Nullable="true" Precision="1" Type="number" />
+            <Property Name="ID_RESERVACION" Type="varchar2" Nullable="false" MaxLength="255" />
+            <Property Name="CEDULA" Type="varchar2" Nullable="false" MaxLength="30" />
+            <Property Name="NOMBRE_EMERGENCIA" Type="varchar2" Nullable="true" MaxLength="400" />
+            <Property Name="TEL_EMERGENCIA" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="EMAIL_EMERGENCIA" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="REL_EMERGENCIA" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="COMIDA" Type="varchar2" Nullable="true" MaxLength="300" />
+            <Property Name="CARNE" Type="number" Nullable="false" Precision="1" />
+            <Property Name="POLLO" Type="number" Nullable="false" Precision="1" />
+            <Property Name="PESCADO" Type="number" Nullable="false" Precision="1" />
+            <Property Name="CERDO" Type="number" Nullable="false" Precision="1" />
+            <Property Name="DIETA" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="OBSERVACIONES_DIETA" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="ALERGIAS" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="PROPOSITO" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="OTRO_PROPOSITO" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="COMO_ENTERO" Type="varchar2" Nullable="true" MaxLength="150" />
+            <Property Name="FECHA" Type="date" Nullable="true" />
+            <Property Name="NOMBRE_CURSO" Type="varchar2" Nullable="true" MaxLength="50" />
+            <Property Name="NUMERO_CURSO" Type="varchar2" Nullable="true" MaxLength="30" />
+            <Property Name="ROL_CURSO" Type="varchar2" Nullable="true" MaxLength="20" />
+            <Property Name="NOMBRE_PROYECTO" Type="varchar2" Nullable="true" MaxLength="50" />
+            <Property Name="INVERSIONES" Type="varchar2" Nullable="true" MaxLength="50" />
+            <Property Name="FUENTE" Type="varchar2" Nullable="true" MaxLength="50" />
+            <Property Name="RESOLUCION" Type="varchar2" Nullable="true" MaxLength="30" />
+            <Property Name="PERMISO" Type="varchar2" Nullable="true" MaxLength="30" />
+            <Property Name="EXPIRACION" Type="date" Nullable="true" />
+            <Property Name="ESTADO" Type="number" Nullable="true" Precision="1" />
         </EntityType>
         <EntityType Name="V_CONTACTO">
             <Key>
                 <PropertyRef Name="ID" />
             </Key>
-            <Property Name="ID" Nullable="false" MaxLength="30" Type="varchar2" />
-            <Property Name="FISICO" Nullable="false" MaxLength="1" Type="char" />
-            <Property Name="SALUDOID" Nullable="true" MaxLength="4" Type="varchar2" />
-            <Property Name="NOMBRE" Nullable="false" MaxLength="80" Type="varchar2" />
-            <Property Name="APELLIDOS" Nullable="true" MaxLength="80" Type="varchar2" />
-            <Property Name="PAISID" Nullable="true" MaxLength="26" Type="varchar2" />
-            <Property Name="SEXO" Nullable="true" MaxLength="1" Type="varchar2" />
-            <Property Name="EMAIL" Nullable="true" MaxLength="132" Type="varchar2" />
-            <Property Name="IDENTIFICACION" Nullable="true" MaxLength="50" Type="varchar2" />
-            <Property Name="COMENTARIO" Nullable="true" MaxLength="1000" Type="varchar2" />
-            <Property Name="CREADOR" Nullable="true" MaxLength="100" Type="varchar2" />
-            <Property Name="CREADO" Nullable="true" Type="date" />
-            <Property Name="MODIFICADOR" Nullable="true" MaxLength="100" Type="varchar2" />
-            <Property Name="MODIFICADO" Nullable="true" Type="date" />
-            <Property Name="CODSUENA" Nullable="true" MaxLength="100" Type="varchar2" />
-            <Property Name="REFERENCIA_CONTACTOS" Nullable="true" Precision="10" Type="number" />
+            <Property Name="ID" Type="varchar2" Nullable="false" MaxLength="30" />
+            <Property Name="FISICO" Type="char" Nullable="false" MaxLength="1" />
+            <Property Name="SALUDOID" Type="varchar2" Nullable="true" MaxLength="4" />
+            <Property Name="NOMBRE" Type="varchar2" Nullable="false" MaxLength="80" />
+            <Property Name="APELLIDOS" Type="varchar2" Nullable="true" MaxLength="80" />
+            <Property Name="PAISID" Type="varchar2" Nullable="true" MaxLength="26" />
+            <Property Name="SEXO" Type="varchar2" Nullable="true" MaxLength="1" />
+            <Property Name="EMAIL" Type="varchar2" Nullable="true" MaxLength="132" />
+            <Property Name="IDENTIFICACION" Type="varchar2" Nullable="true" MaxLength="50" />
+            <Property Name="COMENTARIO" Type="varchar2" Nullable="true" MaxLength="1000" />
+            <Property Name="CREADOR" Type="varchar2" Nullable="true" MaxLength="100" />
+            <Property Name="CREADO" Type="date" Nullable="true" />
+            <Property Name="MODIFICADOR" Type="varchar2" Nullable="true" MaxLength="100" />
+            <Property Name="MODIFICADO" Type="date" Nullable="true" />
+            <Property Name="CODSUENA" Type="varchar2" Nullable="true" MaxLength="100" />
+            <Property Name="REFERENCIA_CONTACTOS" Type="number" Nullable="true" Precision="10" />
         </EntityType>
         <EntityType Name="V_GRUPOANON">
             <Key>
                 <PropertyRef Name="ID" />
             </Key>
-            <Property Name="ID" Nullable="false" MaxLength="30" Type="varchar2" />
-            <Property Name="INFANTES" Nullable="true" Precision="5" Type="number" />
-            <Property Name="NINOS" Nullable="true" Precision="5" Type="number" />
-            <Property Name="MUJERES" Nullable="true" Precision="5" Type="number" />
-            <Property Name="HOMBRES" Nullable="true" Precision="5" Type="number" />
+            <Property Name="ID" Type="varchar2" Nullable="false" MaxLength="30" />
+            <Property Name="INFANTES" Type="number" Nullable="true" Precision="5" />
+            <Property Name="NINOS" Type="number" Nullable="true" Precision="5" />
+            <Property Name="MUJERES" Type="number" Nullable="true" Precision="5" />
+            <Property Name="HOMBRES" Type="number" Nullable="true" Precision="5" />
         </EntityType>
         <EntityType Name="V_GRUPORSRV">
             <Key>
                 <PropertyRef Name="ID" />
             </Key>
-            <Property Name="ID" Nullable="false" MaxLength="30" Type="varchar2" />
-            <Property Name="NOMBRE" Nullable="true" MaxLength="255" Type="varchar2" />
-            <Property Name="TIPO" Nullable="true" MaxLength="3" Type="varchar2" />
-            <Property Name="DEL" Nullable="true" Type="date" />
-            <Property Name="AL" Nullable="true" Type="date" />
-            <Property Name="VEGGIES" Nullable="true" Precision="5" Type="number" />
-            <Property Name="NOTASALIMENTACION" Nullable="true" MaxLength="2000" Type="varchar2" />
-            <Property Name="PARTEDE" Nullable="true" MaxLength="26" Type="varchar2" />
-            <Property Name="COORDINADOR" Nullable="true" MaxLength="400" Type="varchar2" />
+            <Property Name="ID" Type="varchar2" Nullable="false" MaxLength="30" />
+            <Property Name="NOMBRE" Type="varchar2" Nullable="true" MaxLength="255" />
+            <Property Name="TIPO" Type="varchar2" Nullable="true" MaxLength="3" />
+            <Property Name="DEL" Type="date" Nullable="true" />
+            <Property Name="AL" Type="date" Nullable="true" />
+            <Property Name="VEGGIES" Type="number" Nullable="true" Precision="5" />
+            <Property Name="NOTASALIMENTACION" Type="varchar2" Nullable="true" MaxLength="2000" />
+            <Property Name="PARTEDE" Type="varchar2" Nullable="true" MaxLength="26" />
+            <Property Name="COORDINADOR" Type="varchar2" Nullable="true" MaxLength="400" />
         </EntityType>
         <EntityType Name="V_INSTITUCION">
             <Key>
                 <PropertyRef Name="CAT_INSTITUCION" />
             </Key>
-            <Property Name="CAT_INSTITUCION" Nullable="false" Precision="10" Type="number" />
-            <Property Name="DESCRIPCION" Nullable="true" MaxLength="1000" Type="varchar2" />
-            <Property Name="FULL_NAME" Nullable="true" MaxLength="1000" Type="varchar2" />
-            <Property Name="COUNTRY" Nullable="true" MaxLength="20" Type="varchar2" />
-            <Property Name="X_SISTEMA" Nullable="true" Precision="1" Type="number" />
-            <Property Name="CREADO" Nullable="true" Type="date" />
+            <Property Name="CAT_INSTITUCION" Type="number" Nullable="false" Precision="10" />
+            <Property Name="DESCRIPCION" Type="varchar2" Nullable="true" MaxLength="1000" />
+            <Property Name="FULL_NAME" Type="varchar2" Nullable="true" MaxLength="1000" />
+            <Property Name="COUNTRY" Type="varchar2" Nullable="true" MaxLength="20" />
+            <Property Name="X_SISTEMA" Type="number" Nullable="true" Precision="1" />
+            <Property Name="CREADO" Type="date" Nullable="true" />
         </EntityType>
         <EntityType Name="V_PAISES">
             <Key>
                 <PropertyRef Name="ISO" />
             </Key>
-            <Property Name="CAT_PAISES" Nullable="false" Precision="10" Type="number" />
-            <Property Name="ISO" Nullable="false" MaxLength="5" Type="varchar2" />
-            <Property Name="NOMBRE" Nullable="false" MaxLength="400" Type="varchar2" />
-            <Property Name="GENTILICIO" Nullable="true" MaxLength="400" Type="varchar2" />
+            <Property Name="CAT_PAISES" Type="number" Nullable="false" Precision="10" />
+            <Property Name="ISO" Type="varchar2" Nullable="false" MaxLength="5" />
+            <Property Name="NOMBRE" Type="varchar2" Nullable="false" MaxLength="400" />
+            <Property Name="GENTILICIO" Type="varchar2" Nullable="true" MaxLength="400" />
         </EntityType>
     <Association Name="USUARIOV_ESTACION">
-        <End Type="Model.Store.USUARIO" Multiplicity="*" Role="USUARIO">
+        <End Role="USUARIO" Type="Model.Store.USUARIO" Multiplicity="*">
         </End>
-        <End Type="Model.Store.V_ESTACION" Multiplicity="1" Role="V_ESTACION">
+        <End Role="V_ESTACION" Type="Model.Store.V_ESTACION" Multiplicity="1">
         </End>
         <ReferentialConstraint>
             <Principal Role="V_ESTACION">
@@ -251,9 +251,9 @@
         </ReferentialConstraint>
     </Association>
     <Association Name="INFOVISITA_PERSONA_FK">
-        <End Type="Model.Store.PERSONA" Multiplicity="1" Role="PERSONA">
+        <End Role="PERSONA" Type="Model.Store.PERSONA" Multiplicity="1">
         </End>
-        <End Type="Model.Store.INFOVISITA" Multiplicity="*" Role="INFOVISITA">
+        <End Role="INFOVISITA" Type="Model.Store.INFOVISITA" Multiplicity="*">
         </End>
         <ReferentialConstraint>
             <Principal Role="PERSONA">
@@ -265,9 +265,9 @@
         </ReferentialConstraint>
     </Association>
     <Association Name="INFOVISITAV_RESERVACION">
-        <End Type="Model.Store.INFOVISITA" Multiplicity="*" Role="INFOVISITA">
+        <End Role="INFOVISITA" Type="Model.Store.INFOVISITA" Multiplicity="*">
         </End>
-        <End Type="Model.Store.V_RESERVACION" Multiplicity="1" Role="V_RESERVACION">
+        <End Role="V_RESERVACION" Type="Model.Store.V_RESERVACION" Multiplicity="1">
         </End>
         <ReferentialConstraint>
             <Principal Role="V_RESERVACION">
@@ -279,9 +279,9 @@
         </ReferentialConstraint>
     </Association>
     <Association Name="V_RESERVACIONV_CONTACTO1">
-        <End Type="Model.Store.V_RESERVACION" Multiplicity="*" Role="V_RESERVACION">
+        <End Role="V_RESERVACION" Type="Model.Store.V_RESERVACION" Multiplicity="*">
         </End>
-        <End Type="Model.Store.V_CONTACTO" Multiplicity="0..1" Role="V_CONTACTO">
+        <End Role="V_CONTACTO" Type="Model.Store.V_CONTACTO" Multiplicity="0..1">
         </End>
         <ReferentialConstraint>
             <Principal Role="V_CONTACTO">
@@ -293,9 +293,9 @@
         </ReferentialConstraint>
     </Association>
     <Association Name="V_RESERVACIONV_CONTACTO2">
-        <End Type="Model.Store.V_CONTACTO" Multiplicity="0..1" Role="V_CONTACTO">
+        <End Role="V_CONTACTO" Type="Model.Store.V_CONTACTO" Multiplicity="0..1">
         </End>
-        <End Type="Model.Store.V_RESERVACION" Multiplicity="*" Role="V_RESERVACION">
+        <End Role="V_RESERVACION" Type="Model.Store.V_RESERVACION" Multiplicity="*">
         </End>
         <ReferentialConstraint>
             <Principal Role="V_CONTACTO">
@@ -307,9 +307,9 @@
         </ReferentialConstraint>
     </Association>
     <Association Name="V_RESERVACIONV_GRUPOANON">
-        <End Type="Model.Store.V_RESERVACION" Multiplicity="*" Role="V_RESERVACION">
+        <End Role="V_RESERVACION" Type="Model.Store.V_RESERVACION" Multiplicity="*">
         </End>
-        <End Type="Model.Store.V_GRUPOANON" Multiplicity="0..1" Role="V_GRUPOANON">
+        <End Role="V_GRUPOANON" Type="Model.Store.V_GRUPOANON" Multiplicity="0..1">
         </End>
         <ReferentialConstraint>
             <Principal Role="V_GRUPOANON">
@@ -321,9 +321,9 @@
         </ReferentialConstraint>
     </Association>
     <Association Name="V_RESERVACIONV_GRUPORSRV">
-        <End Type="Model.Store.V_GRUPORSRV" Multiplicity="0..1" Role="V_GRUPORSRV">
+        <End Role="V_GRUPORSRV" Type="Model.Store.V_GRUPORSRV" Multiplicity="0..1">
         </End>
-        <End Type="Model.Store.V_RESERVACION" Multiplicity="*" Role="V_RESERVACION">
+        <End Role="V_RESERVACION" Type="Model.Store.V_RESERVACION" Multiplicity="*">
         </End>
         <ReferentialConstraint>
             <Principal Role="V_GRUPORSRV">
@@ -335,9 +335,9 @@
         </ReferentialConstraint>
     </Association>
     <Association Name="PERSONAV_INSTITUCION">
-        <End Type="Model.Store.PERSONA" Multiplicity="*" Role="PERSONA">
+        <End Role="PERSONA" Type="Model.Store.PERSONA" Multiplicity="*">
         </End>
-        <End Type="Model.Store.V_INSTITUCION" Multiplicity="0..1" Role="V_INSTITUCION">
+        <End Role="V_INSTITUCION" Type="Model.Store.V_INSTITUCION" Multiplicity="0..1">
         </End>
         <ReferentialConstraint>
             <Principal Role="V_INSTITUCION">
@@ -349,9 +349,9 @@
         </ReferentialConstraint>
     </Association>
     <Association Name="PERSONAV_PAISES">
-        <End Type="Model.Store.PERSONA" Multiplicity="*" Role="PERSONA">
+        <End Role="PERSONA" Type="Model.Store.PERSONA" Multiplicity="*">
         </End>
-        <End Type="Model.Store.V_PAISES" Multiplicity="0..1" Role="V_PAISES">
+        <End Role="V_PAISES" Type="Model.Store.V_PAISES" Multiplicity="0..1">
         </End>
         <ReferentialConstraint>
             <Principal Role="V_PAISES">
@@ -363,9 +363,9 @@
         </ReferentialConstraint>
     </Association>
     <Association Name="V_PAISESPERSONA">
-        <End Type="Model.Store.V_PAISES" Multiplicity="0..1" Role="V_PAISES">
+        <End Role="V_PAISES" Type="Model.Store.V_PAISES" Multiplicity="0..1">
         </End>
-        <End Type="Model.Store.PERSONA" Multiplicity="*" Role="PERSONA">
+        <End Role="PERSONA" Type="Model.Store.PERSONA" Multiplicity="*">
         </End>
         <ReferentialConstraint>
             <Principal Role="V_PAISES">
