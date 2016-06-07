@@ -502,11 +502,11 @@ namespace RegistroVisitantes.Controllers
         */
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditOET(INFOVISITA infov, FormCollection collection)
+        public ActionResult EditOET(INFOVISITA infov, FormCollection collection,string genero)
         {
             if (ModelState.IsValid)
             {
-                if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
+                /*if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
                 {
                     infov.PERSONA.GENERO = '1'.ToString();
 
@@ -514,6 +514,15 @@ namespace RegistroVisitantes.Controllers
                 else
                 {
                     infov.PERSONA.GENERO = '0'.ToString();
+                }*/
+
+                if (genero == ViewResources.Resources.oet_fem) // si es femenino
+                {
+                    infov.PERSONA.GENERO = '1'.ToString();
+                }
+                else
+                {
+                    infov.PERSONA.GENERO = '0'.ToString(); //es masculino
                 }
 
                 string nominst = (string)collection["PERSONA.INSTITUCIONI.FULL_NAME"];
@@ -552,13 +561,13 @@ namespace RegistroVisitantes.Controllers
         */
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditESINTRO(INFOVISITA infov, FormCollection collection)
+        public ActionResult EditESINTRO(INFOVISITA infov, FormCollection collection, string genero)
         {
 
             if (ModelState.IsValid)
             {
 
-                if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
+               /* if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
                 {
                     infov.PERSONA.GENERO = '1'.ToString();
 
@@ -566,7 +575,17 @@ namespace RegistroVisitantes.Controllers
                 else
                 {
                     infov.PERSONA.GENERO = '0'.ToString();
+                }*/
+
+                if (genero == ViewResources.Resources.oet_fem) // si es femenino
+                {
+                    infov.PERSONA.GENERO = '1'.ToString();
                 }
+                else
+                {
+                    infov.PERSONA.GENERO = '0'.ToString(); //es masculino
+                }
+
                 if (infov.DIETA.Equals(ViewResources.Resources.oet_sinrestr))
                 {
                     infov.DIETA = "No Restriction";

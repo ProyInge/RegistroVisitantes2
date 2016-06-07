@@ -47,11 +47,15 @@
                     <li class="@(url == Request.Url.AbsolutePath.Split('/')[1] ? "active" : string.Empty)" id="visitantes">
                         @Html.ActionLink("Visitantes", "Index", "Visitantes")
                     </li>
+                    @{ url = Url.Action("Index", "Reportes").Split('/')[1]; }
+                    <li class="@(url == Request.Url.AbsolutePath.Split('/')[1] ? "active" : string.Empty)" id="visitantes">
+                        @Html.ActionLink("Reportes", "Index", "Reportes")
+                    </li>
 
-                @*@{ url = Url.Action("Index", "Formulario"); }
-    <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
-        @Html.ActionLink("Formulario", "Index", "Formulario")
-    </li>*@    
+                    @*@{ url = Url.Action("Index", "Formulario"); }
+                        <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
+                            @Html.ActionLink("Formulario", "Index", "Formulario")
+                        </li>*@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="">@Html.Partial("_LoginPartial")</li>
@@ -61,11 +65,11 @@
         </div>
     </div>
 
- 
+
     <div class="container body-content">
         @RenderBody()
     </div>
-    
+
 
     <footer class="footer">
         <div class="container">

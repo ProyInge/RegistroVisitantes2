@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
 
 namespace RegistroVisitantes.Models
 {
@@ -19,13 +20,17 @@ public partial class INFOVISITA
 {
 
     public string ID_RESERVACION { get; set; }
-
+    
+    [Required]
     public string CEDULA { get; set; }
 
+    [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$")]
     public string NOMBRE_EMERGENCIA { get; set; }
 
+    [RegularExpression("[0-9]")]
     public string TEL_EMERGENCIA { get; set; }
 
+    [EmailAddress()]
     public string EMAIL_EMERGENCIA { get; set; }
 
     public string REL_EMERGENCIA { get; set; }
