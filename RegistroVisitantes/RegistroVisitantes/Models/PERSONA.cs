@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
 
 namespace RegistroVisitantes.Models
 {
@@ -26,15 +27,19 @@ public partial class PERSONA
 
     }
 
-
+    [Required]
     public string CEDULA { get; set; }
 
+    [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$")]
     public string NOMBRE { get; set; }
 
+    [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$")]
     public string APELLIDO { get; set; }
 
+    [EmailAddress()]
     public string EMAIL { get; set; }
-
+    
+    [RegularExpression("[0-9]")]
     public string TELEFONO { get; set; }
 
     public string NACIONALIDAD { get; set; }
@@ -45,6 +50,7 @@ public partial class PERSONA
 
     public string CIUDAD { get; set; }
 
+    [StringLength(100)]
     public string DIRECCION { get; set; }
 
     public string POSICION { get; set; }
