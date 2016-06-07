@@ -183,7 +183,7 @@ namespace RegistroVisitantes.Controllers
         */
         [HttpPost]
         [Authorize]
-        public ActionResult CreateESINTRO(String idRes, [Bind()]Models.INFOVISITA form, string dietas, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
+        public ActionResult CreateESINTRO(String idRes, [Bind()]Models.INFOVISITA form, FormCollection collection, string dietas, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
         {
             if (idRes == null)
             {
@@ -253,6 +253,15 @@ namespace RegistroVisitantes.Controllers
                     }
                     throw raise;
                 }
+                string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); ;
+                V_PAISES pais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
+                form.PERSONA.PAIS = pais.ISO;
+                form.PERSONA.PAISI = pais;
+
+                string gentpais = (string)collection["PERSONA.NACIONALIDADI.GENTILICIO"].ToUpper();
+                V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
+                form.PERSONA.NACIONALIDAD = nacion.ISO;
+                form.PERSONA.NACIONALIDADI = nacion;
             }
             return RedirectToAction("Index", "Reservas");
         }
@@ -296,7 +305,7 @@ namespace RegistroVisitantes.Controllers
         */
         [HttpPost]
         [Authorize]
-        public ActionResult CreateOET(String idRes, [Bind()]Models.INFOVISITA form, string dietas, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
+        public ActionResult CreateOET(String idRes, [Bind()]Models.INFOVISITA form, FormCollection collection, string dietas, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
          {
             if (idRes == null)
             {
@@ -353,7 +362,21 @@ namespace RegistroVisitantes.Controllers
                     }
                     throw raise;
                 }
-               // return RedirectToAction("Index");
+                string nominst = (string)collection["PERSONA.INSTITUCIONI.FULL_NAME"];
+                V_INSTITUCION inst = BDRegistro.V_INSTITUCION.Where(x => String.Equals(x.FULL_NAME, nominst)).FirstOrDefault();
+                form.PERSONA.INSTITUCION = inst.CAT_INSTITUCION;
+                form.PERSONA.INSTITUCIONI = inst;
+
+                string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); ;
+                V_PAISES pais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
+                form.PERSONA.PAIS = pais.ISO;
+                form.PERSONA.PAISI = pais;
+
+                string gentpais = (string)collection["PERSONA.NACIONALIDADI.GENTILICIO"].ToUpper();
+                V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
+                form.PERSONA.NACIONALIDAD = nacion.ISO;
+                form.PERSONA.NACIONALIDADI = nacion;
+                // return RedirectToAction("Index");
             }
             return RedirectToAction("Index", "Reservas");
         }

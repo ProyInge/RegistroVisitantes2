@@ -224,6 +224,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>registro.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\REPORTE.cs">
+      <DependentUpon>registro.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\USUARIO.cs">
       <DependentUpon>registro.tt</DependentUpon>
     </Compile>

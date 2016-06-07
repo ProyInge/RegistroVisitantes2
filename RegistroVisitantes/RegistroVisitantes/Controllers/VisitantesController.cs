@@ -342,7 +342,7 @@ namespace RegistroVisitantes.Controllers
                     case "Vegan":
                     case "Vegano":
                         listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_vegano, Value = "Vegan" });
-                        listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
+                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
                         listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vege, Value = ViewResources.Resources.oet_vege });
                         break;
 
@@ -439,7 +439,8 @@ namespace RegistroVisitantes.Controllers
             if (iInfoVisita == null)
             {
                 return HttpNotFound();
-            }else
+            }
+            else
             {
                 var listSexo = new List<SelectListItem>();
                 if (iInfoVisita.PERSONA.GENERO.Equals("0"))
@@ -477,6 +478,7 @@ namespace RegistroVisitantes.Controllers
                         break;
                 }
                 ViewBag.listDieta = listDieta;
+                ViewData["DIETA"] = listDieta;
                 ViewBag.Carne = iInfoVisita.CARNE;
                 ViewBag.Pollo = iInfoVisita.POLLO;
                 ViewBag.Pescado = iInfoVisita.PESCADO;

@@ -52,6 +52,8 @@ public partial class BDRegistro : DbContext
 
     public virtual DbSet<V_PAISES> V_PAISES { get; set; }
 
+    public virtual DbSet<REPORTE> REPORTE { get; set; }
+
 }
 
 }

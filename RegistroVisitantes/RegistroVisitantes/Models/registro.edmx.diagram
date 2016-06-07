@@ -26,6 +26,7 @@
         <AssociationConnector Association="Model.PERSONAV_PAISES" />
         <AssociationConnector Association="Model.V_PAISESPERSONA" />
         <AssociationConnector Association="Model.V_INSTITUCIONV_PAISES" />
+        <EntityTypeShape EntityType="Model.REPORTE" Width="1.5" PointX="3.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
