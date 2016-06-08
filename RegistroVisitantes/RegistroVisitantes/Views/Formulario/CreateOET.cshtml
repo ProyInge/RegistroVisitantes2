@@ -2,8 +2,15 @@
 
 @{
     ViewBag.Title = @ViewResources.Resources.oet_titulo;
-    Layout = "~/Views/Shared/_LayoutForm.cshtml";
     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+}
+@if ((string)Session["Rol"] == "S")
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
 
 <h2>@ViewResources.Resources.oet_titulo</h2>
@@ -11,7 +18,7 @@
 {
     <p>
         @(ViewResources.Resources.seleccionarLen): @Html.DropDownList("ddlCulture", new SelectList(new[]
- {
+{
  new{value="en",text=@ViewResources.Resources.english},
   new{value="es",text=@ViewResources.Resources.spanish}
  }, "value", "text", Session["CurrentCulture"]), new { onchange = "this.form.submit();", @class = "form-control" })
@@ -288,7 +295,7 @@
             </div>
         </div>
     </div>
- }
+}
 
 
 

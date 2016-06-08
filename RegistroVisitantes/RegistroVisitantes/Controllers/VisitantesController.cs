@@ -80,7 +80,8 @@ namespace RegistroVisitantes.Controllers
                     tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID)).OrderBy(x => x.ID_RESERVACION);
                 }
                 //V_RESERVACION num = BDRegistro.V_RESERVACION.Find(idRes);
-                ViewBag.idRes = reservacion.NUMERO;
+                ViewBag.num = reservacion.NUMERO;
+                ViewBag.idRes = idRes;
             }
             else if (idRes != null && !idRes.Equals(""))
             {
@@ -101,7 +102,8 @@ namespace RegistroVisitantes.Controllers
                     tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes)).OrderBy(x => x.ID_RESERVACION);
                 }
                 V_RESERVACION num = BDRegistro.V_RESERVACION.Find(idRes);
-                ViewBag.idRes = num.NUMERO;
+                ViewBag.num = num.NUMERO;
+                ViewBag.idRes = idRes;                
             }          
             else
             {
@@ -122,7 +124,6 @@ namespace RegistroVisitantes.Controllers
                     tabla = BDRegistro.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
                 }
             }
-
             int Size_Of_Page = 10;
             int No_Of_Page = (Pagina ?? 1);
             return View(tabla.ToPagedList(No_Of_Page, Size_Of_Page));

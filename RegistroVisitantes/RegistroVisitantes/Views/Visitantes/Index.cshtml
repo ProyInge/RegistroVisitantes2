@@ -11,18 +11,26 @@
 
 @if (ViewBag.idRes != null)
 {
-    <h3>Reservación:  @ViewBag.idRes</h3>
+    <h3>Reservación:  @ViewBag.num</h3>
 }
 
-@using (Html.BeginForm())
+
+<div class="col-sm-8">
+    @using (Html.BeginForm())
 {
     <p>
         Buscar por Número de reservación:
-        <input type="text" name="numRes" id="numRes" class="form-control" style="display:inline"/>
+        <input type="text" name="numRes" id="numRes" class="form-control" style="display:inline" />
         <button type="submit" class="btn btn-success">
             <i class="fa fa-search"></i>
         </button>
     </p>
+}
+</div>
+
+@if (ViewBag.idRes != null && !((string)ViewBag.idRes).IsEmpty() && (string)Session["Rol"]=="S")
+{
+    @Html.ActionLink("Agregar visitante", "Index", "Formulario", new {idRes = ViewBag.idRes}, new { @class = "btn btn-success", @style = "float:right;" })
 }
 
 <table class="table table-bordered table-condensed">
@@ -108,7 +116,7 @@
                         </td>
                         @:</tr>
                     }
-</table>
+</table>    
 
 <div id="printerDiv" style="display:none"></div>
 
