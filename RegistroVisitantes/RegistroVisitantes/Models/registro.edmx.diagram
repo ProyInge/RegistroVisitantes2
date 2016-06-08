@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8896fd2a592d4e2a81d80e8bf457fccc" Name="Diagram1" ZoomLevel="84">
+      <Diagram DiagramId="8896fd2a592d4e2a81d80e8bf457fccc" Name="Diagram1" ZoomLevel="81">
         <EntityTypeShape EntityType="Model.PERSONA" Width="1.5" PointX="3.75" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.USUARIO" Width="1.5" PointX="12.5" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.V_ESTACION" Width="1.5" PointX="15" PointY="3.5" IsExpanded="true" />
@@ -13,9 +13,9 @@
         <EntityTypeShape EntityType="Model.INFOVISITA" Width="1.5" PointX="5.75" PointY="0.5" />
         <AssociationConnector Association="Model.INFOVISITA_PERSONA_FK" />
         <AssociationConnector Association="Model.INFOVISITAV_RESERVACION" />
-        <EntityTypeShape EntityType="Model.V_CONTACTO" Width="1.5" PointX="9.875" PointY="5.75" />
+        <EntityTypeShape EntityType="Model.V_CONTACTO" Width="1.5" PointX="9.875" PointY="6.125" />
         <EntityTypeShape EntityType="Model.V_GRUPOANON" Width="1.5" PointX="9.875" PointY="0.5" />
-        <EntityTypeShape EntityType="Model.V_GRUPORSRV" Width="1.5" PointX="9.875" PointY="2.75" />
+        <EntityTypeShape EntityType="Model.V_GRUPORSRV" Width="1.5" PointX="9.875" PointY="2.875" />
         <AssociationConnector Association="Model.V_RESERVACIONV_CONTACTO1" />
         <AssociationConnector Association="Model.V_RESERVACIONV_CONTACTO2" />
         <AssociationConnector Association="Model.V_RESERVACIONV_GRUPOANON" />
@@ -26,6 +26,7 @@
         <AssociationConnector Association="Model.PERSONAV_PAISES" />
         <AssociationConnector Association="Model.V_PAISESPERSONA" />
         <AssociationConnector Association="Model.V_INSTITUCIONV_PAISES" />
+        <EntityTypeShape EntityType="Model.REPORTE" Width="1.5" PointX="3.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

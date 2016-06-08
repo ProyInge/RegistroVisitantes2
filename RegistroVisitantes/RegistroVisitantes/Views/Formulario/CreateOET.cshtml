@@ -13,6 +13,7 @@ else
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
 
+
 <h2>@ViewResources.Resources.oet_titulo</h2>
 @using (Html.BeginForm("ChangeCulture", "Formulario", new { idRes = ViewBag.idRes }))
 {
@@ -62,9 +63,9 @@ else
                     @Html.ValidationMessageFor(model => model.PERSONA.APELLIDO, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.NACIONALIDAD, @ViewResources.Resources.oet_nacionalidad + ":", htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.PERSONA.NACIONALIDAD, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PERSONA.NACIONALIDAD, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.PERSONA.NACIONALIDADI.GENTILICIO, @ViewResources.Resources.oet_nacionalidad, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.PERSONA.NACIONALIDADI.GENTILICIO, new { htmlAttributes = new { @class = "form-control", @id = "nacions", @name = "nacions" } })
+                    @Html.ValidationMessageFor(model => model.PERSONA.NACIONALIDADI.GENTILICIO, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.PERSONA.CEDULA, @ViewResources.Resources.oet_id + ":", htmlAttributes: new { @class = "control-label " })
@@ -77,16 +78,10 @@ else
                     @Html.ValidationMessageFor(model => model.PERSONA.TITULO, "", new { @class = "text-danger" })
                 </div>
 
-                <div class="form-group  col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.CIUDAD, @ViewResources.Resources.oet_ciudad + ":", htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.PERSONA.CIUDAD, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PERSONA.CIUDAD, "", new { @class = "text-danger" })
-                </div>
-
                 <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.PAIS, @ViewResources.Resources.oet_pais + ":", htmlAttributes: new { @class = "control-label " })
-                    @Html.EditorFor(model => model.PERSONA.PAIS, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PERSONA.PAIS, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.PERSONA.PAISI.NOMBRE, @ViewResources.Resources.oet_pais, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.PERSONA.PAISI.NOMBRE, new { htmlAttributes = new { @class = "form-control", @id = "paises", @name = "paises" } })
+                    @Html.ValidationMessageFor(model => model.PERSONA.PAISI.NOMBRE, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group col-sm-6">
@@ -134,9 +129,9 @@ else
 
 
                 <div class="form-group col-sm-6">
-                    @Html.LabelFor(model => model.PERSONA.INSTITUCION, @ViewResources.Resources.oet_institucion + ":", htmlAttributes: new { @class = "control-label " })
-                    @Html.EditorFor(model => model.PERSONA.INSTITUCION, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PERSONA.INSTITUCION, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, @ViewResources.Resources.oet_institucion, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, new { htmlAttributes = new { @class = "form-control", @id = "insts", @name = "insts" } })
+                    @Html.ValidationMessageFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -301,9 +296,71 @@ else
 
 @section Scripts {
     <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")" type="text/javascript"></script>
-
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.14/themes/smoothness/jquery-ui.css" />
+    <script language="javascript" type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.5.1.min.js"></script>
+    <script language="javascript" type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.14/jquery-ui.min.js"></script>
     <script type="text/javascript">
+        String.prototype.toProperCase = function () {
+            return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        };
         $(document).ready(function () {
+            $("#insts").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Formulario/Instituciones",
+                        type: "POST",
+                        dataType: "json",
+                        data: { term: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.FULL_NAME+"\t( "+item.NOMBRE.toLowerCase().toProperCase()+")", value: item.FULL_NAME, data: item.CAT_INSTITUCION };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "No hay resultados", results: ""
+                }
+            });
+            $("#paises").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Formulario/Paises",
+                        type: "POST",
+                        dataType: "json",
+                        data: { term: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.NOMBRE.toLowerCase().toProperCase(), value: item.NOMBRE.toLowerCase().toProperCase(), data: item.CAT_PAISES };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "No hay resultados", results: ""
+                }
+            });
+            $("#nacions").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Formulario/Nacionalidades",
+                        type: "POST",
+                        dataType: "json",
+                        data: { term: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.GENTILICIO.toLowerCase().toProperCase(), value: item.GENTILICIO.toLowerCase().toProperCase(), data: item.CAT_PAISES };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "No hay resultados", results: ""
+                }
+            });
             $('#btnAjax').click(function () {
                 $.ajax({
                     type: 'GET',
@@ -329,6 +386,6 @@ else
                 }
             });
         });
-
     </script>
+
 }

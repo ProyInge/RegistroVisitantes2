@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for Oracle database
 -- --------------------------------------------------
--- Date Created: 27/05/2016 13:28:31
+-- Date Created: 07/06/2016 14:42:51
 -- Generated from EDMX file: C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\Models\registro.edmx
 -- --------------------------------------------------
 
@@ -18,9 +18,9 @@
 
 -- DROP TABLE "REGISTRO"."PERSONA";
 
--- DROP TABLE "REGISTRO"."USUARIO";
+-- DROP TABLE "REGISTRO"."REPORTE";
 
--- DROP TABLE "REGISTRO"."V_PAISES";
+-- DROP TABLE "REGISTRO"."USUARIO";
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -194,6 +194,17 @@ CREATE TABLE "REGISTRO"."V_PAISES" (
    "GENTILICIO" VARCHAR2(400 CHAR) 
 );
 
+-- Creating table 'REPORTE'
+CREATE TABLE "REGISTRO"."REPORTE" (
+   "ID" NUMBER(38) NOT NULL,
+   "FECHADESDE" DATE ,
+   "FECHAHASTA" DATE ,
+   "ANFITRIONA" VARCHAR2(255 CHAR) ,
+   "ESTACION" VARCHAR2(26 CHAR) ,
+   "TIPO" VARCHAR2(2 CHAR) ,
+   "NACIONALIDAD" VARCHAR2(150 CHAR) 
+);
+
 
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
@@ -275,6 +286,14 @@ ADD CONSTRAINT "PK_V_INSTITUCION"
 ALTER TABLE "REGISTRO"."V_PAISES"
 ADD CONSTRAINT "PK_V_PAISES"
    PRIMARY KEY ("ISO" )
+   ENABLE
+   VALIDATE;
+
+
+-- Creating primary key on "ID"in table 'REPORTE'
+ALTER TABLE "REGISTRO"."REPORTE"
+ADD CONSTRAINT "PK_REPORTE"
+   PRIMARY KEY ("ID" )
    ENABLE
    VALIDATE;
 
@@ -422,6 +441,20 @@ ADD CONSTRAINT "FK_V_PAISESPERSONA"
 CREATE INDEX "IX_FK_V_PAISESPERSONA"
 ON "REGISTRO"."PERSONA"
    ("PAIS");
+
+-- Creating foreign key on "COUNTRY" in table 'V_INSTITUCION'
+ALTER TABLE "REGISTRO"."V_INSTITUCION"
+ADD CONSTRAINT "FK_V_INSTITUCIONV_PAISES"
+   FOREIGN KEY ("COUNTRY")
+   REFERENCES "REGISTRO"."V_PAISES"
+       ("ISO")
+   ENABLE
+   VALIDATE;
+
+-- Creating index for FOREIGN KEY 'FK_V_INSTITUCIONV_PAISES'
+CREATE INDEX "IX_FK_V_INSTITUCIONV_PAISES"
+ON "REGISTRO"."V_INSTITUCION"
+   ("COUNTRY");
 
 -- --------------------------------------------------
 -- Script has ended

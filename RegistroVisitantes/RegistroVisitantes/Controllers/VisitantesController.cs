@@ -343,7 +343,7 @@ namespace RegistroVisitantes.Controllers
                     case "Vegan":
                     case "Vegano":
                         listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_vegano, Value = "Vegan" });
-                        listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
+                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
                         listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vege, Value = ViewResources.Resources.oet_vege });
                         break;
 
@@ -440,7 +440,8 @@ namespace RegistroVisitantes.Controllers
             if (iInfoVisita == null)
             {
                 return HttpNotFound();
-            }else
+            }
+            else
             {
                 var listSexo = new List<SelectListItem>();
                 if (iInfoVisita.PERSONA.GENERO.Equals("0"))
@@ -478,6 +479,7 @@ namespace RegistroVisitantes.Controllers
                         break;
                 }
                 ViewBag.listDieta = listDieta;
+                ViewData["DIETA"] = listDieta;
                 ViewBag.Carne = iInfoVisita.CARNE;
                 ViewBag.Pollo = iInfoVisita.POLLO;
                 ViewBag.Pescado = iInfoVisita.PESCADO;
@@ -503,11 +505,11 @@ namespace RegistroVisitantes.Controllers
         */
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditOET(INFOVISITA infov, FormCollection collection)
+        public ActionResult EditOET(INFOVISITA infov, FormCollection collection,string genero)
         {
             if (ModelState.IsValid)
             {
-                if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
+                /*if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
                 {
                     infov.PERSONA.GENERO = '1'.ToString();
 
@@ -515,21 +517,30 @@ namespace RegistroVisitantes.Controllers
                 else
                 {
                     infov.PERSONA.GENERO = '0'.ToString();
+                }*/
+
+                if (genero == ViewResources.Resources.oet_fem) // si es femenino
+                {
+                    infov.PERSONA.GENERO = '1'.ToString();
+                }
+                else
+                {
+                    infov.PERSONA.GENERO = '0'.ToString(); //es masculino
                 }
 
                 string nominst = (string)collection["PERSONA.INSTITUCIONI.FULL_NAME"];
                 V_INSTITUCION inst = BDRegistro.V_INSTITUCION.Where(x => String.Equals(x.FULL_NAME, nominst)).FirstOrDefault();
-                infov.PERSONA.INSTITUCION = inst.CAT_INSTITUCION;
+                infov.PERSONA.INSTITUCION = (inst == null) ? (int?)null : inst.CAT_INSTITUCION;
                 infov.PERSONA.INSTITUCIONI = inst;
 
                 string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); ;
                 V_PAISES pais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
-                infov.PERSONA.PAIS = pais.ISO;
+                infov.PERSONA.PAIS = (pais == null) ? null : pais.ISO;
                 infov.PERSONA.PAISI = pais;
 
                 string gentpais = (string)collection["PERSONA.NACIONALIDADI.GENTILICIO"].ToUpper();
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
-                infov.PERSONA.NACIONALIDAD = nacion.ISO;
+                infov.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 infov.PERSONA.NACIONALIDADI = nacion;
 
                 infov.CARNE = true;
@@ -553,13 +564,13 @@ namespace RegistroVisitantes.Controllers
         */
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditESINTRO(INFOVISITA infov, FormCollection collection)
+        public ActionResult EditESINTRO(INFOVISITA infov, FormCollection collection, string genero)
         {
 
             if (ModelState.IsValid)
             {
 
-                if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
+               /* if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
                 {
                     infov.PERSONA.GENERO = '1'.ToString();
 
@@ -567,7 +578,17 @@ namespace RegistroVisitantes.Controllers
                 else
                 {
                     infov.PERSONA.GENERO = '0'.ToString();
+                }*/
+
+                if (genero == ViewResources.Resources.oet_fem) // si es femenino
+                {
+                    infov.PERSONA.GENERO = '1'.ToString();
                 }
+                else
+                {
+                    infov.PERSONA.GENERO = '0'.ToString(); //es masculino
+                }
+
                 if (infov.DIETA.Equals(ViewResources.Resources.oet_sinrestr))
                 {
                     infov.DIETA = "No Restriction";
@@ -585,12 +606,12 @@ namespace RegistroVisitantes.Controllers
 
                 string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); ;
                 V_PAISES pais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
-                infov.PERSONA.PAIS = pais.ISO;
+                infov.PERSONA.PAIS = (pais == null) ? null : pais.ISO;
                 infov.PERSONA.PAISI = pais;
 
                 string gentpais = (string)collection["PERSONA.NACIONALIDADI.GENTILICIO"].ToUpper();
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
-                infov.PERSONA.NACIONALIDAD = nacion.ISO;
+                infov.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 infov.PERSONA.NACIONALIDADI = nacion;
 
                 BDRegistro.Entry(infov).State = EntityState.Modified;
