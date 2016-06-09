@@ -1,64 +1,295 @@
-﻿@model IEnumerable<RegistroVisitantes.Models.REPORTE>
+﻿@model RegistroVisitantes.Models.REPORTE
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <h1><strong>Crear reportes</strong></h1>
+    <hr />
+    <button style="margin-bottom: 20px;" class="btn btn-success" id="togglePanelParametros">Esconder parámetros</button>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FECHADESDE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FECHAHASTA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ANFITRIONA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ESTACION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TIPO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NACIONALIDAD)
-        </th>
-        <th></th>
-    </tr>
+    <div class="row" id="myColumns">
+        <div class="col-lg-3" id="paramPanel">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span style="font-size: 30px;"><strong>Parámetros:</strong></span>
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FECHADESDE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FECHAHASTA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ANFITRIONA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ESTACION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TIPO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NACIONALIDAD)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+                            <div class="form-group">
+                                <label for="FECHADESDE">Desde:</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" style="position: relative; z-index: 100000;width: 150px;" type="text" name="FECHADESDE" id="FECHADESDE" value="@string.Format("{0:d}", ViewBag.fromDate)" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="FECHAHASTA">Hasta:</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" style="position: relative; z-index: 100000;width: 150px;" type="text" name="FECHAHASTA" id="FECHAHASTA" value="@string.Format("{0:d}", ViewBag.toDate)" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ANFITRIONA">Compañia:</label>
+                                <select class="form-control" id="ANFITRIONA" name="ANFITRIONA">
+                                    <option value="01">ESINTRO</option>
+                                    <option value="02">OET</option>
+                                    <option value="00">TODAS</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ESTACION">Estación:</label>
+                                <select class="form-control" id="ESTACION" name="ESTACION">
+                                    <option value="01">La Selva</option>
+                                    <option value="02">Palo Verde</option>
+                                    <option value="03">Las Cruces</option>
+                                    <option value="04">Central</option>
+                                    <option value="00">Todas</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="TIPO">Tipo de visitante:</label>
+                                <select class="form-control" id="TIPO" name="TIPO">
+                                    <option value="01">Staff</option>
+                                    <option value="02">Investigador</option>
+                                    <option value="03">Grupo Educativo</option>
+                                    <option value="04">Otros visitantes</option>
+                                    <option value="00">Todos</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="NACIONALIDAD">Nacionalidad:</label>
+                                <select class="form-control" id="NACIONALIDAD" name="NACIONALIDAD">
+                                    <option value="01">Costarricense</option>
+                                    <option value="02">Estadounidense</option>
+                                    <option value="03">Francés</option>
+                                    <option value="00">Todos</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-success" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9" id="resPanel">
+            <div class="panel panel-default" id="panelResultados">
+                <div class="panel-heading">
+                    <span style="font-size: 30px;"><strong>Resultados:</strong></span>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered" id="tablaResultados">
+                            <thead>
+                                <tr>
+                                    <th>Compañía</th>
+                                    <th>Estación</th>
+                                    <th>Reservación</th>
+                                    <th>Fecha entrada</th>
+                                    <th>Fecha salida</th>
+                                    <th>Tipo Visitante</th>
+                                    <th>Nacionalidad</th>
+                                    <th>Nombre Completo</th>
+                                    <th>Correo electrónico</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span style="font-size: 30px;"><strong>Totales:</strong></span>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Compañía</th>
+                                        <th>Número de reservaciones</th>
+                                        <th>Número de visitantes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>OET</td>
+                                        <td style="text-align:center">100</td>
+                                        <td style="text-align:center">300</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ESINTRO</td>
+                                        <td style="text-align:center">26</td>
+                                        <td style="text-align:center">100</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Total</strong></td>
+                                        <td style="text-align:center"><strong>126</strong></td>
+                                        <td style="text-align:center"><strong>400</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Estación</th>
+                                        <th>Número de reservaciones</th>
+                                        <th>Número de visitantes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>La Selva</td>
+                                        <td style="text-align:center">80</td>
+                                        <td style="text-align:center">250</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Palo Verde</td>
+                                        <td style="text-align:center">15</td>
+                                        <td style="text-align:center">60</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Las Cruces</td>
+                                        <td style="text-align:center">6</td>
+                                        <td style="text-align:center">29</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Central</td>
+                                        <td style="text-align:center">10</td>
+                                        <td style="text-align:center">61</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Total</strong></td>
+                                        <td style="text-align:center"><strong>126</strong></td>
+                                        <td style="text-align:center"><strong>400</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <button class="btn btn-success">Imprimir</button>
+            <button class="btn btn-success">Exportar</button>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 100px;">
+        <div class="col-lg-8 col-lg-offset-2"> </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#FECHADESDE").datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOn: "button",
+                onSelect: function (date) {
+                    var dt1 = $('#FECHADESDE').datepicker('getDate');
+                    var dt2 = $('#FECHAHASTA').datepicker('getDate');
+                    if (dt2 <= dt1) {
+                        dt1.setDate(dt1.getDate() + 1);
+                        $('#FECHAHASTA').datepicker('setDate', dt1);
+                    } else {
+                        dt1.setDate(dt1.getDate() + 1);
+                    }
+                    $('#FECHAHASTA').datepicker('option', 'minDate', dt1);
+                }
+            });
+            $('#FECHAHASTA').datepicker({
+                dateFormat: 'dd/mm/yy',
+                showOn: "button"
+            });
+            var date2 = $('#FECHADESDE').datepicker('getDate');
+            $('#FECHAHASTA').datepicker('option', 'minDate', date2);
+
+
+            var $myCols = $("#myColumns");
+            $("#togglePanelParametros").click(function () {
+                $("#paramPanel").toggle();
+                $(this).text(function (i, text) {
+                    return text === "Esconder parámetros" ? "Mostrar parámetros" : "Esconder parámetros";
+                })
+                if ($("#paramPanel").is(":visible")) {
+                    $("#resPanel").removeClass("col-lg-12");
+                    $("#resPanel").addClass("col-lg-9");
+                }
+                else {
+                    $("#resPanel").removeClass("col-lg-9");
+                    $("#resPanel").addClass("col-lg-12");
+                }
+            });
+
+        });
+    </script>
 }
-
-</table>

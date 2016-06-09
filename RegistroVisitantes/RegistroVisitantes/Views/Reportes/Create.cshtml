@@ -27,56 +27,63 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FECHADESDE, new { @class = "control-label col-md-2" })
+            <label for="FECHADESDE">Desde:</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FECHADESDE)
-                @Html.ValidationMessageFor(model => model.FECHADESDE)
+                <input class="form-control" style="position: relative; z-index: 100000;width: 150px;" type="text" name="FECHADESDE" id="FECHADESDE" value="@string.Format("{0:d}", ViewBag.fromDate)" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FECHAHASTA, new { @class = "control-label col-md-2" })
+            <label for="FECHAHASTA">Hasta:</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FECHAHASTA)
-                @Html.ValidationMessageFor(model => model.FECHAHASTA)
+                <input class="form-control" style="position: relative; z-index: 100000;width: 150px;" type="text" name="FECHAHASTA" id="FECHAHASTA" value="@string.Format("{0:d}", ViewBag.toDate)" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ANFITRIONA, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ANFITRIONA)
-                @Html.ValidationMessageFor(model => model.ANFITRIONA)
-            </div>
+            <label for="ANFITRIONA">Compañia:</label>
+            <select class="form-control" id="ANFITRIONA" name="ANFITRIONA">
+                <option value="01">ESINTRO</option>
+                <option value="02">OET</option>
+                <option value="00">TODAS</option>
+            </select>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ESTACION, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ESTACION)
-                @Html.ValidationMessageFor(model => model.ESTACION)
-            </div>
+            <label for="ESTACION">Estación:</label>
+            <select class="form-control" id="ESTACION" name="ESTACION">
+                <option value="01">La Selva</option>
+                <option value="02">Palo Verde</option>
+                <option value="03">Las Cruces</option>
+                <option value="04">Central</option>
+                <option value="00">Todas</option>
+            </select>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TIPO, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TIPO)
-                @Html.ValidationMessageFor(model => model.TIPO)
-            </div>
+            <label for="TIPO">Tipo de visitante:</label>
+            <select class="form-control" id="TIPO" name="TIPO">
+                <option value="01">Staff</option>
+                <option value="02">Investigador</option>
+                <option value="03">Grupo Educativo</option>
+                <option value="04">Otros visitantes</option>
+                <option value="00">Todos</option>
+            </select>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NACIONALIDAD, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NACIONALIDAD)
-                @Html.ValidationMessageFor(model => model.NACIONALIDAD)
-            </div>
+            <label for="NACIONALIDAD">Nacionalidad:</label>
+            <select class="form-control" id="NACIONALIDAD" name="NACIONALIDAD">
+                <option value="01">Costarricense</option>
+                <option value="02">Estadounidense</option>
+                <option value="03">Francés</option>
+                <option value="00">Todos</option>
+            </select>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </div>
     </div>
@@ -247,27 +254,27 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $("#fromDate").datepicker({
+            $("#FECHADESDE").datepicker({
                 dateFormat: 'dd/mm/yy',
                 showOn: "button",
                 onSelect: function (date) {
-                    var dt1 = $('#fromDate').datepicker('getDate');
-                    var dt2 = $('#toDate').datepicker('getDate');
+                    var dt1 = $('#FECHADESDE').datepicker('getDate');
+                    var dt2 = $('#FECHAHASTA').datepicker('getDate');
                     if (dt2 <= dt1) {
                         dt1.setDate(dt1.getDate() + 1);
-                        $('#toDate').datepicker('setDate', dt1);
+                        $('#FECHAHASTA').datepicker('setDate', dt1);
                     } else {
                         dt1.setDate(dt1.getDate() + 1);
                     }
-                    $('#toDate').datepicker('option', 'minDate', dt1);
+                    $('#FECHAHASTA').datepicker('option', 'minDate', dt1);
                 }
             });
-            $('#toDate').datepicker({
+            $('#FECHAHASTA').datepicker({
                 dateFormat: 'dd/mm/yy',
                 showOn: "button"
             });
-            var date2 = $('#fromDate').datepicker('getDate');
-            $('#toDate').datepicker('option', 'minDate', date2);
+            var date2 = $('#FECHADESDE').datepicker('getDate');
+            $('#FECHAHASTA').datepicker('option', 'minDate', date2);
 
 
             var $myCols = $("#myColumns");
