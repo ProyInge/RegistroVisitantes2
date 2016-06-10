@@ -10,6 +10,7 @@ using System.Net;
 using ViewResources;
 using System.Threading;
 using System.Globalization;
+using System.Data.Entity;
 
 namespace RegistroVisitantes.Controllers
 {
@@ -114,12 +115,24 @@ namespace RegistroVisitantes.Controllers
             if (IsValidEmail(ajaxInput)) //Es un email
             {
                 PERSONA persona = BDRegistro.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
-                return PartialView(persona);
+                //return PartialView(persona);
+                INFOVISITA infov = new INFOVISITA();
+                ViewBag.nombre = persona.NOMBRE;
+                return PartialView(infov);
             }
             else
             {   //Es una cedula
                 PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
-                return PartialView(persona);
+                //return PartialView(persona);
+                INFOVISITA infov = new INFOVISITA();
+                ViewBag.nombre = persona.NOMBRE;
+                ViewBag.apellido = persona.APELLIDO;
+                ViewBag.email = persona.EMAIL;
+                ViewBag.cedula = persona.CEDULA;
+                ViewBag.nacionalidad = persona.NACIONALIDAD;
+                ViewBag.direccion = persona.DIRECCION;
+                ViewBag.telefono = persona.TELEFONO;
+                return PartialView(infov);
             }
             
         }
@@ -134,13 +147,18 @@ namespace RegistroVisitantes.Controllers
         {
             if (IsValidEmail(ajaxInput)) //Es un email
             {
-                PERSONA persona = BDRegistro.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
-                return PartialView(persona);
+                // PERSONA persona = BDRegistro.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
+                //return PartialView(persona);
+                INFOVISITA infov = BDRegistro.INFOVISITA.Where(p => p.PERSONA.EMAIL == ajaxInput).FirstOrDefault();
+                return PartialView(infov);
             }
             else
             {   //Es una cedula
-                PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
-                return PartialView(persona);
+                //PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
+                //return PartialView(persona);
+                INFOVISITA infov = BDRegistro.INFOVISITA.Where(p => p.PERSONA.CEDULA == ajaxInput).FirstOrDefault();
+                return PartialView(infov);
+
             }
         }
 
@@ -228,12 +246,22 @@ namespace RegistroVisitantes.Controllers
 
             }
             form.ESTADO = true;
-
+            form.CEDULA = form.PERSONA.CEDULA;
+            
             if (ModelState.IsValid)
             {
+                
                 var db = BDRegistro;
-                db.INFOVISITA.Add(form);              
+                
+                var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
+                db.INFOVISITA.Add(form);
+                if (cedulaP != null)
+                {                  
+                    db.PERSONA.Attach(form.PERSONA);
 
+                }
+
+                
                 try
                 {
                     db.SaveChanges();
@@ -327,13 +355,20 @@ namespace RegistroVisitantes.Controllers
 
             form.ID_RESERVACION = idRes;
             form.CEDULA = form.PERSONA.CEDULA;
-            form.ESTADO = true;            
+            form.ESTADO = true;
 
             if (ModelState.IsValid)
             {
+
                 var db = BDRegistro;
-                db.INFOVISITA.Add(form);
                 
+                var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
+                db.INFOVISITA.Add(form);
+                if (cedulaP != null)
+                {
+                    db.PERSONA.Attach(form.PERSONA);
+
+                }                
                 try
                 {
                     db.SaveChanges(); //se guarda la información
