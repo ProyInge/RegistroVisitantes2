@@ -98,11 +98,11 @@
                         </td>
                         <td align="center">
                             <input type="checkbox" name="firma" value="firma" class="form-control"
-                                   @(item.ESTADO == false ? "disabled = \"disabled \" " : "")>
+                                   @(item.ESTADO == "I" ? "disabled = \"disabled \" " : "")>
                         </td>
                         <td align="center">
 
-                            <button class='mylink btn btn-success' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'  @(item.ESTADO == false ? "disabled = \"disabled \" " : "")>
+                            <button class='mylink btn btn-success' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'  @(item.ESTADO == "I" ? "disabled = \"disabled \" " : "")>
                                     <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
                                 </button>
                         </td>
