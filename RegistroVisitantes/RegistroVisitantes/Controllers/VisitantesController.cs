@@ -710,14 +710,14 @@ namespace RegistroVisitantes.Controllers
                 return HttpNotFound();
             }
 
-            //if (iInfoVisita.ESTADO == 'A')
-            //{
-            //    iInfoVisita.ESTADO = 'I';
-            //}
-            //else if (iInfoVisita.ESTADO == 'I')
-            //{
-            //    iInfoVisita.ESTADO == 'A';
-            //}
+            if (iInfoVisita.ESTADO == "A")
+            {
+                iInfoVisita.ESTADO = "I";
+            }
+            else if (iInfoVisita.ESTADO == "I")
+            {
+                iInfoVisita.ESTADO = "A";
+            }
             BDRegistro.SaveChanges();
 
             return RedirectToAction("Index");
