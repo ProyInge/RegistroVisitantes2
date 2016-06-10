@@ -202,11 +202,11 @@ namespace RegistroVisitantes.Controllers
             form.ID_RESERVACION= idRes;
             if (genero == ViewResources.Resources.oet_fem) // si es femenino
             {
-                form.PERSONA.GENERO = '1'.ToString();
+                form.PERSONA.GENERO = 'F'.ToString();
             }
             else
             {
-                form.PERSONA.GENERO = '0'.ToString(); //es masculino
+                form.PERSONA.GENERO = 'M'.ToString(); //es masculino
             }
             if (dietas == ViewResources.Resources.oet_sinrestr)//si selecciona sin restricciones de dieta
             {
@@ -321,12 +321,12 @@ namespace RegistroVisitantes.Controllers
 
             if (form.PERSONA.GENERO == ViewResources.Resources.oet_fem)//si es femenino
             {
-                form.PERSONA.GENERO = '1'.ToString();
+                form.PERSONA.GENERO = 'F'.ToString();
 
             }
             else
             {
-                form.PERSONA.GENERO = '0'.ToString(); //masculino
+                form.PERSONA.GENERO = 'M'.ToString(); //masculino
             }
 
             form.ID_RESERVACION = idRes;

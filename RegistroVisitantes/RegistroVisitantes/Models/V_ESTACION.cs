@@ -24,6 +24,8 @@ public partial class V_ESTACION
 
         this.USUARIO = new HashSet<USUARIO>();
 
+        this.RESERVACIONES = new HashSet<V_RESERVACION>();
+
     }
 
 
@@ -40,6 +42,10 @@ public partial class V_ESTACION
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<USUARIO> USUARIO { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<V_RESERVACION> RESERVACIONES { get; set; }
 
 }
 
