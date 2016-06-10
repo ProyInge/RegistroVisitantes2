@@ -22,7 +22,7 @@ public partial class V_RESERVACION
     public V_RESERVACION()
     {
 
-        this.INFOVISITA = new HashSet<INFOVISITA>();
+        this.INFOVISITAS = new HashSet<INFOVISITA>();
 
     }
 
@@ -91,10 +91,6 @@ public partial class V_RESERVACION
 
 
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<INFOVISITA> INFOVISITA { get; set; }
-
     public virtual V_CONTACTO RESPONSABLEI { get; set; }
 
     public virtual V_CONTACTO SOLICITANTEI { get; set; }
@@ -104,6 +100,10 @@ public partial class V_RESERVACION
     public virtual V_GRUPORSRV GRUPOI { get; set; }
 
     public virtual V_ESTACION ESTACIONI { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<INFOVISITA> INFOVISITAS { get; set; }
 
 }
 
