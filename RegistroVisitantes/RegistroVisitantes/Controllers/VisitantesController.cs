@@ -61,8 +61,13 @@ namespace RegistroVisitantes.Controllers
             IQueryable<INFOVISITA> tabla;
             if (numRes != null && !numRes.Equals(""))
             {
+                V_RESERVACION reservacion = new V_RESERVACION();
                 var resQuery = BDRegistro.V_RESERVACION.Where(x => String.Equals(x.NUMERO, numRes));
-                V_RESERVACION reservacion = resQuery.First();
+                if (resQuery != null)
+                {
+                    reservacion = resQuery.First();
+                }
+
                 if (Session["Rol"] != null)
                 {
                     string rol = (string)Session["IdEstacion"];
@@ -704,10 +709,15 @@ namespace RegistroVisitantes.Controllers
             {
                 return HttpNotFound();
             }
-            if (iInfoVisita.ESTADO != "F")
-            {
-                iInfoVisita.ESTADO = iInfoVisita.ESTADO == "A" ? "I" : "A";
-            }
+
+            //if (iInfoVisita.ESTADO == 'A')
+            //{
+            //    iInfoVisita.ESTADO = 'I';
+            //}
+            //else if (iInfoVisita.ESTADO == 'I')
+            //{
+            //    iInfoVisita.ESTADO == 'A';
+            //}
             BDRegistro.SaveChanges();
 
             return RedirectToAction("Index");
