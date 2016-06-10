@@ -26,6 +26,8 @@ public partial class V_PAISES
 
         this.PAISPRS = new HashSet<PERSONA>();
 
+        this.INSTITUCIONES = new HashSet<V_INSTITUCION>();
+
     }
 
 
@@ -46,6 +48,10 @@ public partial class V_PAISES
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<PERSONA> PAISPRS { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<V_INSTITUCION> INSTITUCIONES { get; set; }
 
 }
 

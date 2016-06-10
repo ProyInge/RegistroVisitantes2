@@ -280,7 +280,7 @@ namespace RegistroVisitantes.Controllers
                 ViewBag.Message = usr.NOMBRE + " " + usr.APELLIDO + " se modificó exitosamente.";
 
             }
-            return Logueado();
+            return RedirectToAction("Index", "Home");
         }
 
         /*
@@ -289,7 +289,7 @@ namespace RegistroVisitantes.Controllers
         * Devuelve: La vista del formulario con la información modificada
         */
         [AllowAnonymous]
-        public ActionResult Ingresar()
+        public ActionResult Ingresar(string ReturnUrl)
         {
             if(Request.IsAuthenticated) { 
                 FormsAuthentication.SignOut();
@@ -316,7 +316,7 @@ namespace RegistroVisitantes.Controllers
         * Devuelve: Home en caso de un login exitoso y la página de ingreso en otro caso
         */
         [HttpPost]
-        public ActionResult Ingresar(USUARIO user)
+        public ActionResult Ingresar(USUARIO user, string ReturnUrl)
         {
             USUARIO usr = db.USUARIO.Where(u => u.USUAR == user.USUAR && u.CONTRASENA == user.CONTRASENA).FirstOrDefault();
             if (usr != null)
@@ -335,15 +335,14 @@ namespace RegistroVisitantes.Controllers
                 Session["Genero"] = usr.SEXO == "M" ? "o" : "a";
                 FormsAuthentication.SetAuthCookie(usr.USUAR.ToString(), true);
                 resetRequest();
-                return RedirectToAction("Logueado");
+                return RedirectToAction("Logueado", new { ReturnUrl = ReturnUrl });
             }
             else
             {
                 ModelState.AddModelError("", "El nombre de usuario y la contraseña no coinciden");
+                return View();
             }
 
-            
-            return View();
         }
 
         /*
@@ -371,15 +370,23 @@ namespace RegistroVisitantes.Controllers
         * Devuelve: La vista de login si el usuario no está logueado, la vista Home en cualquier otro caso
         */
         [Authorize]
-        public ActionResult Logueado()
+        public ActionResult Logueado(string ReturnUrl)
         {
             if (Session["Id"] != null)
             {
-                return RedirectToAction("Index", "Home");
+                if(ReturnUrl!=null)
+                {
+                    return Redirect(ReturnUrl);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                
             }
             else
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Ingresar");
             }
         }
     }

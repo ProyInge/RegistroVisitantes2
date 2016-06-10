@@ -193,6 +193,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\ReservasController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VisitantesController.cs" />
@@ -223,6 +224,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>registro.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\REPORTE.cs">
+      <DependentUpon>registro.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\USUARIO.cs">
       <DependentUpon>registro.tt</DependentUpon>
     </Compile>
@@ -249,6 +253,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Validacion\Validaciones.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Anterior.css" />
@@ -374,6 +379,11 @@
     <Content Include="Views\Shared\_LayoutForm.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Usuario\Delete.cshtml" />
+    <Content Include="Views\Reportes\Create.cshtml" />
+    <Content Include="Views\Reportes\Delete.cshtml" />
+    <Content Include="Views\Reportes\Details.cshtml" />
+    <Content Include="Views\Reportes\Edit.cshtml" />
+    <Content Include="Views\Reportes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

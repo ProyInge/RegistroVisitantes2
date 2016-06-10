@@ -72,7 +72,7 @@ public partial class INFOVISITA
 
     public Nullable<System.DateTime> EXPIRACION { get; set; }
 
-    public Nullable<bool> ESTADO { get; set; }
+    public string ESTADO { get; set; }
 
 
 

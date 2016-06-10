@@ -61,8 +61,13 @@ namespace RegistroVisitantes.Controllers
             IQueryable<INFOVISITA> tabla;
             if (numRes != null && !numRes.Equals(""))
             {
+                V_RESERVACION reservacion = new V_RESERVACION();
                 var resQuery = BDRegistro.V_RESERVACION.Where(x => String.Equals(x.NUMERO, numRes));
-                V_RESERVACION reservacion = resQuery.First();
+                if (resQuery != null)
+                {
+                    reservacion = resQuery.First();
+                }
+
                 if (Session["Rol"] != null)
                 {
                     string rol = (string)Session["IdEstacion"];
@@ -80,7 +85,8 @@ namespace RegistroVisitantes.Controllers
                     tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID)).OrderBy(x => x.ID_RESERVACION);
                 }
                 //V_RESERVACION num = BDRegistro.V_RESERVACION.Find(idRes);
-                ViewBag.idRes = reservacion.NUMERO;
+                ViewBag.num = reservacion.NUMERO;
+                ViewBag.idRes = idRes;
             }
             else if (idRes != null && !idRes.Equals(""))
             {
@@ -101,7 +107,8 @@ namespace RegistroVisitantes.Controllers
                     tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, idRes)).OrderBy(x => x.ID_RESERVACION);
                 }
                 V_RESERVACION num = BDRegistro.V_RESERVACION.Find(idRes);
-                ViewBag.idRes = num.NUMERO;
+                ViewBag.num = num.NUMERO;
+                ViewBag.idRes = idRes;                
             }          
             else
             {
@@ -122,7 +129,6 @@ namespace RegistroVisitantes.Controllers
                     tabla = BDRegistro.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
                 }
             }
-
             int Size_Of_Page = 10;
             int No_Of_Page = (Pagina ?? 1);
             return View(tabla.ToPagedList(No_Of_Page, Size_Of_Page));
@@ -170,7 +176,7 @@ namespace RegistroVisitantes.Controllers
             }
             else
             {
-                if (iInfoVisita.PERSONA.GENERO.Equals("0"))
+                if (iInfoVisita.PERSONA.GENERO.Equals("M"))
                 {
                     ViewBag.sexoList = ViewResources.Resources.oet_masc;
                 }
@@ -204,8 +210,17 @@ namespace RegistroVisitantes.Controllers
                 ViewBag.Cerdo = iInfoVisita.CERDO;
                 ViewBag.idRes = idR;
                 ViewBag.ced = cedula;
-            }
+                if (iInfoVisita.PERSONA.PAISI != null)
+                { 
+                    iInfoVisita.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.PAISI.NOMBRE));
+                }
+                if (iInfoVisita.PERSONA.NACIONALIDADI != null)
+                {
+                    iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO));
+                }
                 return View(iInfoVisita);
+            }
+            
         }
 
         /*
@@ -229,7 +244,7 @@ namespace RegistroVisitantes.Controllers
             else
             {
                
-                if (iInfoVisita.PERSONA.GENERO.Equals("0"))
+                if (iInfoVisita.PERSONA.GENERO.Equals("M"))
                 {
                     ViewBag.sexo = ViewResources.Resources.oet_masc;
                 }
@@ -255,6 +270,14 @@ namespace RegistroVisitantes.Controllers
                 ViewBag.Cerdo = iInfoVisita.CERDO;
                 ViewBag.idRes = idR;
                 ViewBag.ced = cedula;
+                if (iInfoVisita.PERSONA.PAISI != null)
+                {
+                    iInfoVisita.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.PAISI.NOMBRE));
+                }
+                if (iInfoVisita.PERSONA.NACIONALIDADI != null)
+                {
+                    iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO));
+                }
 
             }
             return View(iInfoVisita);
@@ -300,7 +323,7 @@ namespace RegistroVisitantes.Controllers
             else
             {
                 var listSexo = new List<SelectListItem>();
-                if (iInfoVisita.PERSONA.GENERO.Equals("0"))
+                if (iInfoVisita.PERSONA.GENERO.Equals("M"))
                 {
                     listSexo.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
                     listSexo.Add(new SelectListItem { Text = ViewResources.Resources.oet_fem, Value = ViewResources.Resources.oet_fem });
@@ -325,7 +348,7 @@ namespace RegistroVisitantes.Controllers
                     case "Vegan":
                     case "Vegano":
                         listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_vegano, Value = "Vegan" });
-                        listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
+                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
                         listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vege, Value = ViewResources.Resources.oet_vege });
                         break;
 
@@ -392,8 +415,17 @@ namespace RegistroVisitantes.Controllers
                 ViewBag.Cerdo = iInfoVisita.CERDO;
                 ViewBag.idRes = idRes;
                 ViewBag.ced = ced;
+                if (iInfoVisita.PERSONA.PAISI != null)
+                {
+                    iInfoVisita.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.PAISI.NOMBRE));
+                }
+                if (iInfoVisita.PERSONA.NACIONALIDADI != null)
+                {
+                    iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO));
+                }
+                return View(iInfoVisita);
             }
-            return View(iInfoVisita);
+            
         }
 
         /**
@@ -413,10 +445,11 @@ namespace RegistroVisitantes.Controllers
             if (iInfoVisita == null)
             {
                 return HttpNotFound();
-            }else
+            }
+            else
             {
                 var listSexo = new List<SelectListItem>();
-                if (iInfoVisita.PERSONA.GENERO.Equals("0"))
+                if (iInfoVisita.PERSONA.GENERO.Equals("M"))
                 {
                     listSexo.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
                     listSexo.Add(new SelectListItem { Text = ViewResources.Resources.oet_fem, Value = ViewResources.Resources.oet_fem });
@@ -451,10 +484,19 @@ namespace RegistroVisitantes.Controllers
                         break;
                 }
                 ViewBag.listDieta = listDieta;
+                ViewData["DIETA"] = listDieta;
                 ViewBag.Carne = iInfoVisita.CARNE;
                 ViewBag.Pollo = iInfoVisita.POLLO;
                 ViewBag.Pescado = iInfoVisita.PESCADO;
                 ViewBag.Cerdo = iInfoVisita.CERDO;
+                if (iInfoVisita.PERSONA.PAISI != null)
+                {
+                    iInfoVisita.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.PAISI.NOMBRE));
+                }
+                if (iInfoVisita.PERSONA.NACIONALIDADI != null)
+                {
+                    iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO));
+                }
             }
             return View(iInfoVisita);
         }
@@ -468,11 +510,11 @@ namespace RegistroVisitantes.Controllers
         */
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditOET(INFOVISITA infov)
+        public ActionResult EditOET(INFOVISITA infov, FormCollection collection)
         {
             if (ModelState.IsValid)
             {
-                if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
+                /*if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
                 {
                     infov.PERSONA.GENERO = '1'.ToString();
 
@@ -480,13 +522,36 @@ namespace RegistroVisitantes.Controllers
                 else
                 {
                     infov.PERSONA.GENERO = '0'.ToString();
+                }*/
+                string genero = collection["PERSONA.GENERO"];
+                if (genero == ViewResources.Resources.oet_fem) // si es femenino
+                {
+                    infov.PERSONA.GENERO = 'F'.ToString();
                 }
+                else
+                {
+                    infov.PERSONA.GENERO = 'M'.ToString(); //es masculino
+                }
+
+                string nominst = (string)collection["PERSONA.INSTITUCIONI.FULL_NAME"];
+                V_INSTITUCION inst = BDRegistro.V_INSTITUCION.Where(x => String.Equals(x.FULL_NAME, nominst)).FirstOrDefault();
+                infov.PERSONA.INSTITUCION = (inst == null) ? (int?)null : inst.CAT_INSTITUCION;
+                infov.PERSONA.INSTITUCIONI = inst;
+
+                string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); ;
+                V_PAISES pais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
+                infov.PERSONA.PAIS = (pais == null) ? null : pais.ISO;
+                infov.PERSONA.PAISI = pais;
+
+                string gentpais = (string)collection["PERSONA.NACIONALIDADI.GENTILICIO"].ToUpper();
+                V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
+                infov.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
+                infov.PERSONA.NACIONALIDADI = nacion;
 
                 infov.CARNE = true;
                 infov.POLLO = true;
                 infov.CERDO = true;
                 infov.PESCADO = true;
-
                 
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
@@ -504,21 +569,32 @@ namespace RegistroVisitantes.Controllers
         */
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditESINTRO(INFOVISITA infov)
+        public ActionResult EditESINTRO(INFOVISITA infov, FormCollection collection)
         {
 
             if (ModelState.IsValid)
             {
 
-                if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
-                {
-                    infov.PERSONA.GENERO = '1'.ToString();
+                /* if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
+                 {
+                     infov.PERSONA.GENERO = '1'.ToString();
 
+                 }
+                 else
+                 {
+                     infov.PERSONA.GENERO = '0'.ToString();
+                 }*/
+
+                string genero = collection["PERSONA.GENERO"];
+                if (genero == ViewResources.Resources.oet_fem) // si es femenino
+                {
+                    infov.PERSONA.GENERO = 'F'.ToString();
                 }
                 else
                 {
-                    infov.PERSONA.GENERO = '0'.ToString();
+                    infov.PERSONA.GENERO = 'M'.ToString(); //es masculino
                 }
+
                 if (infov.DIETA.Equals(ViewResources.Resources.oet_sinrestr))
                 {
                     infov.DIETA = "No Restriction";
@@ -533,6 +609,17 @@ namespace RegistroVisitantes.Controllers
                         infov.DIETA = "Vegan";
                     }
                 }
+
+                string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); ;
+                V_PAISES pais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
+                infov.PERSONA.PAIS = (pais == null) ? null : pais.ISO;
+                infov.PERSONA.PAISI = pais;
+
+                string gentpais = (string)collection["PERSONA.NACIONALIDADI.GENTILICIO"].ToUpper();
+                V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
+                infov.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
+                infov.PERSONA.NACIONALIDADI = nacion;
+
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
@@ -621,9 +708,16 @@ namespace RegistroVisitantes.Controllers
             if (iInfoVisita == null)
             {
                 return HttpNotFound();
-            }            
+            }
 
-            iInfoVisita.ESTADO = !iInfoVisita.ESTADO;
+            //if (iInfoVisita.ESTADO == 'A')
+            //{
+            //    iInfoVisita.ESTADO = 'I';
+            //}
+            //else if (iInfoVisita.ESTADO == 'I')
+            //{
+            //    iInfoVisita.ESTADO == 'A';
+            //}
             BDRegistro.SaveChanges();
 
             return RedirectToAction("Index");
@@ -644,6 +738,38 @@ namespace RegistroVisitantes.Controllers
         public ActionResult Refrescar()
         {
             return Redirect(Request.UrlReferrer.ToString());
+        }
+
+
+        public ActionResult Instituciones(string term)
+        {
+            var result = (  from a in BDRegistro.V_INSTITUCION
+                            join b in BDRegistro.V_PAISES on a.COUNTRY equals b.ISO
+                            where a.FULL_NAME.ToLower().Contains(term.ToLower()) || b.NOMBRE.ToLower().Contains(term.ToLower())
+                            select new { a.FULL_NAME, b.NOMBRE, a.CAT_INSTITUCION }).Distinct();
+            // Get Tags from database
+            return this.Json(result,
+                            JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Paises(string term)
+        {
+            var result = (from r in BDRegistro.V_PAISES
+                          where r.NOMBRE.ToLower().Contains(term.ToLower())
+                          select new { r.NOMBRE, r.CAT_PAISES }).Distinct();
+            // Get Tags from database
+            return this.Json(result,
+                            JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Nacionalidades(string term)
+        {
+            var result = (from r in BDRegistro.V_PAISES
+                          where r.NOMBRE.ToLower().Contains(term.ToLower())
+                          select new { r.GENTILICIO, r.CAT_PAISES }).Distinct();
+            // Get Tags from database
+            return this.Json(result,
+                            JsonRequestBehavior.AllowGet);
         }
 
     }

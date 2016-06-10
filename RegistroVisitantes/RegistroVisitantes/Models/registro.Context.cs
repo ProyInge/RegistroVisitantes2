@@ -40,8 +40,6 @@ public partial class BDRegistro : DbContext
 
     public virtual DbSet<V_RESERVACION> V_RESERVACION { get; set; }
 
-    public virtual DbSet<INFOVISITA> INFOVISITA { get; set; }
-
     public virtual DbSet<V_CONTACTO> V_CONTACTO { get; set; }
 
     public virtual DbSet<V_GRUPOANON> V_GRUPOANON { get; set; }
@@ -51,6 +49,10 @@ public partial class BDRegistro : DbContext
     public virtual DbSet<V_INSTITUCION> V_INSTITUCION { get; set; }
 
     public virtual DbSet<V_PAISES> V_PAISES { get; set; }
+
+    public virtual DbSet<REPORTE> REPORTE { get; set; }
+
+    public virtual DbSet<INFOVISITA> INFOVISITA { get; set; }
 
 }
 

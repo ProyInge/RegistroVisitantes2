@@ -61,15 +61,15 @@ public partial class PERSONA
 
 
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<INFOVISITA> INFOVISITA { get; set; }
-
     public virtual V_INSTITUCION INSTITUCIONI { get; set; }
 
     public virtual V_PAISES NACIONALIDADI { get; set; }
 
     public virtual V_PAISES PAISI { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<INFOVISITA> INFOVISITA { get; set; }
 
 }
 

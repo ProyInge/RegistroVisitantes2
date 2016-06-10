@@ -1,10 +1,9 @@
 ﻿@model RegistroVisitantes.Models.INFOVISITA
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Cambiar estado";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>Cambiar estado</h2>
 
 <h3>¿Está seguro de que desea cambiar el estado de este visitante?</h3>
@@ -28,7 +27,7 @@
 
         <div class="col-sm-6" style="float:left">
             <input type="submit" value="Cambiar" class="btn btn-successOET" />
-            <button class="btn btn-cancelOET" onclick="location.href='@Url.Action("Index", "Visitantes")';return false;">Cancelar</button>
+            <button class="btn btn-cancelOET" onclick="location.href='@Url.Action("Index", "Visitantes", new {idRes = Model.ID_RESERVACION })';return false;">Cancelar</button>
         </div>
     }
 </div>
