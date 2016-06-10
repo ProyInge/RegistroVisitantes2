@@ -107,12 +107,12 @@
         color: #5cb85c;
         text-decoration: underline;
     }
-
+    /*
     .table-striped > tbody > tr:nth-child(1) > td, .table-striped > tbody > tr:nth-child(1) > th {
         text-align: center;
         background-color: #dff0d8;
     }
-
+    */
     .ui-datepicker-trigger {
         color: #ffffff;
         background-color: #5cb85c;

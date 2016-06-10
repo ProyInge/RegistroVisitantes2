@@ -1,7 +1,9 @@
-﻿@model RegistroVisitantes.Models.REPORTE
+﻿@model PagedList.IPagedList<RegistroVisitantes.Models.INFOVISITA>
+@using PagedList;
+@using PagedList.Mvc;
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Crear reportes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -111,56 +113,61 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                @if (Model.Count == 0) {
+                                    for (int i = 0; i < 5; i++) {
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td> 
+                                        </tr>
+                                    }
+                                }
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                <td align="center">
+                                    @if (item.RESERVACION.ANFITRIONA == "01") { <p>OET</p> } else { <p>ESINTRO</p>}
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RESERVACION.ESTACION)
+                                </td>
+                                <td>
+                                    @(item.RESERVACION.NUMERO)
+                                </td>
+                                <td>
+                                    @(item.RESERVACION.ENTRA)
+                                </td>
+                                <td>
+                                    @(item.RESERVACION.SALE)
+                                </td>
+                                <td>
+                                    @(item.RESERVACION.TIPO)
+                                </td>
+                                <td>
+                                    @(item.PERSONA.NACIONALIDAD)
+                                </td>
+                                <td>
+                                    @(item.PERSONA.NOMBRE) @(item.PERSONA.APELLIDO)
+                                </td>
+                                <td>
+                                    <a href="mailto:@(item.PERSONA.EMAIL)">@(item.PERSONA.EMAIL)</a>
+                                </td>   
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+            <br />
+            Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+            @Html.PagedListPager(Model, Pagina => Url.Action("Index",
+        new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <span style="font-size: 30px;"><strong>Totales:</strong></span>

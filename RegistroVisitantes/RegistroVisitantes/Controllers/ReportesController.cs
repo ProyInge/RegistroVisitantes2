@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using RegistroVisitantes.Models;
+using PagedList;
 
 namespace RegistroVisitantes.Controllers
 {
@@ -15,8 +16,10 @@ namespace RegistroVisitantes.Controllers
         private BDRegistro db = new BDRegistro();
 
 
-        public ActionResult Index()
+        public ActionResult Index(int? Pagina)
         {
+            IQueryable<INFOVISITA> tabla;
+
             DateTime from = (DateTime.Today);
             DateTime to = (DateTime.Today.AddDays(7));
 
@@ -25,7 +28,12 @@ namespace RegistroVisitantes.Controllers
 
             ViewBag.fromDate = from;
             ViewBag.toDate = to;
-            return View();
+
+            //tabla = db.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID)).OrderBy(x => x.ID_RESERVACION);
+            tabla = db.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
+            int Size_Of_Page = 5;
+            int No_Of_Page = (Pagina ?? 1);
+            return View(tabla.ToPagedList(No_Of_Page, Size_Of_Page));
         }
 
         // POST: /Reportes
