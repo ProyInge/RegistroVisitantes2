@@ -12,91 +12,94 @@
 
     <div class="row" id="myColumns">
         <div class="col-lg-3" id="paramPanel">
-            <div class="panel panel-default">
+            <div class="panel panel-success">
                 <div class="panel-heading">
                     <span style="font-size: 30px;"><strong>Parámetros:</strong></span>
                 </div>
                 <div class="panel-body">
                     @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
+{
+    @Html.AntiForgeryToken()
 
-                        <div class="form-horizontal">
-                            @Html.ValidationSummary(true)
-                            <div class="form-group">
-                                <label for="FECHADESDE">Desde:</label>
-                                <div class="col-md-10">
-                                    <input class="form-control" style="position: relative; z-index: 100000;width: 150px;" type="text" name="FECHADESDE" id="FECHADESDE" value="@string.Format("{0:d}", ViewBag.fromDate)" />
-                                </div>
-                            </div>
+    <div class="form-horizontal">
+        <h4>REPORTE</h4>
+        <hr />
+        @Html.ValidationSummary(true)
 
-                            <div class="form-group">
-                                <label for="FECHAHASTA">Hasta:</label>
-                                <div class="col-md-10">
-                                    <input class="form-control" style="position: relative; z-index: 100000;width: 150px;" type="text" name="FECHAHASTA" id="FECHAHASTA" value="@string.Format("{0:d}", ViewBag.toDate)" />
-                                </div>
-                            </div>
+        <div class="form-group">
+            <label for="FECHADESDE">Desde:</label>
+            <div class="col-md-10">
+                <input class="form-control" style="position: relative; z-index: 100000;width: 150px;" type="text" name="FECHADESDE" id="FECHADESDE" value="@string.Format("{0:d}", ViewBag.fromDate)" />
+            </div>
+        </div>
 
-                            <div class="form-group">
-                                <label for="ANFITRIONA">Compañia:</label>
-                                <select class="form-control" id="ANFITRIONA" name="ANFITRIONA">
-                                    <option value="01">ESINTRO</option>
-                                    <option value="02">OET</option>
-                                    <option value="00">TODAS</option>
-                                </select>
-                            </div>
+        <div class="form-group">
+            <label for="FECHAHASTA">Hasta:</label>
+            <div class="col-md-10">
+                <input class="form-control" style="position: relative; z-index: 100000;width: 150px;" type="text" name="FECHAHASTA" id="FECHAHASTA" value="@string.Format("{0:d}", ViewBag.toDate)" />
+            </div>
+        </div>
 
-                            <div class="form-group">
-                                <label for="ESTACION">Estación:</label>
-                                <select class="form-control" id="ESTACION" name="ESTACION">
-                                    <option value="01">La Selva</option>
-                                    <option value="02">Palo Verde</option>
-                                    <option value="03">Las Cruces</option>
-                                    <option value="04">Central</option>
-                                    <option value="00">Todas</option>
-                                </select>
-                            </div>
+        <div class="form-group">
+            <label for="ANFITRIONA">Compañia:</label>
+            <select class="form-control" id="ANFITRIONA" name="ANFITRIONA">
+                <option value="01">ESINTRO</option>
+                <option value="02">OET</option>
+                <option value="00">TODAS</option>
+            </select>
+        </div>
 
-                            <div class="form-group">
-                                <label for="TIPO">Tipo de visitante:</label>
-                                <select class="form-control" id="TIPO" name="TIPO">
-                                    <option value="01">Staff</option>
-                                    <option value="02">Investigador</option>
-                                    <option value="03">Grupo Educativo</option>
-                                    <option value="04">Otros visitantes</option>
-                                    <option value="00">Todos</option>
-                                </select>
-                            </div>
+        <div class="form-group">
+            <label for="ESTACION">Estación:</label>
+            <select class="form-control" id="ESTACION" name="ESTACION">
+                <option value="01">La Selva</option>
+                <option value="02">Palo Verde</option>
+                <option value="03">Las Cruces</option>
+                <option value="04">Central</option>
+                <option value="00">Todas</option>
+            </select>
+        </div>
 
-                            <div class="form-group">
-                                <label for="NACIONALIDAD">Nacionalidad:</label>
-                                <select class="form-control" id="NACIONALIDAD" name="NACIONALIDAD">
-                                    <option value="01">Costarricense</option>
-                                    <option value="02">Estadounidense</option>
-                                    <option value="03">Francés</option>
-                                    <option value="00">Todos</option>
-                                </select>
-                            </div>
+        <div class="form-group">
+            <label for="TIPO">Tipo de visitante:</label>
+            <select class="form-control" id="TIPO" name="TIPO">
+                <option value="01">Staff</option>
+                <option value="02">Investigador</option>
+                <option value="03">Grupo Educativo</option>
+                <option value="04">Otros visitantes</option>
+                <option value="00">Todos</option>
+            </select>
+        </div>
 
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Create" class="btn btn-success" />
-                                </div>
-                            </div>
-                        </div>
-                    }
+        <div class="form-group">
+            <label for="NACIONALIDAD">Nacionalidad:</label>
+            <select class="form-control" id="NACIONALIDAD" name="NACIONALIDAD">
+                <option value="01">Costarricense</option>
+                <option value="02">Estadounidense</option>
+                <option value="03">Francés</option>
+                <option value="00">Todos</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
 
                 </div>
             </div>
         </div>
         <div class="col-lg-9" id="resPanel">
-            <div class="panel panel-default" id="panelResultados">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <span style="font-size: 30px;"><strong>Resultados:</strong></span>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover table-bordered" id="tablaResultados">
+                        <table class="table table-striped table-hover table-bordered">
                             <thead>
                                 <tr>
                                     <th>Compañía</th>
@@ -113,48 +116,48 @@
                             <tbody>
 
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>OET</td>
+                                    <td>La Selva</td>
+                                    <td>CRO123</td>
+                                    <td>11/11/2015</td>
+                                    <td>20/11/2015</td>
+                                    <td>Staff</td>
+                                    <td>Costarricense</td>
+                                    <td>Emmanuel Arias Soto</td>
+                                    <td>emmanuel@mail.com</td>
                                 </tr>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>OET</td>
+                                    <td>La Selva</td>
+                                    <td>CRO123</td>
+                                    <td>11/11/2015</td>
+                                    <td>20/11/2015</td>
+                                    <td>Staff</td>
+                                    <td>Costarricense</td>
+                                    <td>Angélica Fallas</td>
+                                    <td>angelica@mail.com</td>
                                 </tr>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>OET</td>
+                                    <td>La Selva</td>
+                                    <td>CRO123</td>
+                                    <td>11/11/2015</td>
+                                    <td>20/11/2015</td>
+                                    <td>Staff</td>
+                                    <td>Costarricense</td>
+                                    <td>Daniel Muñoz</td>
+                                    <td>daniel@mail.com</td>
                                 </tr>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>OET</td>
+                                    <td>La Selva</td>
+                                    <td>CRO123</td>
+                                    <td>11/11/2015</td>
+                                    <td>20/11/2015</td>
+                                    <td>Staff</td>
+                                    <td>Costarricense</td>
+                                    <td>David Montoya</td>
+                                    <td>david@mail.com</td>
                                 </tr>
                             </tbody>
                         </table>
