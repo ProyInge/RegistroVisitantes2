@@ -86,13 +86,13 @@
             <br />
             <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.PERSONA.NOMBRE, @ViewResources.Resources.oet_nombre + ":", htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.PERSONA.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PERSONA.NOMBRE, new { htmlAttributes = new { @class = "form-control", pattern = "[^\\W\\d_]*", maxlength = "20", placeholder="John" } })
                 @Html.ValidationMessageFor(model => model.PERSONA.NOMBRE, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.PERSONA.APELLIDO, @ViewResources.Resources.oet_apellidos + ":", htmlAttributes: new { @class = "control-label " })
-                @Html.EditorFor(model => model.PERSONA.APELLIDO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PERSONA.APELLIDO, new { htmlAttributes = new { @class = "form-control", pattern = "[^\\W\\d_]*[' ']*[^\\W\\d_]*", maxlength = "50", placeholder="Smith Bradley" } })
                 @Html.ValidationMessageFor(model => model.PERSONA.APELLIDO, "", new { @class = "text-danger" })
             </div>
              <div class="form-group col-sm-6">
@@ -109,7 +109,7 @@
 
             <div class="form-group col-sm-6" style="margin-top: 20px">
                 @Html.LabelFor(model => model.PERSONA.DIRECCION, @ViewResources.Resources.oet_direccion + ":", htmlAttributes: new { @class = "control-label " })
-                @Html.TextAreaFor(model => model.PERSONA.DIRECCION, new { @class = "form-control" })
+                @Html.TextAreaFor(model => model.PERSONA.DIRECCION, new { @class = "form-control" } )
                 @Html.ValidationMessageFor(model => model.PERSONA.DIRECCION, "", new { @class = "text-danger" })
             </div>
 
@@ -121,29 +121,21 @@
 
             <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.PERSONA.TELEFONO, @ViewResources.Resources.oet_telefono + ":", htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.PERSONA.TELEFONO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PERSONA.TELEFONO, new { htmlAttributes = new { @class = "form-control", type = "number" } })
                 @Html.ValidationMessageFor(model => model.PERSONA.TELEFONO, "", new { @class = "text-danger" })
             </div>
 
              <div class="form-group col-sm-6">
                  @Html.LabelFor(model => model.PERSONA.EMAIL, @ViewResources.Resources.oet_correo + ":", htmlAttributes: new { @class = "control-label" })
-                 @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control", @id = "e-mail" } })
+                 @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control", @id = "e-mail", type="email", maxlength = "80" } })
                  @Html.ValidationMessageFor(model => model.PERSONA.EMAIL, "", new { @class = "text-danger" })
              </div>
 
-          @*  <div class="form-group col-sm-6">
+            <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.PERSONA.GENERO, @ViewResources.Resources.oet_sexo + ":", htmlAttributes: new { @class = "control-label " })
                 @Html.DropDownListFor(model => model.PERSONA.GENERO, (IEnumerable<SelectListItem>)ViewBag.listSexo, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PERSONA.GENERO, "", new { @class = "text-danger" })
-            </div> *@
-
-             <div class="form-group col-sm-6">
-                 <label for="genero">@ViewResources.Resources.oet_sexo: </label>
-                 <select name="genero" class="form-control">
-                     <option value="Male">@ViewResources.Resources.oet_masc</option>
-                     <option value="Female">@ViewResources.Resources.oet_fem</option>
-                 </select>
-             </div>
+            </div>
 
             </div>
 
@@ -152,16 +144,16 @@
                 <br />
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.NOMBRE_EMERGENCIA, @ViewResources.Resources.oet_nombre + ":", htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.NOMBRE_EMERGENCIA, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.NOMBRE_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", pattern = "[^\\W\\d_]*[' ']*[^\\W\\d_]*[' ']*[^\\W\\d_]*", maxlength = "70" } })
                 </div>
 
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.TEL_EMERGENCIA, @ViewResources.Resources.oet_telefono + ":", htmlAttributes: new { @class = "control-label " })
-                    @Html.EditorFor(model => model.TEL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.TEL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", type="number" } })
                 </div>
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.EMAIL_EMERGENCIA, @ViewResources.Resources.oet_correo + ":", htmlAttributes: new { @class = "control-label " })
-                    @Html.EditorFor(model => model.EMAIL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.EMAIL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", type="email", maxlength = "80" } })
                 </div>
 
                 <div class="form-group col-sm-6">
