@@ -243,7 +243,7 @@ namespace RegistroVisitantes.Controllers
 
             }
             form.ESTADO = "A";
-
+            form.CEDULA = form.PERSONA.CEDULA;
             if (ModelState.IsValid)
             {
                 
@@ -257,7 +257,7 @@ namespace RegistroVisitantes.Controllers
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
-                db.INFOVISITA.Add(form);              
+
 
                 
                 var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
