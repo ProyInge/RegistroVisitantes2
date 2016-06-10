@@ -224,7 +224,7 @@ namespace RegistroVisitantes.Controllers
                 }
 
             }
-            form.ESTADO = true;
+            form.ESTADO = "A";
 
             if (ModelState.IsValid)
             {
@@ -331,7 +331,7 @@ namespace RegistroVisitantes.Controllers
 
             form.ID_RESERVACION = idRes;
             form.CEDULA = form.PERSONA.CEDULA;
-            form.ESTADO = true;            
+            form.ESTADO = "A";            
 
             if (ModelState.IsValid)
             {

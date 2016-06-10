@@ -703,9 +703,11 @@ namespace RegistroVisitantes.Controllers
             if (iInfoVisita == null)
             {
                 return HttpNotFound();
-            }            
-
-            iInfoVisita.ESTADO = !iInfoVisita.ESTADO;
+            }
+            if (iInfoVisita.ESTADO != "F")
+            {
+                iInfoVisita.ESTADO = iInfoVisita.ESTADO == "A" ? "I" : "A";
+            }
             BDRegistro.SaveChanges();
 
             return RedirectToAction("Index");
