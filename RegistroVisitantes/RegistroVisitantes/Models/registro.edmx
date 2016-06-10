@@ -61,6 +61,10 @@
                 <End Role="V_INSTITUCION" EntitySet="V_INSTITUCION" />
                 <End Role="V_PAISES" EntitySet="V_PAISES" />
             </AssociationSet>
+            <AssociationSet Name="V_RESERVACIONV_ESTACION" Association="Model.Store.V_RESERVACIONV_ESTACION">
+                <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
+                <End Role="V_ESTACION" EntitySet="V_ESTACION" />
+            </AssociationSet>
         </EntityContainer>
         <EntityType Name="PERSONA">
             <Key>
@@ -407,6 +411,20 @@
             </Dependent>
         </ReferentialConstraint>
     </Association>
+    <Association Name="V_RESERVACIONV_ESTACION">
+        <End Role="V_RESERVACION" Type="Model.Store.V_RESERVACION" Multiplicity="*">
+        </End>
+        <End Role="V_ESTACION" Type="Model.Store.V_ESTACION" Multiplicity="0..1">
+        </End>
+        <ReferentialConstraint>
+            <Principal Role="V_ESTACION">
+                <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="V_RESERVACION">
+                <PropertyRef Name="ESTACION" />
+            </Dependent>
+        </ReferentialConstraint>
+    </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -460,6 +478,7 @@
           <Property Name="SIGLAS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="RESERVABLE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="USUARIO" Relationship="Model.USUARIOV_ESTACION" FromRole="V_ESTACION" ToRole="USUARIO" />
+          <NavigationProperty Name="RESERVACIONES" Relationship="Model.V_RESERVACIONV_ESTACION" FromRole="V_ESTACION" ToRole="V_RESERVACION" />
         </EntityType>
         <EntityType Name="V_RESERVACION">
           <Key>
@@ -501,6 +520,7 @@
           <NavigationProperty Name="SOLICITANTEI" Relationship="Model.V_RESERVACIONV_CONTACTO2" FromRole="V_RESERVACION" ToRole="V_CONTACTO" />
           <NavigationProperty Name="GRUPONUMS" Relationship="Model.V_RESERVACIONV_GRUPOANON" FromRole="V_RESERVACION" ToRole="V_GRUPOANON" />
           <NavigationProperty Name="GRUPOI" Relationship="Model.V_RESERVACIONV_GRUPORSRV" FromRole="V_RESERVACION" ToRole="V_GRUPORSRV" />
+          <NavigationProperty Name="ESTACIONI" Relationship="Model.V_RESERVACIONV_ESTACION" FromRole="V_RESERVACION" ToRole="V_ESTACION" />
         </EntityType>
         <EntityContainer Name="BDRegistro" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="PERSONA" EntityType="Self.PERSONA" />
@@ -558,6 +578,10 @@
             <End Role="V_PAISES" EntitySet="V_PAISES" />
           </AssociationSet>
           <EntitySet Name="REPORTE" EntityType="Model.REPORTE" />
+          <AssociationSet Name="V_RESERVACIONV_ESTACION" Association="Model.V_RESERVACIONV_ESTACION">
+            <End Role="V_RESERVACION" EntitySet="V_RESERVACION" />
+            <End Role="V_ESTACION" EntitySet="V_ESTACION" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="USUARIOV_ESTACION">
           <End Type="Model.USUARIO" Role="USUARIO" Multiplicity="*" />
@@ -813,6 +837,18 @@
           <Property Name="TIPO" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="NACIONALIDAD" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
+        <Association Name="V_RESERVACIONV_ESTACION">
+          <End Type="Model.V_RESERVACION" Role="V_RESERVACION" Multiplicity="*" />
+          <End Type="Model.V_ESTACION" Role="V_ESTACION" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="V_ESTACION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="V_RESERVACION">
+              <PropertyRef Name="ESTACION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

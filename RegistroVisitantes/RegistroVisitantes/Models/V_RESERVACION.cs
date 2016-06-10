@@ -103,6 +103,8 @@ public partial class V_RESERVACION
 
     public virtual V_GRUPORSRV GRUPOI { get; set; }
 
+    public virtual V_ESTACION ESTACIONI { get; set; }
+
 }
 
 }

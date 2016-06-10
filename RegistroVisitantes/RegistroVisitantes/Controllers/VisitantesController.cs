@@ -171,7 +171,7 @@ namespace RegistroVisitantes.Controllers
             }
             else
             {
-                if (iInfoVisita.PERSONA.GENERO.Equals("0"))
+                if (iInfoVisita.PERSONA.GENERO.Equals("M"))
                 {
                     ViewBag.sexoList = ViewResources.Resources.oet_masc;
                 }
@@ -239,7 +239,7 @@ namespace RegistroVisitantes.Controllers
             else
             {
                
-                if (iInfoVisita.PERSONA.GENERO.Equals("0"))
+                if (iInfoVisita.PERSONA.GENERO.Equals("M"))
                 {
                     ViewBag.sexo = ViewResources.Resources.oet_masc;
                 }
@@ -318,7 +318,7 @@ namespace RegistroVisitantes.Controllers
             else
             {
                 var listSexo = new List<SelectListItem>();
-                if (iInfoVisita.PERSONA.GENERO.Equals("0"))
+                if (iInfoVisita.PERSONA.GENERO.Equals("M"))
                 {
                     listSexo.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
                     listSexo.Add(new SelectListItem { Text = ViewResources.Resources.oet_fem, Value = ViewResources.Resources.oet_fem });
@@ -444,7 +444,7 @@ namespace RegistroVisitantes.Controllers
             else
             {
                 var listSexo = new List<SelectListItem>();
-                if (iInfoVisita.PERSONA.GENERO.Equals("0"))
+                if (iInfoVisita.PERSONA.GENERO.Equals("M"))
                 {
                     listSexo.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
                     listSexo.Add(new SelectListItem { Text = ViewResources.Resources.oet_fem, Value = ViewResources.Resources.oet_fem });
@@ -509,7 +509,7 @@ namespace RegistroVisitantes.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
+                /*if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
                 {
                     infov.PERSONA.GENERO = '1'.ToString();
 
@@ -517,6 +517,15 @@ namespace RegistroVisitantes.Controllers
                 else
                 {
                     infov.PERSONA.GENERO = '0'.ToString();
+                }*/
+                string genero = collection["PERSONA.GENERO"];
+                if (genero == ViewResources.Resources.oet_fem) // si es femenino
+                {
+                    infov.PERSONA.GENERO = 'F'.ToString();
+                }
+                else
+                {
+                    infov.PERSONA.GENERO = 'M'.ToString(); //es masculino
                 }
 
                 string nominst = (string)collection["PERSONA.INSTITUCIONI.FULL_NAME"];
@@ -561,14 +570,24 @@ namespace RegistroVisitantes.Controllers
             if (ModelState.IsValid)
             {
 
-                if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
-                {
-                    infov.PERSONA.GENERO = '1'.ToString();
+                /* if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
+                 {
+                     infov.PERSONA.GENERO = '1'.ToString();
 
+                 }
+                 else
+                 {
+                     infov.PERSONA.GENERO = '0'.ToString();
+                 }*/
+
+                string genero = collection["PERSONA.GENERO"];
+                if (genero == ViewResources.Resources.oet_fem) // si es femenino
+                {
+                    infov.PERSONA.GENERO = 'F'.ToString();
                 }
                 else
                 {
-                    infov.PERSONA.GENERO = '0'.ToString();
+                    infov.PERSONA.GENERO = 'M'.ToString(); //es masculino
                 }
 
                 if (infov.DIETA.Equals(ViewResources.Resources.oet_sinrestr))
