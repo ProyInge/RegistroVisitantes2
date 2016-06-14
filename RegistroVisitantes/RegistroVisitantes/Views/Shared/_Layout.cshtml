@@ -47,9 +47,18 @@
                     <li class="@(url == Request.Url.AbsolutePath.Split('/')[1] ? "active" : string.Empty)" id="visitantes">
                         @Html.ActionLink("Visitantes", "Index", "Visitantes")
                     </li>
+
                     @{ url = Url.Action("Index", "Reportes").Split('/')[1]; }
-                    <li class="@(url == Request.Url.AbsolutePath.Split('/')[1] ? "active" : string.Empty)" id="visitantes">
+                    <li class="@(url == Request.Url.AbsolutePath.Split('/')[1] ? "active" : string.Empty)" id="reportes">
                         @Html.ActionLink("Reportes", "Index", "Reportes")
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Imprimir<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("ImprimirOET","Imprimir")">OET</a></li>
+                            <li><a href="@Url.Action("ImprimirESINTRO", "Imprimir")">ESINTRO</a></li>
+                        </ul>
                     </li>
 
                     @*@{ url = Url.Action("Index", "Formulario"); }
