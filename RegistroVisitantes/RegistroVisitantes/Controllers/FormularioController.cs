@@ -381,6 +381,7 @@ namespace RegistroVisitantes.Controllers
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
                 db.INFOVISITA.Add(form);
+                var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
                 if (cedulaP != null)
                 {
                     db.PERSONA.Attach(form.PERSONA);
