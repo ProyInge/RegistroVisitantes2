@@ -34,7 +34,7 @@ namespace RegistroVisitantes.Controllers
                 Thread.CurrentThread.CurrentUICulture = ci;
             }
         }
-        
+
         /*
         * Desc: cambia el idioma de la información que se presenta en el formulario
         * Requiere: idioma al que se quiere cambiar, id de la reservación asociada al formulario de registro, cedula de la persona
@@ -46,7 +46,7 @@ namespace RegistroVisitantes.Controllers
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(ddlCulture);
 
             Session["CurrentCulture"] = ddlCulture;
-            return RedirectToAction("Details", new { idRes = idRes, ced=cedula });
+            return RedirectToAction("Details", new { idRes = idRes, ced = cedula });
         }
 
         /*
@@ -58,35 +58,36 @@ namespace RegistroVisitantes.Controllers
         [Authorize]
         public ActionResult Index(String idRes, String numRes, int? Pagina)
         {
+            
             IQueryable<INFOVISITA> tabla;
             if (numRes != null && !numRes.Equals(""))
             {
                 V_RESERVACION reservacion = new V_RESERVACION();
                 var resQuery = BDRegistro.V_RESERVACION.Where(x => String.Equals(x.NUMERO, numRes));
-                if (resQuery != null)
-                {
-                    reservacion = resQuery.First();
-                }
+                reservacion = resQuery.FirstOrDefault();
 
                 if (Session["Rol"] != null)
                 {
                     string rol = (string)Session["IdEstacion"];
                     if ((string)Session["Rol"] != "R")
-                    {       
-                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID) && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION);
+                    {
+                        tabla = reservacion != null ? BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID) && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION): BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, "") && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION);
                     }
                     else
                     {
-                        tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID)).OrderBy(x => x.ID_RESERVACION);
+                        tabla = reservacion != null ? BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID)).OrderBy(x => x.ID_RESERVACION) : BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, "")).OrderBy(x => x.ID_RESERVACION);
                     }
                 }
                 else
                 {
-                    tabla = BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID)).OrderBy(x => x.ID_RESERVACION);
+                    tabla = reservacion != null ? BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID)).OrderBy(x => x.ID_RESERVACION) : BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, "")).OrderBy(x => x.ID_RESERVACION);
                 }
                 //V_RESERVACION num = BDRegistro.V_RESERVACION.Find(idRes);
-                ViewBag.num = reservacion.NUMERO;
-                ViewBag.idRes = idRes;
+                if (reservacion != null)
+                {
+                    ViewBag.num = reservacion.NUMERO;
+                    ViewBag.idRes = idRes;
+                }
             }
             else if (idRes != null && !idRes.Equals(""))
             {
@@ -108,8 +109,8 @@ namespace RegistroVisitantes.Controllers
                 }
                 V_RESERVACION num = BDRegistro.V_RESERVACION.Find(idRes);
                 ViewBag.num = num.NUMERO;
-                ViewBag.idRes = idRes;                
-            }          
+                ViewBag.idRes = idRes;
+            }
             else
             {
                 if (Session["Rol"] != null)
@@ -138,12 +139,12 @@ namespace RegistroVisitantes.Controllers
          * Desc: Revisa a cuál organizacion pertenece la reservacion de la persona identificada or cedula.
          * Requiere: el id de la reservacion a la que pertenece la persona y su cedula
          * Devuelve: vista de la pagina con la información de registro de la persona determinada por cedula.
-         */ 
+         */
         [Authorize]
         public ActionResult Details(String idRes, String ced)
         {
             V_RESERVACION res = BDRegistro.V_RESERVACION.Find(idRes);
-            
+
             if (res.ANFITRIONA.Equals("01") || res.ANFITRIONA == null)
             {
                 return RedirectToAction("DetailsOET", new { idR = idRes, cedula = ced });
@@ -165,10 +166,10 @@ namespace RegistroVisitantes.Controllers
         {
 
             if (idR == null || cedula == null)
-            {   
+            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
+
             INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idR, cedula);
             if (iInfoVisita == null)
             {
@@ -211,7 +212,7 @@ namespace RegistroVisitantes.Controllers
                 ViewBag.idRes = idR;
                 ViewBag.ced = cedula;
                 if (iInfoVisita.PERSONA.PAISI != null)
-                { 
+                {
                     iInfoVisita.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.PAISI.NOMBRE));
                 }
                 if (iInfoVisita.PERSONA.NACIONALIDADI != null)
@@ -220,7 +221,7 @@ namespace RegistroVisitantes.Controllers
                 }
                 return View(iInfoVisita);
             }
-            
+
         }
 
         /*
@@ -243,7 +244,7 @@ namespace RegistroVisitantes.Controllers
             }
             else
             {
-               
+
                 if (iInfoVisita.PERSONA.GENERO.Equals("M"))
                 {
                     ViewBag.sexo = ViewResources.Resources.oet_masc;
@@ -252,11 +253,12 @@ namespace RegistroVisitantes.Controllers
                 {
                     ViewBag.sexo = ViewResources.Resources.oet_fem;
                 }
-               
-                switch (iInfoVisita.DIETA) {
+
+                switch (iInfoVisita.DIETA)
+                {
                     case "No Restriction":
                         ViewBag.dieta = ViewResources.Resources.oet_sinrestr;
-                            break; 
+                        break;
                     case "Vegetarian":
                         ViewBag.dieta = ViewResources.Resources.oet_vege;
                         break;
@@ -288,9 +290,9 @@ namespace RegistroVisitantes.Controllers
          * Requiere: el id de la reservación asociada y la cedula de la persona
          * Devuelve: un enlace a la vista correspondiente según la organización de a reservación
          * 
-         */ 
+         */
         public ActionResult Edit(String idRes, String ced)
-        { 
+        {
             V_RESERVACION res = BDRegistro.V_RESERVACION.Find(idRes);
 
             if (res.ANFITRIONA.Equals("01"))
@@ -308,7 +310,7 @@ namespace RegistroVisitantes.Controllers
          * la posibilidad de editarla o llenar los campos faltantes.
          * Requiere: id de la reservación y cédula del visitnate que llenó el formulario
          * Devuelve:La vista del formulario con la información de un visitante de la OET
-         */ 
+         */
         public ActionResult EditOET(String idRes, String ced)
         {
             if (idRes == null)
@@ -366,7 +368,7 @@ namespace RegistroVisitantes.Controllers
                     ViewResources.Resources.oet_pos7, ViewResources.Resources.oet_pos8,
                     ViewResources.Resources.oet_pos9, ViewResources.Resources.oet_pos10,
                     ViewResources.Resources.oet_pos11, ViewResources.Resources.oet_pos12 };
-                
+
 
                 foreach (String pos in posiciones)
                 {
@@ -387,15 +389,15 @@ namespace RegistroVisitantes.Controllers
 
                 foreach (String prop in propositos)
                 {
-                    listaPropositos.Add( (iInfoVisita.PROPOSITO == prop) ?
-                        (new SelectListItem { Selected = true, Text = prop, Value = prop}) :
-                        (new SelectListItem { Text = prop, Value = prop})
+                    listaPropositos.Add((iInfoVisita.PROPOSITO == prop) ?
+                        (new SelectListItem { Selected = true, Text = prop, Value = prop }) :
+                        (new SelectListItem { Text = prop, Value = prop })
                     );
                 }
 
 
                 var listaRoles = new List<SelectListItem>();
-                String [] roles = { ViewResources.Resources.oet_rol1, ViewResources.Resources.oet_rol2, ViewResources.Resources.oet_rol3, ViewResources.Resources.oet_rol4, ViewResources.Resources.oet_rol5 };
+                String[] roles = { ViewResources.Resources.oet_rol1, ViewResources.Resources.oet_rol2, ViewResources.Resources.oet_rol3, ViewResources.Resources.oet_rol4, ViewResources.Resources.oet_rol5 };
                 foreach (String rol in roles)
                 {
                     listaRoles.Add((iInfoVisita.ROL_CURSO == rol) ?
@@ -425,7 +427,7 @@ namespace RegistroVisitantes.Controllers
                 }
                 return View(iInfoVisita);
             }
-            
+
         }
 
         /**
@@ -441,7 +443,7 @@ namespace RegistroVisitantes.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, ced);
-            
+
             if (iInfoVisita == null)
             {
                 return HttpNotFound();
@@ -453,7 +455,7 @@ namespace RegistroVisitantes.Controllers
                 {
                     listSexo.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_masc, Value = ViewResources.Resources.oet_masc });
                     listSexo.Add(new SelectListItem { Text = ViewResources.Resources.oet_fem, Value = ViewResources.Resources.oet_fem });
-                    
+
                 }
                 else
                 {
@@ -464,7 +466,7 @@ namespace RegistroVisitantes.Controllers
 
                 var listDieta = new List<SelectListItem>();
                 switch (iInfoVisita.DIETA)
-                {                   
+                {
                     case "Vegetarian":
                         listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_vege, Value = ViewResources.Resources.oet_vege });
                         listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
@@ -474,7 +476,7 @@ namespace RegistroVisitantes.Controllers
                     case "Vegan":
                         listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_vegano, Value = "Vegan" });
                         listDieta.Add(new SelectListItem { Selected = true, Text = ViewResources.Resources.oet_sinrestr, Value = ViewResources.Resources.oet_sinrestr });
-                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vege, Value = ViewResources.Resources.oet_vege });                      
+                        listDieta.Add(new SelectListItem { Text = ViewResources.Resources.oet_vege, Value = ViewResources.Resources.oet_vege });
                         break;
 
                     default:
@@ -552,11 +554,11 @@ namespace RegistroVisitantes.Controllers
                 infov.POLLO = true;
                 infov.CERDO = true;
                 infov.PESCADO = true;
-                
+
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
-                return RedirectToAction("DetailsOET", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA});
+                return RedirectToAction("DetailsOET", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA });
             }
             return View();
 
@@ -599,7 +601,8 @@ namespace RegistroVisitantes.Controllers
                 {
                     infov.DIETA = "No Restriction";
                 }
-                else {
+                else
+                {
                     if (infov.DIETA.Equals(ViewResources.Resources.oet_vege))
                     {
                         infov.DIETA = "Vegetarian";
@@ -652,7 +655,7 @@ namespace RegistroVisitantes.Controllers
             return View(pREREGISTROCONTACTO);
         }*/
 
-    
+
         // POST: Visitantes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -682,7 +685,7 @@ namespace RegistroVisitantes.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, idPer);
-           
+
             if (iInfoVisita == null)
             {
                 return HttpNotFound();
@@ -743,10 +746,10 @@ namespace RegistroVisitantes.Controllers
 
         public ActionResult Instituciones(string term)
         {
-            var result = (  from a in BDRegistro.V_INSTITUCION
-                            join b in BDRegistro.V_PAISES on a.COUNTRY equals b.ISO
-                            where a.FULL_NAME.ToLower().Contains(term.ToLower()) || b.NOMBRE.ToLower().Contains(term.ToLower())
-                            select new { a.FULL_NAME, b.NOMBRE, a.CAT_INSTITUCION }).Distinct();
+            var result = (from a in BDRegistro.V_INSTITUCION
+                          join b in BDRegistro.V_PAISES on a.COUNTRY equals b.ISO
+                          where a.FULL_NAME.ToLower().Contains(term.ToLower()) || b.NOMBRE.ToLower().Contains(term.ToLower())
+                          select new { a.FULL_NAME, b.NOMBRE, a.CAT_INSTITUCION }).Distinct();
             // Get Tags from database
             return this.Json(result,
                             JsonRequestBehavior.AllowGet);
