@@ -60,6 +60,11 @@ namespace RegistroVisitantes.Controllers
         }
 
         //-----------------------------Funciones Scaffolding----------------------------
+        /*
+     * Desc: Muestra los detalles de una reservación 
+     * Requiere: El identificador de la reserva  
+     * Devuelve: Lista de visitantes asociados a dicha reserva
+     */
         // GET: Reservas/Details/5
         [Authorize]
         public ActionResult Details(string id)
@@ -75,7 +80,11 @@ namespace RegistroVisitantes.Controllers
             }
             return View(rESERVACION);
         }
-
+        /*
+         * Desc:  
+         * Requiere:
+         * Devuelve:
+         */
         // GET: Reservas/Create
         [Authorize]
         public ActionResult Create()
@@ -83,6 +92,12 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
+
+        /*
+         * Desc: 
+         * Requiere: 
+         * Devuelve: 
+         */
         // POST: Reservas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -101,6 +116,11 @@ namespace RegistroVisitantes.Controllers
             return View(rESERVACION);
         }
 
+        /*
+         * Desc:
+         * Requiere: 
+         * Devuelve: 
+         */
         // GET: Reservas/Edit/5
         [Authorize]
         public ActionResult Edit(string id)
@@ -116,7 +136,11 @@ namespace RegistroVisitantes.Controllers
             }
             return View(rESERVACION);
         }
-
+        /*
+         * Desc:
+         * Requiere:
+         * Devuelve:
+         */
         // POST: Reservas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -134,6 +158,11 @@ namespace RegistroVisitantes.Controllers
             return View(rESERVACION);
         }
 
+        /*
+         * Desc:
+         * Requiere:  
+         * Devuelve: 
+         */
         // GET: Reservas/Delete/5
         [Authorize]
         public ActionResult Delete(string id)
