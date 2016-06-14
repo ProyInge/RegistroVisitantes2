@@ -47,8 +47,9 @@
                     <li class="@(url == Request.Url.AbsolutePath.Split('/')[1] ? "active" : string.Empty)" id="visitantes">
                         @Html.ActionLink("Visitantes", "Index", "Visitantes")
                     </li>
+
                     @{ url = Url.Action("Index", "Reportes").Split('/')[1]; }
-                    <li class="@(url == Request.Url.AbsolutePath.Split('/')[1] ? "active" : string.Empty)" id="visitantes">
+                    <li class="@(url == Request.Url.AbsolutePath.Split('/')[1] ? "active" : string.Empty)" id="reportes">
                         @Html.ActionLink("Reportes", "Index", "Reportes")
                     </li>
 
