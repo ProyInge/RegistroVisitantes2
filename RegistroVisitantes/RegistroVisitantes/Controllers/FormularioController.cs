@@ -10,6 +10,7 @@ using System.Net;
 using ViewResources;
 using System.Threading;
 using System.Globalization;
+using System.Data.Entity;
 
 namespace RegistroVisitantes.Controllers
 {
@@ -113,12 +114,34 @@ namespace RegistroVisitantes.Controllers
             if (IsValidEmail(ajaxInput)) //Es un email
             {
                 PERSONA persona = BDRegistro.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
-                return PartialView(persona);
+                //return PartialView(persona);
+                INFOVISITA infov = new INFOVISITA();
+                ViewBag.nombre = persona.NOMBRE;
+                ViewBag.apellido = persona.APELLIDO;
+                ViewBag.email = persona.EMAIL;
+                ViewBag.cedula = persona.CEDULA;
+                ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
+                ViewBag.direccion = persona.DIRECCION;
+                ViewBag.telefono = persona.TELEFONO;
+                ViewBag.pais = persona.PAISI.NOMBRE;
+
+                return PartialView(infov);
             }
             else
             {   //Es una cedula
                 PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
-                return PartialView(persona);
+                //return PartialView(persona);
+                INFOVISITA infov = new INFOVISITA();
+                ViewBag.nombre = persona.NOMBRE;
+                ViewBag.apellido = persona.APELLIDO;
+                ViewBag.email = persona.EMAIL;
+                ViewBag.cedula = persona.CEDULA;
+                ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
+                ViewBag.direccion = persona.DIRECCION;
+                ViewBag.telefono = persona.TELEFONO;
+                ViewBag.pais = persona.PAISI;
+
+                return PartialView(infov);
             }
             
         }
@@ -133,13 +156,18 @@ namespace RegistroVisitantes.Controllers
         {
             if (IsValidEmail(ajaxInput)) //Es un email
             {
-                PERSONA persona = BDRegistro.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
-                return PartialView(persona);
+                // PERSONA persona = BDRegistro.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
+                //return PartialView(persona);
+                INFOVISITA infov = BDRegistro.INFOVISITA.Where(p => p.PERSONA.EMAIL == ajaxInput).FirstOrDefault();
+                return PartialView(infov);
             }
             else
             {   //Es una cedula
-                PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
-                return PartialView(persona);
+                //PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
+                //return PartialView(persona);
+                INFOVISITA infov = BDRegistro.INFOVISITA.Where(p => p.PERSONA.CEDULA == ajaxInput).FirstOrDefault();
+                return PartialView(infov);
+
             }
         }
 
@@ -225,11 +253,12 @@ namespace RegistroVisitantes.Controllers
 
             }
             form.ESTADO = "A";
-
+            form.CEDULA = form.PERSONA.CEDULA;
             if (ModelState.IsValid)
             {
+                
                 var db = BDRegistro;
-                string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); ;
+                string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); 
                 V_PAISES pais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
                 form.PERSONA.PAIS = (pais == null) ? null : pais.ISO;
                 form.PERSONA.PAISI = pais;
@@ -238,8 +267,16 @@ namespace RegistroVisitantes.Controllers
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
-                db.INFOVISITA.Add(form);              
+ 
+                var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
+                db.INFOVISITA.Add(form);
+                if (cedulaP != null)
+                {                  
+                    db.PERSONA.Attach(form.PERSONA);
 
+                }
+
+                
                 try
                 {
                     db.SaveChanges();
@@ -335,6 +372,7 @@ namespace RegistroVisitantes.Controllers
 
             if (ModelState.IsValid)
             {
+
                 var db = BDRegistro;
                 string nominst = (string)collection["PERSONA.INSTITUCIONI.FULL_NAME"];
                 V_INSTITUCION inst = BDRegistro.V_INSTITUCION.Where(x => String.Equals(x.FULL_NAME, nominst)).FirstOrDefault();
@@ -350,8 +388,13 @@ namespace RegistroVisitantes.Controllers
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
+                var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
                 db.INFOVISITA.Add(form);
-                
+                if (cedulaP != null)
+                {
+                    db.PERSONA.Attach(form.PERSONA);
+
+                }                
                 try
                 {
                     db.SaveChanges(); //se guarda la información
