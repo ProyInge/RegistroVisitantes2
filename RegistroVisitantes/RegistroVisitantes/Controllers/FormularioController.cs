@@ -391,6 +391,7 @@ namespace RegistroVisitantes.Controllers
 
                 var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
                 db.INFOVISITA.Add(form);
+                var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
                 if (cedulaP != null)
                 {
                     db.PERSONA.Attach(form.PERSONA);
