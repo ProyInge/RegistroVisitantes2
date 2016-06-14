@@ -248,7 +248,7 @@ namespace RegistroVisitantes.Controllers
             {
                 
                 var db = BDRegistro;
-                string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); ;
+                string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); 
                 V_PAISES pais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
                 form.PERSONA.PAIS = (pais == null) ? null : pais.ISO;
                 form.PERSONA.PAISI = pais;
@@ -257,8 +257,6 @@ namespace RegistroVisitantes.Controllers
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
-
-
                 
                 var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
                 db.INFOVISITA.Add(form);
@@ -380,6 +378,7 @@ namespace RegistroVisitantes.Controllers
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
+                var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
                 db.INFOVISITA.Add(form);
                 if (cedulaP != null)
                 {
