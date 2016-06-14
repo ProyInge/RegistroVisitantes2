@@ -53,6 +53,14 @@
                         @Html.ActionLink("Reportes", "Index", "Reportes")
                     </li>
 
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Imprimir<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("ImprimirOET","Imprimir")">OET</a></li>
+                            <li><a href="@Url.Action("ImprimirESINTRO", "Imprimir")">ESINTRO</a></li>
+                        </ul>
+                    </li>
+
                     @*@{ url = Url.Action("Index", "Formulario"); }
                         <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)">
                             @Html.ActionLink("Formulario", "Index", "Formulario")
