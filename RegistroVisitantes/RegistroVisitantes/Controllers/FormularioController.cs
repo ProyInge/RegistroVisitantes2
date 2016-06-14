@@ -117,6 +117,14 @@ namespace RegistroVisitantes.Controllers
                 //return PartialView(persona);
                 INFOVISITA infov = new INFOVISITA();
                 ViewBag.nombre = persona.NOMBRE;
+                ViewBag.apellido = persona.APELLIDO;
+                ViewBag.email = persona.EMAIL;
+                ViewBag.cedula = persona.CEDULA;
+                ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
+                ViewBag.direccion = persona.DIRECCION;
+                ViewBag.telefono = persona.TELEFONO;
+                ViewBag.pais = persona.PAISI.NOMBRE;
+
                 return PartialView(infov);
             }
             else
@@ -128,9 +136,11 @@ namespace RegistroVisitantes.Controllers
                 ViewBag.apellido = persona.APELLIDO;
                 ViewBag.email = persona.EMAIL;
                 ViewBag.cedula = persona.CEDULA;
-                ViewBag.nacionalidad = persona.NACIONALIDAD;
+                ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
                 ViewBag.direccion = persona.DIRECCION;
                 ViewBag.telefono = persona.TELEFONO;
+                ViewBag.pais = persona.PAISI;
+
                 return PartialView(infov);
             }
             
@@ -257,9 +267,7 @@ namespace RegistroVisitantes.Controllers
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
-
-
-                
+ 
                 var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
                 db.INFOVISITA.Add(form);
                 if (cedulaP != null)
@@ -380,6 +388,8 @@ namespace RegistroVisitantes.Controllers
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
+
+                var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
                 db.INFOVISITA.Add(form);
                 if (cedulaP != null)
                 {
