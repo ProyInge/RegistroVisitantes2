@@ -197,7 +197,7 @@ namespace RegistroVisitantes.Controllers
          * Devuelve: vista del formulario en blanco
          */
         [HttpGet]
-        public ActionResult CreateESINTRO(String idRes)
+        public ActionResult CreateESINTRO(String idRes, int? mensaje)
         {
             if (idRes == null)
             {
@@ -218,7 +218,16 @@ namespace RegistroVisitantes.Controllers
             ViewBag.positionList = position;
             ViewBag.roleList = role;
             ViewBag.idRes = idRes;
-            return View();
+            if (mensaje == 1)
+            {
+               ViewBag.Mensaje = "Y";
+            }
+            if (mensaje == 0)
+            {
+                ViewBag.Mensaje = "N";
+            }
+                
+                return View();
         }
 
         /*
@@ -230,6 +239,8 @@ namespace RegistroVisitantes.Controllers
         [HttpPost]
         public ActionResult CreateESINTRO(String idRes, [Bind()]Models.INFOVISITA form, FormCollection collection, string dietas, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
         {
+            int mensaje = -1;
+
             if (idRes == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -294,9 +305,8 @@ namespace RegistroVisitantes.Controllers
                 {                  
                     db.PERSONA.Attach(form.PERSONA);
 
-                }
+                }                
 
-                
                 try
                 {
                     db.SaveChanges();
@@ -314,10 +324,12 @@ namespace RegistroVisitantes.Controllers
                             raise = new InvalidOperationException(message, raise);
                         }
                     }
+                    mensaje = 0;
                     throw raise;
                 }
             }
-            return RedirectToAction("Index", "Reservas");
+            mensaje = 1;
+            return RedirectToAction("CreateESINTRO", new { idRes, mensaje });
         }
 
         /*
