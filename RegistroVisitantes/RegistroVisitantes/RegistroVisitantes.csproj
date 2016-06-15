@@ -388,6 +388,7 @@
     <Content Include="Views\Reportes\Index.cshtml" />
     <Content Include="Views\Imprimir\ImprimirOET.cshtml" />
     <Content Include="Views\Imprimir\ImprimirESINTRO.cshtml" />
+    <Content Include="Views\Visitantes\CreateInstitucion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

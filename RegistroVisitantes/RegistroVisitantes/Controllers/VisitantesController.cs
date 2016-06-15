@@ -775,5 +775,10 @@ namespace RegistroVisitantes.Controllers
                             JsonRequestBehavior.AllowGet);
         }
 
+        public PartialViewResult CreateInstitucion()
+        {
+            return PartialView();
+        }
+
     }
 }
