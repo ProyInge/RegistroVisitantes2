@@ -139,7 +139,7 @@ namespace RegistroVisitantes.Controllers
                 ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
                 ViewBag.direccion = persona.DIRECCION;
                 ViewBag.telefono = persona.TELEFONO;
-                ViewBag.pais = persona.PAISI;
+                ViewBag.pais = persona.PAISI.NOMBRE;
 
                 return PartialView(infov);
             }
@@ -156,16 +156,36 @@ namespace RegistroVisitantes.Controllers
         {
             if (IsValidEmail(ajaxInput)) //Es un email
             {
-                // PERSONA persona = BDRegistro.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
-                //return PartialView(persona);
-                INFOVISITA infov = BDRegistro.INFOVISITA.Where(p => p.PERSONA.EMAIL == ajaxInput).FirstOrDefault();
+                PERSONA persona = BDRegistro.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
+                INFOVISITA infov = new INFOVISITA();
+                ViewBag.nombre = persona.NOMBRE;
+                ViewBag.apellido = persona.APELLIDO;
+                ViewBag.email = persona.EMAIL;
+                ViewBag.cedula = persona.CEDULA;
+                ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
+                ViewBag.direccion = persona.DIRECCION;
+                ViewBag.telefono = persona.TELEFONO;
+                ViewBag.pais = persona.PAISI.NOMBRE;
+                ViewBag.codPostal = persona.COD_POSTAL;
+                ViewBag.titulo = persona.TITULO;
+                ViewBag.institucion = persona.INSTITUCIONI.FULL_NAME;
                 return PartialView(infov);
             }
             else
             {   //Es una cedula
-                //PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
-                //return PartialView(persona);
-                INFOVISITA infov = BDRegistro.INFOVISITA.Where(p => p.PERSONA.CEDULA == ajaxInput).FirstOrDefault();
+                PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
+                INFOVISITA infov = new INFOVISITA();
+                ViewBag.nombre = persona.NOMBRE;
+                ViewBag.apellido = persona.APELLIDO;
+                ViewBag.email = persona.EMAIL;
+                ViewBag.cedula = persona.CEDULA;
+                ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
+                ViewBag.direccion = persona.DIRECCION;
+                ViewBag.telefono = persona.TELEFONO;
+                ViewBag.pais = persona.PAISI.NOMBRE;
+                ViewBag.codPostal = persona.COD_POSTAL;
+                ViewBag.titulo = persona.TITULO;
+                ViewBag.institucion = persona.INSTITUCIONI.FULL_NAME;
                 return PartialView(infov);
 
             }
