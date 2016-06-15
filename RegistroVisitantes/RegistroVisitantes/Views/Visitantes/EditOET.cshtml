@@ -239,15 +239,22 @@
                 <br />
 
                 @Html.LabelFor(model => model.CARNE, @ViewResources.Resources.oet_carne, htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.CARNE, new { htmlAttributes = new { @class = "form-control, , (bool)ViewBag.Carne" } })
+                @Html.CheckBoxFor(model => model.CARNE,  new { @class = "form-control, , (bool)ViewBag.Carne"  })
                 @Html.LabelFor(model => model.POLLO, @ViewResources.Resources.oet_pollo, htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.POLLO, new { htmlAttributes = new { @class = "form-control, (bool)ViewBag.Pollo" } })
+                @Html.CheckBoxFor(model => model.POLLO,  new { @class = "form-control, (bool)ViewBag.Pollo" })
                 @Html.LabelFor(model => model.PESCADO, @ViewResources.Resources.oet_pescado, htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.PESCADO, new { htmlAttributes = new { @class = "form-control, (bool)ViewBag.Pescado" } })
+                @Html.CheckBoxFor(model => model.PESCADO,  new { @class = "form-control, (bool)ViewBag.Pescado"  })
                 @Html.LabelFor(model => model.CERDO, @ViewResources.Resources.oet_cerdo, htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.CERDO, new { htmlAttributes = new { @class = "form-control, (bool)ViewBag.Cerdo" } })
+                @Html.CheckBoxFor(model => model.CERDO,  new { @class = "form-control, (bool)ViewBag.Cerdo" })
 
             </div>
+
+          
+
+
+
+
+
 
             <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.ALERGIAS, @ViewResources.Resources.oet_alergias, htmlAttributes: new { @class = "control-label" })
@@ -313,8 +320,8 @@
         <div class="form-group">
             <div class="col-sm-12">
                 <input type="submit" value="Guardar" class="btn btn-successOET" />                
-                <button class="btn btn-cancelOET" onclick="location.href='@Url.Action("Details","Visitantes", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA })';return false;">Cancelar</button>
-            </div>
+                <button class="btn btn-danger" onclick="location.href='@Url.Action("Details","Visitantes", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA })';return false;">Cancelar</button>
+             </div>
         </div>
     </div>    
 }
