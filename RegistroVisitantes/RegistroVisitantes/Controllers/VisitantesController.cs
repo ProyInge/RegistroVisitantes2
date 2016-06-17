@@ -570,10 +570,7 @@ namespace RegistroVisitantes.Controllers
                 infov.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 infov.PERSONA.NACIONALIDADI = nacion;
 
-                infov.CARNE = true;
-                infov.POLLO = true;
-                infov.CERDO = true;
-                infov.PESCADO = true;
+               
 
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
