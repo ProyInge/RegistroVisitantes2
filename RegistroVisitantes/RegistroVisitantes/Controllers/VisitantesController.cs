@@ -86,7 +86,7 @@ namespace RegistroVisitantes.Controllers
                 if (reservacion != null)
                 {
                     ViewBag.num = reservacion.NUMERO;
-                    ViewBag.idRes = idRes;
+                    ViewBag.idRes = reservacion.ID;
                 }
             }
             else if (idRes != null && !idRes.Equals(""))
