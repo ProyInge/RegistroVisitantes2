@@ -11,6 +11,7 @@ using ViewResources;
 using System.Threading;
 using System.Globalization;
 using System.Data.Entity;
+using System.Reflection;
 
 namespace RegistroVisitantes.Controllers
 {
@@ -116,14 +117,19 @@ namespace RegistroVisitantes.Controllers
                 PERSONA persona = BDRegistro.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
                 //return PartialView(persona);
                 INFOVISITA infov = new INFOVISITA();
-                ViewBag.nombre = persona.NOMBRE;
-                ViewBag.apellido = persona.APELLIDO;
-                ViewBag.email = persona.EMAIL;
-                ViewBag.cedula = persona.CEDULA;
-                ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
-                ViewBag.direccion = persona.DIRECCION;
-                ViewBag.telefono = persona.TELEFONO;
-                ViewBag.pais = persona.PAISI.NOMBRE;
+                ViewBag.genero = persona.GENERO;
+
+                infov.PERSONA = persona;
+                infov.CEDULA = persona.CEDULA;
+
+                if (infov.PERSONA.PAISI != null)
+                {
+                    infov.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.PAISI.NOMBRE));
+                }
+                if (infov.PERSONA.NACIONALIDADI != null)
+                {
+                    infov.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.NACIONALIDADI.GENTILICIO));
+                }
 
                 return PartialView(infov);
             }
@@ -132,15 +138,19 @@ namespace RegistroVisitantes.Controllers
                 PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
                 //return PartialView(persona);
                 INFOVISITA infov = new INFOVISITA();
-                ViewBag.nombre = persona.NOMBRE;
-                ViewBag.apellido = persona.APELLIDO;
-                ViewBag.email = persona.EMAIL;
-                ViewBag.cedula = persona.CEDULA;
-                ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
-                ViewBag.direccion = persona.DIRECCION;
-                ViewBag.telefono = persona.TELEFONO;
-                ViewBag.pais = persona.PAISI.NOMBRE;
+                if(persona!=null) { 
+                    infov.PERSONA = persona;
+                    infov.CEDULA = persona.CEDULA;
 
+                    if (infov.PERSONA.PAISI != null)
+                    {
+                        infov.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.PAISI.NOMBRE));
+                    }
+                    if (infov.PERSONA.NACIONALIDADI != null)
+                    {
+                        infov.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.NACIONALIDADI.GENTILICIO));
+                    }
+                }
                 return PartialView(infov);
             }
             
@@ -197,7 +207,7 @@ namespace RegistroVisitantes.Controllers
          * Devuelve: vista del formulario en blanco
          */
         [HttpGet]
-        public ActionResult CreateESINTRO(String idRes)
+        public ActionResult CreateESINTRO(String idRes, int? mensaje)
         {
             if (idRes == null)
             {
@@ -218,7 +228,16 @@ namespace RegistroVisitantes.Controllers
             ViewBag.positionList = position;
             ViewBag.roleList = role;
             ViewBag.idRes = idRes;
-            return View();
+            if (mensaje == 1)
+            {
+               ViewBag.Mensaje = "Y";
+            }
+            if (mensaje == 0)
+            {
+                ViewBag.Mensaje = "N";
+            }
+                
+                return View();
         }
 
         /*
@@ -230,6 +249,8 @@ namespace RegistroVisitantes.Controllers
         [HttpPost]
         public ActionResult CreateESINTRO(String idRes, [Bind()]Models.INFOVISITA form, FormCollection collection, string dietas, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
         {
+            int mensaje = -1;
+
             if (idRes == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -287,16 +308,18 @@ namespace RegistroVisitantes.Controllers
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
- 
+
+                form.CEDULA = form.PERSONA.CEDULA;
                 var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
+       
                 db.INFOVISITA.Add(form);
                 if (cedulaP != null)
-                {                  
+                {
+                    db.Entry(cedulaP).State = EntityState.Detached;
+                    //db.Entry(form.PERSONA).State = EntityState.Modified;
                     db.PERSONA.Attach(form.PERSONA);
-
                 }
 
-                
                 try
                 {
                     db.SaveChanges();
@@ -314,10 +337,12 @@ namespace RegistroVisitantes.Controllers
                             raise = new InvalidOperationException(message, raise);
                         }
                     }
+                    mensaje = 0;
                     throw raise;
                 }
             }
-            return RedirectToAction("Index", "Reservas");
+            mensaje = 1;
+            return RedirectToAction("CreateESINTRO", new { idRes, mensaje });
         }
 
         /*

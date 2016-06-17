@@ -35,7 +35,24 @@ else
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+@if (ViewBag.Mensaje != null)
+{
+    if (ViewBag.Mensaje == "Y")
+    {
 
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Success!</strong> Your Information Was Sent Correctly!
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Error!</strong> Something Went Wrong, Please Try Again! 
+        </div>
+    }
+}
 
         <div class="container">
             <div class="row">
@@ -229,7 +246,8 @@ else
         String.prototype.toProperCase = function () {
             return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
         };
-        $(document).ready(function () {
+
+        function initAutoComplete() {
             $("#insts").autocomplete({
                 source: function (request, response) {
                     $.ajax({
@@ -239,7 +257,7 @@ else
                         data: { term: request.term },
                         success: function (data) {
                             response($.map(data, function (item) {
-                                return { label: item.FULL_NAME+"\t( "+item.NOMBRE.toLowerCase().toProperCase()+")", value: item.FULL_NAME, data: item.CAT_INSTITUCION };
+                                return { label: item.FULL_NAME + "\t( " + item.NOMBRE.toLowerCase().toProperCase() + ")", value: item.FULL_NAME, data: item.CAT_INSTITUCION };
                             }))
 
                         }
@@ -287,6 +305,10 @@ else
                     noResults: "No hay resultados", results: ""
                 }
             });
+        }
+
+        $(document).ready(function () {
+            initAutoComplete();
             $('#btnAjax').click(function () {
                 $.ajax({
                     type: 'GET',
@@ -294,6 +316,7 @@ else
                     data: { ajaxInput: $('#ajaxInput').val() },
                     success: function (result) {
                         $('#personalInfo').html(result);
+                        initAutoComplete();
                     },
                     error: function (xhr, status) {
                         alert(status);

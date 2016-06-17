@@ -79,7 +79,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#result").dialog({
+        $("#popup").dialog({
             autoOpen: false,
             title: 'Title',
             width: 500,
@@ -88,7 +88,7 @@
         });
     });
     function openPopup() {
-        $("#result").dialog("open");
+        $("#popup").dialog("open");
     }
 </script>
 
@@ -186,8 +186,8 @@
 				@Html.LabelFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, @ViewResources.Resources.oet_institucion, htmlAttributes: new { @class = "control-label " })
 				@Html.EditorFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, new { htmlAttributes = new { @class = "form-control", @id="insts", @name="insts"} })
 				@Html.ValidationMessageFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, "", new { @class = "text-danger" })
-                @Ajax.ActionLink("openPopup", "AgregaInstitucion", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "openPopup" })<br />
-                <div id="result" style="display:none;"></div>
+                @Ajax.ActionLink("Agrega Institución", "CreateInstitucion", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "popup", InsertionMode = InsertionMode.Replace, OnSuccess = "openPopup" })<br />
+                <div id="popup" style="display:none;"></div>
 			</div>
         </div>
 
