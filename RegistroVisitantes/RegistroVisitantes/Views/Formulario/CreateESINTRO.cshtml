@@ -35,7 +35,24 @@ else
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+@if (ViewBag.Mensaje != null)
+{
+    if (ViewBag.Mensaje == "Y")
+    {
 
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Success!</strong> Your Information Was Sent Correctly!
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Error!</strong> Something Went Wrong, Please Try Again! 
+        </div>
+    }
+}
 
         <div class="container">
             <div class="row">
@@ -162,13 +179,21 @@ else
                 <label for="dieta">@ViewResources.Resources.oet_preferencias</label>
                 <br />
                 <form action="demo_form.asp" method="get">
-                    <div class="row">
+                    <div >
                         <input id="carne" type="checkbox" name="checkCarne" value="true"> @ViewResources.Resources.oet_carne<br>
+                        </div>
+                    <div>
                         <input id="pollo" type="checkbox" name="checkPollo" value="true"> @ViewResources.Resources.oet_pollo<br>
+
+                    </div>
+                    
+                    <div>
                         <input id="pescado" type="checkbox" name="checkPescado" value="true"> @ViewResources.Resources.oet_pescado<br>
+                    </div>
+                    <div>
                         <input id="cerdo" type="checkbox" name="checkCerdo" value="true"> @ViewResources.Resources.oet_cerdo<br>
                     </div>
-                </form>
+</form>
             </div>
 
 

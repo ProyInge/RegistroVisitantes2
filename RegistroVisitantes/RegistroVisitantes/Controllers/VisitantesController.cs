@@ -86,7 +86,7 @@ namespace RegistroVisitantes.Controllers
                 if (reservacion != null)
                 {
                     ViewBag.num = reservacion.NUMERO;
-                    ViewBag.idRes = idRes;
+                    ViewBag.idRes = reservacion.ID;
                 }
             }
             else if (idRes != null && !idRes.Equals(""))
@@ -550,10 +550,7 @@ namespace RegistroVisitantes.Controllers
                 infov.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 infov.PERSONA.NACIONALIDADI = nacion;
 
-                infov.CARNE = true;
-                infov.POLLO = true;
-                infov.CERDO = true;
-                infov.PESCADO = true;
+               
 
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
