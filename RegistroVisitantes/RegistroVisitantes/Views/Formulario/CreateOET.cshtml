@@ -303,7 +303,8 @@ else
         String.prototype.toProperCase = function () {
             return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
         };
-        $(document).ready(function () {
+
+        function initAutoComplete () {
             $("#insts").autocomplete({
                 source: function (request, response) {
                     $.ajax({
@@ -361,13 +362,17 @@ else
                     noResults: "No hay resultados", results: ""
                 }
             });
-            $('#btnAjax').click(function () {
+        }
+
+        $(document).ready(function () {
+             $('#btnAjax').click(function () {
                 $.ajax({
                     type: 'GET',
                     url: '@Url.Action("AutocompletarOET", "Formulario")',
                     data: { ajaxInput: $('#ajaxInput').val() },
                     success: function (result) {
                         $('#personalInfo').html(result);
+                        initAutoComplete();
                     },
                     error: function (xhr, status) {
                         alert(status);

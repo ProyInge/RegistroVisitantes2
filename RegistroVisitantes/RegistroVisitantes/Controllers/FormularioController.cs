@@ -167,37 +167,47 @@ namespace RegistroVisitantes.Controllers
             if (IsValidEmail(ajaxInput)) //Es un email
             {
                 PERSONA persona = BDRegistro.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
+                //return PartialView(persona);
                 INFOVISITA infov = new INFOVISITA();
-                ViewBag.nombre = persona.NOMBRE;
-                ViewBag.apellido = persona.APELLIDO;
-                ViewBag.email = persona.EMAIL;
-                ViewBag.cedula = persona.CEDULA;
-                ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
-                ViewBag.direccion = persona.DIRECCION;
-                ViewBag.telefono = persona.TELEFONO;
-                ViewBag.pais = persona.PAISI.NOMBRE;
-                ViewBag.codPostal = persona.COD_POSTAL;
-                ViewBag.titulo = persona.TITULO;
-                ViewBag.institucion = persona.INSTITUCIONI.FULL_NAME;
+                ViewBag.genero = persona.GENERO;
+
+                infov.PERSONA = persona;
+                infov.CEDULA = persona.CEDULA;
+
+                if (infov.PERSONA.PAISI != null)
+                {
+                    infov.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.PAISI.NOMBRE));
+                }
+                if (infov.PERSONA.NACIONALIDADI != null)
+                {
+                    infov.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.NACIONALIDADI.GENTILICIO));
+                }
+                if (infov.PERSONA.INSTITUCIONI != null)
+                {
+                    infov.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.INSTITUCIONI.FULL_NAME));
+                }
                 return PartialView(infov);
             }
             else
             {   //Es una cedula
                 PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
+                //return PartialView(persona);
                 INFOVISITA infov = new INFOVISITA();
-                ViewBag.nombre = persona.NOMBRE;
-                ViewBag.apellido = persona.APELLIDO;
-                ViewBag.email = persona.EMAIL;
-                ViewBag.cedula = persona.CEDULA;
-                ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
-                ViewBag.direccion = persona.DIRECCION;
-                ViewBag.telefono = persona.TELEFONO;
-                ViewBag.pais = persona.PAISI.NOMBRE;
-                ViewBag.codPostal = persona.COD_POSTAL;
-                ViewBag.titulo = persona.TITULO;
-                ViewBag.institucion = persona.INSTITUCIONI.FULL_NAME;
-                return PartialView(infov);
+                if (persona != null)
+                {
+                    infov.PERSONA = persona;
+                    infov.CEDULA = persona.CEDULA;
 
+                    if (infov.PERSONA.PAISI != null)
+                    {
+                        infov.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.PAISI.NOMBRE));
+                    }
+                    if (infov.PERSONA.NACIONALIDADI != null)
+                    {
+                        infov.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.NACIONALIDADI.GENTILICIO));
+                    }
+                }
+                return PartialView(infov);
             }
         }
 
@@ -308,6 +318,14 @@ namespace RegistroVisitantes.Controllers
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
+
+                string insti = (string)collection["PERSONA.INSTITUCIONI.FULL_NAME"].ToUpper();
+                V_INSTITUCION institucion = BDRegistro.V_INSTITUCION.Where(x => String.Equals(x.FULL_NAME, gentpais)).FirstOrDefault();
+                if (institucion != null)
+                {
+                    form.PERSONA.INSTITUCION = institucion.CAT_INSTITUCION;
+                }
+                form.PERSONA.INSTITUCIONI = institucion;
 
                 form.CEDULA = form.PERSONA.CEDULA;
                 var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
@@ -433,13 +451,18 @@ namespace RegistroVisitantes.Controllers
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
+
+                form.CEDULA = form.PERSONA.CEDULA;
                 var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
+
                 db.INFOVISITA.Add(form);
                 if (cedulaP != null)
                 {
+                    db.Entry(cedulaP).State = EntityState.Detached;
+                    //db.Entry(form.PERSONA).State = EntityState.Modified;
                     db.PERSONA.Attach(form.PERSONA);
+                }
 
-                }                
                 try
                 {
                     db.SaveChanges(); //se guarda la información
