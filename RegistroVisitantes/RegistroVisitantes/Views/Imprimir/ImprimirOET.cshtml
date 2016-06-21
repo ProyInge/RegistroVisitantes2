@@ -213,7 +213,7 @@
             <div class="row">
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.PROPOSITO, @ViewResources.Resources.oet_proposito + ":", htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.PROPOSITO, new { @class = "form-control" })
+                    @Html.EditorFor(model => model.PROPOSITO, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PROPOSITO, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-sm-6">
@@ -245,7 +245,7 @@
             <div class="row">
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.ROL_CURSO, @ViewResources.Resources.oet_cursoRol + ":", htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.ROL_CURSO, new { @class = "form-control" })
+                    @Html.EditorFor(model => model.ROL_CURSO, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.ROL_CURSO, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -257,7 +257,7 @@
             <div class="row">
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.PERSONA.POSICION, @ViewResources.Resources.oet_investPosTitulo + ":", htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.PERSONA.POSICION, new { @class = "form-control" })
+                    @Html.EditorFor(model => model.PERSONA.POSICION, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.POSICION, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -265,7 +265,7 @@
 
         <div class="container">
             <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_waiverTitulo</h2>
-            <div class="well" style="font-size:medium">
+            <div class="well">
                 @ViewResources.Resources.oet_waiver
             </div>
         </div>

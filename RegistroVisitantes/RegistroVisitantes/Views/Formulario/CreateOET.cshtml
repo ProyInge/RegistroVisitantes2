@@ -15,6 +15,7 @@ else
 
 
 <h2>@ViewResources.Resources.oet_titulo</h2>
+
 @using (Html.BeginForm("ChangeCulture", "Formulario", new { idRes = ViewBag.idRes }))
 {
     <p>
@@ -35,6 +36,25 @@ else
     <div class="container">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @if (ViewBag.Mensaje != null)
+        {
+            if (ViewBag.Mensaje == "Y")
+            {
+
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>@ViewResources.Resources.mensajeTitulo</strong> @ViewResources.Resources.mensajeCorrecto
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>@ViewResources.Resources.tituloError</strong> @ViewResources.Resources.mensajeErroneo
+                </div>
+            }
+        }
 
         <div class="container">
             <div class="row">
@@ -278,7 +298,7 @@ else
 
         <div class="container">
             <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_waiverTitulo</h2>
-            <div class="well" style="font-size:medium">
+            <div class="well">
                 @ViewResources.Resources.oet_waiver
             </div>
         </div>

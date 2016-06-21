@@ -162,7 +162,7 @@ namespace RegistroVisitantes.Controllers
          * Devulve: vista de la pagina con la informacion de la persona registrada
          */
         [Authorize]
-        public ActionResult DetailsOET(String idR, String cedula)
+        public ActionResult DetailsOET(String idR, String cedula, int? mensaje)
         {
 
             if (idR == null || cedula == null)
@@ -219,6 +219,16 @@ namespace RegistroVisitantes.Controllers
                 {
                     iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO));
                 }
+
+                if (mensaje == 1)
+                {
+                    ViewBag.Mensaje = "Y";
+                }
+                if (mensaje == 0)
+                {
+                    ViewBag.Mensaje = "N";
+                }
+
                 return View(iInfoVisita);
             }
 
@@ -230,7 +240,7 @@ namespace RegistroVisitantes.Controllers
         * Devuelve: vista de la pagina con la informacion de la persona registrada
         */
         [Authorize]
-        public ActionResult DetailsESINTRO(String idR, String cedula)
+        public ActionResult DetailsESINTRO(String idR, String cedula, int? mensaje)
         {
 
             if (idR == null || cedula == null)
@@ -279,6 +289,15 @@ namespace RegistroVisitantes.Controllers
                 if (iInfoVisita.PERSONA.NACIONALIDADI != null)
                 {
                     iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO));
+                }
+
+                if (mensaje == 1)
+                {
+                    ViewBag.Mensaje = "Y";
+                }
+                if (mensaje == 0)
+                {
+                    ViewBag.Mensaje = "N";
                 }
 
             }
@@ -514,6 +533,7 @@ namespace RegistroVisitantes.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditOET(INFOVISITA infov, FormCollection collection)
         {
+            int mensaje = 0;
             if (ModelState.IsValid)
             {
                 /*if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
@@ -550,15 +570,13 @@ namespace RegistroVisitantes.Controllers
                 infov.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 infov.PERSONA.NACIONALIDADI = nacion;
 
-                infov.CARNE = true;
-                infov.POLLO = true;
-                infov.CERDO = true;
-                infov.PESCADO = true;
+               
 
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
-                return RedirectToAction("DetailsOET", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA });
+                mensaje = 1;
+                return RedirectToAction("DetailsOET", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA, mensaje });
             }
             return View();
 
@@ -573,7 +591,7 @@ namespace RegistroVisitantes.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditESINTRO(INFOVISITA infov, FormCollection collection)
         {
-
+            int mensaje = 0;
             if (ModelState.IsValid)
             {
 
@@ -626,7 +644,8 @@ namespace RegistroVisitantes.Controllers
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
-                return RedirectToAction("DetailsESINTRO", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA });
+                mensaje = 1;
+                return RedirectToAction("DetailsESINTRO", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA, mensaje });
             }
             return View();
         }

@@ -61,6 +61,7 @@
 </script>
 
 <h2>@ViewResources.Resources.oet_titulo</h2>
+<h3>@ViewResources.Resources.reservacion : @Html.DisplayFor(model => model.RESERVACION.NUMERO)</h3>
 
 @using (Html.BeginForm())
 {
@@ -79,8 +80,10 @@
         @Html.HiddenFor(model => model.PERSONA.CEDULA)
         @Html.HiddenFor(model => model.PERSONA.ESTADO)
         @Html.HiddenFor(model => model.ESTADO)
+
     <div>
         <hr />
+
          <div class="container">
             <h2 style="border-bottom:8px solid #FDBB30">Personal Information</h2>
             <br />
@@ -206,7 +209,7 @@
             </div>
             <div class="container">
                 <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_waiverTitulo</h2>
-                <div class="well" style="font-size:medium">
+                <div class="well">
                    @ViewResources.Resources.es_waiver
                 </div>
             </div>
@@ -221,7 +224,7 @@
         <div class="form-group">
             <div class="col-sm-12">
                 <input type="submit" value="Guardar" class="btn btn-successOET" />
-                <button class="btn btn-cancelOET" onclick="location.href='@Url.Action("Details","Visitantes", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA })';return false;">Cancelar</button>
+                <button class="btn btn-danger" onclick="location.href='@Url.Action("Details","Visitantes", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA })';return false;">Cancelar</button>
             </div>
         </div>
 
