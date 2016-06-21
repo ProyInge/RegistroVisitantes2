@@ -319,14 +319,6 @@ namespace RegistroVisitantes.Controllers
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
 
-                string insti = (string)collection["PERSONA.INSTITUCIONI.FULL_NAME"].ToUpper();
-                V_INSTITUCION institucion = BDRegistro.V_INSTITUCION.Where(x => String.Equals(x.FULL_NAME, gentpais)).FirstOrDefault();
-                if (institucion != null)
-                {
-                    form.PERSONA.INSTITUCION = institucion.CAT_INSTITUCION;
-                }
-                form.PERSONA.INSTITUCIONI = institucion;
-
                 form.CEDULA = form.PERSONA.CEDULA;
                 var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
        
@@ -461,6 +453,14 @@ namespace RegistroVisitantes.Controllers
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
 
+                string insti = (string)collection["PERSONA.INSTITUCIONI.FULL_NAME"].ToUpper();
+                V_INSTITUCION institucion = BDRegistro.V_INSTITUCION.Where(x => String.Equals(x.FULL_NAME, gentpais)).FirstOrDefault();
+                if (institucion != null)
+                {
+                    form.PERSONA.INSTITUCION = institucion.CAT_INSTITUCION;
+                }
+
+                form.PERSONA.INSTITUCIONI = institucion;
                 form.CEDULA = form.PERSONA.CEDULA;
                 var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
 
