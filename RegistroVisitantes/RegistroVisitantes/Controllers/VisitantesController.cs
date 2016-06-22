@@ -799,18 +799,25 @@ namespace RegistroVisitantes.Controllers
 
         public PartialViewResult CreateInstitucion()
         {
-            return PartialView();
+            return PartialView(new V_INSTITUCION());
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateInstitucion(V_INSTITUCION inst)
+        public string AddInstitucion(string desc, string nom, string pais)
         {
+
+            V_INSTITUCION inst = new V_INSTITUCION();
             inst.X_SISTEMA = true;
+            inst.CAT_INSTITUCION = -1;
+            inst.FULL_NAME = nom;
+            inst.DESCRIPCION = desc;
+            string nompais = pais.ToUpper()+" ";
+            V_PAISES ipais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
+            inst.COUNTRY = (ipais == null) ? null : ipais.ISO;
+            inst.CREADO = DateTime.Now;
             BDRegistro.V_INSTITUCION.Add(inst);
             BDRegistro.SaveChanges();
             
-            return RedirectToAction("Index");
+            return "Okay";
         }
 
     }

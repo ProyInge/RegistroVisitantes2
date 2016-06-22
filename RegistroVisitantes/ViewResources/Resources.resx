@@ -378,4 +378,22 @@
   <data name="reservacion" xml:space="preserve">
     <value>Número de Reservación</value>
   </data>
+  <data name="aceptarInst" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="cancelarInst" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="descripInst" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="nombreInst" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="paisInst" xml:space="preserve">
+    <value>Pais</value>
+  </data>
+  <data name="tituloInst" xml:space="preserve">
+    <value>Agrega Institución</value>
+  </data>
 </root>

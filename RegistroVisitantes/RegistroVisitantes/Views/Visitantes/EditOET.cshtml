@@ -107,7 +107,7 @@
 				@Html.EditorFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, new { htmlAttributes = new { @class = "form-control", @id="insts", @name="insts"} })
 				@Html.ValidationMessageFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, "", new { @class = "text-danger" })
                 <button id="createInstBtn" class="btn btn-success" type="button">
-                    Agrega Institucion
+                    @ViewResources.Resources.tituloInst
                 </button>
 			</div>
         </div>
@@ -245,6 +245,31 @@
     </script>
 
     <script type="text/javascript">
+    function initAutoComplete() {
+        $('#popup').on('shown.bs.modal', function (e) {
+            $("#country").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Visitantes/Paises",
+                        type: "POST",
+                        dataType: "json",
+                        data: { term: request.term },
+                        appendTo: $('#country'),
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.NOMBRE.toLowerCase().toProperCase(), value: item.NOMBRE.toLowerCase().toProperCase(), data: item.CAT_PAISES };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "No hay resultados", results: ""
+                }
+            });
+            $("#country").autocomplete("option", "appendTo", "#popup");
+        });
+    }
     function openPopup() {
         $("#popup").dialog("open");
     }
@@ -317,6 +342,7 @@
                 success: function (result) {
                     $('#popup').html(result);
                     $('#popup').modal('show');
+                    initAutoComplete();
                 },
                 error: function (xhr, status) {
                     alert(status);
@@ -324,6 +350,7 @@
             });
 
         });
+        
     });
     </script>
 }
