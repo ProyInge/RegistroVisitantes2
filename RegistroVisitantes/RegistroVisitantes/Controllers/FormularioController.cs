@@ -184,7 +184,7 @@ namespace RegistroVisitantes.Controllers
                 }
                 if (infov.PERSONA.INSTITUCIONI != null)
                 {
-                    infov.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.INSTITUCIONI.FULL_NAME));
+                    infov.PERSONA.INSTITUCIONI.FULL_NAME = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.INSTITUCIONI.FULL_NAME));
                 }
                 return PartialView(infov);
             }
@@ -469,8 +469,8 @@ namespace RegistroVisitantes.Controllers
                 if (cedulaP != null)
                 {
                     db.Entry(cedulaP).State = EntityState.Detached;
-                    //db.Entry(form.PERSONA).State = EntityState.Modified;
                     db.PERSONA.Attach(form.PERSONA);
+                    db.Entry(form.PERSONA).State = EntityState.Modified;
                 }
 
                 try
