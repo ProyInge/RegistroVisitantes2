@@ -13,6 +13,9 @@
 </script>
 
 <script type="text/javascript">
+    function openPopup() {
+        $("#popup").dialog("open");
+    }
     String.prototype.toProperCase = function () {
         return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     };
@@ -74,11 +77,6 @@
                 noResults: "No hay resultados", results: ""
             }
         });
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
         $("#popup").dialog({
             autoOpen: false,
             title: 'Title',
@@ -87,12 +85,10 @@
             modal: true
         });
     });
-    function openPopup() {
-        $("#popup").dialog("open");
-    }
 </script>
 
 <h2>@ViewResources.Resources.oet_titulo</h2>
+<h3>@ViewResources.Resources.reservacion : @Html.DisplayFor(model => model.RESERVACION.NUMERO)</h3>
 
 @using (Html.BeginForm())
 {
@@ -103,8 +99,10 @@
     @Html.HiddenFor(model => model.PERSONA.CEDULA)
     @Html.HiddenFor(model => model.ESTADO)
 
+
     <div>
         <hr />
+
         <div class="container">
             <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_personal</h2>
             <br />
@@ -187,7 +185,7 @@
 				@Html.EditorFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, new { htmlAttributes = new { @class = "form-control", @id="insts", @name="insts"} })
 				@Html.ValidationMessageFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, "", new { @class = "text-danger" })
                 @Ajax.ActionLink("Agrega Institución", "CreateInstitucion", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "popup", InsertionMode = InsertionMode.Replace, OnSuccess = "openPopup" })<br />
-                <div id="popup" style="display:none;"></div>
+                <div class="modal fade" id="popup" style="display:none;"></div>
 			</div>
         </div>
 
@@ -311,7 +309,7 @@
 
         <div class="container">
             <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_waiverTitulo</h2>
-            <div class="well" style="font-size:medium">
+            <div class="well">
                 @ViewResources.Resources.oet_waiver
             </div>
         </div>
