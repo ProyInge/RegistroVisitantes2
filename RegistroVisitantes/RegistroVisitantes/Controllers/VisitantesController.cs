@@ -777,5 +777,16 @@ namespace RegistroVisitantes.Controllers
             return PartialView();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateInstitucion(V_INSTITUCION inst)
+        {
+            inst.X_SISTEMA = true;
+            BDRegistro.V_INSTITUCION.Add(inst);
+            BDRegistro.SaveChanges();
+            
+            return RedirectToAction("Index");
+        }
+
     }
 }

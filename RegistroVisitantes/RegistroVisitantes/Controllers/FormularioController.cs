@@ -316,8 +316,9 @@ namespace RegistroVisitantes.Controllers
                 if (cedulaP != null)
                 {
                     db.Entry(cedulaP).State = EntityState.Detached;
-                    //db.Entry(form.PERSONA).State = EntityState.Modified;
                     db.PERSONA.Attach(form.PERSONA);
+                    db.Entry(form.PERSONA).State = EntityState.Modified;
+                    
                 }
 
                 try
