@@ -1012,3 +1012,17 @@ C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisit
 C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.csprojResolveAssemblyReference.cache
 C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.dll
 C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\obj\Debug\RegistroVisitantes.pdb
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\csc.exe.config
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\csc.rsp
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\csi.exe
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\csi.rsp
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\System.AppContext.dll
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\vbc.exe.config
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\vbc.rsp
