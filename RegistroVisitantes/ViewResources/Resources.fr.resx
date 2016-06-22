@@ -267,4 +267,19 @@
   <data name="esintro_back" xml:space="preserve">
     <value>Retourner</value>
   </data>
+  <data name="mensajeCorrecto" xml:space="preserve">
+    <value>Votre information a été envoyée correctement !</value>
+  </data>
+  <data name="mensajeErroneo" xml:space="preserve">
+    <value>Une erreur s'est produite. Veuillez réessayer!</value>
+  </data>
+  <data name="mensajeTitulo" xml:space="preserve">
+    <value>Succès!</value>
+  </data>
+  <data name="tituloError" xml:space="preserve">
+    <value>Erreur!</value>
+  </data>
+  <data name="reservacion" xml:space="preserve">
+    <value>Numéro de Réservation</value>
+  </data>
 </root>

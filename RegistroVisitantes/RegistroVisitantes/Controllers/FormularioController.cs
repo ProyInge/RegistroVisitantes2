@@ -167,37 +167,47 @@ namespace RegistroVisitantes.Controllers
             if (IsValidEmail(ajaxInput)) //Es un email
             {
                 PERSONA persona = BDRegistro.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
+                //return PartialView(persona);
                 INFOVISITA infov = new INFOVISITA();
-                ViewBag.nombre = persona.NOMBRE;
-                ViewBag.apellido = persona.APELLIDO;
-                ViewBag.email = persona.EMAIL;
-                ViewBag.cedula = persona.CEDULA;
-                ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
-                ViewBag.direccion = persona.DIRECCION;
-                ViewBag.telefono = persona.TELEFONO;
-                ViewBag.pais = persona.PAISI.NOMBRE;
-                ViewBag.codPostal = persona.COD_POSTAL;
-                ViewBag.titulo = persona.TITULO;
-                ViewBag.institucion = persona.INSTITUCIONI.FULL_NAME;
+                ViewBag.genero = persona.GENERO;
+
+                infov.PERSONA = persona;
+                infov.CEDULA = persona.CEDULA;
+
+                if (infov.PERSONA.PAISI != null)
+                {
+                    infov.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.PAISI.NOMBRE));
+                }
+                if (infov.PERSONA.NACIONALIDADI != null)
+                {
+                    infov.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.NACIONALIDADI.GENTILICIO));
+                }
+                if (infov.PERSONA.INSTITUCIONI != null)
+                {
+                    infov.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.INSTITUCIONI.FULL_NAME));
+                }
                 return PartialView(infov);
             }
             else
             {   //Es una cedula
                 PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
+                //return PartialView(persona);
                 INFOVISITA infov = new INFOVISITA();
-                ViewBag.nombre = persona.NOMBRE;
-                ViewBag.apellido = persona.APELLIDO;
-                ViewBag.email = persona.EMAIL;
-                ViewBag.cedula = persona.CEDULA;
-                ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
-                ViewBag.direccion = persona.DIRECCION;
-                ViewBag.telefono = persona.TELEFONO;
-                ViewBag.pais = persona.PAISI.NOMBRE;
-                ViewBag.codPostal = persona.COD_POSTAL;
-                ViewBag.titulo = persona.TITULO;
-                ViewBag.institucion = persona.INSTITUCIONI.FULL_NAME;
-                return PartialView(infov);
+                if (persona != null)
+                {
+                    infov.PERSONA = persona;
+                    infov.CEDULA = persona.CEDULA;
 
+                    if (infov.PERSONA.PAISI != null)
+                    {
+                        infov.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.PAISI.NOMBRE));
+                    }
+                    if (infov.PERSONA.NACIONALIDADI != null)
+                    {
+                        infov.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.NACIONALIDADI.GENTILICIO));
+                    }
+                }
+                return PartialView(infov);
             }
         }
 
@@ -352,7 +362,7 @@ namespace RegistroVisitantes.Controllers
         * Devuelve: vista del formulario en blanco
         */
         [HttpGet]
-        public ActionResult CreateOET(String idRes)
+        public ActionResult CreateOET(String idRes, int? mensaje)
         {
             /*if (idRes == null)
             {
@@ -373,6 +383,14 @@ namespace RegistroVisitantes.Controllers
             ViewBag.positionList = position;
             ViewBag.roleList = role;
             ViewBag.idRes = idRes;
+            if (mensaje == 1)
+            {
+                ViewBag.Mensaje = "Y";
+            }
+            if (mensaje == 0)
+            {
+                ViewBag.Mensaje = "N";
+            }
             return View();
         }
 
@@ -385,6 +403,7 @@ namespace RegistroVisitantes.Controllers
         [HttpPost]
         public ActionResult CreateOET(String idRes, [Bind()]Models.INFOVISITA form, FormCollection collection, string dietas, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
          {
+            int mensaje = -1;
             if (idRes == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -434,13 +453,26 @@ namespace RegistroVisitantes.Controllers
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
+
+                string insti = (string)collection["PERSONA.INSTITUCIONI.FULL_NAME"].ToUpper();
+                V_INSTITUCION institucion = BDRegistro.V_INSTITUCION.Where(x => String.Equals(x.FULL_NAME, gentpais)).FirstOrDefault();
+                if (institucion != null)
+                {
+                    form.PERSONA.INSTITUCION = institucion.CAT_INSTITUCION;
+                }
+
+                form.PERSONA.INSTITUCIONI = institucion;
+                form.CEDULA = form.PERSONA.CEDULA;
                 var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
+
                 db.INFOVISITA.Add(form);
                 if (cedulaP != null)
                 {
+                    db.Entry(cedulaP).State = EntityState.Detached;
+                    //db.Entry(form.PERSONA).State = EntityState.Modified;
                     db.PERSONA.Attach(form.PERSONA);
+                }
 
-                }                
                 try
                 {
                     db.SaveChanges(); //se guarda la información
@@ -458,12 +490,14 @@ namespace RegistroVisitantes.Controllers
                             raise = new InvalidOperationException(message, raise);
                         }
                     }
+                    mensaje = 0;
                     throw raise;
                 }
 
                 // return RedirectToAction("Index");
             }
-            return RedirectToAction("Index", "Reservas");
+            mensaje = 1;
+            return RedirectToAction("CreateOET", new { idRes, mensaje });
         }
 
         public ActionResult Instituciones(string term)

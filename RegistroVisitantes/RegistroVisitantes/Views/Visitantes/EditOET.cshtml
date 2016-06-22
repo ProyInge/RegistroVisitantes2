@@ -6,6 +6,7 @@
 }
 
 <h2>@ViewResources.Resources.oet_titulo</h2>
+<h3>@ViewResources.Resources.reservacion : @Html.DisplayFor(model => model.RESERVACION.NUMERO)</h3>
 
 @using (Html.BeginForm())
 {
@@ -20,8 +21,10 @@
     @Html.HiddenFor(model => model.PERSONA.CEDULA)
     @Html.HiddenFor(model => model.ESTADO)
 
+
     <div>
         <hr />
+
         <div class="container">
             <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_personal</h2>
             <br />
@@ -222,7 +225,7 @@
 
         <div class="container">
             <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_waiverTitulo</h2>
-            <div class="well" style="font-size:medium">
+            <div class="well">
                 @ViewResources.Resources.oet_waiver
             </div>
         </div>

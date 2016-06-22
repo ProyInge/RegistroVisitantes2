@@ -363,4 +363,19 @@
   <data name="spanish" xml:space="preserve">
     <value>Español</value>
   </data>
+  <data name="mensajeCorrecto" xml:space="preserve">
+    <value>Su información se ha enviado correctamente !</value>
+  </data>
+  <data name="mensajeErroneo" xml:space="preserve">
+    <value>Hubo ciertos problemas, intente nuevamente!</value>
+  </data>
+  <data name="mensajeTitulo" xml:space="preserve">
+    <value>Éxito!</value>
+  </data>
+  <data name="tituloError" xml:space="preserve">
+    <value>Error!</value>
+  </data>
+  <data name="reservacion" xml:space="preserve">
+    <value>Número de Reservación</value>
+  </data>
 </root>
