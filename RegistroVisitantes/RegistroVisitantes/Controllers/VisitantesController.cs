@@ -794,22 +794,17 @@ namespace RegistroVisitantes.Controllers
                             JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult guardarFirma(string ced, string idRes, string val)
+        public void guardarFirma(string idRes, string ced, string val)
         {
-            if (idRes == null || ced == null)
+            if (idRes != null && ced != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, ced);
+                if (iInfoVisita != null)
+                {
+                    iInfoVisita.ESTADO = val;
+                    BDRegistro.SaveChanges();
+                }
             }
-            INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, ced);
-            if (iInfoVisita == null)
-            {
-                return HttpNotFound();
-            }
-            iInfoVisita.ESTADO = val;
-            
-            BDRegistro.SaveChanges();
-
-            return RedirectToAction("Index", new { idRes });
         }
 
         public PartialViewResult CreateInstitucion()
