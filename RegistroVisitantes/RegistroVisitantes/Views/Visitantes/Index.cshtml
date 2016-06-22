@@ -16,7 +16,7 @@
 
 
 <div class="col-sm-8">
-    @using (Html.BeginForm())
+@using (Html.BeginForm())
 {
     <p>
         Buscar por Número de reservación:
@@ -97,8 +97,10 @@
                             @Html.DisplayFor(modelItem => item.PERSONA.CEDULA)
                         </td>
                         <td align="center">
-                            <input type="checkbox" name="firma" value="firma" class="form-control"
-                                   @(item.ESTADO == "I" ? "disabled = \"disabled \" " : "")>
+                            <input type="checkbox" onclick='firma' name="firma" data-ced='@item.PERSONA.CEDULA'
+                                   data-idRes='@ViewBag.idRes' class="firma form-control"
+                                   @(item.ESTADO == "I" ? "disabled = \"disabled \" " : 
+                                        (item.ESTADO == "F") ? "checked" : "" )>                            
                         </td>
                         <td align="center">
 
@@ -152,5 +154,23 @@
        }
         //doSomething($(this).data("id"));
         w.print();
+    });
+
+    $(function () {
+        $('.firma').change(function () {
+            var self = $(this);
+            var id = self.data('idRes');
+            var ced = self.data('ced');
+            var value;
+            if(self.is(":checked")) {value = "F";} else {value = "A" }
+            $.ajax({
+                url: '@Url.Action("guardarFirma", "Visitantes")',
+                data: { ced: ced, idRes : id, val :  value},
+                type: 'POST',
+                success: function (response) {
+                    alert(response);
+                }
+            });
+        });
     });
 </script>

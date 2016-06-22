@@ -742,7 +742,7 @@ namespace RegistroVisitantes.Controllers
             }
             BDRegistro.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new {idRes});
         }
 
 
@@ -794,9 +794,38 @@ namespace RegistroVisitantes.Controllers
                             JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult guardarFirma(string ced, string idRes, string val)
+        {
+            if (idRes == null || ced == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, ced);
+            if (iInfoVisita == null)
+            {
+                return HttpNotFound();
+            }
+            iInfoVisita.ESTADO = val;
+            
+            BDRegistro.SaveChanges();
+
+            return RedirectToAction("Index", new { idRes });
+        }
+
         public PartialViewResult CreateInstitucion()
         {
             return PartialView();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateInstitucion(V_INSTITUCION inst)
+        {
+            inst.X_SISTEMA = true;
+            BDRegistro.V_INSTITUCION.Add(inst);
+            BDRegistro.SaveChanges();
+            
+            return RedirectToAction("Index");
         }
 
     }
