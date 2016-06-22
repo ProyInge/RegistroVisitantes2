@@ -720,7 +720,7 @@ namespace RegistroVisitantes.Controllers
             }
             BDRegistro.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new {idRes});
         }
 
 
@@ -770,6 +770,24 @@ namespace RegistroVisitantes.Controllers
             // Get Tags from database
             return this.Json(result,
                             JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult guardarFirma(string ced, string idRes, string val)
+        {
+            if (idRes == null || ced == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, ced);
+            if (iInfoVisita == null)
+            {
+                return HttpNotFound();
+            }
+            iInfoVisita.ESTADO = val;
+            
+            BDRegistro.SaveChanges();
+
+            return RedirectToAction("Index", new { idRes });
         }
 
         public PartialViewResult CreateInstitucion()
