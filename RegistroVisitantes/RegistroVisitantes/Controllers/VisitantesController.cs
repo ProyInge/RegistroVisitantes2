@@ -595,16 +595,6 @@ namespace RegistroVisitantes.Controllers
             if (ModelState.IsValid)
             {
 
-                /* if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
-                 {
-                     infov.PERSONA.GENERO = '1'.ToString();
-
-                 }
-                 else
-                 {
-                     infov.PERSONA.GENERO = '0'.ToString();
-                 }*/
-
                 string genero = collection["PERSONA.GENERO"];
                 if (genero == ViewResources.Resources.oet_fem) // si es femenino
                 {
