@@ -42,47 +42,47 @@
                             <div class="form-group">
                                 <label for="ANFITRIONA">Compañia:</label>
                                 <select class="form-control" id="ANFITRIONA" name="ANFITRIONA">
-                                    <option value="01">ESINTRO</option>
-                                    <option value="02">OET</option>
-                                    <option value="00">TODAS</option>
+                                    <option value="TODAS" @(ViewBag.ANFITRIONA == "TODAS" ? "selected" : "")>Todas</option>
+                                    <option value="OET" @(ViewBag.ANFITRIONA == "OET" ? "selected" : "")>ESINTRO</option>
+                                    <option value="ESINTRO" @(ViewBag.ANFITRIONA == "ESINTRO" ? "selected" : "")>OET</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="ESTACION">Estación:</label>
                                 <select class="form-control" id="ESTACION" name="ESTACION">
-                                    <option value="01">La Selva</option>
-                                    <option value="02">Palo Verde</option>
-                                    <option value="03">Las Cruces</option>
-                                    <option value="04">Central</option>
                                     <option value="00">Todas</option>
+                                    <option value="01">La Selva (LS)</option>
+                                    <option value="02">Palo Verde (PV)</option>
+                                    <option value="03">Las Cruces (LC)</option>
+                                    <option value="04">Central (CRO)</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="TIPO">Tipo de visitante:</label>
                                 <select class="form-control" id="TIPO" name="TIPO">
+                                    <option value="00">Todos</option>
                                     <option value="01">Staff</option>
                                     <option value="02">Investigador</option>
                                     <option value="03">Grupo Educativo</option>
                                     <option value="04">Otros visitantes</option>
-                                    <option value="00">Todos</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="NACIONALIDAD">Nacionalidad:</label>
                                 <select class="form-control" id="NACIONALIDAD" name="NACIONALIDAD">
+                                    <option value="00">Todos</option>
                                     <option value="01">Costarricense</option>
                                     <option value="02">Estadounidense</option>
                                     <option value="03">Francés</option>
-                                    <option value="00">Todos</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Create" class="btn btn-success" />
+                                <div class="col-md-12">
+                                    <input type="submit" value="Crear reporte" class="btn btn-success" />
                                 </div>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                                     @if (item.RESERVACION.ANFITRIONA == "01") { <p>OET</p> } else { <p>ESINTRO</p>}
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.RESERVACION.ESTACION)
+                                    @Html.DisplayFor(modelItem => item.RESERVACION.ESTACIONI.SIGLAS)
                                 </td>
                                 <td>
                                     @(item.RESERVACION.NUMERO)
@@ -146,7 +146,7 @@
                                     @(item.RESERVACION.SALE)
                                 </td>
                                 <td>
-                                    @(item.RESERVACION.TIPO)
+                                    @(item.PERSONA.ROL)
                                 </td>
                                 <td>
                                     @(item.PERSONA.NACIONALIDAD)
