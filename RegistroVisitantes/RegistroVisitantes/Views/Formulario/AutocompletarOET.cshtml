@@ -1,12 +1,10 @@
 ﻿@model RegistroVisitantes.Models.INFOVISITA
 
-
 <div class="form-group col-sm-6">
     @Html.LabelFor(model => model.PERSONA.NOMBRE, @ViewResources.Resources.oet_nombre + ":", htmlAttributes: new { @class = "control-label" })
     @Html.EditorFor(model => model.PERSONA.NOMBRE, new { htmlAttributes = new { @class = "form-control", pattern = "[^\\W\\d_]*", maxlength = "20" } })
     @Html.ValidationMessageFor(model => model.PERSONA.NOMBRE, "", new { @class = "text-danger" })
 </div>
-
 <div class="form-group col-sm-6">
     @Html.LabelFor(model => model.PERSONA.APELLIDO, @ViewResources.Resources.oet_apellidos + ":", htmlAttributes: new { @class = "control-label " })
     @Html.EditorFor(model => model.PERSONA.APELLIDO, new { htmlAttributes = new { @class = "form-control", pattern = "[^\\W\\d_]*[' ']*[^\\W\\d_]*", maxlength = "50" } })
@@ -27,13 +25,11 @@
     @Html.EditorFor(model => model.PERSONA.TITULO, new { htmlAttributes = new { @class = "form-control" } })
     @Html.ValidationMessageFor(model => model.PERSONA.TITULO, "", new { @class = "text-danger" })
 </div>
-
 <div class="form-group col-sm-6">
     @Html.LabelFor(model => model.PERSONA.PAISI.NOMBRE, @ViewResources.Resources.oet_pais, htmlAttributes: new { @class = "control-label " })
     @Html.EditorFor(model => model.PERSONA.PAISI.NOMBRE, new { htmlAttributes = new { @class = "form-control", @id = "paises", @name = "paises" } })
     @Html.ValidationMessageFor(model => model.PERSONA.PAISI.NOMBRE, "", new { @class = "text-danger" })
 </div>
-
 <div class="form-group col-sm-6">
     @Html.LabelFor(model => model.PERSONA.COD_POSTAL, @ViewResources.Resources.oet_codigo + ":", htmlAttributes: new { @class = "control-label" })
     @Html.EditorFor(model => model.PERSONA.COD_POSTAL, new { htmlAttributes = new { @class = "form-control" } })
@@ -44,13 +40,11 @@
     @Html.TextAreaFor(model => model.PERSONA.DIRECCION, new { @class = "form-control" })
     @Html.ValidationMessageFor(model => model.PERSONA.DIRECCION, "", new { @class = "text-danger" })
 </div>
-
 <div class="form-group col-sm-6">
     @Html.LabelFor(model => model.PERSONA.TELEFONO, @ViewResources.Resources.oet_telefono + ":", htmlAttributes: new { @class = "control-label " })
     @Html.EditorFor(model => model.PERSONA.TELEFONO, new { htmlAttributes = new { @class = "form-control", type = "number" } })
     @Html.ValidationMessageFor(model => model.PERSONA.TELEFONO, "", new { @class = "text-danger" })
 </div>
-
 <div class="form-group col-sm-6">
     @Html.LabelFor(model => model.PERSONA.EMAIL, @ViewResources.Resources.oet_correo + ":", htmlAttributes: new { @class = "control-label" })
     @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control", @id = "e-mail", type = "email" } })
@@ -63,12 +57,10 @@
         <option value="female">@ViewResources.Resources.oet_fem</option>
     </select>
 </div>
-
 @*  @Html.LabelFor(model => model.PERSONA.GENERO, "Gender" ,htmlAttributes: new { @class = "control-label " })
     @Html.DropDownListFor(model => model.PERSONA.GENERO, (SelectList)ViewBag.sexoList, new { htmlAttributes = new { @class = "form-control" } })
      @Html.ValidationMessageFor(model => model.PERSONA.GENERO, "", new { @class = "text-danger" })
 *@
-
 
 @*<div class="form-group col-sm-6">
         @Html.LabelFor(model => model.PERSONA.GENERO, @ViewResources.Resources.oet_sexo + ":", htmlAttributes: new { @class = "control-label " })
@@ -76,10 +68,11 @@
         @Html.ValidationMessageFor(model => model.PERSONA.GENERO, "", new { @class = "text-danger" })
     </div>*@
 
-
-
 <div class="form-group col-sm-6">
     @Html.LabelFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, @ViewResources.Resources.oet_institucion, htmlAttributes: new { @class = "control-label " })
     @Html.EditorFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, new { htmlAttributes = new { @class = "form-control", @id = "insts", @name = "insts" } })
     @Html.ValidationMessageFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, "", new { @class = "text-danger" })
+    <button id="createInstBtn" class="btn btn-success" type="button">
+        @ViewResources.Resources.tituloInst
+    </button>
 </div>

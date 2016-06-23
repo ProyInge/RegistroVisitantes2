@@ -142,6 +142,24 @@ namespace ViewResources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a La institución ha sido añadida.
+        /// </summary>
+        public static string insercionCorrecta {
+            get {
+                return ResourceManager.GetString("insercionCorrecta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Hubo un error añadiendo la institución.
+        /// </summary>
+        public static string insercionMala {
+            get {
+                return ResourceManager.GetString("insercionMala", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Su información se ha enviado correctamente !.
         /// </summary>
         public static string mensajeCorrecto {

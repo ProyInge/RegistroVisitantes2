@@ -396,4 +396,10 @@
   <data name="tituloInst" xml:space="preserve">
     <value>Add Institution</value>
   </data>
+  <data name="insercionCorrecta" xml:space="preserve">
+    <value>The institution has been added</value>
+  </data>
+  <data name="insercionMala" xml:space="preserve">
+    <value>There´s been an error while adding your institution</value>
+  </data>
 </root>

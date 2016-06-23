@@ -10,9 +10,6 @@
 
 @using (Html.BeginForm())
 {
-    <!-- Modal -->
-    <div id="popup" class="modal fade" role="dialog">
-    </div>
 
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -21,6 +18,8 @@
     @Html.HiddenFor(model => model.PERSONA.CEDULA)
     @Html.HiddenFor(model => model.ESTADO)
 
+    <!-- Modal -->
+    <div id="popup" class="modal fade" role="dialog"></div>
 
     <div>
         <hr />
@@ -42,7 +41,7 @@
 
             <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.PERSONA.NACIONALIDADI.GENTILICIO, @ViewResources.Resources.oet_nacionalidad, htmlAttributes: new { @class = "control-label " })
-                @Html.EditorFor(model => model.PERSONA.NACIONALIDADI.GENTILICIO, new { htmlAttributes = new { @class = "form-control", @id="nacions", @name="nacions" } })
+                @Html.EditorFor(model => model.PERSONA.NACIONALIDADI.GENTILICIO, new { htmlAttributes = new { @class = "form-control", @id = "nacions", @name = "nacions" } })
                 @Html.ValidationMessageFor(model => model.PERSONA.NACIONALIDADI.GENTILICIO, "", new { @class = "text-danger" })
             </div>
 
@@ -84,7 +83,7 @@
 
             <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.PERSONA.TELEFONO, @ViewResources.Resources.oet_telefono, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.PERSONA.TELEFONO, new { htmlAttributes = new { @class = "form-control", type="number" } })
+                @Html.EditorFor(model => model.PERSONA.TELEFONO, new { htmlAttributes = new { @class = "form-control", type = "number" } })
                 @Html.ValidationMessageFor(model => model.PERSONA.TELEFONO, "", new { @class = "text-danger" })
                 <br />
             </div>
@@ -92,7 +91,7 @@
 
             <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.PERSONA.EMAIL, @ViewResources.Resources.oet_correo, htmlAttributes: new { @class = "control-label " })
-                @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control", type="email" } })
+                @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control", type = "email" } })
                 @Html.ValidationMessageFor(model => model.PERSONA.EMAIL, "", new { @class = "text-danger" })
             </div>
 
@@ -102,14 +101,15 @@
                 @Html.ValidationMessageFor(model => model.PERSONA.GENERO, "", new { @class = "text-danger" })
             </div>
 
-			<div class="form-group col-sm-6">
-				@Html.LabelFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, @ViewResources.Resources.oet_institucion, htmlAttributes: new { @class = "control-label " })
-				@Html.EditorFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, new { htmlAttributes = new { @class = "form-control", @id="insts", @name="insts"} })
-				@Html.ValidationMessageFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, "", new { @class = "text-danger" })
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, @ViewResources.Resources.oet_institucion, htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, new { htmlAttributes = new { @class = "form-control", @id = "insts", @name = "insts" } })
+                @Html.ValidationMessageFor(model => model.PERSONA.INSTITUCIONI.FULL_NAME, "", new { @class = "text-danger" })
                 <button id="createInstBtn" class="btn btn-success" type="button">
                     @ViewResources.Resources.tituloInst
                 </button>
-			</div>
+
+            </div>
         </div>
 
         <div class="container">
@@ -123,12 +123,12 @@
 
             <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.TEL_EMERGENCIA, @ViewResources.Resources.oet_telefono, htmlAttributes: new { @class = "control-label " })
-                @Html.EditorFor(model => model.TEL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", type="number" } })
+                @Html.EditorFor(model => model.TEL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", type = "number" } })
                 @Html.ValidationMessageFor(model => model.TEL_EMERGENCIA, "", new { @class = "text-danger" })
             </div>
             <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.EMAIL_EMERGENCIA, @ViewResources.Resources.oet_correo, htmlAttributes: new { @class = "control-label " })
-                @Html.EditorFor(model => model.EMAIL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", type="email" } })
+                @Html.EditorFor(model => model.EMAIL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", type = "email" } })
                 @Html.ValidationMessageFor(model => model.EMAIL_EMERGENCIA, "", new { @class = "text-danger" })
             </div>
 
@@ -160,16 +160,16 @@
                 <br />
 
                 @Html.LabelFor(model => model.CARNE, @ViewResources.Resources.oet_carne, htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.CARNE,  new { @class = "form-control, , (bool)ViewBag.Carne"  })
+                @Html.CheckBoxFor(model => model.CARNE, new { @class = "form-control, , (bool)ViewBag.Carne" })
                 @Html.LabelFor(model => model.POLLO, @ViewResources.Resources.oet_pollo, htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.POLLO,  new { @class = "form-control, (bool)ViewBag.Pollo" })
+                @Html.CheckBoxFor(model => model.POLLO, new { @class = "form-control, (bool)ViewBag.Pollo" })
                 @Html.LabelFor(model => model.PESCADO, @ViewResources.Resources.oet_pescado, htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.PESCADO,  new { @class = "form-control, (bool)ViewBag.Pescado"  })
+                @Html.CheckBoxFor(model => model.PESCADO, new { @class = "form-control, (bool)ViewBag.Pescado" })
                 @Html.LabelFor(model => model.CERDO, @ViewResources.Resources.oet_cerdo, htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.CERDO,  new { @class = "form-control, (bool)ViewBag.Cerdo" })
+                @Html.CheckBoxFor(model => model.CERDO, new { @class = "form-control, (bool)ViewBag.Cerdo" })
 
             </div>
-            
+
             <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.ALERGIAS, @ViewResources.Resources.oet_alergias, htmlAttributes: new { @class = "control-label" })
                 @Html.TextAreaFor(model => model.ALERGIAS, new { @class = "form-control" })
@@ -233,28 +233,73 @@
         <br /><br />
         <div class="form-group">
             <div class="col-sm-12">
-                <input type="submit" value="Guardar" class="btn btn-successOET" />                
+                <input type="submit" value="Guardar" class="btn btn-successOET" />
                 <button class="btn btn-danger" onclick="location.href='@Url.Action("Details","Visitantes", new { idRes = Model.ID_RESERVACION, ced = Model.CEDULA })';return false;">Cancelar</button>
-             </div>
+            </div>
         </div>
-    </div>    
+    </div>
 }
 @section Scripts {
     <script>
-    document.getElementById("visitantes").className += "active";
+        document.getElementById("visitantes").className += "active";
     </script>
 
     <script type="text/javascript">
-    function initAutoComplete() {
-        $('#popup').on('shown.bs.modal', function (e) {
-            $("#country").autocomplete({
+        function initAutoComplete() {
+            $('#popup').on('shown.bs.modal', function (e) {
+                $("#country").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: "/Visitantes/Paises",
+                            type: "POST",
+                            dataType: "json",
+                            data: { term: request.term },
+                            appendTo: $('#country'),
+                            success: function (data) {
+                                response($.map(data, function (item) {
+                                    return { label: item.NOMBRE.toLowerCase().toProperCase(), value: item.NOMBRE.toLowerCase().toProperCase(), data: item.CAT_PAISES };
+                                }))
+
+                            }
+                        })
+                    },
+                    messages: {
+                        noResults: "No hay resultados", results: ""
+                    }
+                });
+                $("#country").autocomplete("option", "appendTo", "#popup");
+            });
+        }
+        String.prototype.toProperCase = function () {
+            return this.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+        };
+        $(document).ready(function () {
+            $("#insts").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Visitantes/Instituciones",
+                        type: "POST",
+                        dataType: "json",
+                        data: { term: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.FULL_NAME + "\t( " + item.NOMBRE.toLowerCase().toProperCase() + ")", value: item.FULL_NAME, data: item.CAT_INSTITUCION };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "No hay resultados", results: ""
+                }
+            });
+            $("#paises").autocomplete({
                 source: function (request, response) {
                     $.ajax({
                         url: "/Visitantes/Paises",
                         type: "POST",
                         dataType: "json",
                         data: { term: request.term },
-                        appendTo: $('#country'),
                         success: function (data) {
                             response($.map(data, function (item) {
                                 return { label: item.NOMBRE.toLowerCase().toProperCase(), value: item.NOMBRE.toLowerCase().toProperCase(), data: item.CAT_PAISES };
@@ -267,90 +312,42 @@
                     noResults: "No hay resultados", results: ""
                 }
             });
-            $("#country").autocomplete("option", "appendTo", "#popup");
-        });
-    }
-    function openPopup() {
-        $("#popup").dialog("open");
-    }
-    String.prototype.toProperCase = function () {
-        return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-    };
-    $(document).ready(function () {
-        $("#insts").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "/Visitantes/Instituciones",
-                    type: "POST",
-                    dataType: "json",
-                    data: { term: request.term },
-                    success: function (data) {
-                        response($.map(data, function (item) {
-                            return { label: item.FULL_NAME+"\t( "+item.NOMBRE.toLowerCase().toProperCase()+")", value: item.FULL_NAME, data: item.CAT_INSTITUCION };
-                        }))
+            $("#nacions").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Visitantes/Nacionalidades",
+                        type: "POST",
+                        dataType: "json",
+                        data: { term: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.GENTILICIO.toLowerCase().toProperCase(), value: item.GENTILICIO.toLowerCase().toProperCase(), data: item.CAT_PAISES };
+                            }))
 
-                    }
-                })
-            },
-            messages: {
-                noResults: "No hay resultados", results: ""
-            }
-        });
-        $("#paises").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "/Visitantes/Paises",
-                    type: "POST",
-                    dataType: "json",
-                    data: { term: request.term },
-                    success: function (data) {
-                        response($.map(data, function (item) {
-                            return { label: item.NOMBRE.toLowerCase().toProperCase(), value: item.NOMBRE.toLowerCase().toProperCase(), data: item.CAT_PAISES };
-                        }))
-
-                    }
-                })
-            },
-            messages: {
-                noResults: "No hay resultados", results: ""
-            }
-        });
-        $("#nacions").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "/Visitantes/Nacionalidades",
-                    type: "POST",
-                    dataType: "json",
-                    data: { term: request.term },
-                    success: function (data) {
-                        response($.map(data, function (item) {
-                            return { label: item.GENTILICIO.toLowerCase().toProperCase(), value: item.GENTILICIO.toLowerCase().toProperCase(), data: item.CAT_PAISES };
-                        }))
-
-                    }
-                })
-            },
-            messages: {
-                noResults: "No hay resultados", results: ""
-            }
-        });
-        $('#createInstBtn').click(function () {
-            $.ajax({
-                type: 'GET',
-                url: '@Url.Action("CreateInstitucion", "Visitantes")',
-                data: { ajaxInput: $('#ajaxInput').val() },
-                success: function (result) {
-                    $('#popup').html(result);
-                    $('#popup').modal('show');
-                    initAutoComplete();
+                        }
+                    })
                 },
-                error: function (xhr, status) {
-                    alert(status);
+                messages: {
+                    noResults: "No hay resultados", results: ""
                 }
+            });
+            $('#createInstBtn').click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("CreateInstitucion", "Visitantes")',
+                    data: { ajaxInput: $('#ajaxInput').val() },
+                    success: function (result) {
+                        $('#popup').html(result);
+                        $('#popup').modal('show');
+                        initAutoComplete();
+                    },
+                    error: function (xhr, status) {
+                        alert(status);
+                    }
+                });
+
             });
 
         });
-        
-    });
     </script>
 }

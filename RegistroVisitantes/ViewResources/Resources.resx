@@ -396,4 +396,10 @@
   <data name="tituloInst" xml:space="preserve">
     <value>Agrega Institución</value>
   </data>
+  <data name="insercionCorrecta" xml:space="preserve">
+    <value>La institución ha sido añadida</value>
+  </data>
+  <data name="insercionMala" xml:space="preserve">
+    <value>Hubo un error añadiendo la institución</value>
+  </data>
 </root>

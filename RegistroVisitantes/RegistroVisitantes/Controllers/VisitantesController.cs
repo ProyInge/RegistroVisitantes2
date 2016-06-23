@@ -58,7 +58,7 @@ namespace RegistroVisitantes.Controllers
         [Authorize]
         public ActionResult Index(String idRes, String numRes, int? Pagina)
         {
-            
+
             IQueryable<INFOVISITA> tabla;
             if (numRes != null && !numRes.Equals(""))
             {
@@ -71,7 +71,7 @@ namespace RegistroVisitantes.Controllers
                     string rol = (string)Session["IdEstacion"];
                     if ((string)Session["Rol"] != "R")
                     {
-                        tabla = reservacion != null ? BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID) && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION): BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, "") && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION);
+                        tabla = reservacion != null ? BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID) && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION) : BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, "") && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION);
                     }
                     else
                     {
@@ -570,7 +570,7 @@ namespace RegistroVisitantes.Controllers
                 infov.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 infov.PERSONA.NACIONALIDADI = nacion;
 
-               
+
 
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
@@ -732,7 +732,7 @@ namespace RegistroVisitantes.Controllers
             }
             BDRegistro.SaveChanges();
 
-            return RedirectToAction("Index", new {idRes});
+            return RedirectToAction("Index", new { idRes });
         }
 
 
@@ -804,21 +804,26 @@ namespace RegistroVisitantes.Controllers
 
         public string AddInstitucion(string desc, string nom, string pais)
         {
-
             V_INSTITUCION inst = new V_INSTITUCION();
             inst.X_SISTEMA = true;
             inst.CAT_INSTITUCION = -1;
             inst.FULL_NAME = nom;
             inst.DESCRIPCION = desc;
-            string nompais = pais.ToUpper()+" ";
+            string nompais = pais.ToUpper();
             V_PAISES ipais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
             inst.COUNTRY = (ipais == null) ? null : ipais.ISO;
             inst.CREADO = DateTime.Now;
-            BDRegistro.V_INSTITUCION.Add(inst);
-            BDRegistro.SaveChanges();
-            
-            return "Okay";
+            inst.PAIS = ipais;
+            try
+            {
+                BDRegistro.V_INSTITUCION.Add(inst);
+                BDRegistro.SaveChanges();
+                return ViewResources.Resources.insercionCorrecta;
+            }
+            catch
+            {
+                return ViewResources.Resources.insercionMala;
+            }
         }
-
     }
 }

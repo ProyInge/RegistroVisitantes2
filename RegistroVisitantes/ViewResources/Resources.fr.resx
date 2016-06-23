@@ -300,4 +300,10 @@
   <data name="tituloInst" xml:space="preserve">
     <value>Ajouter institution</value>
   </data>
+  <data name="insercionCorrecta" xml:space="preserve">
+    <value>L'institution a été ajoutée</value>
+  </data>
+  <data name="insercionMala" xml:space="preserve">
+    <value>Il y avait une erreur en ajoutant l'institution</value>
+  </data>
 </root>
