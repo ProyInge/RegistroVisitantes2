@@ -363,4 +363,43 @@
   <data name="spanish" xml:space="preserve">
     <value>Spanish</value>
   </data>
+  <data name="mensajeCorrecto" xml:space="preserve">
+    <value>Your Information Was Sent Correctly!</value>
+  </data>
+  <data name="mensajeErroneo" xml:space="preserve">
+    <value>Something Went Wrong, Please Try Again!</value>
+  </data>
+  <data name="mensajeTitulo" xml:space="preserve">
+    <value>Success!</value>
+  </data>
+  <data name="tituloError" xml:space="preserve">
+    <value>Error!</value>
+  </data>
+  <data name="reservacion" xml:space="preserve">
+    <value>Reservation Number</value>
+  </data>
+  <data name="aceptarInst" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="cancelarInst" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="descripInst" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="nombreInst" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="paisInst" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="tituloInst" xml:space="preserve">
+    <value>Add Institution</value>
+  </data>
+  <data name="insercionCorrecta" xml:space="preserve">
+    <value>The institution has been added</value>
+  </data>
+  <data name="insercionMala" xml:space="preserve">
+    <value>There´s been an error while adding your institution</value>
+  </data>
 </root>

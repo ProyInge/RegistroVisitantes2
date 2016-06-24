@@ -363,4 +363,43 @@
   <data name="spanish" xml:space="preserve">
     <value>Español</value>
   </data>
+  <data name="mensajeCorrecto" xml:space="preserve">
+    <value>Su información se ha enviado correctamente !</value>
+  </data>
+  <data name="mensajeErroneo" xml:space="preserve">
+    <value>Hubo ciertos problemas, intente nuevamente!</value>
+  </data>
+  <data name="mensajeTitulo" xml:space="preserve">
+    <value>Éxito!</value>
+  </data>
+  <data name="tituloError" xml:space="preserve">
+    <value>Error!</value>
+  </data>
+  <data name="reservacion" xml:space="preserve">
+    <value>Número de Reservación</value>
+  </data>
+  <data name="aceptarInst" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="cancelarInst" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="descripInst" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="nombreInst" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="paisInst" xml:space="preserve">
+    <value>Pais</value>
+  </data>
+  <data name="tituloInst" xml:space="preserve">
+    <value>Agrega Institución</value>
+  </data>
+  <data name="insercionCorrecta" xml:space="preserve">
+    <value>La institución ha sido añadida</value>
+  </data>
+  <data name="insercionMala" xml:space="preserve">
+    <value>Hubo un error añadiendo la institución</value>
+  </data>
 </root>

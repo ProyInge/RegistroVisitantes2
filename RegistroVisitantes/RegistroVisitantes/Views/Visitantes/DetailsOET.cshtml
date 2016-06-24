@@ -12,6 +12,8 @@
 </script>
 
 <h2>@ViewResources.Resources.oet_titulo</h2>
+<h3>@ViewResources.Resources.reservacion : @Html.DisplayFor(model => model.RESERVACION.NUMERO)</h3>
+
 @using (Html.BeginForm("ChangeCulture", "Visitantes", new { idRes = ViewBag.idRes, cedula = ViewBag.ced }))
 {
     <p>
@@ -26,6 +28,26 @@
 
 <div>
   <hr />
+
+    @if (ViewBag.Mensaje != null)
+    {
+        if (ViewBag.Mensaje == "Y")
+        {
+
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>@ViewResources.Resources.mensajeTitulo</strong> @ViewResources.Resources.mensajeCorrecto
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>@ViewResources.Resources.tituloError</strong> @ViewResources.Resources.mensajeErroneo
+            </div>
+        }
+    }
+
     <div class="container">
         <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_personal</h2>
         <br />
@@ -198,7 +220,7 @@
 
     <div class="container">
         <h2 style="border-bottom:8px solid #FDBB30">@ViewResources.Resources.oet_waiverTitulo</h2>
-        <div class="well" style="font-size:medium">
+        <div class="well">
             @ViewResources.Resources.oet_waiver
         </div>
     </div>

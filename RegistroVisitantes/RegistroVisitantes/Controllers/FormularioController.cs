@@ -17,7 +17,7 @@ namespace RegistroVisitantes.Controllers
 {
     public class FormularioController : Controller
     {
-        private BDRegistro BDRegistro = new BDRegistro ();
+        private BDRegistro BDRegistro = new BDRegistro();
 
         /*
         * Desc: Lenguaje por defecto del formulario
@@ -73,7 +73,7 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
-            if(reservacion.ANFITRIONA.Equals("01")) // si es de OET
+            if (reservacion.ANFITRIONA.Equals("01")) // si es de OET
             {
                 return RedirectToAction("CreateOET", new { idRes = idRes });
             }
@@ -138,7 +138,8 @@ namespace RegistroVisitantes.Controllers
                 PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
                 //return PartialView(persona);
                 INFOVISITA infov = new INFOVISITA();
-                if(persona!=null) { 
+                if (persona != null)
+                {
                     infov.PERSONA = persona;
                     infov.CEDULA = persona.CEDULA;
 
@@ -153,7 +154,7 @@ namespace RegistroVisitantes.Controllers
                 }
                 return PartialView(infov);
             }
-            
+
         }
 
         /*
@@ -167,45 +168,55 @@ namespace RegistroVisitantes.Controllers
             if (IsValidEmail(ajaxInput)) //Es un email
             {
                 PERSONA persona = BDRegistro.PERSONA.Where(p => p.EMAIL == ajaxInput).FirstOrDefault();
+                //return PartialView(persona);
                 INFOVISITA infov = new INFOVISITA();
-                ViewBag.nombre = persona.NOMBRE;
-                ViewBag.apellido = persona.APELLIDO;
-                ViewBag.email = persona.EMAIL;
-                ViewBag.cedula = persona.CEDULA;
-                ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
-                ViewBag.direccion = persona.DIRECCION;
-                ViewBag.telefono = persona.TELEFONO;
-                ViewBag.pais = persona.PAISI.NOMBRE;
-                ViewBag.codPostal = persona.COD_POSTAL;
-                ViewBag.titulo = persona.TITULO;
-                ViewBag.institucion = persona.INSTITUCIONI.FULL_NAME;
+                ViewBag.genero = persona.GENERO;
+
+                infov.PERSONA = persona;
+                infov.CEDULA = persona.CEDULA;
+
+                if (infov.PERSONA.PAISI != null)
+                {
+                    infov.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.PAISI.NOMBRE));
+                }
+                if (infov.PERSONA.NACIONALIDADI != null)
+                {
+                    infov.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.NACIONALIDADI.GENTILICIO));
+                }
+                if (infov.PERSONA.INSTITUCIONI != null)
+                {
+                    infov.PERSONA.INSTITUCIONI.FULL_NAME = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.INSTITUCIONI.FULL_NAME));
+                }
                 return PartialView(infov);
             }
             else
             {   //Es una cedula
                 PERSONA persona = BDRegistro.PERSONA.Find(ajaxInput);
+                //return PartialView(persona);
                 INFOVISITA infov = new INFOVISITA();
-                ViewBag.nombre = persona.NOMBRE;
-                ViewBag.apellido = persona.APELLIDO;
-                ViewBag.email = persona.EMAIL;
-                ViewBag.cedula = persona.CEDULA;
-                ViewBag.nacionalidad = persona.NACIONALIDADI.GENTILICIO;
-                ViewBag.direccion = persona.DIRECCION;
-                ViewBag.telefono = persona.TELEFONO;
-                ViewBag.pais = persona.PAISI.NOMBRE;
-                ViewBag.codPostal = persona.COD_POSTAL;
-                ViewBag.titulo = persona.TITULO;
-                ViewBag.institucion = persona.INSTITUCIONI.FULL_NAME;
-                return PartialView(infov);
+                if (persona != null)
+                {
+                    infov.PERSONA = persona;
+                    infov.CEDULA = persona.CEDULA;
 
+                    if (infov.PERSONA.PAISI != null)
+                    {
+                        infov.PERSONA.PAISI.NOMBRE = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.PAISI.NOMBRE));
+                    }
+                    if (infov.PERSONA.NACIONALIDADI != null)
+                    {
+                        infov.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(infov.PERSONA.NACIONALIDADI.GENTILICIO));
+                    }
+                }
+                return PartialView(infov);
             }
         }
 
-         /*
-         * Desc: Muestra un formulario de ESINTRO en blanco para el registro de un visitante
-         * Requiere: La identificación de la reservacion asociada al registro de la persona
-         * Devuelve: vista del formulario en blanco
-         */
+        /*
+        * Desc: Muestra un formulario de ESINTRO en blanco para el registro de un visitante
+        * Requiere: La identificación de la reservacion asociada al registro de la persona
+        * Devuelve: vista del formulario en blanco
+        */
         [HttpGet]
         public ActionResult CreateESINTRO(String idRes, int? mensaje)
         {
@@ -219,7 +230,7 @@ namespace RegistroVisitantes.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
             //para llenar los dropdownlist de la interfaz con la información adecuada
-            var listSexo = new SelectList(new[] { ViewResources.Resources.oet_masc, ViewResources.Resources.oet_fem});
+            var listSexo = new SelectList(new[] { ViewResources.Resources.oet_masc, ViewResources.Resources.oet_fem });
             var proposito = new SelectList(new[] { ViewResources.Resources.oet_prop1, ViewResources.Resources.oet_prop2, ViewResources.Resources.oet_prop3, ViewResources.Resources.oet_prop4, ViewResources.Resources.oet_prop5, ViewResources.Resources.oet_prop6, ViewResources.Resources.oet_prop7, ViewResources.Resources.oet_prop8, ViewResources.Resources.oet_prop9, ViewResources.Resources.oet_prop10, ViewResources.Resources.oet_prop11 });
             var position = new SelectList(new[] { ViewResources.Resources.oet_pos1, ViewResources.Resources.oet_pos2, ViewResources.Resources.oet_pos3, ViewResources.Resources.oet_pos4, ViewResources.Resources.oet_pos5, ViewResources.Resources.oet_pos6, ViewResources.Resources.oet_pos7, ViewResources.Resources.oet_pos8, ViewResources.Resources.oet_pos9, ViewResources.Resources.oet_pos10, ViewResources.Resources.oet_pos11, ViewResources.Resources.oet_pos12 });
             var role = new SelectList(new[] { ViewResources.Resources.oet_rol1, ViewResources.Resources.oet_rol2, ViewResources.Resources.oet_rol3, ViewResources.Resources.oet_rol4, ViewResources.Resources.oet_rol5 });
@@ -230,14 +241,14 @@ namespace RegistroVisitantes.Controllers
             ViewBag.idRes = idRes;
             if (mensaje == 1)
             {
-               ViewBag.Mensaje = "Y";
+                ViewBag.Mensaje = "Y";
             }
             if (mensaje == 0)
             {
                 ViewBag.Mensaje = "N";
             }
-                
-                return View();
+
+            return View();
         }
 
         /*
@@ -266,9 +277,9 @@ namespace RegistroVisitantes.Controllers
             form.POLLO = checkPollo;
             form.CERDO = checkCerdo;
             form.PESCADO = checkPescado;
-          
 
-            form.ID_RESERVACION= idRes;
+
+            form.ID_RESERVACION = idRes;
             if (genero == ViewResources.Resources.oet_fem) // si es femenino
             {
                 form.PERSONA.GENERO = 'F'.ToString();
@@ -297,9 +308,9 @@ namespace RegistroVisitantes.Controllers
             form.CEDULA = form.PERSONA.CEDULA;
             if (ModelState.IsValid)
             {
-                
+
                 var db = BDRegistro;
-                string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper(); 
+                string nompais = (string)collection["PERSONA.PAISI.NOMBRE"].ToUpper();
                 V_PAISES pais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
                 form.PERSONA.PAIS = (pais == null) ? null : pais.ISO;
                 form.PERSONA.PAISI = pais;
@@ -311,13 +322,14 @@ namespace RegistroVisitantes.Controllers
 
                 form.CEDULA = form.PERSONA.CEDULA;
                 var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
-       
+
                 db.INFOVISITA.Add(form);
                 if (cedulaP != null)
                 {
                     db.Entry(cedulaP).State = EntityState.Detached;
-                    //db.Entry(form.PERSONA).State = EntityState.Modified;
                     db.PERSONA.Attach(form.PERSONA);
+                    db.Entry(form.PERSONA).State = EntityState.Modified;
+
                 }
 
                 try
@@ -351,7 +363,7 @@ namespace RegistroVisitantes.Controllers
         * Devuelve: vista del formulario en blanco
         */
         [HttpGet]
-        public ActionResult CreateOET(String idRes)
+        public ActionResult CreateOET(String idRes, int? mensaje)
         {
             /*if (idRes == null)
             {
@@ -363,7 +375,7 @@ namespace RegistroVisitantes.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
             //llena los dropdownlist de la interfaz
-            var listSexo = new SelectList(new[] { ViewResources.Resources.oet_masc, ViewResources.Resources.oet_fem});
+            var listSexo = new SelectList(new[] { ViewResources.Resources.oet_masc, ViewResources.Resources.oet_fem });
             var proposito = new SelectList(new[] { ViewResources.Resources.oet_prop1, ViewResources.Resources.oet_prop2, ViewResources.Resources.oet_prop3, ViewResources.Resources.oet_prop4, ViewResources.Resources.oet_prop5, ViewResources.Resources.oet_prop6, ViewResources.Resources.oet_prop7, ViewResources.Resources.oet_prop8, ViewResources.Resources.oet_prop9, ViewResources.Resources.oet_prop10, ViewResources.Resources.oet_prop11 });
             var position = new SelectList(new[] { ViewResources.Resources.oet_pos1, ViewResources.Resources.oet_pos2, ViewResources.Resources.oet_pos3, ViewResources.Resources.oet_pos4, ViewResources.Resources.oet_pos5, ViewResources.Resources.oet_pos6, ViewResources.Resources.oet_pos7, ViewResources.Resources.oet_pos8, ViewResources.Resources.oet_pos9, ViewResources.Resources.oet_pos10, ViewResources.Resources.oet_pos11, ViewResources.Resources.oet_pos12 });
             var role = new SelectList(new[] { ViewResources.Resources.oet_rol1, ViewResources.Resources.oet_rol2, ViewResources.Resources.oet_rol3, ViewResources.Resources.oet_rol4, ViewResources.Resources.oet_rol5 });
@@ -372,6 +384,14 @@ namespace RegistroVisitantes.Controllers
             ViewBag.positionList = position;
             ViewBag.roleList = role;
             ViewBag.idRes = idRes;
+            if (mensaje == 1)
+            {
+                ViewBag.Mensaje = "Y";
+            }
+            if (mensaje == 0)
+            {
+                ViewBag.Mensaje = "N";
+            }
             return View();
         }
 
@@ -383,7 +403,8 @@ namespace RegistroVisitantes.Controllers
         */
         [HttpPost]
         public ActionResult CreateOET(String idRes, [Bind()]Models.INFOVISITA form, FormCollection collection, string dietas, string genero, bool checkPollo = false, bool checkCarne = false, bool checkCerdo = false, bool checkPescado = false)
-         {
+        {
+            int mensaje = -1;
             if (idRes == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -394,12 +415,12 @@ namespace RegistroVisitantes.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound); // 404
             }
-           
+
             form.CARNE = checkCarne; //checkboxes
             form.POLLO = checkPollo;
             form.CERDO = checkCerdo;
             form.PESCADO = checkPescado;
-            
+
 
             if (form.PERSONA.GENERO == ViewResources.Resources.oet_fem)//si es femenino
             {
@@ -413,7 +434,7 @@ namespace RegistroVisitantes.Controllers
 
             form.ID_RESERVACION = idRes;
             form.CEDULA = form.PERSONA.CEDULA;
-            form.ESTADO = "A";            
+            form.ESTADO = "A";
 
             if (ModelState.IsValid)
             {
@@ -433,13 +454,26 @@ namespace RegistroVisitantes.Controllers
                 V_PAISES nacion = BDRegistro.V_PAISES.Where(x => String.Equals(x.GENTILICIO, gentpais)).FirstOrDefault();
                 form.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 form.PERSONA.NACIONALIDADI = nacion;
+
+                string insti = (string)collection["PERSONA.INSTITUCIONI.FULL_NAME"].ToUpper();
+                V_INSTITUCION institucion = BDRegistro.V_INSTITUCION.Where(x => String.Equals(x.FULL_NAME, gentpais)).FirstOrDefault();
+                if (institucion != null)
+                {
+                    form.PERSONA.INSTITUCION = institucion.CAT_INSTITUCION;
+                }
+
+                form.PERSONA.INSTITUCIONI = institucion;
+                form.CEDULA = form.PERSONA.CEDULA;
                 var cedulaP = BDRegistro.PERSONA.Find(form.PERSONA.CEDULA);
+
                 db.INFOVISITA.Add(form);
                 if (cedulaP != null)
                 {
+                    db.Entry(cedulaP).State = EntityState.Detached;
                     db.PERSONA.Attach(form.PERSONA);
+                    db.Entry(form.PERSONA).State = EntityState.Modified;
+                }
 
-                }                
                 try
                 {
                     db.SaveChanges(); //se guarda la información
@@ -457,20 +491,23 @@ namespace RegistroVisitantes.Controllers
                             raise = new InvalidOperationException(message, raise);
                         }
                     }
+                    mensaje = 0;
                     throw raise;
                 }
 
                 // return RedirectToAction("Index");
             }
-            return RedirectToAction("Index", "Reservas");
+            mensaje = 1;
+            return RedirectToAction("CreateOET", new { idRes, mensaje });
         }
 
         public ActionResult Instituciones(string term)
         {
+            string lterm = term.ToLower();
             var result = (from a in BDRegistro.V_INSTITUCION
                           join b in BDRegistro.V_PAISES on a.COUNTRY equals b.ISO
-                          where a.FULL_NAME.ToLower().Contains(term.ToLower()) || b.NOMBRE.ToLower().Contains(term.ToLower())
-                          select new { a.FULL_NAME, b.NOMBRE, a.CAT_INSTITUCION }).Distinct();
+                          where a.FULL_NAME.ToLower().Contains(lterm) || b.NOMBRE.ToLower().Contains(lterm) || a.DESCRIPCION.ToLower().Contains(lterm)
+                          select new { a.FULL_NAME, b.NOMBRE, a.CAT_INSTITUCION });
             // Get Tags from database
             return this.Json(result,
                             JsonRequestBehavior.AllowGet);
@@ -494,6 +531,38 @@ namespace RegistroVisitantes.Controllers
             // Get Tags from database
             return this.Json(result,
                             JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        public PartialViewResult CreateInstitucion()
+        {
+            return PartialView(new V_INSTITUCION());
+        }
+
+        [Authorize]
+        public string AddInstitucion(string desc, string nom, string pais)
+        {
+
+            V_INSTITUCION inst = new V_INSTITUCION();
+            inst.X_SISTEMA = true;
+            inst.CAT_INSTITUCION = -1;
+            inst.FULL_NAME = nom;
+            inst.DESCRIPCION = desc;
+            string nompais = pais.ToUpper();
+            V_PAISES ipais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
+            inst.COUNTRY = (ipais == null) ? null : ipais.ISO;
+            inst.CREADO = DateTime.Now;
+            inst.PAIS = ipais;
+            try
+            {
+                BDRegistro.V_INSTITUCION.Add(inst);
+                BDRegistro.SaveChanges();
+                return ViewResources.Resources.insercionCorrecta;
+            }
+            catch
+            {
+                return ViewResources.Resources.insercionMala;
+            }
         }
     }
 }

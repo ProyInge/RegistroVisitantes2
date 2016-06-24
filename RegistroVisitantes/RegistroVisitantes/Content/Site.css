@@ -1,4 +1,108 @@
-﻿@media screen {
+﻿/*  
+    Codigo Nuestro----------------------------------------------------- INICIO
+
+*/
+
+
+
+.modal-content {
+    width: 600px !important;
+    margin: 30px auto !important;
+}
+
+ /*BOTON OET Verde #7BC143*/
+.btn-successOET {
+  color: #fff;
+  background-color: #7BC143;
+  border-color: #77b644;
+}
+
+.btn-successOET:hover,
+.btn-successOET:focus,
+.btn-successOET:active,
+.btn-successOET.active,
+.open .dropdown-toggle.btn-successOET {
+  color: #ffffff;
+  background-color: #6ea742;
+  border-color: #398439;
+}
+
+.btn-successOET:active,
+.btn-successOET.active,
+.open .dropdown-toggle.btn-successOET {
+  background-image: none;
+}
+
+.btn-successOET.disabled,
+.btn-successOET[disabled],
+fieldset[disabled] .btn-successOET,
+.btn-successOET.disabled:hover,
+.btn-successOET[disabled]:hover,
+fieldset[disabled] .btn-successOET:hover,
+.btn-successOET.disabled:focus,
+.btn-successOET[disabled]:focus,
+fieldset[disabled] .btn-successOET:focus,
+.btn-successOET.disabled:active,
+.btn-successOET[disabled]:active,
+fieldset[disabled] .btn-successOET:active,
+.btn-successOET.disabled.active,
+.btn-successOET[disabled].active,
+fieldset[disabled] .btn-successOET.active {
+  background-color: #7BC143;
+  border-color: #4cae4c;
+}
+
+
+.btn-cancelOET {
+  color: #000;
+  background-color: #dddddd;
+  border-color: #77b644;
+}
+
+.btn-cancelOET:hover,
+.btn-cancelOET:focus,
+.btn-cancelOET:active,
+.btn-cancelOET.active,
+.open .dropdown-toggle.btn-cancelOET {
+  color: #ffffff;
+  background-color: #bababa;
+  border-color: #398439;
+}
+
+.btn-cancelOET:active,
+.btn-cancelOET.active,
+.open .dropdown-toggle.btn-cancelOET {
+  background-image: none;
+}
+
+.btn-cancelOET.disabled,
+.btn-cancelOET[disabled],
+fieldset[disabled] .btn-cancelOET,
+.btn-cancelOET.disabled:hover,
+.btn-cancelOET[disabled]:hover,
+fieldset[disabled] .btn-cancelOET:hover,
+.btn-cancelOET.disabled:focus,
+.btn-cancelOET[disabled]:focus,
+fieldset[disabled] .btn-cancelOET:focus,
+.btn-cancelOET.disabled:active,
+.btn-cancelOET[disabled]:active,
+fieldset[disabled] .btn-cancelOET:active,
+.btn-cancelOET.disabled.active,
+.btn-cancelOET[disabled].active,
+fieldset[disabled] .btn-cancelOET.active {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-color: #4cae4c;
+}
+
+/*----END---- #7BC143*/
+
+
+/* Codigo Nuestro------------------------------------------------------------ FINAL
+
+*/
+
+
+@media screen {
     html {
         position: relative;
         min-height: 100%;
@@ -42,10 +146,6 @@
 
     .logo-oet {
         max-height: 70px;
-    }
-
-    .navbar-default .navbar-nav > li > a {
-        font-weight: bold;
     }
 
 
@@ -156,7 +256,7 @@
 @media print
 {
     /* Remove unwanted elements */
-    #header, #nav,.barra-logo, .noprint, a, .footer, p, h4
+    #header, #nav,.barra-logo, .noprint, a, .footer, p, .btn
     {
         display: none;
     }
@@ -189,7 +289,7 @@
     {
         font-size: 10px; border: none; margin-bottom: 0px;
     }
-    body
+    body, h3
     {
         font-size: 10px;
     }
@@ -197,6 +297,10 @@
     {
         margin-top: 15px;
     }
+}
+.navbar-default .navbar-nav > li > a {
+    font-weight: bold;
+    color: #fff;
 }
 
 

@@ -58,7 +58,7 @@ namespace RegistroVisitantes.Controllers
         [Authorize]
         public ActionResult Index(String idRes, String numRes, int? Pagina)
         {
-            
+
             IQueryable<INFOVISITA> tabla;
             if (numRes != null && !numRes.Equals(""))
             {
@@ -71,7 +71,7 @@ namespace RegistroVisitantes.Controllers
                     string rol = (string)Session["IdEstacion"];
                     if ((string)Session["Rol"] != "R")
                     {
-                        tabla = reservacion != null ? BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID) && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION): BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, "") && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION);
+                        tabla = reservacion != null ? BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID) && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION) : BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, "") && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION);
                     }
                     else
                     {
@@ -162,7 +162,7 @@ namespace RegistroVisitantes.Controllers
          * Devulve: vista de la pagina con la informacion de la persona registrada
          */
         [Authorize]
-        public ActionResult DetailsOET(String idR, String cedula)
+        public ActionResult DetailsOET(String idR, String cedula, int? mensaje)
         {
 
             if (idR == null || cedula == null)
@@ -219,6 +219,16 @@ namespace RegistroVisitantes.Controllers
                 {
                     iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO));
                 }
+
+                if (mensaje == 1)
+                {
+                    ViewBag.Mensaje = "Y";
+                }
+                if (mensaje == 0)
+                {
+                    ViewBag.Mensaje = "N";
+                }
+
                 return View(iInfoVisita);
             }
 
@@ -230,7 +240,7 @@ namespace RegistroVisitantes.Controllers
         * Devuelve: vista de la pagina con la informacion de la persona registrada
         */
         [Authorize]
-        public ActionResult DetailsESINTRO(String idR, String cedula)
+        public ActionResult DetailsESINTRO(String idR, String cedula, int? mensaje)
         {
 
             if (idR == null || cedula == null)
@@ -279,6 +289,15 @@ namespace RegistroVisitantes.Controllers
                 if (iInfoVisita.PERSONA.NACIONALIDADI != null)
                 {
                     iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(Thread.CurrentThread.CurrentCulture.TextInfo.ToLower(iInfoVisita.PERSONA.NACIONALIDADI.GENTILICIO));
+                }
+
+                if (mensaje == 1)
+                {
+                    ViewBag.Mensaje = "Y";
+                }
+                if (mensaje == 0)
+                {
+                    ViewBag.Mensaje = "N";
                 }
 
             }
@@ -514,6 +533,7 @@ namespace RegistroVisitantes.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditOET(INFOVISITA infov, FormCollection collection)
         {
+            int mensaje = 0;
             if (ModelState.IsValid)
             {
                 /*if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
@@ -550,12 +570,13 @@ namespace RegistroVisitantes.Controllers
                 infov.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 infov.PERSONA.NACIONALIDADI = nacion;
 
-               
+
 
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
-                return RedirectToAction("DetailsOET", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA });
+                mensaje = 1;
+                return RedirectToAction("DetailsOET", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA, mensaje });
             }
             return View();
 
@@ -570,19 +591,9 @@ namespace RegistroVisitantes.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditESINTRO(INFOVISITA infov, FormCollection collection)
         {
-
+            int mensaje = 0;
             if (ModelState.IsValid)
             {
-
-                /* if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
-                 {
-                     infov.PERSONA.GENERO = '1'.ToString();
-
-                 }
-                 else
-                 {
-                     infov.PERSONA.GENERO = '0'.ToString();
-                 }*/
 
                 string genero = collection["PERSONA.GENERO"];
                 if (genero == ViewResources.Resources.oet_fem) // si es femenino
@@ -623,7 +634,8 @@ namespace RegistroVisitantes.Controllers
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
                 BDRegistro.SaveChanges();
-                return RedirectToAction("DetailsESINTRO", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA });
+                mensaje = 1;
+                return RedirectToAction("DetailsESINTRO", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA, mensaje });
             }
             return View();
         }
@@ -720,7 +732,7 @@ namespace RegistroVisitantes.Controllers
             }
             BDRegistro.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { idRes });
         }
 
 
@@ -772,10 +784,46 @@ namespace RegistroVisitantes.Controllers
                             JsonRequestBehavior.AllowGet);
         }
 
-        public PartialViewResult CreateInstitucion()
+        public void guardarFirma(string idRes, string ced, string val)
         {
-            return PartialView();
+            if (idRes != null && ced != null)
+            {
+                INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, ced);
+                if (iInfoVisita != null)
+                {
+                    iInfoVisita.ESTADO = val;
+                    BDRegistro.SaveChanges();
+                }
+            }
         }
 
+        public PartialViewResult CreateInstitucion()
+        {
+            return PartialView(new V_INSTITUCION());
+        }
+
+        public string AddInstitucion(string desc, string nom, string pais)
+        {
+            V_INSTITUCION inst = new V_INSTITUCION();
+            inst.X_SISTEMA = true;
+            inst.CAT_INSTITUCION = -1;
+            inst.FULL_NAME = nom;
+            inst.DESCRIPCION = desc;
+            string nompais = pais.ToUpper();
+            V_PAISES ipais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
+            inst.COUNTRY = (ipais == null) ? null : ipais.ISO;
+            inst.CREADO = DateTime.Now;
+            inst.PAIS = ipais;
+            try
+            {
+                BDRegistro.V_INSTITUCION.Add(inst);
+                BDRegistro.SaveChanges();
+                return ViewResources.Resources.insercionCorrecta;
+            }
+            catch
+            {
+                return ViewResources.Resources.insercionMala;
+            }
+        }
     }
 }

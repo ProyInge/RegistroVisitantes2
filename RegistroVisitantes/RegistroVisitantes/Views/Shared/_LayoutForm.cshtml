@@ -5,12 +5,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Registro de Visitantes</title>
-    @Styles.Render("~/Content/fontawesome")
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/themes/base/css")
+    @*@Styles.Render("~/Content/fontawesome")@*BUNDLE NOT WORKING --- DONT KNOW WHY*@
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
 
-    <!--@Styles.Render("~/Content/Anterior.css")-->
+
+    @*@Styles.Render("~/Content/Anterior.css")*@
     @Scripts.Render("~/bundles/jquery")
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.14/themes/smoothness/jquery-ui.css" />
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/modernizr")
 

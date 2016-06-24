@@ -61,6 +61,33 @@ namespace ViewResources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Aceptar.
+        /// </summary>
+        public static string aceptarInst {
+            get {
+                return ResourceManager.GetString("aceptarInst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cancelar.
+        /// </summary>
+        public static string cancelarInst {
+            get {
+                return ResourceManager.GetString("cancelarInst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Descripción.
+        /// </summary>
+        public static string descripInst {
+            get {
+                return ResourceManager.GetString("descripInst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Editar.
         /// </summary>
         public static string editar {
@@ -111,6 +138,60 @@ namespace ViewResources {
         public static string french {
             get {
                 return ResourceManager.GetString("french", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La institución ha sido añadida.
+        /// </summary>
+        public static string insercionCorrecta {
+            get {
+                return ResourceManager.GetString("insercionCorrecta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Hubo un error añadiendo la institución.
+        /// </summary>
+        public static string insercionMala {
+            get {
+                return ResourceManager.GetString("insercionMala", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Su información se ha enviado correctamente !.
+        /// </summary>
+        public static string mensajeCorrecto {
+            get {
+                return ResourceManager.GetString("mensajeCorrecto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Hubo ciertos problemas, intente nuevamente!.
+        /// </summary>
+        public static string mensajeErroneo {
+            get {
+                return ResourceManager.GetString("mensajeErroneo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Éxito!.
+        /// </summary>
+        public static string mensajeTitulo {
+            get {
+                return ResourceManager.GetString("mensajeTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nombre.
+        /// </summary>
+        public static string nombreInst {
+            get {
+                return ResourceManager.GetString("nombreInst", resourceCulture);
             }
         }
         
@@ -781,6 +862,24 @@ namespace ViewResources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Pais.
+        /// </summary>
+        public static string paisInst {
+            get {
+                return ResourceManager.GetString("paisInst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Número de Reservación.
+        /// </summary>
+        public static string reservacion {
+            get {
+                return ResourceManager.GetString("reservacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Seleccionar Lenguaje.
         /// </summary>
         public static string seleccionarLen {
@@ -795,6 +894,24 @@ namespace ViewResources {
         public static string spanish {
             get {
                 return ResourceManager.GetString("spanish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error!.
+        /// </summary>
+        public static string tituloError {
+            get {
+                return ResourceManager.GetString("tituloError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Agrega Institución.
+        /// </summary>
+        public static string tituloInst {
+            get {
+                return ResourceManager.GetString("tituloInst", resourceCulture);
             }
         }
     }
