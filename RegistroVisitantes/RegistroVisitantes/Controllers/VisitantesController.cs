@@ -687,7 +687,7 @@ namespace RegistroVisitantes.Controllers
         * Devuelve: La vista del mensaje de confirmación
         */
         [Authorize]
-        public ActionResult Delete(string idRes, string idPer)
+        public ActionResult cambiarEstado(string idRes, string idPer)
         {
             if (idRes == null || idPer == null)
             {
@@ -708,9 +708,9 @@ namespace RegistroVisitantes.Controllers
         * Devuelve: La vista de la pagina principal de visitantes
         */
         [Authorize]
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("cambiarEstado")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string idRes, string idPer)
+        public ActionResult cambiarEstadoConfirmed(string idRes, string idPer)
         {
             if (idRes == null || idPer == null)
             {
@@ -722,7 +722,7 @@ namespace RegistroVisitantes.Controllers
                 return HttpNotFound();
             }
 
-            if (iInfoVisita.ESTADO == "A")
+            if (iInfoVisita.ESTADO == "A" || iInfoVisita.ESTADO == "F")
             {
                 iInfoVisita.ESTADO = "I";
             }
