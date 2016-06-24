@@ -102,13 +102,12 @@
                                         (item.ESTADO == "F") ? "checked" : "" )>                            
                         </td>
                         <td align="center">
-
                             <button class='mylink btn btn-success' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'  @(item.ESTADO == "I" ? "disabled = \"disabled \" " : "")>
-                                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-                                </button>
+                               <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                             </button>
                         </td>
                         <td align="center">
-                            @Html.ActionLink("Cambiar estado", "Delete", new { idRes = item.ID_RESERVACION, idPer = item.CEDULA }, new { @class = "btn btn-success" })
+                            @Html.ActionLink("Cambiar estado", "CambiarEstado", new { idRes = item.ID_RESERVACION, idPer = item.CEDULA }, new { @class = "btn btn-success" })
                         </td>
                         <td align="center">
                             @Html.ActionLink("Ver información", "Details", "Visitantes", new { idRes = item.ID_RESERVACION, ced = item.CEDULA }, new { @class = "btn btn-success" })

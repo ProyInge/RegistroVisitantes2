@@ -51,37 +51,49 @@
                             <div class="form-group">
                                 <label for="ESTACION">Estación:</label>
                                 <select class="form-control" id="ESTACION" name="ESTACION">
-                                    <option value="00">Todas</option>
-                                    <option value="01">La Selva (LS)</option>
-                                    <option value="02">Palo Verde (PV)</option>
-                                    <option value="03">Las Cruces (LC)</option>
-                                    <option value="04">Central (CRO)</option>
+                                    <option value="00" @(ViewBag.ESTACION == "00" ? "selected" : "")>Todas</option>
+                                    <option value="01" @(ViewBag.ESTACION == "01" ? "selected" : "")>La Selva (LS)</option>
+                                    <option value="02" @(ViewBag.ESTACION == "02" ? "selected" : "")>Palo Verde (PV)</option>
+                                    <option value="03" @(ViewBag.ESTACION == "03" ? "selected" : "")>Las Cruces (LC)</option>
+                                    <option value="04" @(ViewBag.ESTACION == "04" ? "selected" : "")>Central (CRO)</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="TIPO">Tipo de visitante:</label>
                                 <select class="form-control" id="TIPO" name="TIPO">
-                                    <option value="00">Todos</option>
-                                    <option value="01">Staff</option>
-                                    <option value="02">Investigador</option>
-                                    <option value="03">Grupo Educativo</option>
-                                    <option value="04">Otros visitantes</option>
+                                    <option value="00" @(ViewBag.TIPO == "00" ? "selected" : "")>Todos</option>
+                                    <option value="01" @(ViewBag.TIPO == "01" ? "selected" : "")>Staff</option>
+                                    <option value="02" @(ViewBag.TIPO == "02" ? "selected" : "")>Investigador</option>
+                                    <option value="03" @(ViewBag.TIPO == "03" ? "selected" : "")>Grupo Educativo</option>
+                                    <option value="04" @(ViewBag.TIPO == "04" ? "selected" : "")>Otros visitantes</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="NACIONALIDAD">Nacionalidad:</label>
                                 <select class="form-control" id="NACIONALIDAD" name="NACIONALIDAD">
-                                    <option value="00">Todos</option>
-                                    <option value="01">Costarricense</option>
-                                    <option value="02">Estadounidense</option>
-                                    <option value="03">Francés</option>
+                                    <option value="00" @(ViewBag.NACIONALIDAD == "00" ? "selected" : "")>Todos</option>
+                                    <option value="01" @(ViewBag.NACIONALIDAD == "01" ? "selected" : "")>Costarricense</option>
+                                    <option value="02" @(ViewBag.NACIONALIDAD == "02" ? "selected" : "")>Estadounidense</option>
+                                    <option value="03" @(ViewBag.NACIONALIDAD == "03" ? "selected" : "")>Francés</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-md-12">
+                                    <div style="border:2px solid #ccc; width:220px; height: 220px; margin-bottom: 20px; overflow-y: scroll;">
+'                                       <span>@Html.CheckBox("col1", new { @checked = @ViewBag.col1 }) Compañía <br /></span>
+                                        <span>@Html.CheckBox("col2", new { @checked = @ViewBag.col2 }) Estación <br /></span>
+                                        <span>@Html.CheckBox("col3", new { @checked = @ViewBag.col3 }) Reservación <br /></span>
+                                        <span>@Html.CheckBox("col4", new { @checked = @ViewBag.col4 }) Fecha Entrada <br /></span>
+                                        <span>@Html.CheckBox("col5", new { @checked = @ViewBag.col5 }) Fecha Salida <br /></span>
+                                        <span>@Html.CheckBox("col6", new { @checked = @ViewBag.col6 }) Tipo de Visitante <br /></span>
+                                        <span>@Html.CheckBox("col7", new { @checked = @ViewBag.col7 }) Nacionalidad <br /></span>
+                                        <span>@Html.CheckBox("col8", new { @checked = @ViewBag.col8 }) Nombre Completo <br /></span>
+                                        <span>@Html.CheckBox("col9", new { @checked = @ViewBag.col9 }) Correo electrónico <br /></span>       
+                                    </div>
+
                                     <input type="submit" value="Crear reporte" class="btn btn-success" />
                                 </div>
                             </div>
@@ -113,20 +125,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (Model.Count == 0) {
-                                    for (int i = 0; i < 5; i++) {
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td> 
-                                        </tr>
-                                    }
-                                }
+                                
                                 @foreach (var item in Model)
                                 {
                                     <tr>
@@ -158,6 +157,22 @@
                                     <a href="mailto:@(item.PERSONA.EMAIL)">@(item.PERSONA.EMAIL)</a>
                                 </td>   
                                 </tr>
+                                }
+                                @if (Model.Count < 5)
+                                {
+                                    for (int i = 5 - Model.Count; i > 0; i--)
+                                    {
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    }
                                 }
                             </tbody>
                         </table>
