@@ -30,6 +30,20 @@ namespace RegistroVisitantes.Controllers
             ViewBag.toDate = to;
 
             ViewBag.ANFITRIONA = "TODAS";
+            ViewBag.ESTACION = "00";
+            ViewBag.TIPO = "00";
+            ViewBag.NACIONALIDAD = "00";
+            ViewBag.col1 = true;
+            ViewBag.col2 = true;
+            ViewBag.col3 = true;
+            ViewBag.col4 = true;
+            ViewBag.col5 = true;
+            ViewBag.col6 = true;
+            ViewBag.col7 = true;
+            ViewBag.col8 = true;
+            ViewBag.col9 = true;
+
+            ViewBag.Columnas = 
 
             //tabla = db.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID)).OrderBy(x => x.ID_RESERVACION);
             tabla = db.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
@@ -43,16 +57,12 @@ namespace RegistroVisitantes.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(int? Pagina, [Bind(Include = "FECHADESDE,FECHAHASTA,ANFITRIONA,ESTACION,TIPO,NACIONALIDAD")] REPORTE reporte)
+        public ActionResult Index(int? Pagina, [Bind(Include = "FECHADESDE,FECHAHASTA,ANFITRIONA,ESTACION,TIPO,NACIONALIDAD")] REPORTE reporte, bool col1, bool col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
         {
             IQueryable<INFOVISITA> tabla;
 
             ViewBag.fromDate = reporte.FECHADESDE;
             ViewBag.toDate = reporte.FECHAHASTA;
-
-            //tabla = db.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID)).OrderBy(x => x.ID_RESERVACION);
-
-
 
             tabla = db.INFOVISITA.Where(x => x.RESERVACION.ENTRA >= reporte.FECHADESDE && x.RESERVACION.SALE <= reporte.FECHAHASTA).OrderBy(x => x.ID_RESERVACION);
 
@@ -67,7 +77,8 @@ namespace RegistroVisitantes.Controllers
                     break;
             }
 
-            switch(reporte.ESTACION)
+            ViewBag.ESTACION = reporte.ESTACION;
+            switch (reporte.ESTACION)
             {
                 case "01":
                     tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva"));
@@ -83,6 +94,7 @@ namespace RegistroVisitantes.Controllers
                     break;
             }
 
+            ViewBag.TIPO = reporte.TIPO;
             switch (reporte.TIPO)
             {
                 case "01":
@@ -99,6 +111,7 @@ namespace RegistroVisitantes.Controllers
                     break;
             }
 
+            ViewBag.NACIONALIDAD = reporte.NACIONALIDAD;
             switch (reporte.NACIONALIDAD)
             {
                 case "01":
@@ -111,6 +124,16 @@ namespace RegistroVisitantes.Controllers
                     tabla = tabla.Where(x => x.PERSONA.NACIONALIDAD.Equals("FR"));
                     break;
             }
+
+            ViewBag.col1 = col1;
+            ViewBag.col2 = col2;
+            ViewBag.col3 = col3;
+            ViewBag.col4 = col4;
+            ViewBag.col5 = col5;
+            ViewBag.col6 = col6;
+            ViewBag.col7 = col7;
+            ViewBag.col8 = col8;
+            ViewBag.col9 = col9;
 
             int Size_Of_Page = 5;
             int No_Of_Page = (Pagina ?? 1);
