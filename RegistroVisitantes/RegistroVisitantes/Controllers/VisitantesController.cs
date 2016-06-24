@@ -58,7 +58,7 @@ namespace RegistroVisitantes.Controllers
         [Authorize]
         public ActionResult Index(String idRes, String numRes, int? Pagina)
         {
-            
+
             IQueryable<INFOVISITA> tabla;
             if (numRes != null && !numRes.Equals(""))
             {
@@ -71,7 +71,7 @@ namespace RegistroVisitantes.Controllers
                     string rol = (string)Session["IdEstacion"];
                     if ((string)Session["Rol"] != "R")
                     {
-                        tabla = reservacion != null ? BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID) && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION): BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, "") && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION);
+                        tabla = reservacion != null ? BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID) && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION) : BDRegistro.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, "") && String.Equals(x.RESERVACION.ESTACION, rol)).OrderBy(x => x.ID_RESERVACION);
                     }
                     else
                     {
@@ -570,7 +570,7 @@ namespace RegistroVisitantes.Controllers
                 infov.PERSONA.NACIONALIDAD = (nacion == null) ? null : nacion.ISO;
                 infov.PERSONA.NACIONALIDADI = nacion;
 
-               
+
 
                 BDRegistro.Entry(infov).State = EntityState.Modified;
                 BDRegistro.Entry(infov.PERSONA).State = EntityState.Modified;
@@ -594,16 +594,6 @@ namespace RegistroVisitantes.Controllers
             int mensaje = 0;
             if (ModelState.IsValid)
             {
-
-                /* if (infov.PERSONA.GENERO == ViewResources.Resources.oet_fem)
-                 {
-                     infov.PERSONA.GENERO = '1'.ToString();
-
-                 }
-                 else
-                 {
-                     infov.PERSONA.GENERO = '0'.ToString();
-                 }*/
 
                 string genero = collection["PERSONA.GENERO"];
                 if (genero == ViewResources.Resources.oet_fem) // si es femenino
@@ -697,7 +687,7 @@ namespace RegistroVisitantes.Controllers
         * Devuelve: La vista del mensaje de confirmación
         */
         [Authorize]
-        public ActionResult Delete(string idRes, string idPer)
+        public ActionResult cambiarEstado(string idRes, string idPer)
         {
             if (idRes == null || idPer == null)
             {
@@ -718,9 +708,9 @@ namespace RegistroVisitantes.Controllers
         * Devuelve: La vista de la pagina principal de visitantes
         */
         [Authorize]
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("cambiarEstado")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string idRes, string idPer)
+        public ActionResult cambiarEstadoConfirmed(string idRes, string idPer)
         {
             if (idRes == null || idPer == null)
             {
@@ -732,7 +722,7 @@ namespace RegistroVisitantes.Controllers
                 return HttpNotFound();
             }
 
-            if (iInfoVisita.ESTADO == "A")
+            if (iInfoVisita.ESTADO == "A" || iInfoVisita.ESTADO == "F")
             {
                 iInfoVisita.ESTADO = "I";
             }
@@ -742,7 +732,7 @@ namespace RegistroVisitantes.Controllers
             }
             BDRegistro.SaveChanges();
 
-            return RedirectToAction("Index", new {idRes});
+            return RedirectToAction("Index", new { idRes });
         }
 
 
@@ -794,39 +784,46 @@ namespace RegistroVisitantes.Controllers
                             JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult guardarFirma(string ced, string idRes, string val)
+        public void guardarFirma(string idRes, string ced, string val)
         {
-            if (idRes == null || ced == null)
+            if (idRes != null && ced != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, ced);
+                if (iInfoVisita != null)
+                {
+                    iInfoVisita.ESTADO = val;
+                    BDRegistro.SaveChanges();
+                }
             }
-            INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, ced);
-            if (iInfoVisita == null)
-            {
-                return HttpNotFound();
-            }
-            iInfoVisita.ESTADO = val;
-            
-            BDRegistro.SaveChanges();
-
-            return RedirectToAction("Index", new { idRes });
         }
 
         public PartialViewResult CreateInstitucion()
         {
-            return PartialView();
+            return PartialView(new V_INSTITUCION());
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateInstitucion(V_INSTITUCION inst)
+        public string AddInstitucion(string desc, string nom, string pais)
         {
+            V_INSTITUCION inst = new V_INSTITUCION();
             inst.X_SISTEMA = true;
-            BDRegistro.V_INSTITUCION.Add(inst);
-            BDRegistro.SaveChanges();
-            
-            return RedirectToAction("Index");
+            inst.CAT_INSTITUCION = -1;
+            inst.FULL_NAME = nom;
+            inst.DESCRIPCION = desc;
+            string nompais = pais.ToUpper();
+            V_PAISES ipais = BDRegistro.V_PAISES.Where(x => String.Equals(x.NOMBRE, nompais)).FirstOrDefault();
+            inst.COUNTRY = (ipais == null) ? null : ipais.ISO;
+            inst.CREADO = DateTime.Now;
+            inst.PAIS = ipais;
+            try
+            {
+                BDRegistro.V_INSTITUCION.Add(inst);
+                BDRegistro.SaveChanges();
+                return ViewResources.Resources.insercionCorrecta;
+            }
+            catch
+            {
+                return ViewResources.Resources.insercionMala;
+            }
         }
-
     }
 }

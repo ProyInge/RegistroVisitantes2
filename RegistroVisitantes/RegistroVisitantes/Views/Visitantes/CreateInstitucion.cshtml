@@ -8,50 +8,46 @@
     <div class="modal-content">
         <div class="modal-header">
             @*<a class="close" data-dismiss="modal">&times;</a>*@
-            <h3>Agrega una institución</h3>
+            <h3>@ViewResources.Resources.tituloInst</h3>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="modalbody">
 
             <div class="form-horizontal">
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.DESCRIPCION, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.FULL_NAME, @ViewResources.Resources.nombreInst, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.DESCRIPCION, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DESCRIPCION, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FULL_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.FULL_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.FULL_NAME, new { htmlAttributes = new { @class = "form-control", @id ="nombre" } })
                         @Html.ValidationMessageFor(model => model.FULL_NAME, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.COUNTRY, "COUNTRY", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.DESCRIPCION, @ViewResources.Resources.descripInst, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.COUNTRY, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.DESCRIPCION, new { htmlAttributes = new { @class = "form-control", @id="desc" } })
+                        @Html.ValidationMessageFor(model => model.DESCRIPCION, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.COUNTRY, @ViewResources.Resources.paisInst, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.COUNTRY, new { htmlAttributes = new { @class = "form-control", @id="country" } })
                         @Html.ValidationMessageFor(model => model.COUNTRY, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.CREADO, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.CREADO, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CREADO, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-successOET" /> 
-                        <input id="cancel" value="Cancel" class="btn btn-cancelOET" />
+                        @*<input value="@ViewResources.Resources.aceptarInst" onclick="location.href='@Url.Action("CreateInstitucion","Visitantes", new { desc = Model.DESCRIPCION, nom = Model.FULL_NAME, pais = Model.COUNTRY })';return false;" class="btn btn-successOET" />*@
+                        <button id="save" class="btn btn-successOET" type="button">
+                            @ViewResources.Resources.aceptarInst
+                        </button>
+                        @*<input type="submit" value="@ViewResources.Resources.aceptarInst" class="btn btn-successOET" />*@
+                        <input id="cancel" value="@ViewResources.Resources.cancelarInst" class="btn btn-danger" />
                     </div>
                 </div>
             </div>
@@ -71,5 +67,24 @@
         $('#cancel').click(function () {
             $('#popup').modal('hide');
         });
+        $('#save').click(function () {
+            var nombre = document.getElementById("nombre").value;
+            var desc = document.getElementById("desc").value;
+            var country = document.getElementById("country").value;
+            $.ajax({
+                type: 'GET',
+                url: '/Visitantes/AddInstitucion?desc='+desc+'&nom='+nombre+'&pais='+country,
+                data: { ajaxInput: $('#ajaxInput').val() },
+                success: function (result) {
+                    alert(result);
+                    $('#popup').modal('hide');
+                },
+                error: function (xhr, status) {
+                    alert(status);
+                }
+            });
+
+        });
+        
     });
 </script>

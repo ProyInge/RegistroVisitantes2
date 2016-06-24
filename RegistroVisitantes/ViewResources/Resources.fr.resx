@@ -282,4 +282,28 @@
   <data name="reservacion" xml:space="preserve">
     <value>Numéro de Réservation</value>
   </data>
+  <data name="aceptarInst" xml:space="preserve">
+    <value>Accepter</value>
+  </data>
+  <data name="cancelarInst" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="descripInst" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="nombreInst" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="paisInst" xml:space="preserve">
+    <value>Pays</value>
+  </data>
+  <data name="tituloInst" xml:space="preserve">
+    <value>Ajouter institution</value>
+  </data>
+  <data name="insercionCorrecta" xml:space="preserve">
+    <value>L'institution a été ajoutée</value>
+  </data>
+  <data name="insercionMala" xml:space="preserve">
+    <value>Il y avait une erreur en ajoutant l'institution</value>
+  </data>
 </root>
