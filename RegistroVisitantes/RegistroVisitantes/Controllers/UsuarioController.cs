@@ -136,7 +136,7 @@ namespace RegistroVisitantes.Controllers
         * Devuelve: La vista del formulario con la información del usuario
         */
         [Authorize]
-        public ActionResult Administrar(int? idUsr)
+        public ActionResult Administrar(int? idUsr, int? mensaje)
         {
             if (idUsr == null)
             {
@@ -225,6 +225,14 @@ namespace RegistroVisitantes.Controllers
                     ViewBag.listEstacion = listEstacion;
                     ViewBag.listSexo = listSexo;
                     ViewBag.listRol = listRol;
+                    if (mensaje == 1)
+                    {
+                        ViewBag.Mensaje = "Y";
+                    }
+                    if (mensaje == 0)
+                    {
+                        ViewBag.Mensaje = "N";
+                    }
                     return View(usr);
                 }
             } 
@@ -243,6 +251,7 @@ namespace RegistroVisitantes.Controllers
         [HttpPost]
         public ActionResult Administrar(USUARIO editado)
         {
+            int mensaje = -1;
             if (ModelState.IsValid)
             {
                 USUARIO usr = db.USUARIO.Find(editado.ID);
@@ -274,13 +283,20 @@ namespace RegistroVisitantes.Controllers
                     Session["Genero"] = usr.SEXO == "M" ? "o" : "a";
                 }
 
-
-                db.Entry(usr).State = EntityState.Modified;
-                db.SaveChanges();
-                ViewBag.Message = usr.NOMBRE + " " + usr.APELLIDO + " se modificó exitosamente.";
+                try
+                { 
+                    db.Entry(usr).State = EntityState.Modified;
+                    db.SaveChanges();
+                    ViewBag.Message = usr.NOMBRE + " " + usr.APELLIDO + " se modificó exitosamente.";
+                    mensaje = 1;
+                }
+                catch
+                {
+                    mensaje = 0;
+                }
 
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Administrar", new { @idUsr=editado.ID, @mensaje=mensaje });
         }
 
         /*

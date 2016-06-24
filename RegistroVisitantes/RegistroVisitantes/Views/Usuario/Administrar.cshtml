@@ -1,20 +1,35 @@
 ﻿@model RegistroVisitantes.Models.USUARIO
-
 @{
     ViewBag.Title = "Administrar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>Administrar Usuario</h2>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @if (ViewBag.Mensaje != null)
+        {
+            if (ViewBag.Mensaje == "Y")
+            {
+
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>@ViewResources.Resources.mensajeTitulo</strong> @ViewResources.Resources.mensajeCorrecto
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>@ViewResources.Resources.tituloError</strong> @ViewResources.Resources.mensajeErroneo
+                </div>
+            }
+        }
         @Html.HiddenFor(model => model.ID)
         <div class="form-group">
             <label class="control-label col-md-2">Nombre</label>
@@ -23,7 +38,6 @@
                 @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <label class="control-label col-md-2">Apellidos</label>
             <div class="col-md-10">
@@ -31,7 +45,6 @@
                 @Html.ValidationMessageFor(model => model.APELLIDO, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <label class="control-label col-md-2">E-mail</label>
             <div class="col-md-10">
@@ -39,7 +52,6 @@
                 @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <label class="control-label col-md-2">Sexo</label>
             <div class="col-md-10">
@@ -47,7 +59,6 @@
                 @Html.ValidationMessageFor(model => model.SEXO, "", new { @class = "text-danger" })
             </div>
         </div>
-
         @if ((string)Session["Rol"] == "R")
         {
             <div class="form-group">
@@ -66,7 +77,6 @@
                 </div>
             </div>
         }
-
         <div class="form-group">
             <label class="control-label col-md-2">Usuario</label>
             <div class="col-md-10">
@@ -74,7 +84,6 @@
                 @Html.ValidationMessageFor(model => model.USUAR, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <label class="control-label col-md-2">Contraseña</label>
             <div class="col-md-10">
@@ -82,16 +91,25 @@
                 @Html.ValidationMessageFor(model => model.CONTRASENA, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-success" />
+                @if ((string)Session["Rol"] == "R")
+                {
+                    <input id="back" value="Volver" class="btn btn-danger" />
+                }
             </div>
         </div>
     </div>
 }
 
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#back').click(function () {
+                window.location = "/Usuario";
+            });
+        });
+    </script>
 }

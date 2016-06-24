@@ -1,42 +1,44 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated && Session["Id"]!=null)
+@if (Request.IsAuthenticated && Session["Id"] != null)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
-    string url = "", url2 = "";
-    <ul class="nav navbar-nav navbar-right">
-        
-        @if((string)Session["Rol"]!="R") {
+        @Html.AntiForgeryToken()
+        string url = "", url2 = "";
+        <ul class="nav navbar-nav navbar-right">
+
+            @if ((string)Session["Rol"] != "R")
+            {
+                <li>
+                    @Html.ActionLink("Bienvenid" + Session["Genero"] + " a " + Session["Estacion"] + " (" + Session["Siglas"] + ")", "Index", "Reservas")
+                </li>
+            }
+            else
+            {
+                url = Url.Action("Index", "Usuario");
+                url2 = Url.Action("Registrar", "Usuario");
+                <li class="@(url == Request.Url.AbsolutePath || url2 == Request.Url.AbsolutePath ? "active" : string.Empty)">
+                    @Html.ActionLink("Usuarios", "Index", "Usuario")
+                </li>
+            }
+            @{ url = Url.Action("Administrar", "Usuario"); }
+            <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)" id="visitantes">
+                @Html.ActionLink("" + Session["Nombre"] + " " + Session["Apellido"] + "", "Administrar", "Usuario", routeValues: new { @idUsr = Session["Id"] }, htmlAttributes: new { title = "Administracion" })
+            </li>
             <li>
-                @Html.ActionLink("Bienvenid" + Session["Genero"] + " a " + Session["Estacion"] + " (" + Session["Siglas"] + ")", "Index", "Reservas")
+                @Html.ActionLink("Cerrar sesión", "Ingresar", "Usuario")
             </li>
-        }
-        else
-        {
-            url = Url.Action("Index", "Usuario");
-            url2 = Url.Action("Registrar", "Usuario");
-            <li class="@(url == Request.Url.AbsolutePath || url2 == Request.Url.AbsolutePath ? "active" : string.Empty)">
-                @Html.ActionLink("Usuarios", "Index", "Usuario")
-            </li>
-        }
-        @{ url = Url.Action("Administrar", "Usuario"); }
-        <li class="@(url == Request.Url.AbsolutePath ? "active" : string.Empty)" id="visitantes">   
-            @Html.ActionLink("" + Session["Nombre"] + " " + Session["Apellido"] + "", "Administrar", "Usuario", routeValues: new { @idUsr = Session["Id"] }, htmlAttributes: new { title = "Administracion" })
-        </li>
-        <li>
-            @Html.ActionLink("Cerrar sesión", "Ingresar", "Usuario")
-        </li>
-    </ul>
+        </ul>
     }
 }
 else
 {
-    
-    if(Request.IsAuthenticated) {
+
+    if (Request.IsAuthenticated)
+    {
         FormsAuthentication.SignOut();
-        Response.Redirect("~/Usuario/Ingresar");
-    }    
+        Response.Redirect("~/Usuario/Ingresar?ReturnUrl=" + Request.Url.AbsolutePath);
+    }
     string url;
     <ul class="nav navbar-nav navbar-right">
         @{ url = Url.Action("Ingresar", "Usuario"); }
