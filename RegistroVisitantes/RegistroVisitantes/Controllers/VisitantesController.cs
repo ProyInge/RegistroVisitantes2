@@ -578,7 +578,8 @@ namespace RegistroVisitantes.Controllers
                 mensaje = 1;
                 return RedirectToAction("DetailsOET", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA, mensaje });
             }
-            return View();
+            mensaje = 0;
+            return RedirectToAction("DetailsOET", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA, mensaje });
 
         }
 
@@ -637,7 +638,8 @@ namespace RegistroVisitantes.Controllers
                 mensaje = 1;
                 return RedirectToAction("DetailsESINTRO", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA, mensaje });
             }
-            return View();
+            mensaje = 0;
+            return RedirectToAction("DetailsESINTRO", new { idR = infov.ID_RESERVACION, cedula = infov.CEDULA, mensaje });
         }
 
 
