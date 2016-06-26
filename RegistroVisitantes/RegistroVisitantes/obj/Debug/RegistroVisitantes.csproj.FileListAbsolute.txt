@@ -1168,3 +1168,5 @@ C:\Users\Marco\Downloads\ProyectoInge2\RegistroVisitantes2\RegistroVisitantes\Re
 C:\Users\Marco\Downloads\ProyectoInge2\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\System.IO.FileSystem.Primitives.dll
 C:\Users\Marco\Downloads\ProyectoInge2\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\vbc.exe.config
 C:\Users\Marco\Downloads\ProyectoInge2\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\vbc.rsp
+C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.dll
+C:\Users\dsola\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.xml
