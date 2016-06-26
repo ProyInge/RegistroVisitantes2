@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using RegistroVisitantes.Models;
 using PagedList;
+using System.IO;
+using OfficeOpenXml;
+using System.Web.Hosting;
 
 namespace RegistroVisitantes.Controllers
 {
@@ -20,7 +23,7 @@ namespace RegistroVisitantes.Controllers
         {
             IQueryable<INFOVISITA> tabla;
 
-            DateTime from = new DateTime(2005, 3, 20); 
+            DateTime from = new DateTime(2005, 3, 20);
             DateTime to = (from.AddDays(7));
 
             /*DateTime from = (fromDate ?? new DateTime(2012, 01, 01));
@@ -43,10 +46,13 @@ namespace RegistroVisitantes.Controllers
             ViewBag.col8 = true;
             ViewBag.col9 = true;
 
-            ViewBag.Columnas = 
+            ViewBag.Columnas =
 
             //tabla = db.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID)).OrderBy(x => x.ID_RESERVACION);
             tabla = db.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
+
+            saveExcel(tabla, true, true, true, true, true, true, true, true, true);
+
             int Size_Of_Page = 5;
             int No_Of_Page = (Pagina ?? 1);
             return View(tabla.ToPagedList(No_Of_Page, Size_Of_Page));
@@ -67,7 +73,7 @@ namespace RegistroVisitantes.Controllers
             tabla = db.INFOVISITA.Where(x => x.RESERVACION.ENTRA >= reporte.FECHADESDE && x.RESERVACION.SALE <= reporte.FECHAHASTA).OrderBy(x => x.ID_RESERVACION);
 
             ViewBag.ANFITRIONA = reporte.ANFITRIONA;
-            switch(reporte.ANFITRIONA)
+            switch (reporte.ANFITRIONA)
             {
                 case "ESINTRO":
                     tabla = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("01"));
@@ -135,12 +141,66 @@ namespace RegistroVisitantes.Controllers
             ViewBag.col8 = col8;
             ViewBag.col9 = col9;
 
+            saveExcel(tabla, col1, col2, col3, col4, col5, col6, col7, col8, col9);
+
             int Size_Of_Page = 5;
             int No_Of_Page = (Pagina ?? 1);
+
             return View(tabla.ToPagedList(No_Of_Page, Size_Of_Page));
-    
+
         }
 
+        public DataTable toDataTable(IEnumerable<INFOVISITA> tabla, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
+        {
+            var dt = new DataTable();
+            if (col1 != false) { dt.Columns.Add("Compañía", typeof(String)); }
+            if (col2 != false) { dt.Columns.Add("Estación", typeof(String)); }
+            if (col3 != false) { dt.Columns.Add("Reservación", typeof(String)); }
+            if (col4 != false) { dt.Columns.Add("Fecha entrada", typeof(DateTime)); }
+            if (col5 != false) { dt.Columns.Add("Fecha salida", typeof(DateTime)); }
+            if (col6 != false) { dt.Columns.Add("Tipo visitante", typeof(String)); }
+            if (col7 != false) { dt.Columns.Add("Nacionalidad", typeof(String)); }
+            if (col8 != false) { dt.Columns.Add("Nombre completo", typeof(String)); }
+            if (col9 != false) { dt.Columns.Add("Correo electrónico", typeof(String)); }
+            foreach(INFOVISITA iv in tabla)
+            {
+                DataRow newRow = dt.NewRow();
+                if (col1 != false) { newRow["Compañía"] = iv.RESERVACION.ANFITRIONA == "01" ? "OET" : "ESINTRO"; }
+                if (col2 != false) { newRow["Estación"] = iv.RESERVACION.ESTACIONI.NOMBRE; }
+                if (col3 != false) { newRow["Reservación"] = iv.RESERVACION.NUMERO; }
+                if (col4 != false) { newRow["Fecha entrada"] = iv.RESERVACION.ENTRA; }
+                if (col5 != false) { newRow["Fecha salida"] = iv.RESERVACION.SALE; }
+                if (col6 != false) { newRow["Tipo visitante"] = iv.PERSONA.ROL; }
+                if (col7 != false) { newRow["Nacionalidad"] = iv.PERSONA.NACIONALIDADI != null? iv.PERSONA.NACIONALIDADI.GENTILICIO : ""; }
+                if (col8 != false) { newRow["Nombre completo"] = iv.PERSONA.NOMBRE + " " + iv.PERSONA.APELLIDO; }
+                if (col9 != false) { newRow["Correo electrónico"] = iv.PERSONA.EMAIL; }
+                dt.Rows.Add(newRow);
+            }
+            return dt;
+        }
+
+        public void saveExcel(IQueryable<INFOVISITA> t, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
+        {
+            String fileName = Server.MapPath("~/Reporte.xlsx");
+            var arch = new FileInfo(fileName);
+            arch.Delete();
+            using (ExcelPackage pck = new ExcelPackage(arch))
+            {
+                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Reporte");
+                IEnumerable<INFOVISITA> tablaenum = t.AsEnumerable<INFOVISITA>();
+                DataTable res = toDataTable(tablaenum, col1, col2, col3, col4, col5, col6, col7, col8, col9);
+                ws.Cells["A1"].LoadFromDataTable(res, true);
+                pck.Save();
+            }
+        }
+
+        public ActionResult Download()
+        {
+
+            string file = Server.MapPath("~/Reporte.xlsx"); ;
+            string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            return File(file, contentType, Path.GetFileName(file));
+        }
 
         protected override void Dispose(bool disposing)
         {
