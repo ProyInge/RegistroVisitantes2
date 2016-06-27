@@ -11,6 +11,7 @@ using PagedList;
 using System.IO;
 using OfficeOpenXml;
 using System.Web.Hosting;
+using System.Drawing;
 
 namespace RegistroVisitantes.Controllers
 {
@@ -186,10 +187,28 @@ namespace RegistroVisitantes.Controllers
             arch.Delete();
             using (ExcelPackage pck = new ExcelPackage(arch))
             {
+
                 ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Reporte");
                 IEnumerable<INFOVISITA> tablaenum = t.AsEnumerable<INFOVISITA>();
                 DataTable res = toDataTable(tablaenum, col1, col2, col3, col4, col5, col6, col7, col8, col9);
+                //ver cual celda es la que trae las fechas y cambiar por los numeros
+                ws.Column(5).Style.Numberformat.Format = "yyyy-mm-dd h:mm";
+                ws.Column(4).Style.Numberformat.Format = "yyyy-mm-dd h:mm";
+
+
                 ws.Cells["A1"].LoadFromDataTable(res, true);
+
+               //ver la cantidad de parametros que vienen en true y cambiar la cantCeldas
+                int cantCeldas = 9;
+                int contador = 1;
+                while (contador <= cantCeldas) {
+                    ws.Cells[1,contador].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Cells[1, contador].Style.Fill.BackgroundColor.SetColor(Color.LightBlue);
+                    ws.Cells[1, contador].Style.Font.Bold = true;
+                    contador++;
+                }
+                ws.Cells.AutoFitColumns();
+
                 pck.Save();
             }
         }
