@@ -20,7 +20,7 @@ namespace RegistroVisitantes.Controllers
         {
             IQueryable<INFOVISITA> tabla;
 
-            DateTime from = new DateTime(2005, 3, 20); 
+            DateTime from = new DateTime(2005, 3, 20);
             DateTime to = (from.AddDays(7));
 
             /*DateTime from = (fromDate ?? new DateTime(2012, 01, 01));
@@ -43,7 +43,7 @@ namespace RegistroVisitantes.Controllers
             ViewBag.col8 = true;
             ViewBag.col9 = true;
 
-            ViewBag.Columnas = 
+            ViewBag.Columnas =
 
             //tabla = db.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID)).OrderBy(x => x.ID_RESERVACION);
             tabla = db.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
@@ -60,20 +60,50 @@ namespace RegistroVisitantes.Controllers
         public ActionResult Index(int? Pagina, [Bind(Include = "FECHADESDE,FECHAHASTA,ANFITRIONA,ESTACION,TIPO,NACIONALIDAD")] REPORTE reporte, bool col1, bool col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
         {
             IQueryable<INFOVISITA> tabla;
+            int totalReservLS = 0;
+            int totalVisitLS = 0;
+            int totalReservLC = 0;
+            int totalVisitLC = 0;
+            int totalReservPV = 0;
+            int totalVisitPV = 0;
+            int totalReservCRO = 0;
+            int totalVisitCRO = 0;
+
+            int totalReservOET = 0;
+            int totalVisitOET = 0;
+            int totalReservESINTRO = 0;
+            int totalVisitESINTRO = 0;
+
+            int totalReservInstitucion = 0;
+            int totalVisitInstitucion = 0;
+            int totalReservEstacion = 0;
+            int totalVisitEstacion = 0;
 
             ViewBag.fromDate = reporte.FECHADESDE;
             ViewBag.toDate = reporte.FECHAHASTA;
 
             tabla = db.INFOVISITA.Where(x => x.RESERVACION.ENTRA >= reporte.FECHADESDE && x.RESERVACION.SALE <= reporte.FECHAHASTA).OrderBy(x => x.ID_RESERVACION);
 
+            //se cuentan reservaciones y visitantes por estacion y por institucion
             ViewBag.ANFITRIONA = reporte.ANFITRIONA;
-            switch(reporte.ANFITRIONA)
+            switch (reporte.ANFITRIONA)
             {
                 case "ESINTRO":
                     tabla = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("01"));
+                    totalVisitESINTRO = tabla.Count(x => x.RESERVACION.ANFITRIONA.Equals("01"));
+                    totalReservESINTRO = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("01")).Select(x => x.RESERVACION.ID).Distinct().Count();
                     break;
                 case "OET":
                     tabla = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("02"));
+                    totalVisitOET = tabla.Count(x => x.RESERVACION.ANFITRIONA.Equals("02"));
+                    totalReservOET = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("02")).Select(x => x.RESERVACION.ID).Distinct().Count();
+                    break;
+                default:  // si se selecciona la opcion de todas las instituciones
+                    totalVisitESINTRO = tabla.Count(x => x.RESERVACION.ANFITRIONA.Equals("01"));
+                    totalReservESINTRO = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("01")).Select(x => x.RESERVACION.ID).Distinct().Count();
+
+                    totalVisitOET = tabla.Count(x => x.RESERVACION.ANFITRIONA.Equals("02"));
+                    totalReservOET = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("02")).Select(x => x.RESERVACION.ID).Distinct().Count();
                     break;
             }
 
@@ -82,15 +112,36 @@ namespace RegistroVisitantes.Controllers
             {
                 case "01":
                     tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva"));
+                    totalVisitLS = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva"));
+                    totalReservLS = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva")).Select(x => x.RESERVACION.ID).Distinct().Count();
                     break;
                 case "02":
                     tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Palo Verde"));
+                    totalVisitPV = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Palo Verde"));
+                    totalReservPV = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Palo Verde")).Select(x => x.RESERVACION.ID).Distinct().Count();
                     break;
                 case "03":
                     tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Las Cruces"));
+                    totalVisitLC = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Las Cruces"));
+                    totalReservLC = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Las Cruces")).Select(x => x.RESERVACION.ID).Distinct().Count();
                     break;
                 case "04":
                     tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices"));
+                    totalVisitCRO = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices"));
+                    totalReservCRO = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices")).Select(x => x.RESERVACION.ID).Distinct().Count();
+                    break;
+                default:  //si se selecciona la opcion de todas las estaciones
+                    totalVisitLS = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva"));
+                    totalReservLS = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva")).Select(x => x.RESERVACION.ID).Distinct().Count();
+
+                    totalVisitLC = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Las Cruces"));
+                    totalReservLC = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Las Cruces")).Select(x => x.RESERVACION.ID).Distinct().Count();
+
+                    totalVisitPV = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Palo Verde"));
+                    totalReservPV = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Palo Verde")).Select(x => x.RESERVACION.ID).Distinct().Count();
+
+                    totalVisitCRO = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices"));
+                    totalReservCRO = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices")).Select(x => x.RESERVACION.ID).Distinct().Count();
                     break;
             }
 
@@ -135,10 +186,36 @@ namespace RegistroVisitantes.Controllers
             ViewBag.col8 = col8;
             ViewBag.col9 = col9;
 
+            //se suman cantidad de reservaciones de todas las instituciones
+            totalReservInstitucion = totalReservESINTRO + totalReservOET;
+            totalVisitInstitucion = totalVisitESINTRO + totalVisitOET;
+            //se suman cantidad de reservaciones y visitantes de todas las estaciones
+            totalReservEstacion = totalReservCRO + totalReservLC + totalReservLS + totalReservPV;
+            totalVisitEstacion = totalVisitCRO + totalVisitLC + totalVisitLS + totalVisitPV;
+
+            ViewBag.totalReservLS = totalReservLS;
+            ViewBag.totalVisitLS = totalVisitLS;
+            ViewBag.totalReservLC = totalReservLC;
+            ViewBag.totalVisitLC = totalVisitLC;
+            ViewBag.totalReservPV = totalReservPV;
+            ViewBag.totalVisitPV = totalVisitPV;
+            ViewBag.totalReservCRO = totalReservCRO;
+            ViewBag.totalVisitCRO = totalVisitCRO;
+
+            ViewBag.totalReservOET = totalReservOET;
+            ViewBag.totalVisitOET = totalVisitOET;
+            ViewBag.totalReservESINTRO = totalReservESINTRO;
+            ViewBag.totalVisitESINTRO = totalVisitESINTRO;
+
+            ViewBag.totalReservInstitucion = totalReservInstitucion;
+            ViewBag.totalVisitInstitucion = totalVisitInstitucion;
+            ViewBag.totalReservEstacion = totalReservEstacion;
+            ViewBag.totalVisitEstacion = totalVisitEstacion;
+
             int Size_Of_Page = 5;
             int No_Of_Page = (Pagina ?? 1);
             return View(tabla.ToPagedList(No_Of_Page, Size_Of_Page));
-    
+
         }
 
 
