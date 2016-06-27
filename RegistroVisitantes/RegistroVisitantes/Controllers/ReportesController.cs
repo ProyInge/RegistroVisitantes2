@@ -8,6 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using RegistroVisitantes.Models;
 using PagedList;
+using System.IO;
+using OfficeOpenXml;
+using System.Web.Hosting;
+using System.Drawing;
 
 namespace RegistroVisitantes.Controllers
 {
