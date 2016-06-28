@@ -20,50 +20,20 @@ namespace RegistroVisitantes.Controllers
         private BDRegistro db = new BDRegistro();
 
 
-        public ActionResult Index(int? Pagina)
+        public ActionResult Index()
         {
-            IQueryable<INFOVISITA> tabla;
-
             DateTime from = new DateTime(2005, 3, 20);
             DateTime to = (from.AddDays(7));
-
-            /*DateTime from = (fromDate ?? new DateTime(2012, 01, 01));
-            DateTime to = (toDate ?? new DateTime(2013, 01, 01));*/
-
+       
             ViewBag.fromDate = from;
             ViewBag.toDate = to;
 
-            ViewBag.ANFITRIONA = "TODAS";
-            ViewBag.ESTACION = "00";
-            ViewBag.TIPO = "00";
-            ViewBag.NACIONALIDAD = "00";
-            ViewBag.col1 = true;
-            ViewBag.col2 = true;
-            ViewBag.col3 = true;
-            ViewBag.col4 = true;
-            ViewBag.col5 = true;
-            ViewBag.col6 = true;
-            ViewBag.col7 = true;
-            ViewBag.col8 = true;
-            ViewBag.col9 = true;
-
-            ViewBag.Columnas =
-
-            //tabla = db.INFOVISITA.Where(x => String.Equals(x.ID_RESERVACION, reservacion.ID)).OrderBy(x => x.ID_RESERVACION);
-            tabla = db.INFOVISITA.OrderBy(x => x.ID_RESERVACION);
-
-            saveExcel(tabla, true, true, true, true, true, true, true, true, true);
-            int Size_Of_Page = 5;
-            int No_Of_Page = (Pagina ?? 1);
-            return View(tabla.ToPagedList(No_Of_Page, Size_Of_Page));
+            return View();
         }
 
-        // POST: /Reportes
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Index(int? Pagina, [Bind(Include = "FECHADESDE,FECHAHASTA,ANFITRIONA,ESTACION,TIPO,NACIONALIDAD")] REPORTE reporte, bool col1, bool col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
+        /*[HttpPost]
+        [ValidateAntiForgeryToken]*/
+        public ActionResult Detalles(int? Pagina, [Bind(Include = "FECHADESDE,FECHAHASTA,ANFITRIONA,ESTACION,TIPO,NACIONALIDAD")] REPORTE reporte, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
         {
             IQueryable<INFOVISITA> tabla;
             int totalReservLS = 0;

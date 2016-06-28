@@ -450,14 +450,11 @@
     <Content Include="Views\Shared\_LayoutForm.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Usuario\Delete.cshtml" />
-    <Content Include="Views\Reportes\Create.cshtml" />
-    <Content Include="Views\Reportes\Delete.cshtml" />
-    <Content Include="Views\Reportes\Details.cshtml" />
-    <Content Include="Views\Reportes\Edit.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
     <Content Include="Views\Imprimir\ImprimirOET.cshtml" />
     <Content Include="Views\Imprimir\ImprimirESINTRO.cshtml" />
     <Content Include="Views\Visitantes\CreateInstitucion.cshtml" />
+    <Content Include="Views\Reportes\Detalles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
