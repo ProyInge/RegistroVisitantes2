@@ -83,7 +83,7 @@
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <div style="border:2px solid #ccc; width:220px; height: 220px; margin-bottom: 20px; overflow-y: scroll;">
-'                                       <span>@Html.CheckBox("col1", new { @checked = @ViewBag.col1 }) Compañía <br /></span>
+                                        <span>@Html.CheckBox("col1", new { @checked = @ViewBag.col1 }) Compañía <br /></span>
                                         <span>@Html.CheckBox("col2", new { @checked = @ViewBag.col2 }) Estación <br /></span>
                                         <span>@Html.CheckBox("col3", new { @checked = @ViewBag.col3 }) Reservación <br /></span>
                                         <span>@Html.CheckBox("col4", new { @checked = @ViewBag.col4 }) Fecha Entrada <br /></span>
@@ -201,18 +201,18 @@
                                 <tbody>
                                     <tr>
                                         <td>OET</td>
-                                        <td style="text-align:center">100</td>
-                                        <td style="text-align:center">300</td>
+                                        <td style="text-align:center">@ViewBag.totalReservOET</td>
+                                        <td style="text-align:center">@ViewBag.totalVisitOET</td>
                                     </tr>
                                     <tr>
                                         <td>ESINTRO</td>
-                                        <td style="text-align:center">26</td>
-                                        <td style="text-align:center">100</td>
+                                        <td style="text-align:center">@ViewBag.totalReservESINTRO</td>
+                                        <td style="text-align:center">@ViewBag.totalVisitESINTRO</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Total</strong></td>
-                                        <td style="text-align:center"><strong>126</strong></td>
-                                        <td style="text-align:center"><strong>400</strong></td>
+                                        <td style="text-align:center"><strong>@ViewBag.totalReservInstitucion</strong></td>
+                                        <td style="text-align:center"><strong>@ViewBag.totalVisitInstitucion</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -229,28 +229,28 @@
                                 <tbody>
                                     <tr>
                                         <td>La Selva</td>
-                                        <td style="text-align:center">80</td>
-                                        <td style="text-align:center">250</td>
+                                        <td style="text-align:center">@ViewBag.totalReservLS</td>
+                                        <td style="text-align:center">@ViewBag.totalVisitLS</td>
                                     </tr>
                                     <tr>
                                         <td>Palo Verde</td>
-                                        <td style="text-align:center">15</td>
-                                        <td style="text-align:center">60</td>
+                                        <td style="text-align:center">@ViewBag.totalReservPV</td>
+                                        <td style="text-align:center">@ViewBag.totalVisitPV</td>
                                     </tr>
                                     <tr>
                                         <td>Las Cruces</td>
-                                        <td style="text-align:center">6</td>
-                                        <td style="text-align:center">29</td>
+                                        <td style="text-align:center">@ViewBag.totalReservLC</td>
+                                        <td style="text-align:center">@ViewBag.totalVisitLC</td>
                                     </tr>
                                     <tr>
                                         <td>Central</td>
-                                        <td style="text-align:center">10</td>
-                                        <td style="text-align:center">61</td>
+                                        <td style="text-align:center">@ViewBag.totalReservCRO</td>
+                                        <td style="text-align:center">@ViewBag.totalVisitCRO</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Total</strong></td>
-                                        <td style="text-align:center"><strong>126</strong></td>
-                                        <td style="text-align:center"><strong>400</strong></td>
+                                        <td style="text-align:center"><strong>@ViewBag.totalReservEstacion</strong></td>
+                                        <td style="text-align:center"><strong>@ViewBag.totalVisitEstacion</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
