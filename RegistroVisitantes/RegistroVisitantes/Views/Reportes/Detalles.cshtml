@@ -21,50 +21,107 @@
                         <table class="table table-striped table-hover table-bordered" id="tablaResultados">
                             <thead>
                                 <tr>
-                                    <th>Compañía</th>
-                                    <th>Estación</th>
-                                    <th>Reservación</th>
-                                    <th>Fecha entrada</th>
-                                    <th>Fecha salida</th>
-                                    <th>Tipo Visitante</th>
-                                    <th>Nacionalidad</th>
-                                    <th>Nombre Completo</th>
-                                    <th>Correo electrónico</th>
+                                    @if (ViewBag.col1 == true)
+                                    {
+                                        <th>Compañía</th>
+                                    }
+                                    @if (ViewBag.col2 == true)
+                                    {
+                                        <th>Estación</th>
+                                    }
+                                    @if (ViewBag.col3 == true)
+                                    {
+                                        <th>Reservación</th>
+                                    }
+                                    @if (ViewBag.col4 == true)
+                                    {
+                                        <th>Fecha entrada</th>
+                                    }
+                                    @if (ViewBag.col5 == true)
+                                    {
+                                        <th>Fecha salida</th>
+                                    }
+                                    @if (ViewBag.col6 == true)
+                                    {
+                                        <th>Tipo Visitante</th>
+                                    }
+                                    @if (ViewBag.col7 == true)
+                                    {
+                                        <th>Nacionalidad</th>
+                                    }
+                                    @if (ViewBag.col8 == true)
+                                    {
+                                        <th>Nombre Completo</th>
+                                    }
+                                    @if (ViewBag.col9 == true)
+                                    {
+                                        <th>Correo electrónico</th>
+                                    }
                                 </tr>
                             </thead>
                             <tbody>
-                                
+
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                <td align="center">
-                                    @if (item.RESERVACION.ANFITRIONA == "01") { <p>OET</p> } else { <p>ESINTRO</p>}
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RESERVACION.ESTACIONI.SIGLAS)
-                                </td>
-                                <td>
-                                    @(item.RESERVACION.NUMERO)
-                                </td>
-                                <td>
-                                    @(item.RESERVACION.ENTRA)
-                                </td>
-                                <td>
-                                    @(item.RESERVACION.SALE)
-                                </td>
-                                <td>
-                                    @(item.PERSONA.ROL)
-                                </td>
-                                <td>
-                                    @(item.PERSONA.NACIONALIDAD)
-                                </td>
-                                <td>
-                                    @(item.PERSONA.NOMBRE) @(item.PERSONA.APELLIDO)
-                                </td>
-                                <td>
-                                    <a href="mailto:@(item.PERSONA.EMAIL)">@(item.PERSONA.EMAIL)</a>
-                                </td>   
-                                </tr>
+                                        @if (ViewBag.col1 == true)
+                                        {
+                                            <td align="center">
+                                                @if (item.RESERVACION.ANFITRIONA == "01")
+                                                { <p>OET</p> }
+                                                else
+                                                { <p>ESINTRO</p>}
+                                            </td>
+                                        }
+                                        @if (ViewBag.col2 == true)
+                                        {
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.RESERVACION.ESTACIONI.SIGLAS)
+                                            </td>
+                                        }
+                                        @if (ViewBag.col3 == true)
+                                        {
+                                            <td>
+                                                @(item.RESERVACION.NUMERO)
+                                            </td>
+                                        }
+                                        @if (ViewBag.col4 == true)
+                                        {
+                                            <td>
+                                                @(item.RESERVACION.ENTRA)
+                                            </td>
+                                        }
+                                        @if (ViewBag.col5 == true)
+                                        {
+                                            <td>
+                                                @(item.RESERVACION.SALE)
+                                            </td>
+                                        }
+                                        @if (ViewBag.col6 == true)
+                                        {
+                                            <td>
+                                                @(item.PERSONA.ROL)
+                                            </td>
+                                        }
+                                        @if (ViewBag.col7 == true)
+                                        {
+                                            <td>
+                                                @(item.PERSONA.NACIONALIDAD)
+                                            </td>
+                                        }
+                                        @if (ViewBag.col8 == true)
+                                        {
+                                            <td>
+                                                @(item.PERSONA.NOMBRE) @(item.PERSONA.APELLIDO)
+                                            </td>
+                                        }
+                                        @if (ViewBag.col9 == true)
+                                        {
+                                            <td>
+                                                <a href="mailto:@(item.PERSONA.EMAIL)">@(item.PERSONA.EMAIL)</a>
+                                            </td>
+                                        }
+                                    </tr>
                                 }
                                 @if (Model.Count < 5)
                                 {
@@ -90,13 +147,25 @@
             <br />
             Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
             @Html.PagedListPager(Model, Pagina => Url.Action("Detalles",
-        new { Pagina, FECHADESDE = ViewBag.FECHADESDE,
-                FECHAHASTA = ViewBag.FECHAHASTA,
-                ANFITRIONA = ViewBag.ANFITRIONA,
-                ESTACION = ViewBag.ESTACION,
-                TIPO = ViewBag.TIPO,
-                NACIONALIDAD = ViewBag.NACIONALIDAD
-            }))
+        new
+        {
+            Pagina,
+            FECHADESDE = ViewBag.FECHADESDE,
+            FECHAHASTA = ViewBag.FECHAHASTA,
+            ANFITRIONA = ViewBag.ANFITRIONA,
+            ESTACION = ViewBag.ESTACION,
+            TIPO = ViewBag.TIPO,
+            NACIONALIDAD = ViewBag.NACIONALIDAD,
+            col1 = ViewBag.col1,
+            col2 = ViewBag.col2,
+            col3 = ViewBag.col3,
+            col4 = ViewBag.col4,
+            col5 = ViewBag.col5,
+            col6 = ViewBag.col6,
+            col7 = ViewBag.col7,
+            col8 = ViewBag.col8,
+            col9 = ViewBag.col9
+        }))
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <span style="font-size: 30px;"><strong>Totales:</strong></span>
@@ -174,7 +243,7 @@
                 </div>
             </div>
             <button class="btn btn-success">Imprimir</button>
-            @Html.ActionLink("Exportar", "Download", "Reportes", new { @class="btn btn-success"})
+            @Html.ActionLink("Exportar", "Download", "Reportes", new { @class = "btn btn-success" })
         </div>
     </div>
     <div class="row" style="margin-bottom: 100px;">

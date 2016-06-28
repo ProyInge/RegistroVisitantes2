@@ -31,8 +31,6 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
-        /*[HttpPost]
-        [ValidateAntiForgeryToken]*/
         public ActionResult Detalles(int? Pagina, [Bind(Include = "FECHADESDE,FECHAHASTA,ANFITRIONA,ESTACION,TIPO,NACIONALIDAD")] REPORTE reporte, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
         {
             IQueryable<INFOVISITA> tabla;
