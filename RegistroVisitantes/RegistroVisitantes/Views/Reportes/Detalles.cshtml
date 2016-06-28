@@ -89,8 +89,14 @@
             </div>
             <br />
             Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
-            @Html.PagedListPager(Model, Pagina => Url.Action("Index",
-        new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+            @Html.PagedListPager(Model, Pagina => Url.Action("Detalles",
+        new { Pagina, FECHADESDE = ViewBag.FECHADESDE,
+                FECHAHASTA = ViewBag.FECHAHASTA,
+                ANFITRIONA = ViewBag.ANFITRIONA,
+                ESTACION = ViewBag.ESTACION,
+                TIPO = ViewBag.TIPO,
+                NACIONALIDAD = ViewBag.NACIONALIDAD
+            }))
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <span style="font-size: 30px;"><strong>Totales:</strong></span>

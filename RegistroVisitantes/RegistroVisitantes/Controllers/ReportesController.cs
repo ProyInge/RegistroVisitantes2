@@ -23,7 +23,7 @@ namespace RegistroVisitantes.Controllers
         public ActionResult Index()
         {
             DateTime from = new DateTime(2005, 3, 20);
-            DateTime to = (from.AddDays(7));
+            DateTime to = (from.AddDays(365));
        
             ViewBag.fromDate = from;
             ViewBag.toDate = to;
@@ -57,6 +57,13 @@ namespace RegistroVisitantes.Controllers
 
             ViewBag.fromDate = reporte.FECHADESDE;
             ViewBag.toDate = reporte.FECHAHASTA;
+
+            ViewBag.FECHADESDE = reporte.FECHADESDE;
+            ViewBag.FECHAHASTA = reporte.FECHAHASTA;
+            ViewBag.ANFITRIONA = reporte.ANFITRIONA;
+            ViewBag.ESTACION = reporte.ESTACION;
+            ViewBag.TIPO = reporte.TIPO;
+            ViewBag.NACIONALIDAD = reporte.NACIONALIDAD;
 
             tabla = db.INFOVISITA.Where(x => x.RESERVACION.ENTRA >= reporte.FECHADESDE && x.RESERVACION.SALE <= reporte.FECHAHASTA).OrderBy(x => x.ID_RESERVACION);
 
