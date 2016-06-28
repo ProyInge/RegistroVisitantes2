@@ -156,7 +156,7 @@ namespace RegistroVisitantes.Controllers
                     tabla = tabla.Where(x => x.PERSONA.NACIONALIDAD.Equals("FR"));
                     break;
             }
-
+            // blaze it
             ViewBag.col1 = col1;
             ViewBag.col2 = col2;
             ViewBag.col3 = col3;
