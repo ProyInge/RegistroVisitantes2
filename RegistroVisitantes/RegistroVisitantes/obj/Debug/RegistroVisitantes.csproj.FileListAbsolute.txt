@@ -1204,3 +1204,5 @@ C:\Users\Emmanuel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVi
 C:\Users\Emmanuel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.xml
 C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.dll
 C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.xml
+C:\Users\b30640\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.dll
+C:\Users\b30640\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.xml
