@@ -19,7 +19,7 @@ namespace RegistroVisitantes.Controllers
     {
         private BDRegistro db = new BDRegistro();
 
-
+        [Authorize]
         public ActionResult Index()
         {
             DateTime from = new DateTime(2005, 3, 20);
@@ -91,9 +91,13 @@ namespace RegistroVisitantes.Controllers
             return tabla;
         }
 
+        [Authorize]
         public ActionResult Detalles(int? Pagina, [Bind(Include = "FECHADESDE,FECHAHASTA,ANFITRIONA,ESTACION,TIPO,NACIONALIDAD")] REPORTE reporte, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
         {
-            
+            if(reporte.ID == 0)
+            {
+                return RedirectToAction("Index", "Reportes");
+            }
             int totalReservLS = 0;
             int totalVisitLS = 0;
             int totalReservLC = 0;
