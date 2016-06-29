@@ -224,7 +224,7 @@ namespace RegistroVisitantes.Controllers
         public ActionResult Download([Bind(Include = "FECHADESDE,FECHAHASTA,ANFITRIONA,ESTACION,TIPO,NACIONALIDAD")] REPORTE reporte, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
         {
             var tabla = getTabla(reporte);
-            saveExcel(tabla, col1, col2, col3, col4, col5, col6, col7, col8, col9);
+            saveExcel(tabla, col1, col2, col3, col4, col5, col6, col7, col8, col9, reporte);
             string file = Server.MapPath("~/Reporte.xlsx"); ;
             string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             return File(file, contentType, Path.GetFileName(file));
@@ -259,7 +259,155 @@ namespace RegistroVisitantes.Controllers
             return dt;
         }
 
-        public void saveExcel(IQueryable<INFOVISITA> t, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
+
+        public DataTable toDataTableSumInsti(IEnumerable<INFOVISITA> tabla, REPORTE reporte)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("Compañía", typeof(String)); 
+            dt.Columns.Add("Número de reservaciones", typeof(int)); 
+            dt.Columns.Add("Número de visitantes", typeof(int));
+
+            DataRow oetRow = dt.NewRow();
+            oetRow["Compañía"] = "OET";
+            DataRow esintroRow = dt.NewRow();
+            esintroRow["Compañía"] = "ESINTRO";
+            DataRow totalesRow = dt.NewRow();
+            totalesRow["Compañía"] = "Total";
+            int totalReservOET = 0;
+            int totalVisitOET = 0;
+            int totalReservESINTRO = 0;
+            int totalVisitESINTRO = 0;
+            int totalReservInstitucion = 0;
+            int totalVisitInstitucion = 0;
+            switch (reporte.ANFITRIONA)
+            {
+                case "ESINTRO":
+                    totalVisitESINTRO = tabla.Count(x => x.RESERVACION.ANFITRIONA.Equals("01"));
+                    totalReservESINTRO = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("01")).Select(x => x.RESERVACION.ID).Distinct().Count();
+                    break;
+                case "OET":
+                    totalVisitOET = tabla.Count(x => x.RESERVACION.ANFITRIONA.Equals("02"));
+                    totalReservOET = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("02")).Select(x => x.RESERVACION.ID).Distinct().Count();
+                    break;
+                default:  // si se selecciona la opcion de todas las instituciones
+                    totalVisitESINTRO = tabla.Count(x => x.RESERVACION.ANFITRIONA.Equals("01"));
+                    totalReservESINTRO = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("01")).Select(x => x.RESERVACION.ID).Distinct().Count();
+
+                    totalVisitOET = tabla.Count(x => x.RESERVACION.ANFITRIONA.Equals("02"));
+                    totalReservOET = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("02")).Select(x => x.RESERVACION.ID).Distinct().Count();
+                    break;
+            }
+
+            totalReservInstitucion = totalReservESINTRO + totalReservOET;
+            totalVisitInstitucion = totalVisitESINTRO + totalVisitOET;
+
+            oetRow["Número de reservaciones"] = totalReservOET;
+            oetRow["Número de visitantes"] = totalVisitOET;
+
+            esintroRow["Número de reservaciones"] = totalReservESINTRO;
+            esintroRow["Número de visitantes"] = totalVisitESINTRO;
+
+            totalesRow["Número de reservaciones"] = totalReservInstitucion;
+            totalesRow["Número de visitantes"] = totalVisitInstitucion;
+
+            dt.Rows.Add(oetRow);
+            dt.Rows.Add(esintroRow);
+            dt.Rows.Add(totalesRow);
+
+
+            return dt;
+        }
+
+        public DataTable toDataTableSumEstacion(IEnumerable<INFOVISITA> tabla, REPORTE reporte)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("Estación", typeof(String));
+            dt.Columns.Add("Número de reservaciones", typeof(int));
+            dt.Columns.Add("Número de visitantes", typeof(int));
+
+            DataRow LSRow = dt.NewRow();
+            LSRow["Estación"] = "La Selva";
+            DataRow PVRow = dt.NewRow();
+            PVRow["Estación"] = "Palo Verde";
+            DataRow LCRow = dt.NewRow();
+            LCRow["Estación"] = "Las Cruces";
+            DataRow CRORow = dt.NewRow();
+            CRORow["Estación"] = "Central";
+            DataRow totalesRow = dt.NewRow();
+            totalesRow["Estación"] = "Total";
+            int totalReservLS = 0;
+            int totalVisitLS = 0;
+            int totalReservLC = 0;
+            int totalVisitLC = 0;
+            int totalReservPV = 0;
+            int totalVisitPV = 0;
+            int totalReservCRO = 0;
+            int totalVisitCRO = 0;
+            int totalReservEstacion = 0;
+            int totalVisitEstacion = 0;
+
+            switch (reporte.ESTACION)
+            {
+                case "01":
+                    totalVisitLS = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva"));
+                    totalReservLS = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva")).Select(x => x.RESERVACION.ID).Distinct().Count();
+                    break;
+                case "02":
+                    totalVisitPV = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Palo Verde"));
+                    totalReservPV = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Palo Verde")).Select(x => x.RESERVACION.ID).Distinct().Count();
+                    break;
+                case "03":
+                    totalVisitLC = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Las Cruces"));
+                    totalReservLC = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Las Cruces")).Select(x => x.RESERVACION.ID).Distinct().Count();
+                    break;
+                case "04":
+                    totalVisitCRO = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices"));
+                    totalReservCRO = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices")).Select(x => x.RESERVACION.ID).Distinct().Count();
+                    break;
+                default:  // si se selecciona la opcion de todas las estaciones
+                    totalVisitLS = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva"));
+                    totalReservLS = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva")).Select(x => x.RESERVACION.ID).Distinct().Count();
+
+                    totalVisitLC = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Las Cruces"));
+                    totalReservLC = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Las Cruces")).Select(x => x.RESERVACION.ID).Distinct().Count();
+
+                    totalVisitPV = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Palo Verde"));
+                    totalReservPV = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Palo Verde")).Select(x => x.RESERVACION.ID).Distinct().Count();
+
+                    totalVisitCRO = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices"));
+                    totalReservCRO = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices")).Select(x => x.RESERVACION.ID).Distinct().Count();
+                    break;
+            }
+
+            totalReservEstacion = totalReservCRO + totalReservLC + totalReservLS + totalReservPV;
+            totalVisitEstacion = totalVisitCRO + totalVisitLC + totalVisitLS + totalVisitPV;
+
+            LSRow["Número de reservaciones"] = totalReservLS;
+            LSRow["Número de visitantes"] = totalVisitLS;
+
+            PVRow["Número de reservaciones"] = totalReservPV;
+            PVRow["Número de visitantes"] = totalVisitPV;
+
+            LCRow["Número de reservaciones"] = totalReservLC;
+            LCRow["Número de visitantes"] = totalVisitLC;
+
+            CRORow["Número de reservaciones"] = totalReservCRO;
+            CRORow["Número de visitantes"] = totalVisitCRO;
+
+            totalesRow["Número de reservaciones"] = totalReservEstacion;
+            totalesRow["Número de visitantes"] = totalVisitEstacion;
+
+            dt.Rows.Add(LSRow);
+            dt.Rows.Add(PVRow);
+            dt.Rows.Add(LCRow);
+            dt.Rows.Add(CRORow);
+            dt.Rows.Add(totalesRow);
+
+
+            return dt;
+        }
+
+        public void saveExcel(IQueryable<INFOVISITA> t, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9, REPORTE reporte)
         {
             String fileName = Server.MapPath("~/Reporte.xlsx");
             var arch = new FileInfo(fileName);
@@ -307,6 +455,14 @@ namespace RegistroVisitantes.Controllers
                     ws.Cells[1, contador].Style.Font.Bold = true;
                     contador++;
                 }
+
+                //Agrega los totales
+                DataTable totalInsti = toDataTableSumInsti(tablaenum, reporte);
+                DataTable totalEstacion = toDataTableSumEstacion(tablaenum, reporte);
+                
+                ws.Cells[tablaenum.Count()+3, 1].LoadFromDataTable(totalInsti, true);
+                ws.Cells[tablaenum.Count()+3, 6].LoadFromDataTable(totalEstacion, true);
+
                 ws.Cells.AutoFitColumns();
 
                 pck.Save();
