@@ -419,8 +419,8 @@ namespace RegistroVisitantes.Controllers
                 IEnumerable<INFOVISITA> tablaenum = t.AsEnumerable<INFOVISITA>();
                 DataTable res = toDataTable(tablaenum, col1, col2, col3, col4, col5, col6, col7, col8, col9);
                 //ver cual celda es la que trae las fechas y cambiar por los numeros
-                ws.Column(5).Style.Numberformat.Format = "yyyy-mm-dd h:mm";
-                ws.Column(4).Style.Numberformat.Format = "yyyy-mm-dd h:mm";
+                ws.Column(5).Style.Numberformat.Format = "yyyy-mm-dd";
+                ws.Column(4).Style.Numberformat.Format = "yyyy-mm-dd";
 
 
                 ws.Cells["A1"].LoadFromDataTable(res, true);
