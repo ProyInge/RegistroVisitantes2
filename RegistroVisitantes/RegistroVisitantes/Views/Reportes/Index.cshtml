@@ -1,8 +1,4 @@
-﻿@model PagedList.IPagedList<RegistroVisitantes.Models.INFOVISITA>
-@using PagedList;
-@using PagedList.Mvc;
-
-@{
+﻿@{
     ViewBag.Title = "Crear reportes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -10,45 +6,36 @@
 <div class="container">
     <h1><strong>Crear reportes</strong></h1>
     <hr />
-    <button style="margin-bottom: 20px;" class="btn btn-success" id="togglePanelParametros">Esconder parámetros</button>
-
-    <div class="row" id="myColumns">
-        <div class="col-lg-3" id="paramPanel">
+    <div class="row" >
+        <div class="col-lg-6 col-lg-offset-3" id="paramPanel">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <span style="font-size: 30px;"><strong>Parámetros:</strong></span>
+                    <span style="font-size: 26px;"><strong>Parámetros:</strong></span>
                 </div>
                 <div class="panel-body">
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Detalles", "Reportes", FormMethod.Post, new { target = "_blank" }))
                     {
                         @Html.AntiForgeryToken()
 
-                        <div class="form-horizontal">
+                        <div class="form-inline">
                             @Html.ValidationSummary(true)
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 15px;">
                                 <label for="FECHADESDE">Desde:</label>
-                                <div class="col-md-10">
-                                    <input class="form-control" style="position: relative; z-index: 100000;width: 150px;" type="text" name="FECHADESDE" id="FECHADESDE" value="@string.Format("{0:d}", ViewBag.fromDate)" />
-                                </div>
+                                <input class="form-control" style="position: relative; z-index: 100000;width: 150px;" type="text" name="FECHADESDE" id="FECHADESDE" value="@string.Format("{0:d}", ViewBag.fromDate)" />
                             </div>
-
-                            <div class="form-group">
+                            <br />
+                            <div class="form-group" style="margin-bottom: 15px;">
                                 <label for="FECHAHASTA">Hasta:</label>
-                                <div class="col-md-10">
-                                    <input class="form-control" style="position: relative; z-index: 100000;width: 150px;" type="text" name="FECHAHASTA" id="FECHAHASTA" value="@string.Format("{0:d}", ViewBag.toDate)" />
-                                </div>
+                                <input class="form-control" style="position: relative; z-index: 100000;width: 150px;" type="text" name="FECHAHASTA" id="FECHAHASTA" value="@string.Format("{0:d}", ViewBag.toDate)" />
                             </div>
-
-                            <div class="form-group">
+                            <br />
+                            <div class="form-group" style="margin-bottom: 15px;">
                                 <label for="ANFITRIONA">Compañia:</label>
                                 <select class="form-control" id="ANFITRIONA" name="ANFITRIONA">
                                     <option value="TODAS" @(ViewBag.ANFITRIONA == "TODAS" ? "selected" : "")>Todas</option>
                                     <option value="OET" @(ViewBag.ANFITRIONA == "OET" ? "selected" : "")>ESINTRO</option>
                                     <option value="ESINTRO" @(ViewBag.ANFITRIONA == "ESINTRO" ? "selected" : "")>OET</option>
                                 </select>
-                            </div>
-
-                            <div class="form-group">
                                 <label for="ESTACION">Estación:</label>
                                 <select class="form-control" id="ESTACION" name="ESTACION">
                                     <option value="00" @(ViewBag.ESTACION == "00" ? "selected" : "")>Todas</option>
@@ -59,7 +46,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 15px;">
                                 <label for="TIPO">Tipo de visitante:</label>
                                 <select class="form-control" id="TIPO" name="TIPO">
                                     <option value="00" @(ViewBag.TIPO == "00" ? "selected" : "")>Todos</option>
@@ -68,9 +55,7 @@
                                     <option value="03" @(ViewBag.TIPO == "03" ? "selected" : "")>Grupo Educativo</option>
                                     <option value="04" @(ViewBag.TIPO == "04" ? "selected" : "")>Otros visitantes</option>
                                 </select>
-                            </div>
-
-                            <div class="form-group">
+                            <br  style="margin-bottom: 15px;"/>
                                 <label for="NACIONALIDAD">Nacionalidad:</label>
                                 <select class="form-control" id="NACIONALIDAD" name="NACIONALIDAD">
                                     <option value="00" @(ViewBag.NACIONALIDAD == "00" ? "selected" : "")>Todos</option>
@@ -79,192 +64,27 @@
                                     <option value="03" @(ViewBag.NACIONALIDAD == "03" ? "selected" : "")>Francés</option>
                                 </select>
                             </div>
-
+                            <br />
                             <div class="form-group">
-                                <div class="col-md-12">
-                                    <div style="border:2px solid #ccc; width:220px; height: 220px; margin-bottom: 20px; overflow-y: scroll;">
-'                                       <span>@Html.CheckBox("col1", new { @checked = @ViewBag.col1 }) Compañía <br /></span>
-                                        <span>@Html.CheckBox("col2", new { @checked = @ViewBag.col2 }) Estación <br /></span>
-                                        <span>@Html.CheckBox("col3", new { @checked = @ViewBag.col3 }) Reservación <br /></span>
-                                        <span>@Html.CheckBox("col4", new { @checked = @ViewBag.col4 }) Fecha Entrada <br /></span>
-                                        <span>@Html.CheckBox("col5", new { @checked = @ViewBag.col5 }) Fecha Salida <br /></span>
-                                        <span>@Html.CheckBox("col6", new { @checked = @ViewBag.col6 }) Tipo de Visitante <br /></span>
-                                        <span>@Html.CheckBox("col7", new { @checked = @ViewBag.col7 }) Nacionalidad <br /></span>
-                                        <span>@Html.CheckBox("col8", new { @checked = @ViewBag.col8 }) Nombre Completo <br /></span>
-                                        <span>@Html.CheckBox("col9", new { @checked = @ViewBag.col9 }) Correo electrónico <br /></span>       
-                                    </div>
-
-                                    <input type="submit" value="Crear reporte" class="btn btn-success" />
+                                <label for="FECHADESDE">Columnas a reportar:</label>
+                                <div style="border:2px solid #ccc; width:220px; height: 220px; margin-bottom: 20px; overflow-y: scroll;">
+                                    <span>@Html.CheckBox("col1", new { @checked = @ViewBag.col1 }) Compañía <br /></span>
+                                    <span>@Html.CheckBox("col2", new { @checked = @ViewBag.col2 }) Estación <br /></span>
+                                    <span>@Html.CheckBox("col3", new { @checked = @ViewBag.col3 }) Reservación <br /></span>
+                                    <span>@Html.CheckBox("col4", new { @checked = @ViewBag.col4 }) Fecha Entrada <br /></span>
+                                    <span>@Html.CheckBox("col5", new { @checked = @ViewBag.col5 }) Fecha Salida <br /></span>
+                                    <span>@Html.CheckBox("col6", new { @checked = @ViewBag.col6 }) Tipo de Visitante <br /></span>
+                                    <span>@Html.CheckBox("col7", new { @checked = @ViewBag.col7 }) Nacionalidad <br /></span>
+                                    <span>@Html.CheckBox("col8", new { @checked = @ViewBag.col8 }) Nombre Completo <br /></span>
+                                    <span>@Html.CheckBox("col9", new { @checked = @ViewBag.col9 }) Correo electrónico <br /></span>       
                                 </div>
+                                <input type="submit" value="Crear reporte" class="btn btn-success" />
                             </div>
                         </div>
                     }
-
                 </div>
             </div>
         </div>
-        <div class="col-lg-9" id="resPanel">
-            <div class="panel panel-default" id="panelResultados">
-                <div class="panel-heading">
-                    <span style="font-size: 30px;"><strong>Resultados:</strong></span>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover table-bordered" id="tablaResultados">
-                            <thead>
-                                <tr>
-                                    <th>Compañía</th>
-                                    <th>Estación</th>
-                                    <th>Reservación</th>
-                                    <th>Fecha entrada</th>
-                                    <th>Fecha salida</th>
-                                    <th>Tipo Visitante</th>
-                                    <th>Nacionalidad</th>
-                                    <th>Nombre Completo</th>
-                                    <th>Correo electrónico</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                <td align="center">
-                                    @if (item.RESERVACION.ANFITRIONA == "01") { <p>OET</p> } else { <p>ESINTRO</p>}
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RESERVACION.ESTACIONI.SIGLAS)
-                                </td>
-                                <td>
-                                    @(item.RESERVACION.NUMERO)
-                                </td>
-                                <td>
-                                    @(item.RESERVACION.ENTRA)
-                                </td>
-                                <td>
-                                    @(item.RESERVACION.SALE)
-                                </td>
-                                <td>
-                                    @(item.PERSONA.ROL)
-                                </td>
-                                <td>
-                                    @(item.PERSONA.NACIONALIDAD)
-                                </td>
-                                <td>
-                                    @(item.PERSONA.NOMBRE) @(item.PERSONA.APELLIDO)
-                                </td>
-                                <td>
-                                    <a href="mailto:@(item.PERSONA.EMAIL)">@(item.PERSONA.EMAIL)</a>
-                                </td>   
-                                </tr>
-                                }
-                                @if (Model.Count < 5)
-                                {
-                                    for (int i = 5 - Model.Count; i > 0; i--)
-                                    {
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    }
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <br />
-            Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
-            @Html.PagedListPager(Model, Pagina => Url.Action("Index",
-        new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <span style="font-size: 30px;"><strong>Totales:</strong></span>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Compañía</th>
-                                        <th>Número de reservaciones</th>
-                                        <th>Número de visitantes</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>OET</td>
-                                        <td style="text-align:center">100</td>
-                                        <td style="text-align:center">300</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ESINTRO</td>
-                                        <td style="text-align:center">26</td>
-                                        <td style="text-align:center">100</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Total</strong></td>
-                                        <td style="text-align:center"><strong>126</strong></td>
-                                        <td style="text-align:center"><strong>400</strong></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-md-6">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Estación</th>
-                                        <th>Número de reservaciones</th>
-                                        <th>Número de visitantes</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>La Selva</td>
-                                        <td style="text-align:center">80</td>
-                                        <td style="text-align:center">250</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Palo Verde</td>
-                                        <td style="text-align:center">15</td>
-                                        <td style="text-align:center">60</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Las Cruces</td>
-                                        <td style="text-align:center">6</td>
-                                        <td style="text-align:center">29</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Central</td>
-                                        <td style="text-align:center">10</td>
-                                        <td style="text-align:center">61</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Total</strong></td>
-                                        <td style="text-align:center"><strong>126</strong></td>
-                                        <td style="text-align:center"><strong>400</strong></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <button class="btn btn-success">Imprimir</button>
-            @Html.ActionLink("Exportar", "Download", "Reportes", new { @class="btn btn-success"})
-        </div>
-    </div>
-    <div class="row" style="margin-bottom: 100px;">
-        <div class="col-lg-8 col-lg-offset-2"> </div>
     </div>
 </div>
 
@@ -294,24 +114,6 @@
             });
             var date2 = $('#FECHADESDE').datepicker('getDate');
             $('#FECHAHASTA').datepicker('option', 'minDate', date2);
-
-
-            var $myCols = $("#myColumns");
-            $("#togglePanelParametros").click(function () {
-                $("#paramPanel").toggle();
-                $(this).text(function (i, text) {
-                    return text === "Esconder parámetros" ? "Mostrar parámetros" : "Esconder parámetros";
-                })
-                if ($("#paramPanel").is(":visible")) {
-                    $("#resPanel").removeClass("col-lg-12");
-                    $("#resPanel").addClass("col-lg-9");
-                }
-                else {
-                    $("#resPanel").removeClass("col-lg-9");
-                    $("#resPanel").addClass("col-lg-12");
-                }
-            });
-
         });
     </script>
 }
