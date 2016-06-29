@@ -270,9 +270,29 @@ namespace RegistroVisitantes.Controllers
                 ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Reporte");
                 IEnumerable<INFOVISITA> tablaenum = t.AsEnumerable<INFOVISITA>();
                 DataTable res = toDataTable(tablaenum, col1, col2, col3, col4, col5, col6, col7, col8, col9);
-                //ver cual celda es la que trae las fechas y cambiar por los numeros
-                ws.Column(5).Style.Numberformat.Format = "yyyy-mm-dd";
-                ws.Column(4).Style.Numberformat.Format = "yyyy-mm-dd";
+
+                int cantAntesFecha = 0;
+                if (col1!=null) {
+                    cantAntesFecha++;
+                }
+                if (col2 != null)
+                {
+                    cantAntesFecha++;
+                }
+                if (col3 != null)
+                {
+                    cantAntesFecha++;
+                }
+                if (col4 != null ) {
+                    ws.Column(cantAntesFecha).Style.Numberformat.Format = "yyyy-mm-dd";
+                    cantAntesFecha++;
+                }
+
+                if (col5 != null)
+                {
+                    ws.Column(cantAntesFecha).Style.Numberformat.Format = "yyyy-mm-dd";
+                }
+
 
 
                 ws.Cells["A1"].LoadFromDataTable(res, true);
