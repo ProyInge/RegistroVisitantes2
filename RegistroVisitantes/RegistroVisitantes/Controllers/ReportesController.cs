@@ -419,36 +419,56 @@ namespace RegistroVisitantes.Controllers
                 IEnumerable<INFOVISITA> tablaenum = t.AsEnumerable<INFOVISITA>();
                 DataTable res = toDataTable(tablaenum, col1, col2, col3, col4, col5, col6, col7, col8, col9);
 
-                int cantAntesFecha = 0;
-                if (col1!=null) {
+                int cantCols = 0;
+                int cantAntesFecha = 1;
+                if (col1!=null && col1!=false) {
                     cantAntesFecha++;
+                    cantCols++;
                 }
-                if (col2 != null)
+                if (col2 != null && col2 != false)
                 {
                     cantAntesFecha++;
+                    cantCols++;
                 }
-                if (col3 != null)
+                if (col3 != null && col3 != false)
                 {
                     cantAntesFecha++;
+                    cantCols++;
                 }
-                if (col4 != null ) {
+                if (col4 != null && col4 != false) {
                     ws.Column(cantAntesFecha).Style.Numberformat.Format = "yyyy-mm-dd";
                     cantAntesFecha++;
+                    cantCols++;
                 }
 
-                if (col5 != null)
-                {
+                if (col5 != null && col5 != false)
+                {                  
                     ws.Column(cantAntesFecha).Style.Numberformat.Format = "yyyy-mm-dd";
+                    cantCols++;
                 }
-
+                if (col6 != null && col6 != false)
+                {
+                    cantCols++;
+                }
+                if (col7 != null && col7 != false)
+                {
+                    cantCols++;
+                }
+                if (col8 != null && col8 != false)
+                {
+                    cantCols++;
+                }
+                if (col9 != null && col9 != false)
+                {
+                    cantCols++;
+                }
 
 
                 ws.Cells["A1"].LoadFromDataTable(res, true);
 
                 //ver la cantidad de parametros que vienen en true y cambiar la cantCeldas
-                int cantCeldas = 9;
                 int contador = 1;
-                while (contador <= cantCeldas)
+                while (contador <= cantCols)
                 {
                     ws.Cells[1, contador].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                     ws.Cells[1, contador].Style.Fill.BackgroundColor.SetColor(Color.LightBlue);
@@ -459,7 +479,24 @@ namespace RegistroVisitantes.Controllers
                 //Agrega los totales
                 DataTable totalInsti = toDataTableSumInsti(tablaenum, reporte);
                 DataTable totalEstacion = toDataTableSumEstacion(tablaenum, reporte);
+
+                for (int i=1; i<=3; i++) {
+                    ws.Cells[tablaenum.Count() + 3, i].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Cells[tablaenum.Count() + 3, i].Style.Fill.BackgroundColor.SetColor(Color.LightBlue);
+                    ws.Cells[tablaenum.Count() + 3, i].Style.Font.Bold = true;
+
+                }
+
+                for (int i = 6; i <= 8; i++)
+                {
+                    ws.Cells[tablaenum.Count() + 3, i].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Cells[tablaenum.Count() + 3, i].Style.Fill.BackgroundColor.SetColor(Color.LightBlue);
+                    ws.Cells[tablaenum.Count() + 3, i].Style.Font.Bold = true;
+
+                }
+
                 
+
                 ws.Cells[tablaenum.Count()+3, 1].LoadFromDataTable(totalInsti, true);
                 ws.Cells[tablaenum.Count()+3, 6].LoadFromDataTable(totalEstacion, true);
 

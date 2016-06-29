@@ -196,7 +196,7 @@
     <value>Autre</value>
   </data>
   <data name="oet_pais" xml:space="preserve">
-    <value>Country</value>
+    <value>Pays</value>
   </data>
   <data name="oet_personal" xml:space="preserve">
     <value>Informations personnelles</value>
@@ -211,16 +211,16 @@
     <value>Position</value>
   </data>
   <data name="oet_preferencias" xml:space="preserve">
-    <value>Meat Preferences</value>
+    <value>Viande Préférences</value>
   </data>
   <data name="oet_proposito" xml:space="preserve">
-    <value>Purpose</value>
+    <value>But</value>
   </data>
   <data name="oet_propositoTitulo" xml:space="preserve">
     <value>Purpose of Visit</value>
   </data>
   <data name="oet_resTitulo" xml:space="preserve">
-    <value>Dietary Restrictions and Allergies</value>
+    <value>Restrictions et les allergies alimentaires</value>
   </data>
   <data name="oet_sexo" xml:space="preserve">
     <value>Sexe</value>
