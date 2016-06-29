@@ -31,9 +31,69 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
-        public ActionResult Detalles(int? Pagina, [Bind(Include = "FECHADESDE,FECHAHASTA,ANFITRIONA,ESTACION,TIPO,NACIONALIDAD")] REPORTE reporte, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
+        private IQueryable<INFOVISITA> getTabla(REPORTE reporte)
         {
             IQueryable<INFOVISITA> tabla;
+            tabla = db.INFOVISITA.Where(x => x.RESERVACION.ENTRA >= reporte.FECHADESDE && x.RESERVACION.ENTRA <= reporte.FECHAHASTA).OrderBy(x => x.ID_RESERVACION);
+
+            // se cuentan reservaciones y visitantes por estacion y por institucion
+            switch (reporte.ANFITRIONA)
+            {
+                case "ESINTRO":
+                    tabla = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("01"));
+                    break;
+                case "OET":
+                    tabla = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("02"));
+                    break;
+            }
+            switch (reporte.ESTACION)
+            {
+                case "01":
+                    tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva"));
+                    break;
+                case "02":
+                    tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Palo Verde"));
+                    break;
+                case "03":
+                    tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Las Cruces"));
+                    break;
+                case "04":
+                    tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices"));
+                    break;
+            }
+            switch (reporte.TIPO)
+            {
+                case "01":
+                    tabla = tabla.Where(x => x.PERSONA.ROL.Equals("Staff"));
+                    break;
+                case "02":
+                    tabla = tabla.Where(x => x.PERSONA.ROL.Equals("Investigador"));
+                    break;
+                case "03":
+                    tabla = tabla.Where(x => x.PERSONA.ROL.Equals("Académico"));
+                    break;
+                case "04":
+                    tabla = tabla.Where(x => x.PERSONA.ROL.Equals("Otro"));
+                    break;
+            }
+            switch (reporte.NACIONALIDAD)
+            {
+                case "01":
+                    tabla = tabla.Where(x => x.PERSONA.NACIONALIDAD.Equals("CR"));
+                    break;
+                case "02":
+                    tabla = tabla.Where(x => x.PERSONA.NACIONALIDAD.Equals("US"));
+                    break;
+                case "03":
+                    tabla = tabla.Where(x => x.PERSONA.NACIONALIDAD.Equals("FR"));
+                    break;
+            }
+            return tabla;
+        }
+
+        public ActionResult Detalles(int? Pagina, [Bind(Include = "FECHADESDE,FECHAHASTA,ANFITRIONA,ESTACION,TIPO,NACIONALIDAD")] REPORTE reporte, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
+        {
+            
             int totalReservLS = 0;
             int totalVisitLS = 0;
             int totalReservLC = 0;
@@ -63,19 +123,26 @@ namespace RegistroVisitantes.Controllers
             ViewBag.TIPO = reporte.TIPO;
             ViewBag.NACIONALIDAD = reporte.NACIONALIDAD;
 
-            tabla = db.INFOVISITA.Where(x => x.RESERVACION.ENTRA >= reporte.FECHADESDE && x.RESERVACION.SALE <= reporte.FECHAHASTA).OrderBy(x => x.ID_RESERVACION);
+            ViewBag.col1 = col1;
+            ViewBag.col2 = col2;
+            ViewBag.col3 = col3;
+            ViewBag.col4 = col4;
+            ViewBag.col5 = col5;
+            ViewBag.col6 = col6;
+            ViewBag.col7 = col7;
+            ViewBag.col8 = col8;
+            ViewBag.col9 = col9;
 
-            //se cuentan reservaciones y visitantes por estacion y por institucion
-            ViewBag.ANFITRIONA = reporte.ANFITRIONA;
+            var tabla = getTabla(reporte);
+
+            // se cuentan reservaciones y visitantes por estacion y por institucion
             switch (reporte.ANFITRIONA)
             {
                 case "ESINTRO":
-                    tabla = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("01"));
                     totalVisitESINTRO = tabla.Count(x => x.RESERVACION.ANFITRIONA.Equals("01"));
                     totalReservESINTRO = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("01")).Select(x => x.RESERVACION.ID).Distinct().Count();
                     break;
                 case "OET":
-                    tabla = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("02"));
                     totalVisitOET = tabla.Count(x => x.RESERVACION.ANFITRIONA.Equals("02"));
                     totalReservOET = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("02")).Select(x => x.RESERVACION.ID).Distinct().Count();
                     break;
@@ -88,30 +155,25 @@ namespace RegistroVisitantes.Controllers
                     break;
             }
 
-            ViewBag.ESTACION = reporte.ESTACION;
             switch (reporte.ESTACION)
             {
                 case "01":
-                    tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva"));
                     totalVisitLS = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva"));
                     totalReservLS = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva")).Select(x => x.RESERVACION.ID).Distinct().Count();
                     break;
                 case "02":
-                    tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Palo Verde"));
                     totalVisitPV = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Palo Verde"));
                     totalReservPV = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Palo Verde")).Select(x => x.RESERVACION.ID).Distinct().Count();
                     break;
                 case "03":
-                    tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Las Cruces"));
                     totalVisitLC = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Las Cruces"));
                     totalReservLC = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Las Cruces")).Select(x => x.RESERVACION.ID).Distinct().Count();
                     break;
                 case "04":
-                    tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices"));
                     totalVisitCRO = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices"));
                     totalReservCRO = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices")).Select(x => x.RESERVACION.ID).Distinct().Count();
                     break;
-                default:  //si se selecciona la opcion de todas las estaciones
+                default:  // si se selecciona la opcion de todas las estaciones
                     totalVisitLS = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva"));
                     totalReservLS = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva")).Select(x => x.RESERVACION.ID).Distinct().Count();
 
@@ -125,47 +187,6 @@ namespace RegistroVisitantes.Controllers
                     totalReservCRO = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices")).Select(x => x.RESERVACION.ID).Distinct().Count();
                     break;
             }
-
-            ViewBag.TIPO = reporte.TIPO;
-            switch (reporte.TIPO)
-            {
-                case "01":
-                    tabla = tabla.Where(x => x.PERSONA.ROL.Equals("Staff"));
-                    break;
-                case "02":
-                    tabla = tabla.Where(x => x.PERSONA.ROL.Equals("Investigador"));
-                    break;
-                case "03":
-                    tabla = tabla.Where(x => x.PERSONA.ROL.Equals("Académico"));
-                    break;
-                case "04":
-                    tabla = tabla.Where(x => x.PERSONA.ROL.Equals("Otro"));
-                    break;
-            }
-
-            ViewBag.NACIONALIDAD = reporte.NACIONALIDAD;
-            switch (reporte.NACIONALIDAD)
-            {
-                case "01":
-                    tabla = tabla.Where(x => x.PERSONA.NACIONALIDAD.Equals("CR"));
-                    break;
-                case "02":
-                    tabla = tabla.Where(x => x.PERSONA.NACIONALIDAD.Equals("US"));
-                    break;
-                case "03":
-                    tabla = tabla.Where(x => x.PERSONA.NACIONALIDAD.Equals("FR"));
-                    break;
-            }
-            // blaze it
-            ViewBag.col1 = col1;
-            ViewBag.col2 = col2;
-            ViewBag.col3 = col3;
-            ViewBag.col4 = col4;
-            ViewBag.col5 = col5;
-            ViewBag.col6 = col6;
-            ViewBag.col7 = col7;
-            ViewBag.col8 = col8;
-            ViewBag.col9 = col9;
 
             //se suman cantidad de reservaciones de todas las instituciones
             totalReservInstitucion = totalReservESINTRO + totalReservOET;
@@ -193,11 +214,20 @@ namespace RegistroVisitantes.Controllers
             ViewBag.totalReservEstacion = totalReservEstacion;
             ViewBag.totalVisitEstacion = totalVisitEstacion;
                         
-            saveExcel(tabla, col1, col2, col3, col4, col5, col6, col7, col8, col9);
+            
             int Size_Of_Page = 5;
             int No_Of_Page = (Pagina ?? 1);
             return View(tabla.ToPagedList(No_Of_Page, Size_Of_Page));
 
+        }
+
+        public ActionResult Download([Bind(Include = "FECHADESDE,FECHAHASTA,ANFITRIONA,ESTACION,TIPO,NACIONALIDAD")] REPORTE reporte, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
+        {
+            var tabla = getTabla(reporte);
+            saveExcel(tabla, col1, col2, col3, col4, col5, col6, col7, col8, col9);
+            string file = Server.MapPath("~/Reporte.xlsx"); ;
+            string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            return File(file, contentType, Path.GetFileName(file));
         }
 
         public DataTable toDataTable(IEnumerable<INFOVISITA> tabla, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
@@ -261,14 +291,6 @@ namespace RegistroVisitantes.Controllers
 
                 pck.Save();
             }
-        }
-
-        public ActionResult Download()
-        {
-
-            string file = Server.MapPath("~/Reporte.xlsx"); ;
-            string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            return File(file, contentType, Path.GetFileName(file));
         }
 
 

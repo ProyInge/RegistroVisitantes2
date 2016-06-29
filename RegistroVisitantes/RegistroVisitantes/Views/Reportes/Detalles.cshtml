@@ -200,8 +200,22 @@
 
                 </div>
             </div>
-            <button class="btn btn-success">Imprimir</button>
-            @Html.ActionLink("Exportar", "Download", "Reportes", new { @class = "btn btn-success" })
+            @Html.ActionLink("Exportar", "Download", "Reportes", new {  FECHADESDE = ViewBag.FECHADESDE,
+           FECHAHASTA = ViewBag.FECHAHASTA,
+           ANFITRIONA = ViewBag.ANFITRIONA,
+           ESTACION = ViewBag.ESTACION,
+           TIPO = ViewBag.TIPO,
+           NACIONALIDAD = ViewBag.NACIONALIDAD,
+           col1 = ViewBag.col1,
+           col2 = ViewBag.col2,
+           col3 = ViewBag.col3,
+           col4 = ViewBag.col4,
+           col5 = ViewBag.col5,
+           col6 = ViewBag.col6,
+           col7 = ViewBag.col7,
+           col8 = ViewBag.col8,
+           col9 = ViewBag.col9
+       }, new { @class = "btn btn-success" })
         </div>
     </div>
     <div class="row" style="margin-bottom: 100px;">
@@ -259,9 +273,9 @@
                 Array.prototype.forEach.call(anchors, function (element, index) {
                     
                     var patt = new RegExp("http:\/\/localhost:11289\/Reportes\/Detalles");
-                    var res = patt.test(element.href);
+                    var patt2 = new RegExp("http:\/\/localhost:11289\/Reportes\/Download");
                     
-                    if (res)
+                    if (patt.test(element.href) || patt2.test(element.href))
                     {
                         var url = element.href.split("col1")[0];
                         element.href = url + url2;
