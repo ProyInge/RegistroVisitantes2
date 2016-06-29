@@ -3,7 +3,7 @@
 @using PagedList.Mvc;
 
 @{
-    ViewBag.Title = "Crear reportes";
+    ViewBag.Title = "Detalles del reporte";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -12,6 +12,17 @@
     <hr />
     <div class="row">
         <div class="col-lg-12" id="resPanel">
+            <div style="border:2px solid #ccc; width:100%; height: 60px; margin-bottom: 20px; display:inline-flex;" id="divChk">
+                <label style="margin: 0px 5px;"><input class="chk" @(ViewBag.col1 == true ? "checked" : "") id="col1" type="checkbox"> Compañía</label>
+                <label style="margin: 0px 5px;"><input class="chk" @(ViewBag.col2 == true ? "checked" : "") id="col2" type="checkbox"> Estación</label>
+                <label style="margin: 0px 5px;"><input class="chk" @(ViewBag.col3 == true ? "checked" : "") id="col3" type="checkbox"> Reservación</label>
+                <label style="margin: 0px 5px;"><input class="chk" @(ViewBag.col4 == true ? "checked" : "") id="col4" type="checkbox"> Fecha Entrada</label>
+                <label style="margin: 0px 5px;"><input class="chk" @(ViewBag.col5 == true ? "checked" : "") id="col5" type="checkbox"> Fecha Salida</label>
+                <label style="margin: 0px 5px;"><input class="chk" @(ViewBag.col6 == true ? "checked" : "") id="col6" type="checkbox"> Tipo de Visitante</label>
+                <label style="margin: 0px 5px;"><input class="chk" @(ViewBag.col7 == true ? "checked" : "") id="col7" type="checkbox"> Nacionalidad</label>
+                <label style="margin: 0px 5px;"><input class="chk" @(ViewBag.col8 == true ? "checked" : "") id="col8" type="checkbox"> Nombre Completo</label>
+                <label style="margin: 0px 5px;"><input class="chk" @(ViewBag.col9 == true ? "checked" : "") id="col9" type="checkbox"> Correo electrónico</label>
+            </div>
             <div class="panel panel-default" id="panelResultados">
                 <div class="panel-heading">
                     <span style="font-size: 30px;"><strong>Resultados:</strong></span>
@@ -20,114 +31,60 @@
                     <div class="table-responsive">
                         <table class="table table-striped table-hover table-bordered" id="tablaResultados">
                             <thead>
-                                <tr>
-                                    @if (ViewBag.col1 == true)
-                                    {
-                                        <th>Compañía</th>
-                                    }
-                                    @if (ViewBag.col2 == true)
-                                    {
-                                        <th>Estación</th>
-                                    }
-                                    @if (ViewBag.col3 == true)
-                                    {
-                                        <th>Reservación</th>
-                                    }
-                                    @if (ViewBag.col4 == true)
-                                    {
-                                        <th>Fecha entrada</th>
-                                    }
-                                    @if (ViewBag.col5 == true)
-                                    {
-                                        <th>Fecha salida</th>
-                                    }
-                                    @if (ViewBag.col6 == true)
-                                    {
-                                        <th>Tipo Visitante</th>
-                                    }
-                                    @if (ViewBag.col7 == true)
-                                    {
-                                        <th>Nacionalidad</th>
-                                    }
-                                    @if (ViewBag.col8 == true)
-                                    {
-                                        <th>Nombre Completo</th>
-                                    }
-                                    @if (ViewBag.col9 == true)
-                                    {
-                                        <th>Correo electrónico</th>
-                                    }
+                                <tr id="tableHeader">
+                                    <th @(ViewBag.col1 == false ? "hidden" : "")>Compañía</th>
+                                    <th @(ViewBag.col2 == false ? "hidden" : "")>Estación</th>
+                                    <th @(ViewBag.col3 == false ? "hidden" : "")>Reservación</th>
+                                    <th @(ViewBag.col4 == false ? "hidden" : "")>Fecha entrada</th>
+                                    <th @(ViewBag.col5 == false ? "hidden" : "")>Fecha salida</th>
+                                    <th @(ViewBag.col6 == false ? "hidden" : "")>Tipo Visitante</th>
+                                    <th @(ViewBag.col7 == false ? "hidden" : "")>Nacionalidad</th>
+                                    <th @(ViewBag.col8 == false ? "hidden" : "")>Nombre Completo</th>
+                                    <th @(ViewBag.col9 == false ? "hidden" : "")>Correo electrónico</th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        @if (ViewBag.col1 == true)
-                                        {
-                                            <td align="center">
-                                                @if (item.RESERVACION.ANFITRIONA == "01")
-                                                { <p>OET</p> }
-                                                else
-                                                { <p>ESINTRO</p>}
-                                            </td>
-                                        }
-                                        @if (ViewBag.col2 == true)
-                                        {
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.RESERVACION.ESTACIONI.SIGLAS)
-                                            </td>
-                                        }
-                                        @if (ViewBag.col3 == true)
-                                        {
-                                            <td>
-                                                @(item.RESERVACION.NUMERO)
-                                            </td>
-                                        }
-                                        @if (ViewBag.col4 == true)
-                                        {
-                                            <td>
-                                                @(item.RESERVACION.ENTRA)
-                                            </td>
-                                        }
-                                        @if (ViewBag.col5 == true)
-                                        {
-                                            <td>
-                                                @(item.RESERVACION.SALE)
-                                            </td>
-                                        }
-                                        @if (ViewBag.col6 == true)
-                                        {
-                                            <td>
-                                                @(item.PERSONA.ROL)
-                                            </td>
-                                        }
-                                        @if (ViewBag.col7 == true)
-                                        {
-                                            <td>
-                                                @(item.PERSONA.NACIONALIDAD)
-                                            </td>
-                                        }
-                                        @if (ViewBag.col8 == true)
-                                        {
-                                            <td>
-                                                @(item.PERSONA.NOMBRE) @(item.PERSONA.APELLIDO)
-                                            </td>
-                                        }
-                                        @if (ViewBag.col9 == true)
-                                        {
-                                            <td>
-                                                <a href="mailto:@(item.PERSONA.EMAIL)">@(item.PERSONA.EMAIL)</a>
-                                            </td>
-                                        }
+                                    <tr class="tableRow">
+                                        <td @(ViewBag.col1 == false ? "hidden" : "")>
+                                            @if (item.RESERVACION.ANFITRIONA == "01")
+                                            { <p>OET</p> }
+                                            else
+                                            { <p>ESINTRO</p>}
+                                        </td>
+                                        <td @(ViewBag.col2 == false ? "hidden" : "")>
+                                            @Html.DisplayFor(modelItem => item.RESERVACION.ESTACIONI.SIGLAS)
+                                        </td>
+                                        <td @(ViewBag.col3 == false ? "hidden" : "")>
+                                            @(item.RESERVACION.NUMERO)
+                                        </td>
+                                        <td @(ViewBag.col4 == false ? "hidden" : "")>
+                                            @(item.RESERVACION.ENTRA)
+                                        </td>
+                                        <td @(ViewBag.col5 == false ? "hidden" : "")>
+                                            @(item.RESERVACION.SALE)
+                                        </td>
+                                        <td @(ViewBag.col6 == false ? "hidden" : "")>
+                                            @(item.PERSONA.ROL)
+                                        </td>
+                                        <td @(ViewBag.col7 == false ? "hidden" : "")>
+                                            @(item.PERSONA.NACIONALIDAD)
+                                        </td>
+                                        <td @(ViewBag.col8 == false ? "hidden" : "")>
+                                            @(item.PERSONA.NOMBRE) @(item.PERSONA.APELLIDO)
+                                        </td>
+                                        <td @(ViewBag.col9 == false ? "hidden" : "")>
+                                            <a href="mailto:@(item.PERSONA.EMAIL)">@(item.PERSONA.EMAIL)</a>
+                                        </td>
                                     </tr>
                                 }
                                 @if (Model.Count < 5)
                                 {
                                     for (int i = 5 - Model.Count; i > 0; i--)
                                     {
-                                        <tr>
+                                        <tr class="tableRow">
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -140,6 +97,7 @@
                                     }
                                 }
                             </tbody>
+
                         </table>
                     </div>
                 </div>
@@ -277,6 +235,41 @@
             });
             var date2 = $('#FECHADESDE').datepicker('getDate');
             $('#FECHAHASTA').datepicker('option', 'minDate', date2);
+
+            // no me juzqguen por esta función
+            $(".chk").change(function () {
+                var b = $(this).is(':checked');
+                var index = $(this).parent().index()+1;
+                $("#tableHeader th:nth-child("+index+")").toggle();
+                $(".tableRow td:nth-child(" + index + ")").toggle();
+
+                var url2 = "";
+                for (cont = 1; cont < 10; cont++) {
+                    url2 += "col" + cont + "=";
+                    var value = $("#divChk label:nth-child(" + cont + ") input").is(":checked");
+                    if (value)
+                        url2 += "True";
+                    else
+                        url2 += "False";
+                    if (cont < 9)
+                        url2 += "&";
+                }
+
+                var anchors = document.querySelectorAll('a');
+                Array.prototype.forEach.call(anchors, function (element, index) {
+                    
+                    var patt = new RegExp("http:\/\/localhost:11289\/Reportes\/Detalles");
+                    var res = patt.test(element.href);
+                    
+                    if (res)
+                    {
+                        var url = element.href.split("col1")[0];
+                        element.href = url + url2;
+                    }
+                    
+                });
+            });
+
         });
     </script>
 }

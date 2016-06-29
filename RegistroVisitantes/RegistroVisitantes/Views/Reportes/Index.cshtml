@@ -13,7 +13,7 @@
                     <span style="font-size: 26px;"><strong>Parámetros:</strong></span>
                 </div>
                 <div class="panel-body">
-                    @using (Html.BeginForm("Detalles", "Reportes", FormMethod.Post))
+                    @using (Html.BeginForm("Detalles", "Reportes", FormMethod.Post, new { target = "_blank" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -82,7 +82,6 @@
                             </div>
                         </div>
                     }
-
                 </div>
             </div>
         </div>
