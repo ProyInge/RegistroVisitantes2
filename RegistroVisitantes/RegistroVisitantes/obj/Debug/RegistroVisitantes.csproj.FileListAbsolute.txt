@@ -1202,3 +1202,23 @@ C:\Users\Emmanuel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVi
 C:\Users\Emmanuel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\vbc.rsp
 C:\Users\Emmanuel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.dll
 C:\Users\Emmanuel\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.xml
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.dll
+C:\Users\Gabriel Bermudez\Documents\GitHub\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.xml
+C:\Users\b30640\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.dll
+C:\Users\b30640\Source\Repos\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.xml
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\csc.exe.config
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\csc.rsp
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\csi.exe
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\csi.rsp
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\System.AppContext.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\vbc.exe.config
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\roslyn\vbc.rsp
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.dll
+C:\Users\b24645\Downloads\RegistroVisitantes2\RegistroVisitantes\RegistroVisitantes\bin\EPPlus.xml
