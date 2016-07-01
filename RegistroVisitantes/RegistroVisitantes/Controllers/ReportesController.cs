@@ -19,7 +19,7 @@ namespace RegistroVisitantes.Controllers
     {
         private BDRegistro db = new BDRegistro();
 
-
+        [Authorize]
         public ActionResult Index()
         {
             DateTime from = new DateTime(2005, 3, 20);
@@ -33,6 +33,7 @@ namespace RegistroVisitantes.Controllers
 
         /*[HttpPost]
         [ValidateAntiForgeryToken]*/
+        [Authorize]
         public ActionResult Detalles(int? Pagina, [Bind(Include = "FECHADESDE,FECHAHASTA,ANFITRIONA,ESTACION,TIPO,NACIONALIDAD")] REPORTE reporte, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
         {
             IQueryable<INFOVISITA> tabla;
@@ -194,7 +195,7 @@ namespace RegistroVisitantes.Controllers
             ViewBag.totalVisitInstitucion = totalVisitInstitucion;
             ViewBag.totalReservEstacion = totalReservEstacion;
             ViewBag.totalVisitEstacion = totalVisitEstacion;
-                        
+            
             saveExcel(tabla, col1, col2, col3, col4, col5, col6, col7, col8, col9);
             int Size_Of_Page = 5;
             int No_Of_Page = (Pagina ?? 1);
