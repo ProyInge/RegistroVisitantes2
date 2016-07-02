@@ -87,6 +87,8 @@ namespace RegistroVisitantes.Controllers
                 {
                     ViewBag.num = reservacion.NUMERO;
                     ViewBag.idRes = reservacion.ID;
+                    ViewBag.tot = (reservacion.GRUPONUMS.INFANTES + reservacion.GRUPONUMS.NINOS + reservacion.GRUPONUMS.HOMBRES + reservacion.GRUPONUMS.MUJERES);
+                    ViewBag.falt = (reservacion.GRUPONUMS.INFANTES + reservacion.GRUPONUMS.NINOS + reservacion.GRUPONUMS.HOMBRES + reservacion.GRUPONUMS.MUJERES) - tabla.Count();
                 }
             }
             else if (idRes != null && !idRes.Equals(""))
@@ -110,6 +112,9 @@ namespace RegistroVisitantes.Controllers
                 V_RESERVACION num = BDRegistro.V_RESERVACION.Find(idRes);
                 ViewBag.num = num.NUMERO;
                 ViewBag.idRes = idRes;
+                ViewBag.falt = (num.GRUPONUMS.INFANTES + num.GRUPONUMS.NINOS + num.GRUPONUMS.HOMBRES + num.GRUPONUMS.MUJERES) - tabla.Count();
+                ViewBag.tot = (num.GRUPONUMS.INFANTES + num.GRUPONUMS.NINOS + num.GRUPONUMS.HOMBRES + num.GRUPONUMS.MUJERES);
+
             }
             else
             {
