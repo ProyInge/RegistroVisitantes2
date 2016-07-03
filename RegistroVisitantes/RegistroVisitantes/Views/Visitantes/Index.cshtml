@@ -18,21 +18,21 @@
 
 
 <div class="col-sm-8">
-@using (Html.BeginForm())
-{
-    <p>
-        Buscar por Número de reservación:
-        <input type="text" name="numRes" id="numRes" class="form-control" style="display:inline" />
-        <button type="submit" class="btn btn-success">
-            <i class="fa fa-search"></i>
-        </button>
-    </p>
-}
+    @using (Html.BeginForm())
+    {
+        <p>
+            Buscar por Número de reservación:
+            <input type="text" name="numRes" id="numRes" class="form-control" style="display:inline" />
+            <button type="submit" class="btn btn-success">
+                <i class="fa fa-search"></i>
+            </button>
+        </p>
+    }
 </div>
 
-@if (ViewBag.idRes != null && !((string)ViewBag.idRes).IsEmpty() && (string)Session["Rol"]=="S")
+@if (ViewBag.idRes != null && !((string)ViewBag.idRes).IsEmpty() && (string)Session["Rol"] == "S")
 {
-    @Html.ActionLink("Agregar visitante", "Index", "Formulario", new {idRes = ViewBag.idRes}, new { @class = "btn btn-success", @style = "float:right;" })
+    @Html.ActionLink("Agregar visitante", "Index", "Formulario", new { idRes = ViewBag.idRes }, new { @class = "btn btn-success", @style = "float:right;" })
 }
 
 <table class="table table-bordered table-condensed">
@@ -56,7 +56,7 @@
             Identificación
         </th>
         <th style="text-align:center;">
-            Firma
+            Firma            
         </th>
         <th style="text-align:center;">
             Imprimir
@@ -80,33 +80,35 @@
             @:<tr>
         }
 
-        <td align="center">
+        <td align="center" name="reserva" data-id='@item.ID_RESERVACION'>
             @Html.DisplayFor(modelItem => item.RESERVACION.NUMERO)
         </td>
+        <td align="center">
+            @if (item.RESERVACION.ANFITRIONA == "01")
+            { <p>OET</p> }
+            else
+            { <p>ESINTRO</p>}
+        </td>
             <td align="center">
-                    @if (item.RESERVACION.ANFITRIONA == "01") { <p>OET</p> } else { <p>ESINTRO</p>}
+                @Html.DisplayFor(modelItem => item.PERSONA.NOMBRE)
             </td>
-                        <td align="center">
-                            @Html.DisplayFor(modelItem => item.PERSONA.NOMBRE)
-                        </td>
                         <td align="center">
                             @Html.DisplayFor(modelItem => item.PERSONA.APELLIDO)
                         </td>
                         <td align="center">
                             @Html.DisplayFor(modelItem => item.PERSONA.EMAIL)
                         </td>
-                        <td align="center">
+                        <td align="center" id="cedula" name="cedula">
                             @Html.DisplayFor(modelItem => item.PERSONA.CEDULA)
                         </td>
                         <td align="center">
                             <input type="checkbox" onclick='firma' name="firma" data-ced='@item.PERSONA.CEDULA' data-id='@item.ID_RESERVACION' class="firma form-control"
-                                   @(item.ESTADO == "I" ? "disabled = \"disabled \" " : 
-                                        (item.ESTADO == "F") ? "checked" : "" )>                            
+                                   @(item.ESTADO == "I" ? "disabled = \"disabled \" " : (item.ESTADO == "F") ? "checked" : "" )>
                         </td>
                         <td align="center">
-                            <button class='mylink btn btn-success' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA'  @(item.ESTADO == "I" ? "disabled = \"disabled \" " : "")>
-                               <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-                             </button>
+                            <button class='mylink btn btn-success' onclick='mylink' data-id='@item.ID_RESERVACION' data-ced='@item.CEDULA' data-tipo='@item.RESERVACION.ANFITRIONA' @(item.ESTADO == "I" ? "disabled = \"disabled \" " : "")>
+                                <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                            </button>
                         </td>
                         <td align="center">
                             @Html.ActionLink("Cambiar estado", "CambiarEstado", new { idRes = item.ID_RESERVACION, idPer = item.CEDULA }, new { @class = "btn btn-success" })
@@ -118,7 +120,17 @@
                         </td>
                         @:</tr>
                     }
-</table>    
+</table>
+
+@if (ViewBag.idRes != null && !((string)ViewBag.idRes).IsEmpty())
+{
+<div class="col-sm-12">
+    <div class="col-sm-offset-7">
+        <strong>Firmar todos</strong>
+        <input type="checkbox" class="todos" name="firmarTodos">
+    </div>
+</div>
+    }
 
 <div id="printerDiv" style="display:none"></div>
 
@@ -127,47 +139,81 @@
             @Html.PagedListPager(Model, Pagina => Url.Action("Index",
         new { Pagina, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
 
-@if (ViewBag.idRes != null && !((string)ViewBag.idRes).IsEmpty())
-{
-     @Html.ActionLink("Volver a Reservas", "Index", "Reservas", new { }, new { @class = "btn btn-danger", @style = "margin-right:5px;" })
-     @Html.ActionLink("Ver todos los visitantes", "Index", "Visitantes", new { }, new { @class = "btn btn-danger" })
-}
+            @if (ViewBag.idRes != null && !((string)ViewBag.idRes).IsEmpty())
+            {
+                @Html.ActionLink("Volver a Reservas", "Index", "Reservas", new { }, new { @class = "btn btn-danger", @style = "margin-right:5px;" })
+                @Html.ActionLink("Ver todos los visitantes", "Index", "Visitantes", new { }, new { @class = "btn btn-danger" })
+            }
 
-<script>
+            <script>
 
-    /*
-        * Desc: Funcion de impresion de los details de cada visitante
-        * Requiere: N/A
-        * Devuelve: N/A
-        * 
-        */
+                /*
+                    * Desc: Funcion de impresion de los details de cada visitante
+                    * Requiere: N/A
+                    * Devuelve: N/A
+                    *
+                    */
 
-    $('.mylink').click(function () 
-    {
-        if ($(this).data('tipo') == 2)
-        {
-            w = window.open("/Visitantes/DetailsESINTRO?idR=" + $(this).data('id') + "&cedula=" + $(this).data('ced') + "");
-        }
-       else
-       {
-            w = window.open("/Visitantes/DetailsOET?idR=" + $(this).data('id') + "&cedula=" + $(this).data('ced') + "");
-       }
-        //doSomething($(this).data("id"));
-        w.print();
-    });
+                $('.mylink').click(function () {
+                    if ($(this).data('tipo') == 2) {
+                        w = window.open("/Visitantes/DetailsESINTRO?idR=" + $(this).data('id') + "&cedula=" + $(this).data('ced') + "");
+                    }
+                    else {
+                        w = window.open("/Visitantes/DetailsOET?idR=" + $(this).data('id') + "&cedula=" + $(this).data('ced') + "");
+                    }
+                    //doSomething($(this).data("id"));
+                    w.print();
+                });
 
-    $(function () {
-        $('.firma').change(function () {
-            var self = $(this);
-            var id = self.data('id');
-            var ced = self.data('ced');
-            var value;
-            if (self.is(":checked")) { value = "F"; } else { value = "A" }
-            
-            $.ajax({
-                url: "/Visitantes/guardarFirma?idRes="+id+"&ced="+ced+"&val="+value,
-                type: 'POST',
-            });
-        });
-    });
-</script>
+                $(function () {
+                    $('.firma').change(function () {
+                        var self = $(this);
+                        var id = self.data('id');
+                        var ced = self.data('ced');
+                        var value;
+                        if (self.is(":checked")) { value = "F"; } else { value = "A" }
+
+                        $.ajax({
+                            url: "/Visitantes/guardarFirma?idRes=" + id + "&ced=" + ced + "&val=" + value,
+                            type: 'POST',
+                        });
+                    });
+                });
+
+                
+                $(function () {
+                    $('.todos').change(function () {
+                        var myVals = new Array();
+                        var cedulas = new Array();
+                        var reservaciones = new Array();
+                        var val = false;
+                        if ($(this).is(":checked")) {
+                            val = true;
+                        }
+
+                        var arr = document.getElementsByName('cedula');
+                        for (var i = 0; i < arr.length ; i++) {
+                            cedulas.push(arr[i].innerHTML);
+                        }
+
+                        arr = document.getElementsByName('reserva');
+                        for (var i = 0; i < arr.length ; i++) {                            
+                            reservaciones.push(arr[i].getAttribute('data-id'));
+                        }
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/Visitantes/guardarFirmas?cedulas=" + cedulas + "&reservas="
+                                + reservaciones + "&val=" + val,
+                            success: function (response) {
+                                var checksArr = document.getElementsByName('firma');
+                                for (var i = 0; i < checksArr.length ; i++) {
+                                    checksArr[i].checked = val;
+                                }
+                            },
+                        });                        
+                    });
+                });
+
+
+            </script>

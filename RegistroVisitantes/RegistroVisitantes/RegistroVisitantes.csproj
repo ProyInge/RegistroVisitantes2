@@ -455,6 +455,7 @@
     <Content Include="Views\Imprimir\ImprimirESINTRO.cshtml" />
     <Content Include="Views\Visitantes\CreateInstitucion.cshtml" />
     <Content Include="Views\Reportes\Detalles.cshtml" />
+    <Content Include="Views\Visitantes\CambiarEstado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
