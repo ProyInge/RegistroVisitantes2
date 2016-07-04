@@ -61,10 +61,10 @@
                                             @(item.RESERVACION.NUMERO)
                                         </td>
                                         <td @(ViewBag.col4 == false ? "hidden" : "")>
-                                            @(item.RESERVACION.ENTRA)
+                                            @(item.RESERVACION.ENTRA.Value.ToString("dd MMM yyyy"))
                                         </td>
                                         <td @(ViewBag.col5 == false ? "hidden" : "")>
-                                            @(item.RESERVACION.SALE)
+                                            @(item.RESERVACION.SALE.Value.ToString("dd MMM yyyy"))
                                         </td>
                                         <td @(ViewBag.col6 == false ? "hidden" : "")>
                                             @(item.PERSONA.ROL)
@@ -85,6 +85,7 @@
                                     for (int i = 5 - Model.Count; i > 0; i--)
                                     {
                                         <tr class="tableRow">
+                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>

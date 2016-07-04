@@ -269,6 +269,7 @@ fieldset[disabled] .btn-cancelOET.active {
     .form-control
     {
         border: #fff; background-color:none; border-radius: 0px; box-shadow:none; font-size: 10px;width: 50%; display:inline;
+        border-bottom: 1px solid black;
     }
     .label
     {

@@ -22,7 +22,7 @@ namespace RegistroVisitantes.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            DateTime from = new DateTime(2005, 3, 20);
+            DateTime from = DateTime.Now;
             DateTime to = (from.AddDays(365));
        
             ViewBag.fromDate = from;
@@ -31,13 +31,13 @@ namespace RegistroVisitantes.Controllers
             return View();
         }
 
-        private IQueryable<INFOVISITA> getTabla(REPORTE reporte)
+        private IQueryable<INFOVISITA> getTabla(DateTime FECHADESDE, DateTime FECHAHASTA, string ANFITRIONA, string ESTACION, string TIPO, string NACIONALIDAD)
         {
             IQueryable<INFOVISITA> tabla;
-            tabla = db.INFOVISITA.Where(x => x.RESERVACION.ENTRA >= reporte.FECHADESDE && x.RESERVACION.ENTRA <= reporte.FECHAHASTA).OrderBy(x => x.ID_RESERVACION);
+            tabla = db.INFOVISITA.Where(x => x.RESERVACION.ENTRA > FECHADESDE && x.RESERVACION.ENTRA < FECHAHASTA).OrderBy(x => x.ID_RESERVACION);
 
             // se cuentan reservaciones y visitantes por estacion y por institucion
-            switch (reporte.ANFITRIONA)
+            switch (ANFITRIONA)
             {
                 case "ESINTRO":
                     tabla = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("01"));
@@ -46,7 +46,7 @@ namespace RegistroVisitantes.Controllers
                     tabla = tabla.Where(x => x.RESERVACION.ANFITRIONA.Equals("02"));
                     break;
             }
-            switch (reporte.ESTACION)
+            switch (ESTACION)
             {
                 case "01":
                     tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva"));
@@ -61,7 +61,7 @@ namespace RegistroVisitantes.Controllers
                     tabla = tabla.Where(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("Costa Rican Offices"));
                     break;
             }
-            switch (reporte.TIPO)
+            switch (TIPO)
             {
                 case "01":
                     tabla = tabla.Where(x => x.PERSONA.ROL.Equals("Staff"));
@@ -76,7 +76,7 @@ namespace RegistroVisitantes.Controllers
                     tabla = tabla.Where(x => x.PERSONA.ROL.Equals("Otro"));
                     break;
             }
-            switch (reporte.NACIONALIDAD)
+            switch (NACIONALIDAD)
             {
                 case "01":
                     tabla = tabla.Where(x => x.PERSONA.NACIONALIDAD.Equals("CR"));
@@ -92,9 +92,14 @@ namespace RegistroVisitantes.Controllers
         }
 
         [Authorize]
-        public ActionResult Detalles(int? Pagina, [Bind(Include = "FECHADESDE,FECHAHASTA,ANFITRIONA,ESTACION,TIPO,NACIONALIDAD")] REPORTE reporte, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
+        public ActionResult Detalles(int? Pagina, string FECHADESDE, string FECHAHASTA, string ANFITRIONA, string ESTACION, string TIPO, string NACIONALIDAD, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
         {
-            if(reporte.ANFITRIONA == null)
+            string d = FECHADESDE.Replace('/', '-');
+            DateTime desde = DateTime.ParseExact(d, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            d = FECHAHASTA.Replace('/', '-');
+            DateTime hasta = DateTime.ParseExact(d, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+            if (ANFITRIONA == null)
             {
                 return RedirectToAction("Index", "Reportes");
             }
@@ -117,15 +122,15 @@ namespace RegistroVisitantes.Controllers
             int totalReservEstacion = 0;
             int totalVisitEstacion = 0;
 
-            ViewBag.fromDate = reporte.FECHADESDE;
-            ViewBag.toDate = reporte.FECHAHASTA;
+            ViewBag.fromDate = FECHADESDE;
+            ViewBag.toDate = FECHAHASTA;
 
-            ViewBag.FECHADESDE = reporte.FECHADESDE;
-            ViewBag.FECHAHASTA = reporte.FECHAHASTA;
-            ViewBag.ANFITRIONA = reporte.ANFITRIONA;
-            ViewBag.ESTACION = reporte.ESTACION;
-            ViewBag.TIPO = reporte.TIPO;
-            ViewBag.NACIONALIDAD = reporte.NACIONALIDAD;
+            ViewBag.FECHADESDE = FECHADESDE;
+            ViewBag.FECHAHASTA = FECHAHASTA;
+            ViewBag.ANFITRIONA = ANFITRIONA;
+            ViewBag.ESTACION = ESTACION;
+            ViewBag.TIPO = TIPO;
+            ViewBag.NACIONALIDAD = NACIONALIDAD;
 
             ViewBag.col1 = col1;
             ViewBag.col2 = col2;
@@ -137,10 +142,10 @@ namespace RegistroVisitantes.Controllers
             ViewBag.col8 = col8;
             ViewBag.col9 = col9;
 
-            var tabla = getTabla(reporte);
+            var tabla = getTabla(desde, hasta, ANFITRIONA, ESTACION, TIPO, NACIONALIDAD);
 
             // se cuentan reservaciones y visitantes por estacion y por institucion
-            switch (reporte.ANFITRIONA)
+            switch (ANFITRIONA)
             {
                 case "ESINTRO":
                     totalVisitESINTRO = tabla.Count(x => x.RESERVACION.ANFITRIONA.Equals("01"));
@@ -159,7 +164,7 @@ namespace RegistroVisitantes.Controllers
                     break;
             }
 
-            switch (reporte.ESTACION)
+            switch (ESTACION)
             {
                 case "01":
                     totalVisitLS = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva"));
@@ -225,10 +230,15 @@ namespace RegistroVisitantes.Controllers
 
         }
 
-        public ActionResult Download([Bind(Include = "FECHADESDE,FECHAHASTA,ANFITRIONA,ESTACION,TIPO,NACIONALIDAD")] REPORTE reporte, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
+        public ActionResult Download(string FECHADESDE, string FECHAHASTA, string ANFITRIONA, string ESTACION, string TIPO, string NACIONALIDAD, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9)
         {
-            var tabla = getTabla(reporte);
-            saveExcel(tabla, col1, col2, col3, col4, col5, col6, col7, col8, col9, reporte);
+            string d = FECHADESDE.Replace('/', '-');
+            DateTime desde = DateTime.ParseExact(d, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            d = FECHAHASTA.Replace('/', '-');
+            DateTime hasta = DateTime.ParseExact(d, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+            var tabla = getTabla(desde, hasta, ANFITRIONA, ESTACION, TIPO, NACIONALIDAD);
+            saveExcel(tabla, col1, col2, col3, col4, col5, col6, col7, col8, col9, FECHADESDE, FECHAHASTA, ANFITRIONA, ESTACION, TIPO, NACIONALIDAD);
             string file = Server.MapPath("~/Reporte.xlsx"); ;
             string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             return File(file, contentType, Path.GetFileName(file));
@@ -264,7 +274,7 @@ namespace RegistroVisitantes.Controllers
         }
 
 
-        public DataTable toDataTableSumInsti(IEnumerable<INFOVISITA> tabla, REPORTE reporte)
+        public DataTable toDataTableSumInsti(IEnumerable<INFOVISITA> tabla, string FECHADESDE, string FECHAHASTA, string ANFITRIONA, string ESTACION, string TIPO, string NACIONALIDAD)
         {
             var dt = new DataTable();
             dt.Columns.Add("Compañía", typeof(String)); 
@@ -283,7 +293,7 @@ namespace RegistroVisitantes.Controllers
             int totalVisitESINTRO = 0;
             int totalReservInstitucion = 0;
             int totalVisitInstitucion = 0;
-            switch (reporte.ANFITRIONA)
+            switch (ANFITRIONA)
             {
                 case "ESINTRO":
                     totalVisitESINTRO = tabla.Count(x => x.RESERVACION.ANFITRIONA.Equals("01"));
@@ -322,7 +332,7 @@ namespace RegistroVisitantes.Controllers
             return dt;
         }
 
-        public DataTable toDataTableSumEstacion(IEnumerable<INFOVISITA> tabla, REPORTE reporte)
+        public DataTable toDataTableSumEstacion(IEnumerable<INFOVISITA> tabla, string FECHADESDE, string FECHAHASTA, string ANFITRIONA, string ESTACION, string TIPO, string NACIONALIDAD)
         {
             var dt = new DataTable();
             dt.Columns.Add("Estación", typeof(String));
@@ -350,7 +360,7 @@ namespace RegistroVisitantes.Controllers
             int totalReservEstacion = 0;
             int totalVisitEstacion = 0;
 
-            switch (reporte.ESTACION)
+            switch (ESTACION)
             {
                 case "01":
                     totalVisitLS = tabla.Count(x => x.RESERVACION.ESTACIONI.NOMBRE.Equals("La Selva"));
@@ -411,7 +421,7 @@ namespace RegistroVisitantes.Controllers
             return dt;
         }
 
-        public void saveExcel(IQueryable<INFOVISITA> t, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9, REPORTE reporte)
+        public void saveExcel(IQueryable<INFOVISITA> t, bool? col1, bool? col2, bool? col3, bool? col4, bool? col5, bool? col6, bool? col7, bool? col8, bool? col9, string FECHADESDE, string FECHAHASTA, string ANFITRIONA, string ESTACION, string TIPO, string NACIONALIDAD)
         {
             String fileName = Server.MapPath("~/Reporte.xlsx");
             var arch = new FileInfo(fileName);
@@ -481,8 +491,8 @@ namespace RegistroVisitantes.Controllers
                 }
 
                 //Agrega los totales
-                DataTable totalInsti = toDataTableSumInsti(tablaenum, reporte);
-                DataTable totalEstacion = toDataTableSumEstacion(tablaenum, reporte);
+                DataTable totalInsti = toDataTableSumInsti(tablaenum, FECHADESDE, FECHAHASTA, ANFITRIONA, ESTACION, TIPO, NACIONALIDAD);
+                DataTable totalEstacion = toDataTableSumEstacion(tablaenum, FECHADESDE, FECHAHASTA, ANFITRIONA, ESTACION, TIPO, NACIONALIDAD);
 
                 for (int i=1; i<=3; i++) {
                     ws.Cells[tablaenum.Count() + 3, i].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;

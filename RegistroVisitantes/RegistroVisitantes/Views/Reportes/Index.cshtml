@@ -96,6 +96,7 @@
             $("#FECHADESDE").datepicker({
                 dateFormat: 'dd/mm/yy',
                 showOn: "button",
+                changeYear: true,
                 onSelect: function (date) {
                     var dt1 = $('#FECHADESDE').datepicker('getDate');
                     var dt2 = $('#FECHAHASTA').datepicker('getDate');
@@ -110,6 +111,7 @@
             });
             $('#FECHAHASTA').datepicker({
                 dateFormat: 'dd/mm/yy',
+                changeYear: true,
                 showOn: "button"
             });
             var date2 = $('#FECHADESDE').datepicker('getDate');

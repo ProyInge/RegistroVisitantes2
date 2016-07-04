@@ -402,4 +402,7 @@
   <data name="insercionMala" xml:space="preserve">
     <value>Hubo un error añadiendo la institución</value>
   </data>
+  <data name="placeholder_ej" xml:space="preserve">
+    <value>Ejemplo</value>
+  </data>
 </root>
