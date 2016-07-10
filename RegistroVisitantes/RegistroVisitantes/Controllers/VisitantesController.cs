@@ -13,6 +13,7 @@ using System.Diagnostics;
 using ViewResources;
 using System.Threading;
 using System.Globalization;
+using System.Net.Mime;
 
 namespace RegistroVisitantes.Controllers
 {
@@ -87,6 +88,8 @@ namespace RegistroVisitantes.Controllers
                 {
                     ViewBag.num = reservacion.NUMERO;
                     ViewBag.idRes = reservacion.ID;
+                    ViewBag.tot = (reservacion.GRUPONUMS.INFANTES + reservacion.GRUPONUMS.NINOS + reservacion.GRUPONUMS.HOMBRES + reservacion.GRUPONUMS.MUJERES);
+                    ViewBag.falt = (reservacion.GRUPONUMS.INFANTES + reservacion.GRUPONUMS.NINOS + reservacion.GRUPONUMS.HOMBRES + reservacion.GRUPONUMS.MUJERES) - tabla.Count();
                 }
             }
             else if (idRes != null && !idRes.Equals(""))
@@ -110,6 +113,9 @@ namespace RegistroVisitantes.Controllers
                 V_RESERVACION num = BDRegistro.V_RESERVACION.Find(idRes);
                 ViewBag.num = num.NUMERO;
                 ViewBag.idRes = idRes;
+                ViewBag.falt = (num.GRUPONUMS.INFANTES + num.GRUPONUMS.NINOS + num.GRUPONUMS.HOMBRES + num.GRUPONUMS.MUJERES) - tabla.Count();
+                ViewBag.tot = (num.GRUPONUMS.INFANTES + num.GRUPONUMS.NINOS + num.GRUPONUMS.HOMBRES + num.GRUPONUMS.MUJERES);
+
             }
             else
             {
@@ -797,6 +803,51 @@ namespace RegistroVisitantes.Controllers
                     BDRegistro.SaveChanges();
                 }
             }
+        }
+
+        public ActionResult guardarFirmas(string cedulas, string reservas, string val)
+        {
+            string[] ceds = cedulas.Split(',');
+            string[] reservs = reservas.Split(',');
+            bool error = false;
+            string mensaje = "";
+            string estado = (val == "true") ? "F" : "A"; 
+            if (ceds.Length == reservs.Length)
+            {
+                for (int i = 0; i < ceds.Length; i++)
+                {
+                    string ced = ceds[i];
+                    ced = ced.Trim();      
+                    string idRes = reservs[i];
+                    idRes = idRes.Trim();
+                    if (idRes != null && ced != null)
+                    {
+                        INFOVISITA iInfoVisita = BDRegistro.INFOVISITA.Find(idRes, ced);
+                        if (iInfoVisita != null)
+                        {
+                            iInfoVisita.ESTADO = estado;
+                            BDRegistro.SaveChanges();
+                        }
+                        else
+                        {
+                            error = true;
+                        }
+                    }
+                }
+                if (!error)
+                {
+                    //  Success
+                    Response.StatusCode = (int)HttpStatusCode.OK;
+                    mensaje = "Guardado";
+                }
+                else
+                {
+                    //  Error
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    mensaje = "Error";
+                }
+            }
+            return Content(mensaje, MediaTypeNames.Text.Plain);
         }
 
         public PartialViewResult CreateInstitucion()

@@ -306,4 +306,7 @@
   <data name="insercionMala" xml:space="preserve">
     <value>Il y avait une erreur en ajoutant l'institution</value>
   </data>
+  <data name="placeholder_ej" xml:space="preserve">
+    <value>Exemple</value>
+  </data>
 </root>

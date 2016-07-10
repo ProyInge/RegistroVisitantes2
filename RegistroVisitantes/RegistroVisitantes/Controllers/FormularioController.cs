@@ -336,7 +336,7 @@ namespace RegistroVisitantes.Controllers
                 {
                     db.SaveChanges();
                 }
-                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                catch (Exception e)
                 {
                     mensaje = 0;
                     return RedirectToAction("CreateESINTRO", new { idRes, mensaje });
@@ -468,7 +468,7 @@ namespace RegistroVisitantes.Controllers
                 {
                     db.SaveChanges(); //se guarda la información
                 }
-                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                catch (Exception e)
                 {
                     mensaje = 0;
                     return RedirectToAction("CreateOET", new { idRes, mensaje });

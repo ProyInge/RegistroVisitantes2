@@ -72,12 +72,12 @@ else
             <div id="personalInfo">
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.PERSONA.NOMBRE, @ViewResources.Resources.oet_nombre + ":", htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.PERSONA.NOMBRE, new { htmlAttributes = new { @class = "form-control", pattern = "[^\\W\\d_]*", maxlength = "20", placeholder = "John", title = "John" } })
+                    @Html.EditorFor(model => model.PERSONA.NOMBRE, new { htmlAttributes = new { @class = "form-control", pattern = "[^\\W\\d_]*", maxlength = "20", placeholder = ViewResources.Resources.placeholder_ej + ": John", title = "John" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.NOMBRE, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.PERSONA.APELLIDO, @ViewResources.Resources.oet_apellidos + ":", htmlAttributes: new { @class = "control-label " })
-                    @Html.EditorFor(model => model.PERSONA.APELLIDO, new { htmlAttributes = new { @class = "form-control", pattern = "[^\\W\\d_]*[' ']*[^\\W\\d_]*", maxlength = "50", placeholder = "Smith Smith", title = "Smith Smith" } })
+                    @Html.EditorFor(model => model.PERSONA.APELLIDO, new { htmlAttributes = new { @class = "form-control", pattern = "[^\\W\\d_]*[' ']*[^\\W\\d_]*", maxlength = "50", placeholder = ViewResources.Resources.placeholder_ej + ": Smith Smith", title = "Smith Smith" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.APELLIDO, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-sm-6">
@@ -106,13 +106,13 @@ else
 
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.PERSONA.TELEFONO, @ViewResources.Resources.oet_telefono + ":", htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.PERSONA.TELEFONO, new { htmlAttributes = new { @class = "form-control", type="number", placeholder = "12345678" } })
+                    @Html.EditorFor(model => model.PERSONA.TELEFONO, new { htmlAttributes = new { @class = "form-control", type="number", placeholder = ViewResources.Resources.placeholder_ej + ": 12345678" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.TELEFONO, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group col-sm-6">
                     @Html.LabelFor(model => model.PERSONA.EMAIL, @ViewResources.Resources.oet_correo + ":", htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control", type="email", maxlength = "80", placeholder = "email@gmail.com" } })
+                    @Html.EditorFor(model => model.PERSONA.EMAIL, new { htmlAttributes = new { @class = "form-control", type="email", maxlength = "80", placeholder = ViewResources.Resources.placeholder_ej + ": email@gmail.com" } })
                     @Html.ValidationMessageFor(model => model.PERSONA.EMAIL, "", new { @class = "text-danger" })
                 </div>
 
@@ -137,18 +137,18 @@ else
             <br />
             <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.NOMBRE_EMERGENCIA, @ViewResources.Resources.oet_nombre + ":", htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.NOMBRE_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", pattern = "[^\\W\\d_]*[' ']*[^\\W\\d_]*[' ']*[^\\W\\d_]*", maxlength = "70", placeholder = "John Smith Smith", title = "John Smith Smith" } })
+                @Html.EditorFor(model => model.NOMBRE_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", pattern = "[^\\W\\d_]*[' ']*[^\\W\\d_]*[' ']*[^\\W\\d_]*", maxlength = "70", placeholder = ViewResources.Resources.placeholder_ej + ": John Smith Smith", title = "John Smith Smith" } })
                 @Html.ValidationMessageFor(model => model.NOMBRE_EMERGENCIA, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.TEL_EMERGENCIA, @ViewResources.Resources.oet_telefono + ":", htmlAttributes: new { @class = "control-label " })
-                @Html.EditorFor(model => model.TEL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", type="number", placeholder = "12345678" } })
+                @Html.EditorFor(model => model.TEL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", type="number", placeholder = ViewResources.Resources.placeholder_ej + ": 12345678" } })
                 @Html.ValidationMessageFor(model => model.TEL_EMERGENCIA, "", new { @class = "text-danger" })
             </div>
             <div class="form-group col-sm-6">
                 @Html.LabelFor(model => model.EMAIL_EMERGENCIA, @ViewResources.Resources.oet_correo + ":", htmlAttributes: new { @class = "control-label " })
-                @Html.EditorFor(model => model.EMAIL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", type="email", maxlength = "80", placeholder = "email@gmail.com" } })
+                @Html.EditorFor(model => model.EMAIL_EMERGENCIA, new { htmlAttributes = new { @class = "form-control", type="email", maxlength = "80", placeholder = ViewResources.Resources.placeholder_ej + ": email@gmail.com" } })
                 @Html.ValidationMessageFor(model => model.EMAIL_EMERGENCIA, "", new { @class = "text-danger" })
             </div>
 
